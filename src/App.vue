@@ -4,26 +4,33 @@
   </header> -->
 
   <div class="flex">
-    <Sidebar />
+    <AppSidebar />
     <router-view />
   </div>
 </template>
 
 <script setup>
-import { ref, watch, provide, nextTick } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
+import { watch, provide, nextTick, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
+import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 
-import Sidebar from '@/components/Sidebar.vue';
+import AppSidebar from '@/components/AppSidebar.vue';
 
 const route = useRoute();
-const router = useRouter();
 
-const showSidebar = ref(true);
+// const showSidebar = ref(true);
 
-const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds();
-const { currentBuild, buildList } = setupCharacterBuilds();
+// First thing we do is grab data from storage
+const { setup: storageSetup } = useStorage();
+const { storageData, errors: storageErrors } = storageSetup();
+//  TODO get data from local storage
+//  send to useCharacterBuilds
+
+console.log('app masterData', masterData);
+const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds(masterData);
+const { currentCharacter } = setupCharacterBuilds();
 
 const setContextIds = () => {
   setContext();
@@ -33,14 +40,23 @@ watch(
   [() => route.name, () => route.query],
   () => {
     nextTick(() => {
+      console.log('trying to set context');
       setContextIds();
     });
   },
   { immediate: true }
 );
 
-provide('currentBuild', currentBuild);
-provide('buildList', buildList);
+provide('masterData', masterData);
+provide('currentCharacter', currentCharacter);
+
+onMounted(() => {
+  console.log(
+    // eslint-disable-next-line quotes
+    "%cIf you're reading this, then I may be able to use your help!\nPoke Fryke (fryke) on Discord if you are interested!",
+    'font-size: 1rem'
+  );
+});
 </script>
 
 <style lang="scss" scoped>
