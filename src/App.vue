@@ -10,14 +10,40 @@
 </template>
 
 <script setup>
-import { onMounted, ref, watch, provide, inject, nextTick } from 'vue';
+import { ref, watch, provide, nextTick } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+
+import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
+
 import Sidebar from '@/components/Sidebar.vue';
 
+const route = useRoute();
+const router = useRouter();
+
 const showSidebar = ref(true);
+
+const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds();
+const { currentBuild, buildList } = setupCharacterBuilds();
+
+const setContextIds = () => {
+  setContext();
+};
+
+watch(
+  [() => route.name, () => route.query],
+  () => {
+    nextTick(() => {
+      setContextIds();
+    });
+  },
+  { immediate: true }
+);
+
+provide('currentBuild', currentBuild);
+provide('buildList', buildList);
 </script>
 
 <style lang="scss" scoped>
-
 header {
   line-height: 1.5;
   max-height: 100vh;

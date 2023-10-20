@@ -10,17 +10,17 @@ const router = createRouter({
     {
       path: '/',
       name: LANDING_ROUTE,
-      redirect: '/home'
+      redirect: '/home',
     },
     {
       path: '/home',
       name: HOME_ROUTE,
-      component: () => import('../components/Home.vue')
+      component: () => import('../components/Home.vue'),
     },
     {
-      path: '/home',
+      path: '/builder/:buildId',
       name: CHARACTER_BUILDER_ROUTE,
-      component: () => import('../components/CharacterBuilder.vue')
+      component: () => import('../components/CharacterBuilder.vue'),
     },
     // {
     //   path: '/about',
@@ -30,7 +30,7 @@ const router = createRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import('../components/AboutView.vue')
     // }
-  ]
-})
+  ],
+});
 
-export default router
+export default router;
