@@ -1,7 +1,6 @@
-import { ref, watch, reactive, toRef } from 'vue';
+import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
-import { EventBus, Events } from '@/eventBus';
 
 export const CLASS_CONSTANTS = {
   feca: 'feca',
