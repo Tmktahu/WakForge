@@ -15,21 +15,13 @@ const router = createRouter({
     {
       path: '/home',
       name: HOME_ROUTE,
-      component: () => import('../components/Home.vue'),
+      component: () => import('../components/HomePage.vue'),
     },
     {
-      path: '/builder/:buildId',
+      path: '/builder/:characterId',
       name: CHARACTER_BUILDER_ROUTE,
       component: () => import('../components/CharacterBuilder.vue'),
     },
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../components/AboutView.vue')
-    // }
   ],
 });
 

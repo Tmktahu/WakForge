@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
+    "mitt": "^3.0.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.37.0",
@@ -32,7 +33,7 @@
     "eslint-plugin-html": "^7.1.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-lodash": "^7.4.0",
-    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.9.0",
     "jsdom": "^22.1.0",
