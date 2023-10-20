@@ -28,7 +28,6 @@ const { errors: storageErrors } = storageSetup();
 //  TODO get data from local storage
 //  send to useCharacterBuilds
 
-console.log('app masterData', masterData);
 const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds(masterData);
 const { currentCharacter } = setupCharacterBuilds();
 
@@ -40,7 +39,6 @@ watch(
   [() => route.name, () => route.query],
   () => {
     nextTick(() => {
-      console.log('trying to set context');
       setContextIds();
     });
   },

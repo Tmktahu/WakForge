@@ -28,8 +28,6 @@ export function useCharacterBuilds(masterData) {
   const currentCharacter = ref(null);
   let route = null;
 
-  console.log('in master data', masterData);
-
   // TODO load in builds from local storage
 
   const setup = () => {
@@ -60,7 +58,6 @@ export function useCharacterBuilds(masterData) {
     newCharacterData.id = uuidv4(); // add a UUID
 
     // then add it to our list of builds
-    console.log('create log', masterData.characters);
     masterData.characters.push(newCharacterData);
 
     return newCharacterData;
@@ -121,6 +118,16 @@ export const characterDataTemplate = {
   armorGiven: 0.0,
   armorReceived: 0.0,
   indirectDamage: 0.0,
+
+  characteristics: {
+    limits: {
+      intelligence: 0,
+      strength: 0,
+      agility: 0,
+      fortune: 0,
+      major: 0,
+    },
+  },
 };
 
 // ========== Character Data Outline ==========
