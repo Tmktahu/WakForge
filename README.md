@@ -1,1 +1,3 @@
-# WakfuWizard
+# Wakfu Wizard
+
+Testing commit
