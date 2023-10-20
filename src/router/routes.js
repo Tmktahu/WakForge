@@ -1,11 +1,25 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
+
+export const LANDING_ROUTE = 'landing';
+export const HOME_ROUTE = 'home';
+export const CHARACTER_BUILDER_ROUTE = 'character-builder';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: LANDING_ROUTE,
+      redirect: '/home'
+    },
+    {
+      path: '/home',
+      name: HOME_ROUTE,
+      component: () => import('../components/Home.vue')
+    },
+    {
+      path: '/home',
+      name: CHARACTER_BUILDER_ROUTE,
       component: () => import('../components/CharacterBuilder.vue')
     },
     // {

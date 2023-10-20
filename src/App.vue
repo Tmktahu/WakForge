@@ -1,19 +1,23 @@
 <template>
-  <header>
+  <!-- <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-  </header>
+  </header> -->
 
-  <body>
-    <!-- SIDEBAR -->
+  <div class="flex">
+    <Sidebar />
     <router-view />
-  </body>
+  </div>
 </template>
 
 <script setup>
-import { RouterView } from 'vue-router'
+import { onMounted, ref, watch, provide, inject, nextTick } from 'vue';
+import Sidebar from '@/components/Sidebar.vue';
+
+const showSidebar = ref(true);
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 header {
   line-height: 1.5;
   max-height: 100vh;
