@@ -9,8 +9,6 @@ export let masterData = reactive({
   characters: [],
 });
 
-console.log(masterData);
-
 export function useStorage() {
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
@@ -19,15 +17,11 @@ export function useStorage() {
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
-      console.log('trying to save by event');
       saveToLocalStorage(data);
     });
 
     watch(masterData, () => {
       // this watch handles live saving to local storage
-      // console.log('triggering save by watch');
-      // EventBus.emit(Events.SAVE_DATA, currentCharacterList.value);
-      console.log('save by watch');
       saveToLocalStorage(data);
     });
 
@@ -69,13 +63,10 @@ export function useStorage() {
           characters: masterData.characters,
         };
 
-        console.log('newStorageData', newStorageData);
-
         newStorageData.version = import.meta.env.VUE_APP_VERSION;
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
-        console.log('saved to localstorage');
       }
     } catch (error) {
       console.error('Error writing to local storage: ', error);
