@@ -1,0 +1,1 @@
+import{i as r,o as c,c as n,t as a,b as s}from"./index-411ce493.js";const o={class:"mx-5 my-5"},m={__name:"CharacterBuilder",setup(i){const t=r("currentBuild");return(u,l)=>{var e;return c(),n("div",o,a(((e=s(t))==null?void 0:e.name)||"no current build"),1)}}};export{m as default};

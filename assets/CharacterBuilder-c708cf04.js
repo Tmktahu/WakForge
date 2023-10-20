@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r}from"./index-fb2a80c8.js";const o={};function c(a,n){return t(),r("div",null," This will be the parent page for the character builder testing the PR flow to make sure things look good ")}const l=e(o,[["render",c]]);export{l as default};
