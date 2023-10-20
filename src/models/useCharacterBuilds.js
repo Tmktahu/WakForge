@@ -81,6 +81,7 @@ export const characterDataTemplate = {
   actionPoints: 0,
   movementPoints: 0,
   wakfuPoints: 0,
+  quadrumentalBreeze: 0,
 
   masteries: {
     water: 0,
@@ -127,6 +128,30 @@ export const characterDataTemplate = {
       fortune: 0,
       major: 0,
     },
+  },
+
+  activeSpells: {
+    slot1: { assignedSpell: null, levelRequirement: 0 },
+    slot2: { assignedSpell: null, levelRequirement: 0 },
+    slot3: { assignedSpell: null, levelRequirement: 0 },
+    slot4: { assignedSpell: null, levelRequirement: 0 },
+    slot5: { assignedSpell: null, levelRequirement: 0 },
+    slot6: { assignedSpell: null, levelRequirement: 0 },
+    slot7: { assignedSpell: null, levelRequirement: 10 },
+    slot8: { assignedSpell: null, levelRequirement: 20 },
+    slot9: { assignedSpell: null, levelRequirement: 30 },
+    slot10: { assignedSpell: null, levelRequirement: 40 },
+    slot11: { assignedSpell: null, levelRequirement: 60 },
+    slot12: { assignedSpell: null, levelRequirement: 80 },
+  },
+
+  passiveSpells: {
+    slot1: { assignedSpell: null, levelRequirement: 10 },
+    slot2: { assignedSpell: null, levelRequirement: 30 },
+    slot3: { assignedSpell: null, levelRequirement: 50 },
+    slot4: { assignedSpell: null, levelRequirement: 100 },
+    slot5: { assignedSpell: null, levelRequirement: 150 },
+    slot6: { assignedSpell: null, levelRequirement: 200 },
   },
 };
 
