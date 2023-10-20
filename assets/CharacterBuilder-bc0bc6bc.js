@@ -1,1 +1,0 @@
-import{_ as e,o as r,c}from"./index-d422e759.js";const t={};function a(n,o){return r(),c("div",null," This will be the parent page for the character builder ")}const s=e(t,[["render",a]]);export{s as default};
