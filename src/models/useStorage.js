@@ -1,7 +1,6 @@
 // import Vue from 'vue';
-import { ref, watch, reactive, toRef } from 'vue';
+import { watch, reactive } from 'vue';
 
-import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { EventBus, Events } from '../eventBus';
 
 export const LOCALSTORAGE_KEY = 'wakfu-wizard-data';

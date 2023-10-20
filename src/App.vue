@@ -24,7 +24,7 @@ const route = useRoute();
 
 // First thing we do is grab data from storage
 const { setup: storageSetup } = useStorage();
-const { storageData, errors: storageErrors } = storageSetup();
+const { errors: storageErrors } = storageSetup();
 //  TODO get data from local storage
 //  send to useCharacterBuilds
 
