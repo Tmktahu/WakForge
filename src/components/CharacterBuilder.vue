@@ -1,14 +1,13 @@
 <template>
-    <div>
-        This will be the parent page for the character builder
-        testing the PR flow to make sure things look good
-    </div>
+  <div class="mx-5 my-5">
+  {{ currentBuild?.name || 'no current build' }}
+  </div>
 </template>
 
 <script setup>
+import { inject } from 'vue';
 
+const currentBuild = inject('currentBuild')
 </script>
 
-<Style scoped>
-
-</Style>
+<style lang="scss" scoped></style>

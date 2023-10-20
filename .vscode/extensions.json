@@ -1,8 +1,11 @@
 {
-  "recommendations": [
-    "Vue.volar",
-    "Vue.vscode-typescript-vue-plugin",
-    "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
-  ]
+    "recommendations": [
+        "wscats.vue",
+        "sdras.vue-vscode-snippets",
+        "vue.volar",
+        "wayou.vscode-todo-highlight",
+        "esbenp.prettier-vscode",
+        "xabikos.javascriptsnippets",
+        "dbaeumer.vscode-eslint"
+    ]
 }
