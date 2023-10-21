@@ -15,6 +15,7 @@ import { useRoute } from 'vue-router';
 
 import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
+import { useItems } from '@/models/useItems.js';
 
 import AppSidebar from '@/components/AppSidebar.vue';
 
@@ -30,6 +31,9 @@ const { errors: storageErrors } = storageSetup();
 
 const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds(masterData);
 const { currentCharacter } = setupCharacterBuilds();
+
+const { itemFilters, setup: setupItems } = useItems();
+const { currentItemList } = setupItems();
 
 const setContextIds = () => {
   setContext();
@@ -47,6 +51,8 @@ watch(
 
 provide('masterData', masterData);
 provide('currentCharacter', currentCharacter);
+provide('itemFilters', itemFilters);
+provide('currentItemList', currentItemList);
 
 onMounted(() => {
   console.log(

@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-column">
-    <div class="flex flex-column">
-      <p-panel toggleable>
+    <div class="characteristic-panels flex flex-column">
+      <p-panel toggleable collapsed>
         <template v-slot:header>
           <div class="characteristics-category-header">Intelligence - Points to Distribute: {{ calcRemainingPoints('intelligence') }}</div>
         </template>
@@ -44,7 +44,7 @@
         </div>
       </p-panel>
 
-      <p-panel toggleable>
+      <p-panel toggleable collapsed>
         <template v-slot:header>
           <div class="characteristics-category-header">Strength - Points to Distribute: {{ calcRemainingPoints('strength') }}</div>
         </template>
@@ -80,7 +80,7 @@
         </div>
       </p-panel>
 
-      <p-panel toggleable>
+      <p-panel toggleable collapsed>
         <template v-slot:header>
           <div class="characteristics-category-header">Agility - Points to Distribute: {{ calcRemainingPoints('agility') }}</div>
         </template>
@@ -123,7 +123,7 @@
         </div>
       </p-panel>
 
-      <p-panel toggleable>
+      <p-panel toggleable collapsed>
         <template v-slot:header>
           <div class="characteristics-category-header">Fortune - Points to Distribute: {{ calcRemainingPoints('fortune') }}</div>
         </template>
@@ -187,7 +187,7 @@
         </div>
       </p-panel>
 
-      <p-panel toggleable>
+      <p-panel toggleable collapsed>
         <template v-slot:header>
           <div class="characteristics-category-header">Major - Points to Distribute: {{ calcRemainingPoints('intelligence') }}</div>
         </template>
@@ -326,7 +326,12 @@ const calcRemainingPoints = (type) => {
 </script>
 
 <style lang="scss" scoped>
+:deep(.characteristic-panels) {
+  .p-panel-header {
+    padding: 0 0px 0 10px;
+  }
+}
 .characteristics-category-header {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 </style>

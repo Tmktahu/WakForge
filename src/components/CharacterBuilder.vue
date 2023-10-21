@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter" class="flex flex-column mx-5 my-5 w-full">
+  <div v-if="currentCharacter" class="flex flex-column pl-5 pt-5 w-full" style="height: 100vh">
     <div class="flex align-items-center">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
@@ -36,15 +36,17 @@
       </div>
     </div>
 
-    <div class="flex">
+    <div class="flex flex-grow-1">
       <div class="flex flex-column mt-5 mr-5">
         <StatDisplay />
 
         <CharacteristicsInput class="mt-5" />
       </div>
 
-      <div class="flex flex-column mt-5">
+      <div class="flex flex-column flex-grow-1 mt-5">
         <SpellSelector />
+
+        <EquipmentSelector />
       </div>
     </div>
   </div>
@@ -60,6 +62,7 @@ import { CLASS_CONSTANTS } from '@/models/useCharacterBuilds';
 import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsInput from '@/components/CharacteristicsInput.vue';
 import SpellSelector from '@/components/SpellSelector.vue';
+import EquipmentSelector from '@/components/EquipmentSelector.vue';
 
 const currentCharacter = inject('currentCharacter');
 

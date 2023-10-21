@@ -43,7 +43,6 @@ const processFile = async (filePath) => {
   let document = window.document;
 
   let newSpellData = assembleSpellData(document, filePath);
-  //   console.log(newSpellData);
 
   //   spellData[newSpellData.id] = newSpellData;
   spellData.push(newSpellData);

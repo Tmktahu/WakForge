@@ -153,6 +153,23 @@ export const characterDataTemplate = {
     slot5: { assignedSpell: null, levelRequirement: 150 },
     slot6: { assignedSpell: null, levelRequirement: 200 },
   },
+
+  equipment: {
+    helmet: null,
+    amulet: null,
+    belt: null,
+    boots: null,
+    breastplate: null,
+    cloak: null,
+    epaulettes: null,
+    ringL: null,
+    ringR: null,
+    pet: null,
+    weaponL: null,
+    weaponR: null,
+    mount: null,
+    emblem: null,
+  },
 };
 
 // ========== Character Data Outline ==========
