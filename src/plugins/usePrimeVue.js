@@ -3,6 +3,7 @@ import 'primevue/resources/themes/md-dark-indigo/theme.css';
 import 'primevue/resources/primevue.min.css'; //core css
 import 'primeicons/primeicons.css'; //icons
 import 'primeflex/primeflex.css';
+import '@/design/index.scss';
 
 import PrimeVue from 'primevue/config';
 
