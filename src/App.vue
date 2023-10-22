@@ -16,6 +16,8 @@ import { useRoute } from 'vue-router';
 import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
+import { useStats } from '@/models/useStats';
+import { useLevels } from '@/models/useLevels';
 
 import AppSidebar from '@/components/AppSidebar.vue';
 
@@ -32,8 +34,14 @@ const { errors: storageErrors } = storageSetup();
 const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds(masterData);
 const { currentCharacter } = setupCharacterBuilds();
 
+const { setup: setupLevels } = useLevels(currentCharacter);
+setupLevels();
+
 const { itemFilters, setup: setupItems } = useItems();
 const { currentItemList } = setupItems();
+
+const { setup: setupStats } = useStats(currentCharacter);
+setupStats();
 
 const setContextIds = () => {
   setContext();

@@ -1,4 +1,5 @@
-import { computed, reactive } from 'vue';
+import { ref, computed, reactive } from 'vue';
+import { EventBus, Events } from '../eventBus';
 import itemData from './item_data.json';
 
 const itemFilters = reactive({

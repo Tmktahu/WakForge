@@ -27,7 +27,7 @@
 
     <p-divider />
 
-    <div class="item-results-wrapper flex flex-grow-1">
+    <div v-if="showItemList" class="item-results-wrapper flex flex-grow-1">
       <p-virtualScroller :items="currentItemList" :item-size="[80, 230]" orientation="both" style="width: 100%; height: 100%">
         <template v-slot:item="{ item: itemBunch }">
           <div v-if="currentItemList[0].length > 0" class="flex">
@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, computed } from 'vue';
+import { ref, inject, onMounted, computed } from 'vue';
 import { debounce } from 'lodash';
 
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
@@ -67,8 +67,14 @@ const currentCharacter = inject('currentCharacter');
 const itemFilters = inject('itemFilters');
 const currentItemList = inject('currentItemList');
 
+const showItemList = ref(false);
+
 const searchTerm = ref('');
 const levelRange = ref([itemFilters.startLevel, itemFilters.endLevel]);
+
+const showList = () => {
+  showItemList.value = true;
+};
 
 const onEquipmentClick = (slotKey) => {
   if (currentCharacter.value.equipment[slotKey] !== null) {
@@ -92,7 +98,7 @@ const onLevelRangeChange = (event) => {
 };
 
 const updateFilters = () => {
-  itemFilters.searchTerm = searchTerm.value;
+  itemFilters.searchTerm = '';
   itemFilters.startLevel = levelRange.value[0];
   itemFilters.endLevel = levelRange.value[1];
 };
@@ -100,7 +106,6 @@ const updateFiltersDebounce = debounce(updateFilters.bind(this), 1000);
 
 const onEquipItem = (item) => {
   // so here we want to equip the item in the slot it was made for
-
   let targetSlot = null;
 
   if (item.type.validSlots.includes(ITEM_SLOT_DATA.LEFT_HAND.id) || item.type.validSlots.includes(ITEM_SLOT_DATA.RIGHT_HAND.id)) {
@@ -117,11 +122,14 @@ const onEquipItem = (item) => {
 
   if (targetSlot !== null) {
     currentCharacter.value.equipment[targetSlot] = item;
-    console.log(currentCharacter.value.equipment);
   } else {
     console.error('There was a problem picking the slot to equip that item');
   }
 };
+
+defineExpose({
+  showList,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -141,6 +149,8 @@ const onEquipItem = (item) => {
   width: 60px;
   height: 60px;
   padding: 0px;
+
+  background: var(--bonta-blue-80);
 
   &.has-item {
     .p-image {

@@ -27,29 +27,28 @@
         </template>
       </p-dropdown>
 
-      <div class="flex flex-grow-1 align-items-center">
+      <div class="flex flex-grow-1 align-items-center" style="max-width: 200px">
         <span class="mr-2">Level</span>
-        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="0" :max="230" @input="saveData($event, 'level')" />
+        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" @input="saveData($event, 'levelText')" />
         <div class="flex-grow-1">
-          <p-slider v-model="characterLevel" :max="230" @input="saveData($event, 'level')" />
+          <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
         </div>
       </div>
     </div>
 
     <div class="flex flex-grow-1">
-      <div class="stats-area px-3 pt-3">
+      <div class="stats-area pt-3">
         <StatDisplay />
-
-        <p-divider />
-
-        <div class="summary-area"> This is where we will display a summary of various conditional and other things </div>
-        <!-- <CharacteristicsInput class="mt-5" /> -->
       </div>
 
       <div class="flex flex-column flex-grow-1">
-        <p-tabView class="main-tab-view">
+        <p-tabView class="main-tab-view" @tab-change="onTabChange">
+          <p-tabPanel header="Characteristics">
+            <CharacteristicsConfig />
+          </p-tabPanel>
+
           <p-tabPanel header="Equipment">
-            <EquipmentSelector />
+            <EquipmentSelector ref="equipmentSelector" />
           </p-tabPanel>
 
           <p-tabPanel header="Spells">
@@ -64,16 +63,19 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, computed } from 'vue';
+import { ref, inject, watch, computed, nextTick } from 'vue';
+import { EventBus, Events } from '../eventBus';
 
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 
 import StatDisplay from '@/components/StatDisplay.vue';
-import CharacteristicsInput from '@/components/CharacteristicsInput.vue';
+import CharacteristicsConfig from '@/components/CharacteristicsConfig.vue';
 import SpellSelector from '@/components/SpellSelector.vue';
 import EquipmentSelector from '@/components/EquipmentSelector.vue';
 
 const currentCharacter = inject('currentCharacter');
+
+const equipmentSelector = ref(null);
 
 const characterName = ref(currentCharacter.value?.name);
 const characterLevel = ref(currentCharacter.value?.level);
@@ -99,12 +101,21 @@ const updateUI = () => {
 const saveData = (event, inputName) => {
   if (inputName === 'name') {
     currentCharacter.value.name = event.target.value;
-  } else if (inputName === 'level') {
+  } else if (inputName === 'levelText') {
     currentCharacter.value.level = event.value;
+  } else if (inputName === 'levelSlider') {
+    currentCharacter.value.level = event;
+    // currentCharacter.value.level = event.value;
   } else if (inputName === 'class') {
     currentCharacter.value.class = event.value;
   }
   updateUI();
+};
+
+const onTabChange = () => {
+  nextTick(() => {
+    equipmentSelector.value.showList();
+  });
 };
 </script>
 
@@ -130,7 +141,6 @@ const saveData = (event, inputName) => {
   display: flex;
   flex-direction: column;
   height: 100%;
-
   .p-tabview-panels {
     flex-grow: 1;
   }

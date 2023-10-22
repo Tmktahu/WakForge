@@ -1,6 +1,7 @@
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
+import { EventBus, Events } from '../eventBus';
 
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
 
@@ -14,11 +15,12 @@ export function useCharacterBuilds(masterData) {
   const setup = () => {
     route = useRoute();
 
-    watch(currentCharacterId, () => {
+    watch([currentCharacterId, masterData], () => {
       if (currentCharacterId.value) {
         currentCharacter.value = masterData?.characters?.find((character) => {
           return character.id === currentCharacterId.value;
         });
+        EventBus.emit(Events.UPDATE_STATS);
       }
     });
 
@@ -56,20 +58,23 @@ export const characterDataTemplate = {
   id: null,
   name: 'New Character',
   class: null, // Should always use a class constant, string
-  level: 0,
+  level: 1,
 
   healthPoints: 0,
+  armorPoints: 0,
   actionPoints: 0,
   movementPoints: 0,
   wakfuPoints: 0,
   quadrumentalBreeze: 0,
 
   masteries: {
+    // elemental masteries
     water: 0,
     air: 0,
     earth: 0,
     fire: 0,
 
+    // secondary masteries
     critical: 0,
     rear: 0,
     melee: 0,
@@ -79,27 +84,34 @@ export const characterDataTemplate = {
   },
 
   resistances: {
+    water: 0.0,
+    air: 0.0,
+    earth: 0.0,
+    fire: 0.0,
+
     critical: 0.0,
     rear: 0.0,
     elemental: 0.0,
   },
 
-  forceOfWill: 0,
-  damageInflicted: 0.0,
-  healsPerformed: 0.0,
-  initiative: 0,
-  wisdom: 0,
-  control: 0,
-  block: 0.0,
-  range: 0,
-  lock: 0,
-  dodge: 0,
-  prospecting: 0,
-  criticalHit: 0.0,
-
-  armorGiven: 0.0,
-  armorReceived: 0.0,
-  indirectDamage: 0.0,
+  stats: {
+    damageInflicted: 0.0,
+    criticalHit: 0.0,
+    initiative: 0,
+    dodge: 0,
+    wisdom: 0,
+    control: 0,
+    healsPerformed: 0.0,
+    block: 0.0,
+    range: 0,
+    lock: 0,
+    prospecting: 0,
+    forceOfWill: 0,
+    // these are listed as 'secondary' stats
+    armorGiven: 0.0,
+    armorReceived: 0.0,
+    indirectDamage: 0.0,
+  },
 
   characteristics: {
     limits: {
@@ -108,6 +120,45 @@ export const characterDataTemplate = {
       agility: 0,
       fortune: 0,
       major: 0,
+    },
+    intelligence: {
+      percentHealthPoints: 0,
+      elementalResistance: 0,
+      barrier: 0,
+      percentHealsReceived: 0,
+      percentArmorHeathPoints: 0,
+    },
+    strength: {
+      elementalMastery: 0,
+      meleeMastery: 0,
+      distanceMastery: 0,
+      healthPoints: 0,
+    },
+    agility: {
+      lock: 0,
+      dodge: 0,
+      initiative: 0,
+      lockAndDodge: 0,
+      forceOfWill: 0,
+    },
+    fortune: {
+      percentCriticalHit: 0,
+      percentBlock: 0,
+      criticalMastery: 0,
+      rearMastery: 0,
+      berserkMastery: 0,
+      healingMastery: 0,
+      rearResistance: 0,
+      criticalResistance: 0,
+    },
+    major: {
+      actionPoints: 0,
+      movementPointsAndDamage: 0,
+      rangeAndDamage: 0,
+      wakfuPoints: 0,
+      controlAndDamage: 0,
+      percentDamageInflicted: 0,
+      elementalResistance: 0,
     },
   },
 
