@@ -12,10 +12,10 @@ const app = createApp(App);
 app.use(router);
 
 const i18n = createI18n({
-    locale: 'en',
-    messages: i18nMessages
-    // something vue-i18n options here ...
-})
+  locale: 'en',
+  messages: i18nMessages,
+  // something vue-i18n options here ...
+});
 
 app.use(i18n);
 

@@ -2,26 +2,7 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
 
-export const CLASS_CONSTANTS = {
-  feca: 'feca',
-  osamodas: 'osamodas',
-  enutrof: 'enutrof',
-  sram: 'sram',
-  xelor: 'xelor',
-  ecaflip: 'ecaflip',
-  eniripsa: 'eniripsa',
-  iop: 'iop',
-  cra: 'cra',
-  sadida: 'sadida',
-  sacrier: 'sacrier',
-  pandawa: 'pandawa',
-  rogue: 'rogue',
-  masqueraider: 'masqueraider',
-  ouginak: 'ouginak',
-  foggernaut: 'foggernaut',
-  eliotrope: 'eliotrope',
-  huppermage: 'huppermage',
-};
+import { ITEM_SLOT_DATA } from '@/models/useConstants';
 
 export function useCharacterBuilds(masterData) {
   const currentCharacterId = ref(null);
@@ -155,20 +136,20 @@ export const characterDataTemplate = {
   },
 
   equipment: {
-    helmet: null,
-    amulet: null,
-    belt: null,
-    boots: null,
-    breastplate: null,
-    cloak: null,
-    epaulettes: null,
-    ringL: null,
-    ringR: null,
+    [ITEM_SLOT_DATA.HEAD.id]: null,
+    [ITEM_SLOT_DATA.NECK.id]: null,
+    [ITEM_SLOT_DATA.BELT.id]: null,
+    [ITEM_SLOT_DATA.LEGS.id]: null,
+    [ITEM_SLOT_DATA.CHEST.id]: null,
+    [ITEM_SLOT_DATA.BACK.id]: null,
+    [ITEM_SLOT_DATA.SHOULDERS.id]: null,
+    [ITEM_SLOT_DATA.LEFT_HAND.id]: null,
+    [ITEM_SLOT_DATA.RIGHT_HAND.id]: null,
     pet: null,
-    weaponL: null,
-    weaponR: null,
+    [ITEM_SLOT_DATA.SECOND_WEAPON.id]: null,
+    [ITEM_SLOT_DATA.FIRST_WEAPON.id]: null,
     mount: null,
-    emblem: null,
+    [ITEM_SLOT_DATA.ACCESSORY.id]: null,
   },
 };
 

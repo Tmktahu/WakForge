@@ -1,0 +1,9 @@
+@import 'variables';
+
+:export {
+  // This is for defining variables used in JS
+  // import design from '../design/index.module.scss'
+  // And use the variable in js code as design.variable
+
+  charcoal: $charcoal;
+}

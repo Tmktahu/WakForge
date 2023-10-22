@@ -6,14 +6,26 @@ import { EventBus, Events } from '../eventBus';
 export const LOCALSTORAGE_KEY = 'wakfu-wizard-data';
 
 export let masterData = reactive({
+  version: '',
   characters: [],
 });
 
 export function useStorage() {
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
-    if (data?.characters?.length) {
-      masterData.characters = data.characters;
+
+    let currentVersion = import.meta.env.VITE_APP_VERSION;
+    let storageVersion = data?.version;
+    if (storageVersion !== currentVersion) {
+      console.error('Storage version mismatch');
+      // here we want to pop a modal that informs the user of the version mismatch, and reccomend they download their data
+
+      // for dev purposes, for now we wipe the data and start over
+      window.localStorage.removeItem(LOCALSTORAGE_KEY);
+    } else {
+      if (data?.characters?.length) {
+        masterData.characters = data.characters;
+      }
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
@@ -63,7 +75,7 @@ export function useStorage() {
           characters: masterData.characters,
         };
 
-        newStorageData.version = import.meta.env.VUE_APP_VERSION;
+        newStorageData.version = import.meta.env.VITE_APP_VERSION;
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
