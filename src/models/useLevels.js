@@ -1,4 +1,4 @@
-import { CLASS_CONSTANTS } from '@/models/useCharacterBuilds';
+import { CLASS_CONSTANTS } from '@/models/useConstants';
 
 export const useLevels = () => {
   const getBaseStatsForLevel = (level, classType) => {

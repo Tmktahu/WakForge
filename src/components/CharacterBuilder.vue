@@ -1,6 +1,6 @@
 <template>
-  <div v-if="currentCharacter" class="flex flex-column pl-5 pt-5 w-full" style="height: 100vh">
-    <div class="flex align-items-center">
+  <div v-if="currentCharacter" class="flex flex-column w-full" style="height: 100vh">
+    <div class="top-bar py-3 pl-3">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
       <p-dropdown
@@ -37,16 +37,25 @@
     </div>
 
     <div class="flex flex-grow-1">
-      <div class="flex flex-column mt-5 mr-5">
+      <div class="stats-area px-3 pt-3">
         <StatDisplay />
 
-        <CharacteristicsInput class="mt-5" />
+        <p-divider />
+
+        <div class="summary-area"> This is where we will display a summary of various conditional and other things </div>
+        <!-- <CharacteristicsInput class="mt-5" /> -->
       </div>
 
-      <div class="flex flex-column flex-grow-1 mt-5">
-        <SpellSelector />
+      <div class="flex flex-column flex-grow-1">
+        <p-tabView class="main-tab-view">
+          <p-tabPanel header="Equipment">
+            <EquipmentSelector />
+          </p-tabPanel>
 
-        <EquipmentSelector />
+          <p-tabPanel header="Spells">
+            <SpellSelector />
+          </p-tabPanel>
+        </p-tabView>
       </div>
     </div>
   </div>
@@ -57,7 +66,7 @@
 <script setup>
 import { ref, inject, watch, computed } from 'vue';
 
-import { CLASS_CONSTANTS } from '@/models/useCharacterBuilds';
+import { CLASS_CONSTANTS } from '@/models/useConstants';
 
 import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsInput from '@/components/CharacteristicsInput.vue';
@@ -100,6 +109,37 @@ const saveData = (event, inputName) => {
 </script>
 
 <style lang="scss" scoped>
+.top-bar {
+  display: flex;
+  align-items: center;
+  background-color: var(--bonta-blue-20);
+  border-bottom: 1px solid var(--bonta-blue-100);
+}
+
+.stats-area {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  border-right: 1px solid var(--bonta-blue-100);
+}
+
+.summary-area {
+}
+
+:deep(.main-tab-view) {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .p-tabview-panels {
+    flex-grow: 1;
+  }
+
+  .p-tabview-panel {
+    height: 100%;
+  }
+}
+
 :deep(.number-input) {
   .p-inputtext {
     padding: 5px !important;
