@@ -1,7 +1,7 @@
 <template>
-  <div class="flex my-1">
-    <i class="pi pi-question mr-3" />
-    <span class="entry-label">{{ label }}</span>
+  <div class="flex align-items-center my-1">
+    <p-image :src="imagePath" style="height: 20px" image-style="height: 20px" />
+    <span class="entry-label ml-2">{{ label }}</span>
     <div class="flex-grow-1" />
     <p-inputNumber
       v-bind="$attrs"
@@ -35,6 +35,10 @@ let props = defineProps({
     type: Number,
     default: 0,
   },
+  imagePath: {
+    type: String,
+    default: '',
+  },
 });
 </script>
 
@@ -48,6 +52,10 @@ let props = defineProps({
     border: none;
     height: 16px;
     width: 2rem;
+  }
+
+  input {
+    text-align: center;
   }
 }
 

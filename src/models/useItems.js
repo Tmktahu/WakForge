@@ -1,5 +1,4 @@
-import { ref, computed, reactive } from 'vue';
-import { EventBus, Events } from '../eventBus';
+import { computed, reactive } from 'vue';
 import itemData from './item_data.json';
 
 const itemFilters = reactive({
@@ -32,26 +31,7 @@ export const useItems = () => {
       return hasSearchTerm(item) && isWithinLevelRange(item);
     });
 
-    let doubleArrayList = [];
-    let tempArray = [];
-    filteredItems.forEach((item) => {
-      if (tempArray.length === 4) {
-        doubleArrayList.push(tempArray);
-        tempArray = [item];
-      } else {
-        tempArray.push(item);
-      }
-    });
-
-    if (tempArray.length > 0) {
-      doubleArrayList.push(tempArray);
-    }
-
-    if (doubleArrayList.length === 0) {
-      doubleArrayList.push([]);
-    }
-
-    return doubleArrayList;
+    return filteredItems;
   };
 
   const hasSearchTerm = (item) => {
