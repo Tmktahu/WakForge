@@ -2,195 +2,254 @@
   <div class="flex flex-column h-full">
     <div class="characteristic-panels flex">
       <div class="flex flex-column flex-grow-1 mr-1">
-        <div class="category-wrapper flex flex-column px-2 py-2">
-          <div class="characteristics-category-header mb-2">Intelligence - Points to Distribute: {{ calcRemainingPoints('intelligence') }}</div>
+        <div class="category-wrapper flex flex-column">
+          <div class="characteristics-category-header px-2 py-2">
+            Intelligence - {{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }} Points
+          </div>
 
-          <CharacteristicInput
-            v-model="percentHealthPoints"
-            label="% Health Points"
-            :remaining-points="calcRemainingPoints('intelligence')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="intelligenceElementalResistance"
-            label="Elemental Resistance"
-            :remaining-points="calcRemainingPoints('intelligence')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="barrier"
-            label="Barrier"
-            :remaining-points="calcRemainingPoints('intelligence')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="percentHealsReceived"
-            label="% Heals Received"
-            :remaining-points="calcRemainingPoints('intelligence')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="percentArmorHeathPoints"
-            label="% Armor Health Points"
-            :remaining-points="calcRemainingPoints('intelligence')"
-            :update-function="updateCharacteristics"
-          />
+          <div class="flex flex-column px-2 py-1">
+            <CharacteristicInput
+              v-model="percentHealthPoints"
+              label="% Health Points"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/1.png"
+              :remaining-points="calcRemainingPoints('intelligence')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="intelligenceElementalResistance"
+              label="Elemental Resistance"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/116.png"
+              :remaining-points="calcRemainingPoints('intelligence')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="barrier"
+              label="Barrier"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/17.png"
+              :remaining-points="calcRemainingPoints('intelligence')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="percentHealsReceived"
+              label="% Heals Received"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/50.png"
+              :remaining-points="calcRemainingPoints('intelligence')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="percentArmorHeathPoints"
+              label="% Armor Health Points"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/136.png"
+              :remaining-points="calcRemainingPoints('intelligence')"
+              :update-function="updateCharacteristics"
+            />
+          </div>
         </div>
 
-        <div class="category-wrapper flex flex-column px-2 py-2 mt-2">
-          <div class="characteristics-category-header mb-2">Strength - Points to Distribute: {{ calcRemainingPoints('strength') }}</div>
+        <div class="category-wrapper flex flex-column mt-2">
+          <div class="characteristics-category-header px-2 py-2">
+            Strength - {{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }} Points
+          </div>
 
-          <CharacteristicInput
-            v-model="elementalMastery"
-            label="Elemental Mastery"
-            :remaining-points="calcRemainingPoints('strength')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="meleeMastery"
-            label="Melee Mastery"
-            :remaining-points="calcRemainingPoints('strength')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="distanceMastery"
-            label="Distance Mastery"
-            :remaining-points="calcRemainingPoints('strength')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="healthPoints"
-            label="Health Points"
-            :remaining-points="calcRemainingPoints('strength')"
-            :update-function="updateCharacteristics"
-          />
+          <div class="flex flex-column px-2 py-1">
+            <CharacteristicInput
+              v-model="elementalMastery"
+              label="Elemental Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/223.png"
+              :remaining-points="calcRemainingPoints('strength')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="meleeMastery"
+              label="Melee Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/226.png"
+              :remaining-points="calcRemainingPoints('strength')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="distanceMastery"
+              label="Distance Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/230.png"
+              :remaining-points="calcRemainingPoints('strength')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="healthPoints"
+              label="Health Points"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/231.png"
+              :remaining-points="calcRemainingPoints('strength')"
+              :update-function="updateCharacteristics"
+            />
+          </div>
         </div>
 
-        <div class="category-wrapper flex flex-column px-2 py-2 mt-2">
-          <div class="characteristics-category-header mb-2">Agility - Points to Distribute: {{ calcRemainingPoints('agility') }}</div>
+        <div class="category-wrapper flex flex-column mt-2">
+          <div class="characteristics-category-header px-2 py-2">
+            Agility - {{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }} Points
+          </div>
 
-          <CharacteristicInput v-model="lock" label="Lock" :remaining-points="calcRemainingPoints('agility')" :update-function="updateCharacteristics" />
-          <CharacteristicInput v-model="dodge" label="Dodge" :remaining-points="calcRemainingPoints('agility')" :update-function="updateCharacteristics" />
-          <CharacteristicInput
-            v-model="initiative"
-            label="Initiative"
-            :remaining-points="calcRemainingPoints('agility')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="lockAndDodge"
-            label="Lock and Dodge"
-            :remaining-points="calcRemainingPoints('agility')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="forceOfWill"
-            label="Force of Will"
-            :remaining-points="calcRemainingPoints('agility')"
-            :update-function="updateCharacteristics"
-          />
+          <div class="flex flex-column px-2 py-1">
+            <CharacteristicInput
+              v-model="lock"
+              label="Lock"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/4.png"
+              :remaining-points="calcRemainingPoints('agility')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="dodge"
+              label="Dodge"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/3.png"
+              :remaining-points="calcRemainingPoints('agility')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="initiative"
+              label="Initiative"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/2.png"
+              :remaining-points="calcRemainingPoints('agility')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="lockAndDodge"
+              label="Lock and Dodge"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/121.png"
+              :remaining-points="calcRemainingPoints('agility')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="forceOfWill"
+              label="Force of Will"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/233.png"
+              :remaining-points="calcRemainingPoints('agility')"
+              :update-function="updateCharacteristics"
+            />
+          </div>
         </div>
       </div>
 
       <div class="flex flex-column flex-grow-1 ml-1">
-        <div class="category-wrapper flex flex-column flex-grow-1 px-2 py-2">
-          <div class="characteristics-category-header mb-2">Fortune - Points to Distribute: {{ calcRemainingPoints('fortune') }}</div>
+        <div class="category-wrapper flex flex-column flex-grow-1">
+          <div class="characteristics-category-header px-2 py-2">
+            Fortune - {{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }} Points
+          </div>
 
-          <CharacteristicInput
-            v-model="percentCriticalHit"
-            label="% Critical Hit"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="percentBlock"
-            label="% Block"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="criticalMastery"
-            label="Critical Mastery"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="rearMastery"
-            label="Rear Mastery"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="berserkMastery"
-            label="Berserk Mastery"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="healingMastery"
-            label="Healing Mastery"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="rearResistance"
-            label="Rear Resistance"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="criticalResistance"
-            label="Critical Resistance"
-            :remaining-points="calcRemainingPoints('fortune')"
-            :update-function="updateCharacteristics"
-          />
+          <div class="flex flex-column px-2 py-1">
+            <CharacteristicInput
+              v-model="percentCriticalHit"
+              label="% Critical Hit"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/109.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="percentBlock"
+              label="% Block"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/49.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="criticalMastery"
+              label="Critical Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/19.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="rearMastery"
+              label="Rear Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/13.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="berserkMastery"
+              label="Berserk Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/5.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="healingMastery"
+              label="Healing Mastery"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/12.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="rearResistance"
+              label="Rear Resistance"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/115.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="criticalResistance"
+              label="Critical Resistance"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/20.png"
+              :remaining-points="calcRemainingPoints('fortune')"
+              :update-function="updateCharacteristics"
+            />
+          </div>
         </div>
 
-        <div class="category-wrapper flex flex-column flex-grow-1 px-2 py-2 mt-2">
-          <div class="characteristics-category-header mb-2">Major - Points to Distribute: {{ calcRemainingPoints('major') }}</div>
+        <div class="category-wrapper flex flex-column flex-grow-1 mt-2">
+          <div class="characteristics-category-header px-2 py-2">
+            Major - {{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }} Points
+          </div>
 
-          <CharacteristicInput
-            v-model="actionPoints"
-            label="Action Points"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="movementPointsAndDamage"
-            label="Movement Points and Damage"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="rangeAndDamage"
-            label="Range and Damage"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="wakfuPoints"
-            label="Wakfu Points"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="controlAndDamage"
-            label="Control and Damage"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="percentDamageInflicted"
-            label="% Damage Inflicted"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
-          <CharacteristicInput
-            v-model="majorElementalResistance"
-            label="Elemental Resistance"
-            :remaining-points="calcRemainingPoints('major')"
-            :update-function="updateCharacteristics"
-          />
+          <div class="flex flex-column px-2 py-1">
+            <CharacteristicInput
+              v-model="actionPoints"
+              label="Action Points"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/8.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="movementPointsAndDamage"
+              label="Movement Points and Damage"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/16.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="rangeAndDamage"
+              label="Range and Damage"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/48.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="wakfuPoints"
+              label="Wakfu Points"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/105.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="controlAndDamage"
+              label="Control and Damage"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/10.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="percentDamageInflicted"
+              label="% Damage Inflicted"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/52.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+            <CharacteristicInput
+              v-model="majorElementalResistance"
+              label="Elemental Resistance"
+              image-path="https://vertylo.github.io/wakassets/aptitudes/116.png"
+              :remaining-points="calcRemainingPoints('major')"
+              :update-function="updateCharacteristics"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -322,7 +381,9 @@ const updateCharacteristics = () => {
   }
 
   .category-wrapper {
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--bonta-blue-60);
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   .p-inputnumber-button {
@@ -350,11 +411,14 @@ const updateCharacteristics = () => {
 }
 .characteristics-category-header {
   font-size: 1rem;
+  background-color: var(--bonta-blue-20);
+  border-bottom: 1px solid var(--bonta-blue-50);
 }
 
 .characteristic-summary {
   display: flex;
   flex-grow: 1;
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--bonta-blue-60);
+  border-radius: 8px;
 }
 </style>

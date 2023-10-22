@@ -27,10 +27,10 @@
 
     <p-divider />
 
-    <div v-if="showItemList" class="item-results-wrapper flex flex-grow-1">
-      <p-virtualScroller :items="currentItemList" :item-size="[80, 230]" orientation="both" style="width: 100%; height: 100%">
+    <div v-if="showItemList" ref="itemResultsWrapper" class="item-results-wrapper flex flex-grow-1">
+      <p-virtualScroller :items="structuredItemList" :item-size="[80, 230]" orientation="both" style="width: 100%; height: 100%">
         <template v-slot:item="{ item: itemBunch }">
-          <div v-if="currentItemList[0].length > 0" class="flex">
+          <div v-if="structuredItemList[0].length > 0" class="flex">
             <template v-for="(item, index) of itemBunch" :key="index">
               <div class="item-card">
                 <div class="flex">
@@ -58,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref, inject, onMounted, computed } from 'vue';
+import { ref, inject, nextTick, computed } from 'vue';
 import { debounce } from 'lodash';
 
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
@@ -67,6 +67,37 @@ const currentCharacter = inject('currentCharacter');
 const itemFilters = inject('itemFilters');
 const currentItemList = inject('currentItemList');
 
+const itemResultsWrapper = ref(null);
+const numItemsPerRow = ref(4);
+
+const onResize = () => {
+  numItemsPerRow.value = Math.floor((itemResultsWrapper.value.clientWidth - 16) / 235);
+};
+window.addEventListener('resize', onResize);
+
+let structuredItemList = computed(() => {
+  let tempFinalArray = [];
+  let tempArray = [];
+  currentItemList.value.forEach((item) => {
+    if (tempArray.length === numItemsPerRow.value) {
+      tempFinalArray.push(tempArray);
+      tempArray = [item];
+    } else {
+      tempArray.push(item);
+    }
+  });
+
+  if (tempArray.length > 0) {
+    tempFinalArray.push(tempArray);
+  }
+
+  if (tempFinalArray.length === 0) {
+    tempFinalArray.push([]);
+  }
+
+  return tempFinalArray;
+});
+
 const showItemList = ref(false);
 
 const searchTerm = ref('');
@@ -74,6 +105,9 @@ const levelRange = ref([itemFilters.startLevel, itemFilters.endLevel]);
 
 const showList = () => {
   showItemList.value = true;
+  nextTick(() => {
+    onResize();
+  });
 };
 
 const onEquipmentClick = (slotKey) => {
@@ -98,7 +132,7 @@ const onLevelRangeChange = (event) => {
 };
 
 const updateFilters = () => {
-  itemFilters.searchTerm = '';
+  itemFilters.searchTerm = searchTerm.value;
   itemFilters.startLevel = levelRange.value[0];
   itemFilters.endLevel = levelRange.value[1];
 };
@@ -191,7 +225,7 @@ defineExpose({
 
 :deep(.item-results-wrapper) {
   .item-card {
-    border: 1px solid var(--bonta-blue-70);
+    border: 1px solid var(--bonta-blue-60);
     padding: 10px;
     width: 230px;
     margin-right: 5px;

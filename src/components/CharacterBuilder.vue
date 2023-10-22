@@ -124,14 +124,14 @@ const onTabChange = () => {
   display: flex;
   align-items: center;
   background-color: var(--bonta-blue-20);
-  border-bottom: 1px solid var(--bonta-blue-100);
+  border-bottom: 1px solid var(--bonta-blue-60);
 }
 
 .stats-area {
   display: flex;
   flex-direction: column;
   max-width: 400px;
-  border-right: 1px solid var(--bonta-blue-100);
+  border-right: 1px solid var(--bonta-blue-60);
 }
 
 .summary-area {

@@ -1,28 +1,46 @@
 <template>
   <div v-if="currentCharacter">
-    <div class="flex justify-content-between w-full px-3">
+    <div class="flex justify-content-between w-full px-2">
       <div class="main-stat-box">
-        <div class="mb-1">HP</div>
-        <div>{{ currentCharacter.healthPoints }}</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/health_points.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">HP</span>
+        </div>
+        <div class="stat-value py-1">{{ currentCharacter.healthPoints }}</div>
       </div>
       <div class="main-stat-box">
-        <div class="mb-1">Armor</div>
-        <div>{{ currentCharacter.armorPoints }}</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/armor.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">AR</span>
+        </div>
+        <div class="stat-value py-1">{{ currentCharacter.armorPoints }}</div>
       </div>
       <div class="main-stat-box">
-        <div class="mb-1">AP</div>
-        <div>{{ currentCharacter.actionPoints }}</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/action_points.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">AP</span>
+        </div>
+        <div class="stat-value py-1">{{ currentCharacter.actionPoints }}</div>
       </div>
       <div class="main-stat-box">
-        <div class="mb-1">MP</div>
-        <div>{{ currentCharacter.movementPoints }}</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/movement_points.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">MP</span>
+        </div>
+        <div class="stat-value py-1">{{ currentCharacter.movementPoints }}</div>
       </div>
       <div v-if="currentCharacter.class === CLASS_CONSTANTS.huppermage" class="main-stat-box">
-        <div class="mb-1">QB</div>
-        <div>{{ currentCharacter.quadrumentalBreeze }}</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/quadrumental_breeze.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">QB</span>
+        </div>
+        <div class="stat-value py-1">{{ currentCharacter.quadrumentalBreeze }}</div>
       </div>
       <div v-else class="main-stat-box">
-        <div class="mb-1">WP</div>
+        <div class="flex align-items-center my-1">
+          <p-image src="../src/assets/images/ui/wakfu_points.png" style="height: 20px" image-style="height: 20px" />
+          <span class="ml-1">WP</span>
+        </div>
         <div>{{ currentCharacter.wakfuPoints }}</div>
       </div>
     </div>
@@ -216,14 +234,14 @@
             </div>
 
             <div class="stat-block pr-2">
-              <p-image src="../src/assets/images/ui/armor_given.png" style="height: 16px" image-style="height: 16px" />
+              <p-image src="../src/assets/images/ui/armor_given.png" style="height: 20px" image-style="height: 16px" />
               <span class="ml-1">Armor Given</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.armorGiven }}%</span>
             </div>
 
             <div class="stat-block pr-2">
-              <p-image src="../src/assets/images/ui/armor_received.png" style="height: 16px" image-style="height: 16px" />
+              <p-image src="../src/assets/images/ui/armor_received.png" style="height: 20px" image-style="height: 16px" />
               <span class="ml-1">Armor Received</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.armorReceived }}%</span>
@@ -262,10 +280,16 @@ const currentCharacter = inject('currentCharacter');
   font-size: 18px;
 
   width: 70px;
-  padding: 6px 0px;
 
-  background-color: var(--bonta-blue-40);
+  background-color: var(--bonta-blue-30);
   border-radius: 8px;
+  border: 1px solid var(--bonta-blue-60);
+
+  .stat-value {
+    border-top: 1px solid var(--bonta-blue-20);
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .main-stat-area {
@@ -287,7 +311,14 @@ const currentCharacter = inject('currentCharacter');
   padding-top: 2px;
   padding-bottom: 2px;
 
-  background: linear-gradient(90deg, var(--bonta-blue-60) 0%, var(--bonta-blue) 100%);
   border-bottom: 1px solid var(--bonta-blue);
+
+  .p-image {
+    display: flex;
+    align-items: center;
+    background: rgba(white, 0.8);
+    border-radius: 4px;
+    height: 20px;
+  }
 }
 </style>
