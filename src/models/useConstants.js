@@ -34,6 +34,78 @@ export const ITEM_SLOT_DATA = {
   ACCESSORY: { id: 'ACCESSORY', name: 'Emblem' },
 };
 
+export const ITEM_RARITY_DATA = [
+  { id: 0, name: 'Common' },
+  { id: 1, name: 'Unusual' },
+  { id: 2, name: 'Rare' },
+  { id: 3, name: 'Mythical' },
+  { id: 4, name: 'Legendary' },
+  { id: 5, name: 'Relic' },
+  { id: 6, name: 'Souvenir' },
+  { id: 7, name: 'Epic' },
+];
+
+export const ITEM_TYPE_DATA = [
+  { id: 'weaponsAndShields', rawId: 100, name: 'Weapons & Shields' },
+  { id: 'twoHandedAxe', rawId: 101, name: 'Axe (Two Handed)' },
+  { id: 'ring', rawId: 103, name: 'Ring' },
+  { id: 'consumables', rawId: 106, name: 'Consumables' },
+  { id: 'wand', rawId: 108, name: 'Wand (One Hand)' },
+  { id: 'sword', rawId: 110, name: 'Sword (One Hand)' },
+  { id: 'shovel', rawId: 111, name: 'Shovel (Two Handed)' },
+  { id: 'dagger', rawId: 112, name: 'Dagger (Secondary Weapon)' },
+  { id: 'staff', rawId: 113, name: 'Staff (One Hand)' },
+  { id: 'hammer', rawId: 114, name: 'Hammer (Two Handed)' },
+  { id: 'clockHand', rawId: 115, name: 'Clock Hand (One Hand)' },
+  { id: 'bow', rawId: 117, name: 'Bow (Two Handed)' },
+  { id: 'armor', rawId: 118, name: 'Armor' },
+  { id: 'boots', rawId: 119, name: 'Boots' },
+  { id: 'amulet', rawId: 120, name: 'Amulet' },
+  { id: 'cloak', rawId: 132, name: 'Cloak' },
+  { id: 'belt', rawId: 133, name: 'Belt' },
+  { id: 'helmet', rawId: 134, name: 'Helmet' },
+  { id: 'breastplate', rawId: 136, name: 'Breastplate' },
+  { id: 'epaulettes', rawId: 138, name: 'Epaulettes' },
+  { id: 'shield', rawId: 189, name: 'Shield (Secondary Weapon)' },
+  { id: 'bag', rawId: 218, name: 'Bag' },
+  { id: 'twoHandedSword', rawId: 223, name: 'Sword (Two Handed)' },
+  { id: 'resource', rawId: 226, name: 'Resource' },
+  { id: 'twoHandedStaff', rawId: 253, name: 'Staff (Two Handed)' },
+  { id: 'cards', rawId: 254, name: 'Cards (One Hand)' },
+  // eslint-disable-next-line quotes
+  { id: 'minersHarvests', rawId: 281, name: "Miner's Harvests" },
+  // eslint-disable-next-line quotes
+  { id: 'treapperHarvests', rawId: 282, name: "Trapper's Harvests" },
+  { id: 'havenGems', rawId: 294, name: 'Haven Gem' },
+  { id: 'havenBag', rawId: 295, name: 'Haven Bag' },
+  { id: 'displayWindow', rawId: 296, name: 'Display Window' },
+  // skipped 297, 306, 308, 309, 313, 317, 327
+  { id: 'miscellaneous', rawId: 385, name: 'Miscellaneous' },
+  // skipped 393, 415, 416, 419, 447, 449, 463, 514, 515
+  { id: 'oneHandedWeapons', rawId: 518, name: 'One Handed Weapon' },
+  { id: 'twoHandedWeapons', rawId: 519, name: 'Two Handed Weapon' },
+  { id: 'secondHand', rawId: 520, name: 'Second Hand' },
+  { id: 'accessory', rawId: 521, name: 'Accessory' },
+  { id: 'cosmetic', rawId: 525, name: 'Cosmetic' },
+  // skipped 531, 534, 535
+  { id: 'tool', rawId: 537, name: 'Tool' },
+  // skipped 546, 551, 566, 567, 568, 569, 570, 571, 574, 575, 576, 577, 578, 602
+  { id: 'sets', rawId: 604, name: 'Set' },
+  // skipped 614, 630
+  { id: 'emblem', rawId: 646, name: 'Emblem' },
+  // skipped 652, 687, 701, 702
+  { id: 'transmutation', rawId: 709, name: 'Transmutation' },
+  // skipped 719
+  { id: 'transformation', rawId: 738, name: 'Transformations' },
+  // skipped 739, 745
+  { id: 'consumable', rawId: 746, name: 'Consumable' },
+  { id: 'consumable2', rawId: 747, name: 'Consumable' },
+  // skipped 751, 756, 757, 758, 761, 809
+  { id: 'enchantement', rawId: 811, name: 'Enchantement' },
+  { id: 'sublimationScroll', rawId: 812, name: 'Sublimation Scroll' },
+  // skipped 822
+];
+
 export const EFFECT_TYPE_DATA = {
   // skipped 1
   healthPoints: {
@@ -201,7 +273,7 @@ export const EFFECT_TYPE_DATA = {
   criticalHit: {
     id: 'criticalHit',
     rawId: 150,
-    text: 'Critical Hit',
+    text: '% Critical Hit',
   },
   range: {
     id: 'range',
@@ -227,7 +299,7 @@ export const EFFECT_TYPE_DATA = {
   criticalHitReduction: {
     id: 'criticalHitReduction',
     rawId: 168,
-    text: 'Critical Hit',
+    text: '% Critical Hit',
     isNegative: true,
   },
   initiative: {
@@ -401,14 +473,14 @@ export const EFFECT_TYPE_DATA = {
   },
   randomElementalMasteries: {
     // TODO figure this one out
-    id: 'twoRandomElementalMasteries',
+    id: 'randomElementalMasteries',
     rawId: 1068,
     text: 'Gain ?? Random Elemental Masteries',
   },
   randomElementalResistances: {
     // TODO figure this one out
     id: 'randomElementalResistances',
-    rawId: 1068,
+    rawId: 1069,
     text: 'Gain ?? Random Elemental Resistances',
   },
   // skipped 1083

@@ -5,7 +5,6 @@ import { CLASS_CONSTANTS } from '@/models/useConstants';
 export const useLevels = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
-      console.log();
       currentCharacter.value.characteristics.limits.intelligence = Math.floor((currentCharacter.value.level + 2) / 4);
       currentCharacter.value.characteristics.limits.strength = Math.floor((currentCharacter.value.level + 1) / 4);
       currentCharacter.value.characteristics.limits.agility = Math.floor(currentCharacter.value.level / 4);

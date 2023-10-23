@@ -1,6 +1,7 @@
 body {
     margin: 0 !important;
     background-color: var(--bonta-charcoal);
+    overflow-y: hidden;
 }
 
 .p-button {
@@ -17,4 +18,18 @@ body {
 
 .p-slider-range {
     background-color: var(--bonta-blue-100);
+}
+
+.truncate {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-y: hidden;
+}
+
+.simple-tooltip {
+    background-color: var(--bonta-blue);
+    color: white;
+    border-radius: 8px;
+    padding: 4px 6px;
 }

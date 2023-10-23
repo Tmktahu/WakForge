@@ -8,7 +8,7 @@
       class="number-input"
       show-buttons
       :min="0"
-      :max="remainingPoints + $attrs.modelValue"
+      :max="Math.min(maxOverride, remainingPoints + $attrs.modelValue)"
       button-layout="horizontal"
       increment-button-icon="pi pi-plus"
       decrement-button-icon="pi pi-minus"
@@ -38,6 +38,10 @@ let props = defineProps({
   imagePath: {
     type: String,
     default: '',
+  },
+  maxOverride: {
+    type: Number,
+    default: 200,
   },
 });
 </script>
