@@ -51,6 +51,8 @@ const fixedItemProperties = [
 const jsonActionsData = fs.readFileSync('./actions.json');
 const actionsData = JSON.parse(jsonActionsData);
 
+const LONG_EFFECT_ENTRIES = [1068, 1069];
+
 let formattedItemData = [];
 
 const processItemData = () => {
@@ -125,13 +127,27 @@ const getItemEffects = (equipEffects) => {
         newEffect.id = action.definition.id;
         newEffect.values = effectObject.effect.definition?.params;
         newEffect.description = action.description?.en;
+        newEffect.longEntry = LONG_EFFECT_ENTRIES.includes(action.definition.id);
       }
     });
 
     newEffects.push(newEffect);
   });
 
-  return newEffects;
+  let shortEffects = [];
+  let longEffects = [];
+
+  newEffects.forEach((effect) => {
+    if (effect.longEntry) {
+      longEffects.push(effect);
+    } else {
+      shortEffects.push(effect);
+    }
+  });
+
+  let sortedEffects = [...shortEffects, ...longEffects];
+
+  return sortedEffects;
 };
 
 const writeItemDataToFile = (jsonData) => {

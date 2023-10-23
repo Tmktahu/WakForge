@@ -206,6 +206,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/8.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="movementPointsAndDamage"
@@ -213,6 +214,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/16.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="rangeAndDamage"
@@ -220,6 +222,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/48.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="wakfuPoints"
@@ -227,6 +230,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/105.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="controlAndDamage"
@@ -234,6 +238,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/10.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="percentDamageInflicted"
@@ -241,6 +246,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/52.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
             <CharacteristicInput
               v-model="majorElementalResistance"
@@ -248,6 +254,7 @@
               image-path="https://vertylo.github.io/wakassets/aptitudes/116.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
+              :max-override="1"
             />
           </div>
         </div>

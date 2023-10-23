@@ -48,7 +48,7 @@
     <div class="main-stat-area flex flex-column mt-2 pb-2">
       <div class="section-header py-1 mb-1">Elemental Masteries</div>
       <div class="flex pl-1">
-        <div class="flex flex-column flex-grow-1">
+        <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="../src/assets/images/ui/water_coin.png" style="height: 20px" image-style="height: 20px" />
             <span class="ml-1">Water Mastery</span>
@@ -63,7 +63,7 @@
             <span>{{ currentCharacter.masteries.air }}</span>
           </div>
         </div>
-        <div class="flex flex-column flex-grow-1">
+        <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="../src/assets/images/ui/earth_coin.png" style="height: 20px" image-style="height: 20px" />
             <span class="ml-1">Earth Mastery</span>
@@ -80,10 +80,44 @@
         </div>
       </div>
 
+      <div class="section-header py-1 mb-1">Elemental Resistances</div>
+      <div class="flex pl-1">
+        <div class="flex flex-column flex-grow-1" style="max-width: 50%">
+          <div class="stat-block pr-2">
+            <p-image src="../src/assets/images/ui/water_coin.png" style="height: 20px" image-style="height: 20px" />
+            <span class="ml-1">Water Res</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcElemResistancePercentage(currentCharacter.resistances.water) }}% ({{ currentCharacter.resistances.water }})</span>
+          </div>
+
+          <div class="stat-block pr-2">
+            <p-image src="../src/assets/images/ui/air_coin.png" style="height: 20px" image-style="height: 20px" />
+            <span class="ml-1">Air Res</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcElemResistancePercentage(currentCharacter.resistances.air) }}% ({{ currentCharacter.resistances.air }})</span>
+          </div>
+        </div>
+        <div class="flex flex-column flex-grow-1" style="max-width: 50%">
+          <div class="stat-block pr-2">
+            <p-image src="../src/assets/images/ui/earth_coin.png" style="height: 20px" image-style="height: 20px" />
+            <span class="ml-1">Earth Res</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcElemResistancePercentage(currentCharacter.resistances.earth) }}% ({{ currentCharacter.resistances.earth }})</span>
+          </div>
+
+          <div class="stat-block pr-2">
+            <p-image src="../src/assets/images/ui/fire_coin.png" style="height: 20px" image-style="height: 20px" />
+            <span class="ml-1">Fire Res</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcElemResistancePercentage(currentCharacter.resistances.fire) }}% ({{ currentCharacter.resistances.fire }})</span>
+          </div>
+        </div>
+      </div>
+
       <div class="lex flex-column">
         <div class="section-header py-1 mb-1">Battle</div>
         <div class="flex pl-1">
-          <div class="flex flex-column flex-grow-1">
+          <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image src="../src/assets/images/ui/damage_inflicted.png" style="height: 20px" image-style="height: 20px" />
               <span class="ml-1">Damage Inflicted</span>
@@ -126,7 +160,7 @@
               <span>{{ currentCharacter.stats.control }}</span>
             </div>
           </div>
-          <div class="flex flex-column flex-grow-1">
+          <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image src="../src/assets/images/ui/heals_performed.png" style="height: 20px" image-style="height: 20px" />
               <span class="ml-1">Heals Performed</span>
@@ -175,7 +209,7 @@
       <div class="flex flex-column">
         <div class="section-header py-1 mb-1">Secondary</div>
         <div class="flex pl-1">
-          <div class="flex flex-column flex-grow-1">
+          <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image src="../src/assets/images/ui/critical_mastery.png" style="height: 20px" image-style="height: 20px" />
               <span class="ml-1">Critical Mastery</span>
@@ -218,7 +252,7 @@
               <span>{{ currentCharacter.masteries.berserk }}</span>
             </div>
           </div>
-          <div class="flex flex-column flex-grow-1">
+          <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image src="../src/assets/images/ui/critical_resistance.png" style="height: 20px" image-style="height: 20px" />
               <span class="ml-1">Critical Resistance</span>
@@ -266,8 +300,11 @@
 <script setup>
 import { ref, inject, watch } from 'vue';
 import { CLASS_CONSTANTS } from '@/models/useConstants';
+import { useStats } from '@/models/useStats';
 
 const currentCharacter = inject('currentCharacter');
+
+const { calcElemResistancePercentage } = useStats();
 </script>
 
 <style lang="scss" scoped>

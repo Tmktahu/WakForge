@@ -2,52 +2,144 @@
   <div class="flex flex-column h-full">
     <div class="flex equipment-slots-wrapper pr-3">
       <template v-for="data in ITEM_SLOT_DATA" :key="data.id">
-        <p-button class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }" @click="onEquipmentClick(data.id)">
-          <div v-if="currentCharacter.equipment[data.id] === null" class="flex align-items-center justify-content-center">
+        <p-button
+          v-if="currentCharacter.equipment[data.id] === null"
+          class="equipment-button"
+          :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }"
+          @click="onEquipmentClick(data.id)"
+        >
+          <div class="flex align-items-center justify-content-center">
             <div class="hover-icon search"> <i class="pi pi-search" /> </div>
             <p-image :src="`../src/assets/images/ui/${data.id}.png`" image-style="width: 60px" />
           </div>
-          <div v-else class="flex align-items-center justify-content-center">
-            <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-            <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
-          </div>
         </p-button>
+        <tippy v-else placement="bottom" interactive>
+          <p-button class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }" @click="onEquipmentClick(data.id)">
+            <div class="flex align-items-center justify-content-center">
+              <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
+              <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
+            </div>
+          </p-button>
+          <template v-slot:content>
+            <div class="item-card-tooltip">
+              <div class="effect-header flex pt-2 px-1">
+                <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
+                <div class="flex flex-column">
+                  <div class="item-name mr-2">{{ currentCharacter.equipment[data.id].name }}</div>
+                  <div class="flex">
+                    <p-image
+                      class="mr-1"
+                      :src="`https://vertylo.github.io/wakassets/rarities/${currentCharacter.equipment[data.id].rarity}.png`"
+                      image-style="width: 12px;"
+                    />
+                    <p-image
+                      class="mr-1"
+                      :src="`https://vertylo.github.io/wakassets/itemTypes/${currentCharacter.equipment[data.id].type.id}.png`"
+                      image-style="width: 18px;"
+                    />
+                    <div>Level: {{ currentCharacter.equipment[data.id].level }}</div></div
+                  >
+                </div>
+              </div>
+              <template v-for="effect in currentCharacter.equipment[data.id].equipEffects" :key="effect.id">
+                <div v-if="getEffectData(effect.id) !== null" class="effect-line px-2 py-1">
+                  <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ effect.values[0] }}</span>
+                  <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+                </div>
+              </template>
+            </div>
+          </template>
+        </tippy>
       </template>
     </div>
 
-    <div class="flex align-items-center mt-3">
-      <p-inputText v-model="searchTerm" placeholder="Search Items" class="mr-2" @input="onSearchInput" />
-      <div class="flex align-items-center w-20rem">
-        <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" @input="onLevelRangeTextInput" />
-        <p-slider v-model="levelRange" class="flex-grow-1 mx-2" range :min="0" :max="230" @change="onLevelRangeChange" />
-        <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" @input="onLevelRangeTextInput" />
-      </div>
+    <ItemFilters />
+
+    <p-divider class="mt-3 mb-2" />
+
+    <div class="flex align-items-center">
+      <div>{{ currentItemList.length }} Results out of {{ getNumTotalItems() }} Items Total</div>
+      <div class="flex-grow-1" />
+      <span class="mr-1">Display Stats</span>
+      <p-checkbox v-model="displayStatsInList" :binary="true" />
     </div>
-    <div class="mt-3">tag filters go here</div>
 
-    <p-divider />
-
-    <div v-if="showItemList" ref="itemResultsWrapper" class="item-results-wrapper flex flex-grow-1">
-      <p-virtualScroller :items="structuredItemList" :item-size="[80, 230]" orientation="both" style="width: 100%; height: 100%">
+    <div v-if="showItemList" ref="itemResultsWrapper" class="item-results-wrapper flex flex-grow-1 mt-2">
+      <p-virtualScroller
+        :items="structuredItemList"
+        :item-size="[displayStatsInList ? 215 : 65, displayStatsInList ? 315 : 235]"
+        orientation="both"
+        style="width: 100%; height: 100%"
+      >
         <template v-slot:item="{ item: itemBunch }">
           <div v-if="structuredItemList[0].length > 0" class="flex">
             <template v-for="(item, index) of itemBunch" :key="index">
-              <div class="item-card">
-                <div class="flex">
+              <div v-if="displayStatsInList" class="item-card with-stats">
+                <div class="flex px-2 pt-2">
                   <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
                   <div class="flex flex-column">
-                    <div class="item-name mr-2">{{ item.name }}</div>
+                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
                     <div class="flex">
                       <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                      <div>Level: {{ item.level }}</div></div
-                    >
+                      <div>Level: {{ item.level }}</div>
+                    </div>
                   </div>
                   <div class="flex-grow-1" />
 
                   <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item)" />
                 </div>
+
+                <div class="effects-wrapper flex flex-wrap">
+                  <template v-for="effect in item.equipEffects" :key="effect.id">
+                    <div v-if="getEffectData(effect.id)" class="effect-line pl-2 py-1" :style="{ width: effect.longEntry ? '100%' : '50%' }">
+                      <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ effect.values[0] }}</span>
+                      <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+                    </div>
+                  </template>
+                </div>
               </div>
+
+              <tippy v-else :delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
+                <div class="item-card">
+                  <div class="flex px-2 pt-2">
+                    <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
+                    <div class="flex flex-column">
+                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
+                      <div class="flex">
+                        <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+                        <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+                        <div>Level: {{ item.level }}</div>
+                      </div>
+                    </div>
+                    <div class="flex-grow-1" />
+
+                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item)" />
+                  </div>
+                </div>
+
+                <template v-slot:content>
+                  <div class="item-card-tooltip">
+                    <div class="effect-header flex pt-2 px-1">
+                      <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
+                      <div class="flex flex-column">
+                        <div class="item-name mr-2">{{ item.name }}</div>
+                        <div class="flex">
+                          <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+                          <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+                          <div>Level: {{ item.level }}</div></div
+                        >
+                      </div>
+                    </div>
+                    <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
+                      <div v-if="getEffectData(effect.id)" class="effect-line px-2 py-1">
+                        <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ effect.values[0] }}</span>
+                        <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+              </tippy>
             </template>
           </div>
           <div v-else> No items were found with those filters. Please revise your search. </div>
@@ -58,20 +150,23 @@
 </template>
 
 <script setup>
-import { ref, inject, nextTick, computed } from 'vue';
-import { debounce } from 'lodash';
+import { ref, inject, nextTick, computed, watch } from 'vue';
 
-import { ITEM_SLOT_DATA } from '@/models/useConstants';
+import { useItems } from '@/models/useItems';
+import { ITEM_SLOT_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
+
+import ItemFilters from '@/components/ItemFilters.vue';
 
 const currentCharacter = inject('currentCharacter');
-const itemFilters = inject('itemFilters');
 const currentItemList = inject('currentItemList');
 
 const itemResultsWrapper = ref(null);
 const numItemsPerRow = ref(4);
+const { getNumTotalItems } = useItems();
+let documentVar = document;
 
 const onResize = () => {
-  numItemsPerRow.value = Math.floor((itemResultsWrapper.value.clientWidth - 16) / 235);
+  numItemsPerRow.value = Math.floor((itemResultsWrapper.value.clientWidth - 16) / (displayStatsInList.value ? 310 + 5 : 230 + 5));
 };
 window.addEventListener('resize', onResize);
 
@@ -99,9 +194,7 @@ let structuredItemList = computed(() => {
 });
 
 const showItemList = ref(false);
-
-const searchTerm = ref('');
-const levelRange = ref([itemFilters.startLevel, itemFilters.endLevel]);
+const displayStatsInList = ref(false);
 
 const showList = () => {
   showItemList.value = true;
@@ -109,6 +202,18 @@ const showList = () => {
     onResize();
   });
 };
+
+watch(displayStatsInList, () => {
+  nextTick(() => {
+    showItemList.value = false;
+    nextTick(() => {
+      showItemList.value = true;
+      nextTick(() => {
+        onResize();
+      });
+    });
+  });
+});
 
 const onEquipmentClick = (slotKey) => {
   if (currentCharacter.value.equipment[slotKey] !== null) {
@@ -118,25 +223,6 @@ const onEquipmentClick = (slotKey) => {
     // here we filter our search by this slot type
   }
 };
-
-const onSearchInput = () => {
-  updateFilters();
-};
-
-const onLevelRangeTextInput = () => {
-  updateFilters();
-};
-
-const onLevelRangeChange = (event) => {
-  updateFilters();
-};
-
-const updateFilters = () => {
-  itemFilters.searchTerm = searchTerm.value;
-  itemFilters.startLevel = levelRange.value[0];
-  itemFilters.endLevel = levelRange.value[1];
-};
-const updateFiltersDebounce = debounce(updateFilters.bind(this), 1000);
 
 const onEquipItem = (item) => {
   // so here we want to equip the item in the slot it was made for
@@ -161,6 +247,15 @@ const onEquipItem = (item) => {
   }
 };
 
+const getEffectData = (rawId) => {
+  let effectEntryKey = Object.keys(EFFECT_TYPE_DATA).find((key) => EFFECT_TYPE_DATA[key].rawId === rawId);
+  if (effectEntryKey === undefined) {
+    return null;
+  } else {
+    return EFFECT_TYPE_DATA[effectEntryKey];
+  }
+};
+
 defineExpose({
   showList,
 });
@@ -170,6 +265,7 @@ defineExpose({
 .equipment-slots-wrapper {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
   gap: 0.25rem;
 }
@@ -226,12 +322,30 @@ defineExpose({
 :deep(.item-results-wrapper) {
   .item-card {
     border: 1px solid var(--bonta-blue-60);
-    padding: 10px;
     width: 230px;
+    height: 60px;
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 8px;
     background: var(--bonta-blue);
+    overflow: hidden;
+
+    &.with-stats {
+      height: 215px;
+      width: 310px;
+    }
+
+    .effects-wrapper {
+      overflow: hidden;
+    }
+
+    .effect-line {
+      font-size: 12px;
+      background: var(--bonta-blue-20);
+      margin-bottom: 4px;
+      border-right: 2px solid var(--bonta-blue);
+      border-left: 2px solid var(--bonta-blue);
+    }
   }
 
   .equip-button {
@@ -257,6 +371,21 @@ defineExpose({
   .p-inputnumber-button {
     padding: 0;
     width: 1rem;
+  }
+}
+
+.item-card-tooltip {
+  background-color: var(--bonta-blue);
+  border-radius: 4px;
+  border: 1px solid var(--bonta-blue-70);
+  overflow: hidden;
+
+  .effect-line:nth-child(2n-1) {
+    background: var(--bonta-blue-20);
+  }
+
+  .effect-header {
+    background: var(--bonta-blue-30);
   }
 }
 </style>

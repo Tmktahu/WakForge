@@ -42,10 +42,10 @@ export const useStats = (currentCharacter) => {
         (currentCharacter.value.class === CLASS_CONSTANTS.huppermage ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
 
       // Elemental masteries
-      currentCharacter.value.masteries.water = calcElemMasteryBonus();
-      currentCharacter.value.masteries.air = calcElemMasteryBonus();
-      currentCharacter.value.masteries.earth = calcElemMasteryBonus();
-      currentCharacter.value.masteries.fire = calcElemMasteryBonus();
+      currentCharacter.value.masteries.water = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.waterMastery.rawId);
+      currentCharacter.value.masteries.air = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.airMastery.rawId);
+      currentCharacter.value.masteries.earth = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.earthMastery.rawId);
+      currentCharacter.value.masteries.fire = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.fireMastery.rawId);
 
       // Other masteries
       currentCharacter.value.masteries.melee =
@@ -108,7 +108,10 @@ export const useStats = (currentCharacter) => {
   };
 
   const calcElemResistanceBonus = () => {
-    let bonus = currentCharacter.value.characteristics.major.elementalResistance * 50;
+    let bonus =
+      currentCharacter.value.characteristics.major.elementalResistance * 50 +
+      currentCharacter.value.characteristics.intelligence.elementalResistance * 10 +
+      calcItemContribution(EFFECT_TYPE_DATA.elementalResistance.rawId);
     return bonus;
   };
 
@@ -138,7 +141,12 @@ export const useStats = (currentCharacter) => {
     return contribution;
   };
 
+  const calcElemResistancePercentage = (resistanceValue) => {
+    return ((1 - Math.pow(0.8, resistanceValue / 100)) * 100).toFixed(2);
+  };
+
   return {
     setup,
+    calcElemResistancePercentage,
   };
 };
