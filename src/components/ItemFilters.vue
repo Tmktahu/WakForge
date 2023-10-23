@@ -204,8 +204,8 @@ const onResetFilters = () => {
   levelRange.value[0] = itemFilters.startLevel;
   levelRange.value[1] = itemFilters.endLevel;
   effectFilters.value = itemFilters.effectFilters;
-  rarityFilters.value - itemFilters.rarityFilters;
-  itemFilters.value = itemFilters.itemFilters;
+  rarityFilters.value = itemFilters.rarityFilters;
+  itemTypeFilters.value = itemFilters.itemTypeFilters;
 };
 </script>
 

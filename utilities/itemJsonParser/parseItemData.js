@@ -8,6 +8,9 @@ const itemData = JSON.parse(jsonItemData);
 const jsonEquipmentItemTypeData = fs.readFileSync('./equipmentItemTypes.json');
 const equipmentItemTypeData = JSON.parse(jsonEquipmentItemTypeData);
 
+const jsonItemTypeData = fs.readFileSync('./itemTypes.json');
+const itemTypeData = JSON.parse(jsonItemTypeData);
+
 const jsonItemPropertiesData = fs.readFileSync('./itemProperties.json');
 const itemPropertiesData = JSON.parse(jsonItemPropertiesData);
 const fixedItemProperties = [
@@ -80,7 +83,13 @@ const getItemType = (itemTypeId) => {
   let type = {
     id: null,
     name: null,
+    validSlots: [],
+    disabledSlots: [],
   };
+
+  if (itemTypeId === 812) {
+    console.log('dafuq');
+  }
 
   equipmentItemTypeData.forEach((entry) => {
     if (entry.definition.id === itemTypeId) {
@@ -91,6 +100,18 @@ const getItemType = (itemTypeId) => {
       return;
     }
   });
+
+  if (type.id === null) {
+    itemTypeData.forEach((entry) => {
+      if (entry.definition.id === itemTypeId) {
+        type.id = entry.definition.id;
+        type.name = entry.title.en;
+        type.validSlots = entry.definition.equipmentPositions;
+        type.disabledSlots = entry.definition.equipmentDisabledPositions;
+        return;
+      }
+    });
+  }
 
   return type;
 };

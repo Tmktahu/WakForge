@@ -104,6 +104,11 @@ export const ITEM_TYPE_DATA = [
   { id: 'enchantement', rawId: 811, name: 'Enchantement' },
   { id: 'sublimationScroll', rawId: 812, name: 'Sublimation Scroll' },
   // skipped 822
+  // The ones below this point are from equipmentItemTypes.json
+  { id: 'torches', rawId: 480, name: 'Torches' },
+  { id: 'pets', rawId: 582, name: 'Pets' },
+  { id: 'mounts', rawId: 611, name: 'Mounts' },
+  { id: 'costumes', rawId: 647, name: 'Costumes' },
 ];
 
 export const EFFECT_TYPE_DATA = {
