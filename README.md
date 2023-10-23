@@ -1,4 +1,4 @@
-![TODO Banner Image]()
+![](https://i.imgur.com/TsVnKyB.jpeg)
 
 [![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=BETA&color=blue)]() 
 <!-- [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/Vafdx5JWBh) -->
