@@ -11,6 +11,7 @@ const ITEM_TYPE_FILTERS_ID_LIST = [
   'clockHand',
   'cards',
   'bow',
+  'shovel',
   'twoHandedSword',
   'twoHandedAxe',
   'twoHandedStaff',
@@ -19,10 +20,18 @@ const ITEM_TYPE_FILTERS_ID_LIST = [
   'amulet',
   'breastplate',
   'epaulettes',
+  'belt',
   'ring',
   'boots',
   'cloak',
+  'tool',
   'emblem',
+  'pets',
+  'mounts',
+  'torches',
+  'costumes',
+  'sublimationScroll',
+  'enchantement',
 ];
 
 const itemFilters = reactive({
@@ -82,7 +91,6 @@ export const useItems = () => {
     // (itemType OR itemType OR ...) AND (level range check) AND (itemMod AND itemMod AND ...) AND (rarity OR rarity OR ...)
 
     let filteredItems = itemData.filter((item) => {
-      // TODO missing some from effect filters
       // TODO missing some from the item type filters
       return hasSearchTerm(item) && isWithinLevelRange(item) && matchesEffectFilters(item) && matchesRarityFilters(item) && matchesItemTypeFilters(item);
     });
@@ -99,6 +107,10 @@ export const useItems = () => {
   };
 
   const matchesEffectFilters = (item) => {
+    if (itemFilters.effectFilters.length === 0) {
+      return true;
+    }
+
     if (item.equipEffects?.length === undefined || item.equipEffects.length === 0) {
       return false;
     }
@@ -167,6 +179,10 @@ export const useItems = () => {
   };
 
   const matchesItemTypeFilters = (item) => {
+    if (itemFilters.itemTypeFilters.length === 0) {
+      return true;
+    }
+
     let itemTypeRawId = item.type.id;
     let validItem = false; // we assume false because if one type matches, we want it
 
