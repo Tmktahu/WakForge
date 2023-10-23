@@ -8,15 +8,15 @@ This is the repository for WakForge, coded by Fryke (fryke) on Discord.
 
 WakForge is a character build tool for the game Wakfu. This README will be updated with current features as the project is upgraded and added to.
 
-You can find the web version at <https://wakforge.org>.<br>
+You can find the site at <https://wakforge.org>.<br>
 <!-- You can find the standalone Electron version in the [releases section](https://github.com/Tmktahu/atlas/releases). -->
 
 ## Features
 
-- Complete character builder including .
-- Powerful, dynamic, and live item filtering capabilities.
-- Locally stored information = no backend server. Leverages JSON files and LocalStorage for persistance.
-- Import and export character data via JSON files.
+- Complete character builder including characteristics, items, sublimations, and runes.
+- Powerful, dynamic live item filtering capabilities.
+- Locally stored information with no backend server. Leverages JSON files and LocalStorage for persistance.
+- Import, export, and share character builds via JSON files.
 
 ## Locally Stored Information?
 
