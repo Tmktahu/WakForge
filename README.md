@@ -1,41 +1,41 @@
-# wakfu-wizard
+![](https://i.imgur.com/TsVnKyB.jpeg)
 
-This template should help get you started developing with Vue 3 in Vite.
+[![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=BETA&color=blue)]() 
+<!-- [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/Vafdx5JWBh) -->
 
-## Recommended IDE Setup
+This is the repository for WakForge, coded by Fryke (fryke) on Discord.
+<!-- Come check out the [Discord Server](https://discord.gg/Vafdx5JWBh). -->
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+WakForge is a character build tool for the game Wakfu. This README will be updated with current features as the project is upgraded and added to.
 
-## Customize configuration
+You can find the site at <https://wakforge.org>.<br>
+<!-- You can find the standalone Electron version in the [releases section](https://github.com/Tmktahu/atlas/releases). -->
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+## Features
 
-## Project Setup
+- Complete character builder including characteristics, items, sublimations, and runes.
+- Powerful, dynamic live item filtering capabilities.
+- Locally stored information with no backend server. Leverages JSON files and LocalStorage for persistance.
+- Import, export, and share character builds via JSON files.
 
-```sh
-npm install
-```
+## Locally Stored Information?
 
-### Compile and Hot-Reload for Development
+All character and program data is stored locally on your computer in the form of JSON data.
 
-```sh
-npm run dev
-```
+The data is saved to the [LocalStorage](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) of your web browser. This allows your changes to persist through refreshes and sessions.
 
-### Compile and Minify for Production
+You are able to import and export your character data as JSON files as you see fit. This is how you would share your character data with other people.
 
-```sh
-npm run build
-```
+## Google Analytics
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+Unfortunately Github Pages doesn't provide deployment traffic information, so I use Google Analytics to collect basic usage data so I can tell if people are actually using WakForge. This lets me keep an eye on site traffic and gives me a source of motivation to continue developing the app. If this doesn't sit well with you, any basic ad-blocker will successfully stop Google Analytics in its tracks.
 
-```sh
-npm run test:unit
-```
+If you do use an ad-blocker, I would greatly appreciate it if you would consider giving this repository a star or hop in the discord and let me know that you use WakForge. The more I hear about people using this tool, the more I'll want to make it better.
 
-### Lint with [ESLint](https://eslint.org/)
+## Want to help?
 
-```sh
-npm run lint
-```
+If you are interested in contributing to this project, feel free to look through the [Feature List](https://laminated-concrete.notion.site/Wakfu-Wizard-Feature-List-3c26bd7eb0f346f7a57f061b50230ed3) to see what is currently being worked on. Any thoughts, comments, or PRs are much appreciated. If you have any questions or ideas, feel free to reach out to Fryke (fryke) on Discord.
+
+## Special Thanks
+
+- Hooks (hooks0), Ruchi (ruchi), \<Krieg\> (fl_cl), Owlite (owlite), Hate (hatespawn), Soza (sozalord), Kimas (kimasage) for feature ideas and feedback.
