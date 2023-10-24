@@ -5,11 +5,13 @@ import { CLASS_CONSTANTS } from '@/models/useConstants';
 export const useLevels = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
-      currentCharacter.value.characteristics.limits.intelligence = Math.floor((currentCharacter.value.level + 2) / 4);
-      currentCharacter.value.characteristics.limits.strength = Math.floor((currentCharacter.value.level + 1) / 4);
-      currentCharacter.value.characteristics.limits.agility = Math.floor(currentCharacter.value.level / 4);
-      currentCharacter.value.characteristics.limits.fortune = Math.floor((currentCharacter.value.level - 1) / 4);
-      currentCharacter.value.characteristics.limits.major = Math.min(Math.floor((currentCharacter.value.level + 25) / 50), 4);
+      if (currentCharacter.value) {
+        currentCharacter.value.characteristics.limits.intelligence = Math.floor((currentCharacter.value.level + 2) / 4);
+        currentCharacter.value.characteristics.limits.strength = Math.floor((currentCharacter.value.level + 1) / 4);
+        currentCharacter.value.characteristics.limits.agility = Math.floor(currentCharacter.value.level / 4);
+        currentCharacter.value.characteristics.limits.fortune = Math.floor((currentCharacter.value.level - 1) / 4);
+        currentCharacter.value.characteristics.limits.major = Math.min(Math.floor((currentCharacter.value.level + 25) / 50), 4);
+      }
     });
   };
 
