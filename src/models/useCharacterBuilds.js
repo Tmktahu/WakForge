@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
-import { EventBus, Events } from '../eventBus';
+import { EventBus, Events } from '@/eventBus';
 
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
 

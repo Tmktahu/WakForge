@@ -4,7 +4,7 @@
       <template v-if="readOnly">
         <div class="equipment-display" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
           <div v-if="currentCharacter.equipment[data.id] === null" class="flex align-items-center justify-content-center">
-            <p-image :src="`../src/assets/images/ui/${data.id}.png`" image-style="width: 60px" />
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
           <div v-else class="flex align-items-center justify-content-center">
             <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
@@ -20,7 +20,7 @@
         >
           <div class="flex align-items-center justify-content-center">
             <div class="hover-icon search"> <i class="pi pi-search" /> </div>
-            <p-image :src="`../src/assets/images/ui/${data.id}.png`" image-style="width: 60px" />
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, inject, nextTick, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import { ITEM_SLOT_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
 

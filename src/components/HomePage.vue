@@ -25,7 +25,7 @@
                 :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
                 image-style="width: 40px"
               />
-              <p-image v-else class="class-image" :src="`../src/assets/images/ui/addCompanion.png`" image-style="width: 40px" />
+              <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
             </div>
             <p-divider class="mx-2" layout="vertical" />
             <div class="flex-grow-1 truncate" style="max-width: 300px">{{ character.name }}</div>
@@ -50,6 +50,8 @@ import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
+
+import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
 
 const router = useRouter();
 const masterData = inject('masterData');

@@ -266,7 +266,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch } from 'vue';
+import { ref, inject } from 'vue';
 
 import CharacteristicInput from '@/components/CharacteristicInput.vue';
 

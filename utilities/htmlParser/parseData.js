@@ -128,43 +128,12 @@ const getNormalSpellEffects = (document) => {
 
       normalEffects[extractedLevel] = {
         level: extractedLevel,
-        // effects: [],
         html: htmlText,
       };
 
       previousEntry = normalEffects[extractedLevel];
-
-      //   let effectElems = parent.querySelectorAll('.ak-list-element');
-      //   for (const effectElem of effectElems) {
-      //     let text = effectElem.textContent.trim();
-
-      //     // if (text.includes('Damage')) {
-      //     //   handleDamageEffect(normalEffects, effectElem, extractedLevel);
-      //     // }
-      //   }
     }
   }
 
   return normalEffects;
-};
-
-const handleDamageEffect = (normalEffects, effectElem, level) => {
-  let imageElems = effectElem.querySelectorAll('img');
-  for (const imageElem of imageElems) {
-    const regexPattern = /\/element\/([^/.]+)\.png/;
-    const matches = imageElem.src.match(regexPattern);
-    const imageName = matches[1];
-
-    if (imageName === 'enemy' || imageName === 'ally') {
-      normalEffects.damage.target = imageName.toLowerCase();
-    } else {
-      normalEffects.damage.type = imageName.toLowerCase();
-    }
-  }
-
-  let text = effectElem.textContent.trim();
-  const regexPattern = /Damage: (\d+)/;
-  const matches = text.match(regexPattern);
-  let damageAmount = matches?.[1];
-  normalEffects.damage.amounts[level] = damageAmount;
 };
