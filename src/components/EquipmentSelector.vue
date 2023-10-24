@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column h-full">
+  <div class="flex flex-column h-full" style="overflow-y: auto">
     <EquipmentButtons :character="currentCharacter" />
 
     <ItemFilters />
@@ -204,6 +204,7 @@ defineExpose({
 
 <style lang="scss" scoped>
 :deep(.item-results-wrapper) {
+  min-height: 300px;
   .item-card {
     border: 1px solid var(--bonta-blue-60);
     width: 230px;
