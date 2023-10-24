@@ -25,12 +25,12 @@
             <template v-for="(item, index) of itemBunch" :key="index">
               <div v-if="displayStatsInList" class="item-card with-stats">
                 <div class="flex px-2 pt-2">
-                  <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
+                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                   <div class="flex flex-column">
                     <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
                     <div class="flex">
-                      <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                      <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+                      <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+                      <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                       <div>Level: {{ item.level }}</div>
                     </div>
                   </div>
@@ -52,12 +52,12 @@
               <tippy v-else :delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
                 <div class="item-card">
                   <div class="flex px-2 pt-2">
-                    <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
+                    <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                     <div class="flex flex-column">
                       <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
                       <div class="flex">
-                        <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                        <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+                        <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+                        <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                         <div>Level: {{ item.level }}</div>
                       </div>
                     </div>
@@ -70,12 +70,12 @@
                 <template v-slot:content>
                   <div class="item-card-tooltip">
                     <div class="effect-header flex pt-2 px-1">
-                      <p-image :src="`https://vertylo.github.io/wakassets/items/${item.imageId}.png`" image-style="width: 40px" />
+                      <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                       <div class="flex flex-column">
                         <div class="item-name mr-2">{{ item.name }}</div>
                         <div class="flex">
-                          <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                          <p-image class="mr-1" :src="`https://vertylo.github.io/wakassets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+                          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+                          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                           <div>Level: {{ item.level }}</div></div
                         >
                       </div>

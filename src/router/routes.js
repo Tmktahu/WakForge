@@ -15,12 +15,12 @@ const router = createRouter({
     {
       path: '/home',
       name: HOME_ROUTE,
-      component: () => import('../components/HomePage.vue'),
+      component: () => import('@/components/HomePage.vue'),
     },
     {
       path: '/builder/:characterId',
       name: CHARACTER_BUILDER_ROUTE,
-      component: () => import('../components/CharacterBuilder.vue'),
+      component: () => import('@/components/CharacterBuilder.vue'),
     },
   ],
 });

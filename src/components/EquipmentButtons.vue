@@ -4,10 +4,10 @@
       <template v-if="readOnly">
         <div class="equipment-display" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
           <div v-if="currentCharacter.equipment[data.id] === null" class="flex align-items-center justify-content-center">
-            <p-image :src="`../src/assets/images/ui/${data.id}.png`" image-style="width: 60px" />
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
           <div v-else class="flex align-items-center justify-content-center">
-            <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
           </div>
         </div>
       </template>
@@ -20,31 +20,31 @@
         >
           <div class="flex align-items-center justify-content-center">
             <div class="hover-icon search"> <i class="pi pi-search" /> </div>
-            <p-image :src="`../src/assets/images/ui/${data.id}.png`" image-style="width: 60px" />
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
           <p-button class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }" @click="onEquipmentClick(data.id)">
             <div class="flex align-items-center justify-content-center">
               <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-              <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
             </div>
           </p-button>
           <template v-slot:content>
             <div class="item-card-tooltip">
               <div class="effect-header flex pt-2 px-1">
-                <p-image :src="`https://vertylo.github.io/wakassets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id].imageId}.png`" image-style="width: 40px" />
                 <div class="flex flex-column">
                   <div class="item-name mr-2">{{ currentCharacter.equipment[data.id].name }}</div>
                   <div class="flex">
                     <p-image
                       class="mr-1"
-                      :src="`https://vertylo.github.io/wakassets/rarities/${currentCharacter.equipment[data.id].rarity}.png`"
+                      :src="`https://tmktahu.github.io/WakfuAssets/rarities/${currentCharacter.equipment[data.id].rarity}.png`"
                       image-style="width: 12px;"
                     />
                     <p-image
                       class="mr-1"
-                      :src="`https://vertylo.github.io/wakassets/itemTypes/${currentCharacter.equipment[data.id].type.id}.png`"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${currentCharacter.equipment[data.id].type.id}.png`"
                       image-style="width: 18px;"
                     />
                     <div>Level: {{ currentCharacter.equipment[data.id].level }}</div></div
@@ -66,7 +66,7 @@
 </template>
 
 <script setup>
-import { ref, inject, nextTick, computed, watch } from 'vue';
+import { ref, watch } from 'vue';
 
 import { ITEM_SLOT_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
 

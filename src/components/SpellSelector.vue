@@ -6,7 +6,7 @@
           <p-dropdown v-model="currentCharacter.activeSpells[key].assignedSpell" class="spell-dropdown" :options="spellOptions" @change="onChange($event, key)">
             <template v-slot:value="slotProps">
               <div v-if="slotProps.value" class="flex align-items-center">
-                <p-image :src="`../src/assets/spells/${slotProps.value.iconId}.png`" image-style="width: 40px" />
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${slotProps.value.iconId}.png`" image-style="width: 40px" />
               </div>
               <span v-else> ??? </span>
             </template>
@@ -14,7 +14,7 @@
             <template v-slot:option="slotProps">
               <div class="flex align-items-center">
                 <div class="mr-2" style="height: 40px">
-                  <p-image :src="`../src/assets/spells/${slotProps.option.iconId}.png`" image-style="width: 40px" />
+                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${slotProps.option.iconId}.png`" image-style="width: 40px" />
                 </div>
                 <span>{{ slotProps.option.name }}</span>
               </div>
@@ -27,7 +27,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, computed } from 'vue';
+import { inject, computed } from 'vue';
 
 import { useSpells } from '@/models/useSpells';
 

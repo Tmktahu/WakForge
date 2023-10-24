@@ -1,6 +1,6 @@
 // import Vue from 'vue';
 import { watch, reactive, nextTick } from 'vue';
-import { EventBus, Events } from '../eventBus';
+import { EventBus, Events } from '@/eventBus';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
 export const CURRENT_STORAGE_VERSION = '0.0.1';
@@ -15,7 +15,7 @@ export function useStorage() {
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
 
-    let aAppVersion = data?.appVersion;
+    // let appVersion = data?.appVersion;
     let storageVersion = data?.storageVersion;
 
     if (storageVersion && storageVersion !== CURRENT_STORAGE_VERSION) {
@@ -93,12 +93,6 @@ export function useStorage() {
     }
   };
 
-  const detectOldDataStructures = (data) => {
-    // This is where we place migration detection logic
-
-    return false;
-  };
-
   // This function specifically handles migrating old data strucutres to the current version
   const migrateData = (oldData) => {
     let newData = oldData;
@@ -111,5 +105,6 @@ export function useStorage() {
     setup,
     readFromLocalStorage,
     saveToLocalStorage,
+    migrateData,
   };
 }

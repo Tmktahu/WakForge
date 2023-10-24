@@ -1,10 +1,9 @@
 <template>
   <div class="sidebar">
-    <div class="flex justify-content-center mt-3 mb-2"> <p-image src="../src/assets/images/branding/wakforge.svg" image-style="width: 60px" /> </div>
+    <div class="flex justify-content-center mt-3 mb-2"> <p-image :src="wakforgeLogoURL" image-style="width: 60px" /> </div>
     <p-button label="Home" icon="mdi mdi-home" class="sidebar-button w-full text-left px-2" @click="gotoHome" />
 
     <div class="flex-grow-1" />
-    <!-- <p-button label="DM Fryke" icon="mdi mdi-discord" class="sidebar-button w-full text-left px-2" @click="onMessageFryke" /> -->
     <p-button label="Github" icon="mdi mdi-github" class="sidebar-button w-full text-left px-2" @click="onGithub" />
   </div>
 </template>
@@ -13,6 +12,8 @@
 import { useRouter } from 'vue-router';
 import { HOME_ROUTE } from '@/router/routes.js';
 
+import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
+
 const router = useRouter();
 
 const gotoHome = () => {
@@ -20,10 +21,6 @@ const gotoHome = () => {
   router.push({
     name: HOME_ROUTE,
   });
-};
-
-const onMessageFryke = () => {
-  window.open('https://discordapp.com/channels/@me/143815222740647937/', '_blank').focus();
 };
 
 const onGithub = () => {
@@ -37,7 +34,8 @@ const onGithub = () => {
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--bonta-blue-50);
-  width: 110px;
+  max-width: 110px;
+  min-width: 110px;
   height: 100vh;
 }
 

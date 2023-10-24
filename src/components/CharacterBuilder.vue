@@ -63,8 +63,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, computed, nextTick } from 'vue';
-import { EventBus, Events } from '../eventBus';
+import { ref, inject, watch, nextTick } from 'vue';
 
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 
@@ -133,9 +132,6 @@ const onTabChange = () => {
   max-width: 400px;
   min-width: 400px;
   border-right: 1px solid var(--bonta-blue-60);
-}
-
-.summary-area {
 }
 
 :deep(.main-tab-view) {

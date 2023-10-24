@@ -11,35 +11,35 @@
             <CharacteristicInput
               v-model="percentHealthPoints"
               label="% Health Points"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/1.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/1.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="intelligenceElementalResistance"
               label="Elemental Resistance"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/116.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/116.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="barrier"
               label="Barrier"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/17.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/17.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="percentHealsReceived"
               label="% Heals Received"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/50.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/50.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="percentArmorHeathPoints"
               label="% Armor Health Points"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/136.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/136.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
             />
@@ -55,28 +55,28 @@
             <CharacteristicInput
               v-model="elementalMastery"
               label="Elemental Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/223.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/223.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="meleeMastery"
               label="Melee Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/226.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/226.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="distanceMastery"
               label="Distance Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/230.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/230.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="healthPoints"
               label="Health Points"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/231.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/231.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
             />
@@ -92,35 +92,35 @@
             <CharacteristicInput
               v-model="lock"
               label="Lock"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/4.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/4.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="dodge"
               label="Dodge"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/3.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/3.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="initiative"
               label="Initiative"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/2.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/2.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="lockAndDodge"
               label="Lock and Dodge"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/121.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/121.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="forceOfWill"
               label="Force of Will"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/233.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/233.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
             />
@@ -138,56 +138,56 @@
             <CharacteristicInput
               v-model="percentCriticalHit"
               label="% Critical Hit"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/109.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/109.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="percentBlock"
               label="% Block"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/49.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/49.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="criticalMastery"
               label="Critical Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/19.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/19.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="rearMastery"
               label="Rear Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/13.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/13.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="berserkMastery"
               label="Berserk Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/5.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/5.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="healingMastery"
               label="Healing Mastery"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/12.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/12.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="rearResistance"
               label="Rear Resistance"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/115.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/115.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
             <CharacteristicInput
               v-model="criticalResistance"
               label="Critical Resistance"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/20.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/20.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
             />
@@ -203,7 +203,7 @@
             <CharacteristicInput
               v-model="actionPoints"
               label="Action Points"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/8.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/8.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -211,7 +211,7 @@
             <CharacteristicInput
               v-model="movementPointsAndDamage"
               label="Movement Points and Damage"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/16.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/16.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -219,7 +219,7 @@
             <CharacteristicInput
               v-model="rangeAndDamage"
               label="Range and Damage"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/48.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/48.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -227,7 +227,7 @@
             <CharacteristicInput
               v-model="wakfuPoints"
               label="Wakfu Points"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/105.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/105.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -235,7 +235,7 @@
             <CharacteristicInput
               v-model="controlAndDamage"
               label="Control and Damage"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/10.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/10.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -243,7 +243,7 @@
             <CharacteristicInput
               v-model="percentDamageInflicted"
               label="% Damage Inflicted"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/52.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/52.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -251,7 +251,7 @@
             <CharacteristicInput
               v-model="majorElementalResistance"
               label="Elemental Resistance"
-              image-path="https://vertylo.github.io/wakassets/aptitudes/116.png"
+              image-path="https://tmktahu.github.io/WakfuAssets/aptitudes/116.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
@@ -266,7 +266,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch } from 'vue';
+import { ref, inject } from 'vue';
 
 import CharacteristicInput from '@/components/CharacteristicInput.vue';
 
