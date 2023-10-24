@@ -1,12 +1,13 @@
 // import Vue from 'vue';
-import { watch, reactive } from 'vue';
-
+import { watch, reactive, nextTick } from 'vue';
 import { EventBus, Events } from '../eventBus';
 
-export const LOCALSTORAGE_KEY = 'wakfu-wizard-data';
+export const LOCALSTORAGE_KEY = 'wakforge-data';
+export const CURRENT_STORAGE_VERSION = '0.0.1';
 
 export let masterData = reactive({
-  version: '',
+  appVersion: '',
+  storageVersion: CURRENT_STORAGE_VERSION,
   characters: [],
 });
 
@@ -14,14 +15,19 @@ export function useStorage() {
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
 
-    let currentVersion = import.meta.env.VITE_APP_VERSION;
-    let storageVersion = data?.version;
-    if (storageVersion !== currentVersion) {
-      console.error('Storage version mismatch');
-      // here we want to pop a modal that informs the user of the version mismatch, and reccomend they download their data
+    let aAppVersion = data?.appVersion;
+    let storageVersion = data?.storageVersion;
 
-      // for dev purposes, for now we wipe the data and start over
-      window.localStorage.removeItem(LOCALSTORAGE_KEY);
+    if (storageVersion && storageVersion !== CURRENT_STORAGE_VERSION) {
+      console.log('Storage version mismatch: Current Version', CURRENT_STORAGE_VERSION, 'vs Storage Version', storageVersion);
+      nextTick(() => {
+        EventBus.emit(Events.OPEN_OLD_DATA_DIALOG, data);
+      });
+
+      return {
+        storageData: data,
+        errors: { message: 'oldData' },
+      };
     } else {
       if (data?.characters?.length) {
         masterData.characters = data.characters;
@@ -51,7 +57,7 @@ export function useStorage() {
         };
       } else {
         let newData = {
-          version: import.meta.env.VUE_APP_VERSION,
+          appVersion: import.meta.env.VUE_APP_VERSION,
           characters: [],
         };
 
@@ -71,11 +77,12 @@ export function useStorage() {
     try {
       if (inData !== null) {
         let newStorageData = {
-          version: null,
+          appVersion: null,
           characters: masterData.characters,
         };
 
-        newStorageData.version = import.meta.env.VITE_APP_VERSION;
+        newStorageData.appVersion = import.meta.env.VITE_APP_VERSION;
+        newStorageData.storageVersion = CURRENT_STORAGE_VERSION;
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
@@ -84,6 +91,20 @@ export function useStorage() {
       console.error('Error writing to local storage: ', error);
       //   Vue.toasted.global.alertError({ message: 'Error saving to localstorage', description: error });
     }
+  };
+
+  const detectOldDataStructures = (data) => {
+    // This is where we place migration detection logic
+
+    return false;
+  };
+
+  // This function specifically handles migrating old data strucutres to the current version
+  const migrateData = (oldData) => {
+    let newData = oldData;
+    // we place migration data shenanigans here
+
+    return newData;
   };
 
   return {

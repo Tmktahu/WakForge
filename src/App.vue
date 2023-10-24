@@ -7,11 +7,14 @@
     <AppSidebar />
     <router-view />
   </div>
+
+  <OldDataDialog ref="oldDataDialog" />
 </template>
 
 <script setup>
-import { watch, provide, nextTick, onMounted } from 'vue';
+import { ref, watch, provide, nextTick, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
+import { EventBus, Events } from '@/eventBus';
 
 import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
@@ -19,17 +22,19 @@ import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
 import { useLevels } from '@/models/useLevels';
 
+import OldDataDialog from '@/components/OldDataDialog.vue';
+
 import AppSidebar from '@/components/AppSidebar.vue';
 
 const route = useRoute();
+
+const oldDataDialog = ref(null);
 
 // const showSidebar = ref(true);
 
 // First thing we do is grab data from storage
 const { setup: storageSetup } = useStorage();
 const { errors: storageErrors } = storageSetup();
-//  TODO get data from local storage
-//  send to useCharacterBuilds
 
 const { setup: setupCharacterBuilds, setContext } = useCharacterBuilds(masterData);
 const { currentCharacter } = setupCharacterBuilds();
@@ -68,6 +73,13 @@ onMounted(() => {
     "%cIf you're reading this, then I may be able to use your help!\nPoke Fryke (fryke) on Discord if you are interested!",
     'font-size: 1rem'
   );
+});
+
+EventBus.on(Events.OPEN_OLD_DATA_DIALOG, (data) => {
+  console.log('got the event');
+  setTimeout(() => {
+    oldDataDialog.value.open(data);
+  }, 100);
 });
 </script>
 
