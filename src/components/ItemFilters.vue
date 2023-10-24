@@ -297,7 +297,7 @@ const onResetFilters = () => {
 
   .rarity-button-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;
@@ -352,7 +352,7 @@ const onResetFilters = () => {
 
   .item-types-button-wrapper {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     gap: 0.5rem;

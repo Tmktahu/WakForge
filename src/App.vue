@@ -76,7 +76,6 @@ onMounted(() => {
 });
 
 EventBus.on(Events.OPEN_OLD_DATA_DIALOG, (data) => {
-  console.log('got the event');
   setTimeout(() => {
     oldDataDialog.value.open(data);
   }, 100);

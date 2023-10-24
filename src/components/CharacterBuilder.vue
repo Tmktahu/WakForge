@@ -51,9 +51,9 @@
             <EquipmentSelector ref="equipmentSelector" />
           </p-tabPanel>
 
-          <p-tabPanel header="Spells">
+          <!-- <p-tabPanel header="Spells">
             <SpellSelector />
-          </p-tabPanel>
+          </p-tabPanel> -->
         </p-tabView>
       </div>
     </div>

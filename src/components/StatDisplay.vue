@@ -41,7 +41,7 @@
           <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/wakfu_points.png" style="height: 20px" image-style="height: 20px" />
           <span class="ml-1">WP</span>
         </div>
-        <div>{{ currentCharacter.wakfuPoints }}</div>
+        <div class="stat-value py-1">{{ currentCharacter.wakfuPoints }}</div>
       </div>
     </div>
 
@@ -85,14 +85,14 @@
         <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/water_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Water Res</span>
+            <span class="ml-1">Water</span>
             <div class="flex-grow-1" />
             <span>{{ calcElemResistancePercentage(currentCharacter.resistances.water) }}% ({{ currentCharacter.resistances.water }})</span>
           </div>
 
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/air_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Air Res</span>
+            <span class="ml-1">Air</span>
             <div class="flex-grow-1" />
             <span>{{ calcElemResistancePercentage(currentCharacter.resistances.air) }}% ({{ currentCharacter.resistances.air }})</span>
           </div>
@@ -100,14 +100,14 @@
         <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/earth_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Earth Res</span>
+            <span class="ml-1">Earth</span>
             <div class="flex-grow-1" />
             <span>{{ calcElemResistancePercentage(currentCharacter.resistances.earth) }}% ({{ currentCharacter.resistances.earth }})</span>
           </div>
 
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/fire_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Fire Res</span>
+            <span class="ml-1">Fire</span>
             <div class="flex-grow-1" />
             <span>{{ calcElemResistancePercentage(currentCharacter.resistances.fire) }}% ({{ currentCharacter.resistances.fire }})</span>
           </div>
@@ -292,8 +292,8 @@
       </div>
     </div>
 
-    <div class="section-header py-1 mb-1">Summary</div>
-    <div class="summary-area px-2"> This is where we will display a summary of various conditional and other things </div>
+    <!-- <div class="section-header py-1 mb-1">Summary</div> -->
+    <!-- <div class="summary-area px-2"> This is where we will display a summary of various conditional and other things </div> -->
   </div>
 </template>
 

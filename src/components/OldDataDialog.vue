@@ -54,7 +54,6 @@ const downloadedData = ref(false);
 const open = (inData) => {
   visible.value = true;
   oldData.value = inData;
-  console.log(oldData, oldData.value);
 };
 
 const close = () => {
