@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-column flex-grow-1 mx-5 my-5">
-    <div style="font-size: 42px">Welcome to Wakforge</div>
+  <div class="flex flex-column flex-grow-1 ml-4 mr-3" style="height: 100vh; overflow: hidden">
+    <div class="mt-3" style="font-size: 42px">Welcome to Wakforge</div>
     <div class="mt-2">If you run into any issues, feel free to DM Fryke (fryke) on Discord.</div>
 
     <p-divider />
@@ -15,11 +15,16 @@
         <p-button icon="mdi mdi-plus-thick" label="Create New Character" class="create-character-button py-1 pr-3 pl-2" @click="onCreateCharacter" />
       </div>
 
-      <div class="flex flex-column">
+      <div class="character-enties-wrapper flex flex-column mt-2 pr-2 pb-3">
         <template v-for="character in masterData.characters" :key="character.id">
           <div class="character-entry py-2 mt-2" @click="gotoBuild(character.id)">
             <div class="ml-3">
-              <p-image v-if="character.class" class="class-image" :src="`../src/assets/images/classes/${character.class}.png`" image-style="width: 40px" />
+              <p-image
+                v-if="character.class"
+                class="class-image"
+                :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
+                image-style="width: 40px"
+              />
               <p-image v-else class="class-image" :src="`../src/assets/images/ui/addCompanion.png`" image-style="width: 40px" />
             </div>
             <p-divider class="mx-2" layout="vertical" />
@@ -95,5 +100,16 @@ const gotoBuild = (id) => {
       border-radius: 4px;
     }
   }
+}
+
+.character-area {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+}
+
+.character-enties-wrapper {
+  overflow-y: auto;
 }
 </style>

@@ -37,7 +37,8 @@ const onGithub = () => {
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--bonta-blue-50);
-  width: 110px;
+  max-width: 110px;
+  min-width: 110px;
   height: 100vh;
 }
 

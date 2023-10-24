@@ -20,7 +20,7 @@
                 <div class="flex justify-content-center align-items-center">
                   <p-image
                     :class="{ disabled: !slotProps.checked }"
-                    :src="`https://vertylo.github.io/wakassets/rarities/${rarity.id}.png`"
+                    :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`"
                     image-style="width: 14px;"
                   />
                 </div>
@@ -47,7 +47,7 @@
                 <div class="flex justify-content-center align-items-center">
                   <p-image
                     :class="{ disabled: !slotProps.checked }"
-                    :src="`https://vertylo.github.io/wakassets/itemTypes/${itemType.rawId}.png`"
+                    :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawId}.png`"
                     image-style="width: 16px;"
                   />
                 </div>
