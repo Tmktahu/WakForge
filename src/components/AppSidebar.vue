@@ -1,7 +1,7 @@
 <template>
   <div class="sidebar">
     <div class="flex justify-content-center mt-3 mb-2"> <p-image src="../src/assets/images/branding/wakforge.svg" image-style="width: 60px" /> </div>
-    <p-button label="Home" class="sidebar-button w-full text-left px-2" @click="gotoHome" />
+    <p-button label="Home" icon="mdi mdi-home" class="sidebar-button w-full text-left px-2" @click="gotoHome" />
 
     <div class="flex-grow-1" />
     <!-- <p-button label="DM Fryke" icon="mdi mdi-discord" class="sidebar-button w-full text-left px-2" @click="onMessageFryke" /> -->

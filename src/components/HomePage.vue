@@ -11,8 +11,8 @@
 
     <div class="character-area">
       <div class="flex justify-content-between w-full">
-        <div class="text-xl">Characters</div>
-        <p-button label="Create New Character" class="py-1 px-3" @click="onCreateCharacter" />
+        <div class="text-xl">Saved Characters</div>
+        <p-button icon="mdi mdi-plus-thick" label="Create New Character" class="create-character-button py-1 pr-3 pl-2" @click="onCreateCharacter" />
       </div>
 
       <div class="flex flex-column">
