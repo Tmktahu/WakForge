@@ -97,13 +97,13 @@ const COMPARATORS = [
   },
   {
     id: 'lessThanOrEqualTo',
-    text: 'Less Than',
-    symbol: '<',
+    text: 'Less Than Or Equal To',
+    symbol: '<=',
   },
   {
     id: 'greaterThanOrEqualTo',
-    text: 'Greater Than',
-    symbol: '>',
+    text: 'Greater Than Or Equal To',
+    symbol: '>=',
   },
 ];
 

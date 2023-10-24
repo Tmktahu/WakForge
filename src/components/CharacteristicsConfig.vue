@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column h-full">
-    <div class="characteristic-panels flex">
+    <div class="characteristic-panels flex pb-3">
       <div class="flex flex-column flex-grow-1 mr-1">
         <div class="category-wrapper flex flex-column">
           <div class="characteristics-category-header px-2 py-2">
@@ -14,6 +14,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/1.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="intelligenceElementalResistance"
@@ -21,6 +22,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/116.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
+              :max-override="10"
             />
             <CharacteristicInput
               v-model="barrier"
@@ -28,6 +30,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/17.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
+              :max-override="10"
             />
             <CharacteristicInput
               v-model="percentHealsReceived"
@@ -35,6 +38,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/50.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
+              :max-override="5"
             />
             <CharacteristicInput
               v-model="percentArmorHeathPoints"
@@ -42,6 +46,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/136.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
+              :max-override="10"
             />
           </div>
         </div>
@@ -65,6 +70,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/226.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
+              :max-override="40"
             />
             <CharacteristicInput
               v-model="distanceMastery"
@@ -72,6 +78,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/230.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
+              :max-override="40"
             />
             <CharacteristicInput
               v-model="healthPoints"
@@ -109,6 +116,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/2.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
             <CharacteristicInput
               v-model="lockAndDodge"
@@ -123,6 +131,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/233.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
           </div>
         </div>
@@ -141,6 +150,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/109.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
             <CharacteristicInput
               v-model="percentBlock"
@@ -148,6 +158,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/49.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
             <CharacteristicInput
               v-model="criticalMastery"
@@ -183,6 +194,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/115.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
             <CharacteristicInput
               v-model="criticalResistance"
@@ -190,6 +202,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/20.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :max-override="20"
             />
           </div>
         </div>
@@ -255,6 +268,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
           </div>
         </div>
@@ -266,11 +280,33 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref, inject, computed, onMounted } from 'vue';
 
 import CharacteristicInput from '@/components/CharacteristicInput.vue';
 
 const currentCharacter = inject('currentCharacter');
+const shiftHeld = ref(false);
+const stepValue = computed(() => {
+  return shiftHeld.value ? 10 : 1;
+});
+
+onMounted(() => {
+  document.addEventListener('keydown', (event) => {
+    handleShiftValue(event);
+  });
+
+  document.addEventListener('keyup', (event) => {
+    handleShiftValue(event);
+  });
+});
+
+const handleShiftValue = (event) => {
+  if (event.shiftKey) {
+    shiftHeld.value = true;
+  } else {
+    shiftHeld.value = false;
+  }
+};
 
 // Intelligence vars
 const percentHealthPoints = ref(currentCharacter.value.characteristics.intelligence.percentHealthPoints);
@@ -344,7 +380,7 @@ const calcRemainingPoints = (type) => {
   return currentCharacter.value.characteristics.limits[type] - currentTotal;
 };
 
-const updateCharacteristics = () => {
+const updateCharacteristics = (event) => {
   currentCharacter.value.characteristics.intelligence.percentHealthPoints = percentHealthPoints.value;
   currentCharacter.value.characteristics.intelligence.elementalResistance = intelligenceElementalResistance.value;
   currentCharacter.value.characteristics.intelligence.barrier = barrier.value;
