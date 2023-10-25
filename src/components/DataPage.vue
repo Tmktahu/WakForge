@@ -91,6 +91,11 @@
             <span style="color: var(--bonta-blue-100); font-weight: bold">{{ getLocalStorageSize() }}</span>
             <br />If you ever approach this limit, please contact Fryke (fryke) on Discord.
           </div>
+          <div class="mb-2">
+            <span style="color: orangered; font-weight: 800">!!! WARNING !!!</span>
+            Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have
+            made a backup and understand what you are doing.
+          </div>
           <div class="flex">
             <p-button
               class="local-storage-button mr-2"
