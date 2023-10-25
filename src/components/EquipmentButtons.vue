@@ -1,6 +1,6 @@
 <template>
   <div class="flex equipment-slots-wrapper pr-3">
-    <template v-for="data in ITEM_SLOT_DATA" :key="data.id">
+    <template v-for="(data, key, index) in ITEM_SLOT_DATA" :key="data.id">
       <template v-if="readOnly">
         <div class="equipment-display" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
           <div v-if="currentCharacter?.equipment[data.id]?.imageId" class="flex align-items-center justify-content-center">
@@ -16,7 +16,7 @@
           v-if="currentCharacter.equipment[data.id] === null"
           class="equipment-button"
           :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }"
-          @click="onEquipmentClick(data.id)"
+          @click="onSearch(data.id)"
         >
           <div class="flex align-items-center justify-content-center">
             <div class="hover-icon search"> <i class="pi pi-search" /> </div>
@@ -24,12 +24,53 @@
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
-          <p-button class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }" @click="onEquipmentClick(data.id)">
-            <div class="flex align-items-center justify-content-center">
-              <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id]?.imageId}.png`" image-style="width: 40px" />
+          <div class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
+            <div class="flex align-items-center justify-content-center w-full" style="position: relative">
+              <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
+              <div class="hover-icon remove" @click="onRemove(data.id, $event)"> <i class="pi pi-trash" /> </div>
+              <p-image
+                class="equipment-image"
+                :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id]?.imageId}.png`"
+                image-style="width: 40px"
+              />
+
+              <div v-if="getRandomMasteryEffect(data.id, 'masterySlot1') !== null" class="random-stat-icons-wrapper">
+                <p-image
+                  v-if="getRandomMasteryEffect(data.id, 'masterySlot1') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot1').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+                <p-image
+                  v-if="getRandomMasteryEffect(data.id, 'masterySlot2') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot2').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+                <p-image
+                  v-if="getRandomMasteryEffect(data.id, 'masterySlot3') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot3').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+              </div>
+
+              <div v-if="getRandomResistanceEffect(data.id, 'resistanceSlot1') !== null" class="random-stat-icons-wrapper">
+                <p-image
+                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot1') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot1').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+                <p-image
+                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot2') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot2').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+                <p-image
+                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot3') !== null"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot3').type}_coin.png`"
+                  image-style="width: 16px"
+                />
+              </div>
             </div>
-          </p-button>
+          </div>
           <template v-slot:content>
             <div v-if="currentCharacter.equipment[data.id]" class="item-card-tooltip">
               <div class="effect-header flex pt-2 px-1">
@@ -56,17 +97,23 @@
             </div>
           </template>
         </tippy>
+
+        <EditEquipmentModal ref="editEquipmentModal" />
       </template>
     </template>
+
+    <p-confirmPopup />
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, inject } from 'vue';
+import { useConfirm } from 'primevue/useconfirm';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 
 import ItemStatList from '@/components/ItemStatList.vue';
+import EditEquipmentModal from '@/components/EditEquipmentModal.vue';
 
 let props = defineProps({
   character: {
@@ -79,6 +126,10 @@ let props = defineProps({
   },
 });
 
+const confirm = useConfirm();
+
+const itemFilters = inject('itemFilters');
+const editEquipmentModal = ref(null);
 const currentCharacter = ref(props.character);
 watch(
   () => props.character,
@@ -87,13 +138,45 @@ watch(
   }
 );
 
-const onEquipmentClick = (slotKey) => {
-  if (currentCharacter.value.equipment[slotKey] !== null) {
-    // if we have an item equipped in that slot, remove it
-    currentCharacter.value.equipment[slotKey] = null;
-  } else {
-    // here we filter our search by this slot type
-  }
+const onSearch = (slotKey) => {
+  // here we filter our search by this slot type
+  itemFilters.itemTypeFilters.forEach((filter) => {
+    if (filter.validSlots.includes(ITEM_SLOT_DATA[slotKey])) {
+      filter.checked = true;
+    } else {
+      filter.checked = false;
+    }
+  });
+};
+
+const onEdit = (index, slotKey, event) => {
+  editEquipmentModal.value[index].open(slotKey, event.target.getBoundingClientRect().left - 200, event.target.getBoundingClientRect().bottom + 10);
+};
+
+const onRemove = (slotKey, event) => {
+  confirm.require({
+    target: event.currentTarget,
+    message: 'Are you sure?',
+    accept: () => {
+      currentCharacter.value.equipment[slotKey] = null;
+    },
+  });
+};
+
+const getRandomMasteryEffect = (slotKey, masteryKey) => {
+  return (
+    currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
+      return effect.id === 1068;
+    })?.[masteryKey] || null
+  );
+};
+
+const getRandomResistanceEffect = (slotKey, masteryKey) => {
+  return (
+    currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
+      return effect.id === 1069;
+    })?.[masteryKey] || null
+  );
 };
 </script>
 
@@ -118,8 +201,10 @@ const onEquipmentClick = (slotKey) => {
 
   background: var(--bonta-blue-80);
 
+  cursor: pointer;
+
   &.has-item {
-    .p-image {
+    .equipment-image {
       background-color: var(--bonta-blue-20);
       border-radius: 4px;
       padding: 5px;
@@ -136,7 +221,20 @@ const onEquipmentClick = (slotKey) => {
     color: white;
 
     &.remove {
+      left: 50%;
       background-color: rgba(red, 0.3);
+
+      i {
+        font-size: 20px;
+      }
+    }
+    &.edit {
+      right: 50%;
+      background-color: rgba(yellow, 0.3);
+
+      i {
+        font-size: 20px;
+      }
     }
 
     &.search {
@@ -144,6 +242,7 @@ const onEquipmentClick = (slotKey) => {
     }
 
     i {
+      pointer-events: none;
       font-size: 40px;
     }
   }
@@ -168,12 +267,25 @@ const onEquipmentClick = (slotKey) => {
   background: var(--bonta-blue-80);
 
   &.has-item {
-    .p-image {
+    .equipment-image {
       background-color: var(--bonta-blue-20);
       border-radius: 4px;
       padding: 5px;
       height: 50px;
     }
+  }
+}
+
+.random-stat-icons-wrapper {
+  display: flex;
+  position: absolute;
+  bottom: -12px;
+  background-color: var(--bonta-blue);
+  border-radius: 12px;
+  padding: 2px 4px;
+  border: 1px solid var(--bonta-blue-80);
+  .p-image {
+    height: 16px;
   }
 }
 </style>
