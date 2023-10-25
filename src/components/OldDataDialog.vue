@@ -1,7 +1,8 @@
 <template>
-  <p-dialog v-model:visible="visible" modal header="Migrate Old Data" :closable="false" style="width: 50vw">
-    <div ref="modelContent" class="pa-6">
-      <div class="mt-2"> An old storage data structure has been detected and it must be updated before you can use the app. </div>
+  <p-dialog v-model:visible="visible" modal :closable="false" style="width: 50vw">
+    <div ref="modelContent" class="px-4 py-4">
+      <div style="font-size: 36px"> Migrate Old Data</div>
+      <div class="mt-5"> An old storage data structure has been detected and it must be updated before you can use the app. </div>
       <div class="mb-3"> Once the update is complete, this page will reload. </div>
 
       <div class="mb-3">
@@ -77,7 +78,7 @@ const onUpdate = () => {
   saveToLocalStorage(migratedData);
 
   setTimeout(() => {
-    // window.location.reload(false);
+    window.location.reload(false);
   }, 5000);
 };
 
