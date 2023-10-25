@@ -32,6 +32,8 @@ export const ITEM_SLOT_DATA = {
   LEFT_HAND: { id: 'LEFT_HAND', name: 'Left Ring' },
   RIGHT_HAND: { id: 'RIGHT_HAND', name: 'Right Ring' },
   ACCESSORY: { id: 'ACCESSORY', name: 'Emblem' },
+  PET: { id: 'PET', name: 'Pet' },
+  MOUNT: { id: 'MOUNT', name: 'Mount' },
 };
 
 export const ITEM_RARITY_DATA = [
@@ -44,6 +46,8 @@ export const ITEM_RARITY_DATA = [
   { id: 6, name: 'Souvenir' },
   { id: 7, name: 'Epic' },
 ];
+
+export const LEVELABLE_ITEMS = [582, 611];
 
 export const ITEM_TYPE_DATA = [
   { id: 'weaponsAndShields', rawId: 100, name: 'Weapons & Shields' },

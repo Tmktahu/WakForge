@@ -1,7 +1,8 @@
 <template>
   <div class="sidebar">
     <div class="flex justify-content-center mt-3 mb-2"> <p-image :src="wakforgeLogoURL" image-style="width: 60px" /> </div>
-    <p-button label="Home" icon="mdi mdi-home" class="sidebar-button w-full text-left px-2" @click="gotoHome" />
+    <p-button label="Characters" icon="mdi mdi-account-multiple" class="sidebar-button w-full text-left px-2" @click="gotoCharacters" />
+    <p-button label="Data" icon="mdi mdi-graph" class="sidebar-button w-full text-left px-2" @click="gotoData" />
 
     <div class="flex-grow-1" />
     <p-button label="Github" icon="mdi mdi-github" class="sidebar-button w-full text-left px-2" @click="onGithub" />
@@ -10,16 +11,22 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { HOME_ROUTE } from '@/router/routes.js';
+import { CHARACTERS_ROUTE, DATA_ROUTE } from '@/router/routes.js';
 
 import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
 const router = useRouter();
 
-const gotoHome = () => {
+const gotoCharacters = () => {
   // go to the builder page
   router.push({
-    name: HOME_ROUTE,
+    name: CHARACTERS_ROUTE,
+  });
+};
+
+const gotoData = () => {
+  router.push({
+    name: DATA_ROUTE,
   });
 };
 
@@ -34,8 +41,8 @@ const onGithub = () => {
   flex-direction: column;
   gap: 0.5rem;
   background-color: var(--bonta-blue-50);
-  max-width: 110px;
-  min-width: 110px;
+  max-width: 120px;
+  min-width: 120px;
   height: 100vh;
 }
 

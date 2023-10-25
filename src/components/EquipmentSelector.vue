@@ -23,15 +23,16 @@
         <template v-slot:item="{ item: itemBunch }">
           <div v-if="structuredItemList[0].length > 0" class="flex">
             <template v-for="(item, index) of itemBunch" :key="index">
-              <div v-if="displayStatsInList" class="item-card with-stats">
+              <div v-if="displayStatsInList && item" class="item-card with-stats">
                 <div class="flex px-2 pt-2">
                   <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                  <div class="flex flex-column">
+                  <div class="flex flex-column ml-1">
                     <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
                     <div class="flex">
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                      <div>Level: {{ item.level }}</div>
+                      <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                      <div v-else>Level: {{ item.level }}</div>
                     </div>
                   </div>
                   <div class="flex-grow-1" />
@@ -39,26 +40,20 @@
                   <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item)" />
                 </div>
 
-                <div class="effects-wrapper flex flex-wrap">
-                  <template v-for="effect in item.equipEffects" :key="effect.id">
-                    <div v-if="getEffectData(effect.id)" class="effect-line pl-2 py-1" :style="{ width: effect.longEntry ? '100%' : '50%' }">
-                      <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ effect.values[0] }}</span>
-                      <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
-                    </div>
-                  </template>
-                </div>
+                <ItemStatList card-mode :item="item" />
               </div>
 
               <tippy v-else :delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
                 <div class="item-card">
                   <div class="flex px-2 pt-2">
                     <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                    <div class="flex flex-column">
+                    <div class="flex flex-column ml-1">
                       <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
                       <div class="flex">
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                        <div>Level: {{ item.level }}</div>
+                        <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                        <div v-else>Level: {{ item.level }}</div>
                       </div>
                     </div>
                     <div class="flex-grow-1" />
@@ -68,24 +63,21 @@
                 </div>
 
                 <template v-slot:content>
-                  <div class="item-card-tooltip">
+                  <div v-if="item" class="item-card-tooltip">
                     <div class="effect-header flex pt-2 px-1">
                       <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                      <div class="flex flex-column">
+                      <div class="flex flex-column ml-1">
                         <div class="item-name mr-2">{{ item.name }}</div>
                         <div class="flex">
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                          <div>Level: {{ item.level }}</div></div
-                        >
+                          <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                          <div v-else>Level: {{ item.level }}</div>
+                        </div>
                       </div>
                     </div>
-                    <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
-                      <div v-if="getEffectData(effect.id)" class="effect-line px-2 py-1">
-                        <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ effect.values[0] }}</span>
-                        <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
-                      </div>
-                    </template>
+
+                    <ItemStatList :item="item" />
                   </div>
                 </template>
               </tippy>
@@ -102,10 +94,11 @@
 import { ref, inject, nextTick, computed, watch } from 'vue';
 
 import { useItems } from '@/models/useItems';
-import { ITEM_SLOT_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
+import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
 import ItemFilters from '@/components/ItemFilters.vue';
+import ItemStatList from '@/components/ItemStatList.vue';
 
 const currentCharacter = inject('currentCharacter');
 const currentItemList = inject('currentItemList');
@@ -188,15 +181,6 @@ const onEquipItem = (item) => {
   }
 };
 
-const getEffectData = (rawId) => {
-  let effectEntryKey = Object.keys(EFFECT_TYPE_DATA).find((key) => EFFECT_TYPE_DATA[key].rawId === rawId);
-  if (effectEntryKey === undefined) {
-    return null;
-  } else {
-    return EFFECT_TYPE_DATA[effectEntryKey];
-  }
-};
-
 defineExpose({
   showList,
 });
@@ -218,18 +202,6 @@ defineExpose({
     &.with-stats {
       height: 215px;
       width: 310px;
-    }
-
-    .effects-wrapper {
-      overflow: hidden;
-    }
-
-    .effect-line {
-      font-size: 12px;
-      background: var(--bonta-blue-20);
-      margin-bottom: 4px;
-      border-right: 2px solid var(--bonta-blue);
-      border-left: 2px solid var(--bonta-blue);
     }
   }
 
@@ -256,21 +228,6 @@ defineExpose({
   .p-inputnumber-button {
     padding: 0;
     width: 1rem;
-  }
-}
-
-.item-card-tooltip {
-  background-color: var(--bonta-blue);
-  border-radius: 4px;
-  border: 1px solid var(--bonta-blue-70);
-  overflow: hidden;
-
-  .effect-line:nth-child(2n-1) {
-    background: var(--bonta-blue-20);
-  }
-
-  .effect-header {
-    background: var(--bonta-blue-30);
   }
 }
 </style>

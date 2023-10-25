@@ -380,7 +380,7 @@ const calcRemainingPoints = (type) => {
   return currentCharacter.value.characteristics.limits[type] - currentTotal;
 };
 
-const updateCharacteristics = (event) => {
+const updateCharacteristics = () => {
   currentCharacter.value.characteristics.intelligence.percentHealthPoints = percentHealthPoints.value;
   currentCharacter.value.characteristics.intelligence.elementalResistance = intelligenceElementalResistance.value;
   currentCharacter.value.characteristics.intelligence.barrier = barrier.value;

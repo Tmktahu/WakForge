@@ -69,7 +69,6 @@ import { CLASS_CONSTANTS } from '@/models/useConstants';
 
 import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsConfig from '@/components/CharacteristicsConfig.vue';
-import SpellSelector from '@/components/SpellSelector.vue';
 import EquipmentSelector from '@/components/EquipmentSelector.vue';
 
 const currentCharacter = inject('currentCharacter');

@@ -6,7 +6,7 @@
       <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
       <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" @input="onLevelRangeTextInput" />
     </div>
-    <p-button class="reset-filters-button" label="Reset Filters" @click="onResetFilters" />
+    <p-button class="filter-button" label="Reset Filters" @click="onResetFilters" />
   </div>
 
   <div class="flex gap-2">
@@ -38,7 +38,11 @@
     </div>
 
     <div class="item-types-container mt-2">
-      <div class="mb-1">Item Types</div>
+      <div class="flex align-items-center mb-1">
+        <p-button class="filter-button item-filter-action" label="Select All" @click="onSelectAllItemTypes" />
+        <div class="mx-2">Item Types</div>
+        <p-button class="filter-button item-filter-action" label="Clear All" @click="onClearAllItemTypes" />
+      </div>
       <div class="item-types-button-wrapper">
         <template v-for="itemType in itemTypeFilters" :key="itemType.id">
           <tippy duration="0">
@@ -66,7 +70,7 @@
   </div>
 
   <div class="filter-list-wrapper mt-3">
-    <p-button icon="pi pi-plus" class="new-filter-button" label="New Filter" @click="onAddFilter" />
+    <p-button icon="pi pi-plus" class="filter-button" label="New Filter" @click="onAddFilter" />
 
     <template v-for="filter in effectFilters" :key="filter.id">
       <div class="filter-entry">
@@ -86,8 +90,8 @@
 </template>
 
 <script setup>
-import { ref, inject, nextTick, computed, watch, effect } from 'vue';
-import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA } from '@/models/useConstants.js';
+import { ref, inject } from 'vue';
+import { EFFECT_TYPE_DATA } from '@/models/useConstants.js';
 
 const COMPARATORS = [
   {
@@ -168,7 +172,7 @@ const onLevelRangeTextInput = () => {
   updateFilters();
 };
 
-const onLevelRangeChange = (event) => {
+const onLevelRangeChange = () => {
   updateFilters();
 };
 
@@ -207,6 +211,20 @@ const onResetFilters = () => {
   rarityFilters.value = itemFilters.rarityFilters;
   itemTypeFilters.value = itemFilters.itemTypeFilters;
 };
+
+const onSelectAllItemTypes = () => {
+  itemFilters.itemTypeFilters.forEach((filter) => {
+    filter.checked = true;
+  });
+  updateFilters();
+};
+
+const onClearAllItemTypes = () => {
+  itemFilters.itemTypeFilters.forEach((filter) => {
+    filter.checked = false;
+  });
+  updateFilters();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -220,7 +238,7 @@ const onResetFilters = () => {
   gap: 0.5rem;
 }
 
-.new-filter-button {
+:deep(.filter-button) {
   padding: 4px 6px;
   background-color: #1e1e1e;
   color: white;
@@ -230,17 +248,9 @@ const onResetFilters = () => {
   &:hover {
     border: 1px solid rgba(255, 255, 255, 0.6);
   }
-}
 
-.reset-filters-button {
-  padding: 4px 6px;
-  background-color: #1e1e1e;
-  color: white;
-  font-weight: 400;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-
-  &:hover {
-    border: 1px solid rgba(255, 255, 255, 0.6);
+  &.item-filter-action {
+    background-color: var(--bonta-blue-30);
   }
 }
 
@@ -335,9 +345,6 @@ const onResetFilters = () => {
     height: 20px;
     margin-right: 0px;
   }
-
-  .p-checkbox-focused {
-  }
 }
 
 .item-types-container {
@@ -391,9 +398,6 @@ const onResetFilters = () => {
   .p-image.p-component {
     height: 16px;
     margin-right: 0px;
-  }
-
-  .p-checkbox-focused {
   }
 }
 </style>

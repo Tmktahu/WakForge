@@ -1,7 +1,7 @@
 import { watch } from 'vue';
 import { EventBus, Events } from '@/eventBus';
 import { masterData } from '@/models/useStorage.js';
-import { CLASS_CONSTANTS, EFFECT_TYPE_DATA } from '@/models/useConstants';
+import { CLASS_CONSTANTS, EFFECT_TYPE_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 
 export const useStats = (currentCharacter) => {
   const setup = () => {
@@ -129,9 +129,14 @@ export const useStats = (currentCharacter) => {
         item.equipEffects.forEach((effect) => {
           // we specifically compare the raw IDs here because that's what we get from the JSON
           if (targetEffectRawId === effect.id) {
-            // console.log('Effect being applied', effect.description, effect.values[0]);
-            // we have a match. we want to add its effect to the total tally
-            contribution += effect.values[0]; // generally it seems we want the first number
+            // if we have a match
+            if (LEVELABLE_ITEMS.includes(item.type.id)) {
+              // for items that level, we currently assume they are maxed at level 50
+              contribution += effect.values[0] + effect.values[1] * 50; // TODO make this dynamic?
+            } else {
+              // for normal items we just use the first value
+              contribution += effect.values[0];
+            }
           }
         });
       }
