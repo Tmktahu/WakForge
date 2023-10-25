@@ -86,9 +86,15 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.forceOfWill =
         currentCharacter.value.characteristics.agility.forceOfWill * 1 + calcItemContribution(EFFECT_TYPE_DATA.forceOfWill.rawId);
 
-      currentCharacter.value.stats.criticalHit =
-        (currentCharacter.value.characteristics.fortune.percentCriticalHit * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.criticalHit.rawId) * 0.01) * 100;
-      currentCharacter.value.stats.damageInflicted = currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100;
+      currentCharacter.value.stats.block = (
+        (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01) *
+        100
+      ).toFixed(2);
+      currentCharacter.value.stats.criticalHit = (
+        (currentCharacter.value.characteristics.fortune.percentCriticalHit * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.criticalHit.rawId) * 0.01) *
+        100
+      ).toFixed(2);
+      currentCharacter.value.stats.damageInflicted = (currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100).toFixed(2);
 
       currentCharacter.value.stats.range = currentCharacter.value.characteristics.major.rangeAndDamage + calcItemContribution(EFFECT_TYPE_DATA.range.rawId);
       currentCharacter.value.stats.control =
@@ -137,12 +143,68 @@ export const useStats = (currentCharacter) => {
               // for normal items we just use the first value
               contribution += effect.values[0];
             }
+          } else if (effect.id === 1068 || effect.id === 1069) {
+            contribution += handleRandomStatEffects(targetEffectRawId, effect);
+            // we need custom logic to handle the random mastery and resistance effects
           }
         });
       }
     });
 
     // at this point we have iterated over all the items, so we should be done
+    return contribution;
+  };
+
+  const handleRandomStatEffects = (targetEffectRawId, effect) => {
+    let contribution = 0;
+    let validTargetEffectIds = [
+      EFFECT_TYPE_DATA.waterMastery.rawId,
+      EFFECT_TYPE_DATA.earthMastery.rawId,
+      EFFECT_TYPE_DATA.airMastery.rawId,
+      EFFECT_TYPE_DATA.fireMastery.rawId,
+      EFFECT_TYPE_DATA.waterResistance.rawId,
+      EFFECT_TYPE_DATA.earthResistance.rawId,
+      EFFECT_TYPE_DATA.airResistance.rawId,
+      EFFECT_TYPE_DATA.fireResistance.rawId,
+    ];
+
+    if (!validTargetEffectIds.includes(targetEffectRawId)) {
+      return contribution;
+    }
+
+    let targetEffectDataKey = Object.keys(EFFECT_TYPE_DATA).find((key) => {
+      return EFFECT_TYPE_DATA[key].rawId === targetEffectRawId;
+    });
+    let targetEffectData = EFFECT_TYPE_DATA[targetEffectDataKey];
+
+    if (effect.id === 1068) {
+      if (`${effect['masterySlot1']?.type}Mastery` === targetEffectData.id) {
+        contribution = effect['masterySlot1']?.value;
+      }
+
+      if (`${effect['masterySlot2']?.type}Mastery` === targetEffectData.id) {
+        contribution = effect['masterySlot2']?.value;
+      }
+
+      if (`${effect['masterySlot3']?.type}Mastery` === targetEffectData.id) {
+        contribution = effect['masterySlot3']?.value;
+      }
+    }
+
+    if (effect.id === 1069) {
+      if (`${effect['resistanceSlot1']?.type}Resistance` === targetEffectData.id) {
+        contribution = effect['resistanceSlot1']?.value;
+      }
+
+      if (`${effect['resistanceSlot2']?.type}Resistance` === targetEffectData.id) {
+        contribution = effect['resistanceSlot2']?.value;
+      }
+
+      if (`${effect['resistanceSlot3']?.type}Resistance` === targetEffectData.id) {
+        contribution = effect['resistanceSlot3']?.value;
+      }
+    }
+
     return contribution;
   };
 

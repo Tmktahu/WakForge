@@ -128,8 +128,8 @@ const onTabChange = () => {
 .stats-area {
   display: flex;
   flex-direction: column;
-  max-width: 400px;
-  min-width: 400px;
+  max-width: 430px;
+  min-width: 430px;
   border-right: 1px solid var(--bonta-blue-60);
 }
 

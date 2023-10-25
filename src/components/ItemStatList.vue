@@ -2,8 +2,12 @@
   <div v-if="!cardMode" class="tooltip-effect-list">
     <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
       <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line px-2 py-1">
-        <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
-        <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+        <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
+        <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
+        <div v-else>
+          <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
+          <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+        </div>
       </div>
     </template>
   </div>
@@ -11,8 +15,12 @@
   <div v-else class="effects-wrapper flex flex-wrap">
     <template v-for="effect in item.equipEffects" :key="effect.id">
       <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line pl-2 py-1" :style="{ width: effect.longEntry ? '100%' : '50%' }">
-        <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
-        <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+        <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
+        <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
+        <div v-else>
+          <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
+          <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+        </div>
       </div>
     </template>
   </div>

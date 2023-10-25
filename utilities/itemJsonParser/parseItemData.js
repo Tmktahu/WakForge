@@ -153,6 +153,18 @@ const getItemEffects = (equipEffects) => {
         newEffect.values = effectObject.effect.definition?.params;
         newEffect.description = action.description?.en;
         newEffect.longEntry = LONG_EFFECT_ENTRIES.includes(action.definition.id);
+
+        if (action.definition.id === 1068) {
+          newEffect.masterySlot1 = { type: 'empty', value: 0 };
+          newEffect.masterySlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;
+          newEffect.masterySlot3 = effectObject.effect.definition?.params[2] > 2 ? { type: 'empty', value: 0 } : undefined;
+        }
+
+        if (action.definition.id === 1069) {
+          newEffect.resistanceSlot1 = { type: 'empty', value: 0 };
+          newEffect.resistanceSlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;
+          newEffect.resistanceSlot3 = effectObject.effect.definition?.params[2] > 2 ? { type: 'empty', value: 0 } : undefined;
+        }
       }
     });
 
