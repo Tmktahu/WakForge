@@ -1,9 +1,12 @@
 // import Vue from 'vue';
 import { watch, reactive, nextTick } from 'vue';
 import { EventBus, Events } from '@/eventBus';
+import { ITEM_SLOT_DATA } from '@/models/useConstants';
+import * as fs from 'fs';
+import { v4 as uuidv4 } from 'uuid';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
-export const CURRENT_STORAGE_VERSION = '0.0.1';
+export const CURRENT_STORAGE_VERSION = '0.0.2';
 
 export let masterData = reactive({
   appVersion: '',
@@ -15,10 +18,8 @@ export function useStorage() {
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
 
-    // let appVersion = data?.appVersion;
-    let storageVersion = data?.storageVersion;
-
-    if (storageVersion && storageVersion !== CURRENT_STORAGE_VERSION) {
+    if (needsMigration(data)) {
+      let storageVersion = data?.storageVersion;
       console.log('Storage version mismatch: Current Version', CURRENT_STORAGE_VERSION, 'vs Storage Version', storageVersion);
       nextTick(() => {
         EventBus.emit(Events.OPEN_OLD_DATA_DIALOG, data);
@@ -40,7 +41,7 @@ export function useStorage() {
 
     watch(masterData, () => {
       // this watch handles live saving to local storage
-      saveToLocalStorage(data);
+      saveToLocalStorage(masterData);
     });
 
     return { storageData: data, errors };
@@ -77,12 +78,10 @@ export function useStorage() {
     try {
       if (inData !== null) {
         let newStorageData = {
-          appVersion: null,
-          characters: masterData.characters,
+          appVersion: import.meta.env.VITE_APP_VERSION,
+          storageVersion: CURRENT_STORAGE_VERSION,
+          characters: inData.characters,
         };
-
-        newStorageData.appVersion = import.meta.env.VITE_APP_VERSION;
-        newStorageData.storageVersion = CURRENT_STORAGE_VERSION;
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
@@ -93,12 +92,85 @@ export function useStorage() {
     }
   };
 
+  const readFromJSON = async (file) => {
+    return new Promise((resolve, reject) => {
+      let data = '';
+      const fileReader = new FileReader();
+
+      fileReader.onloadend = function (event) {
+        data = JSON.parse(event.target.result);
+        resolve(data);
+      };
+
+      fileReader.onerror = function (error) {
+        console.error('Error reading file: ', error);
+        // Vue.toasted.global.alertError({ message: 'Error reading JSON file', description: error });
+        reject(error);
+      };
+
+      fileReader.readAsText(file);
+    });
+  };
+
+  const saveToJSON = async (inData, filePath, container = null) => {
+    let stringifiedData = JSON.stringify(inData, null, 2);
+    try {
+      fs.writeFile(filePath, stringifiedData, 'utf-8', () => {
+        if (container) {
+          container.value = inData;
+          // Vue.toasted.global.alertInfo({
+          //   message: 'Initialized default JSON storage',
+          //   description: `No standard JSON file was found, so one was created at ${dataStoragePath.value}`,
+          // });
+        }
+      });
+      return null;
+    } catch (error) {
+      console.error('There was a problem saving data: ', error);
+      return error;
+    }
+  };
+
+  const needsMigration = (oldData) => {
+    let storageVersion = oldData?.storageVersion;
+    return storageVersion && storageVersion !== CURRENT_STORAGE_VERSION;
+  };
+
   // This function specifically handles migrating old data strucutres to the current version
   const migrateData = (oldData) => {
     let newData = oldData;
     // we place migration data shenanigans here
+    oldData.characters.forEach((character) => {
+      if (!([ITEM_SLOT_DATA.PET.id] in character.equipment)) {
+        character.equipment[ITEM_SLOT_DATA.PET.id] = null;
+      }
+
+      if (!([ITEM_SLOT_DATA.MOUNT.id] in character.equipment)) {
+        character.equipment[ITEM_SLOT_DATA.MOUNT.id] = null;
+      }
+    });
+
+    newData.appVersion = import.meta.env.VITE_APP_VERSION;
+    newData.storageVersion = CURRENT_STORAGE_VERSION;
 
     return newData;
+  };
+
+  const mergeData = (incomingData) => {
+    let existingCharacterIds = masterData.characters.map((character) => {
+      return character.id;
+    });
+
+    incomingData.characters.forEach((incomingCharacter) => {
+      if (existingCharacterIds.includes(incomingCharacter.id)) {
+        // we have an ID conflict, so just generate a new ID
+        let newChar = incomingCharacter;
+        newChar.id = uuidv4();
+        masterData.characters.push(newChar);
+      } else {
+        masterData.characters.push(incomingCharacter);
+      }
+    });
   };
 
   return {
@@ -106,5 +178,9 @@ export function useStorage() {
     readFromLocalStorage,
     saveToLocalStorage,
     migrateData,
+    readFromJSON,
+    saveToJSON,
+    needsMigration,
+    mergeData,
   };
 }

@@ -196,11 +196,11 @@ export const characterDataTemplate = {
     [ITEM_SLOT_DATA.SHOULDERS.id]: null,
     [ITEM_SLOT_DATA.LEFT_HAND.id]: null,
     [ITEM_SLOT_DATA.RIGHT_HAND.id]: null,
-    pet: null,
     [ITEM_SLOT_DATA.SECOND_WEAPON.id]: null,
     [ITEM_SLOT_DATA.FIRST_WEAPON.id]: null,
-    mount: null,
     [ITEM_SLOT_DATA.ACCESSORY.id]: null,
+    [ITEM_SLOT_DATA.PET.id]: null,
+    [ITEM_SLOT_DATA.MOUNT.id]: null,
   },
 };
 

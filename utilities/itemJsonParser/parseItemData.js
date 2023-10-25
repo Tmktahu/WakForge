@@ -87,16 +87,16 @@ const getItemType = (itemTypeId) => {
     disabledSlots: [],
   };
 
-  if (itemTypeId === 812) {
-    console.log('dafuq');
-  }
-
   equipmentItemTypeData.forEach((entry) => {
     if (entry.definition.id === itemTypeId) {
       type.id = entry.definition.id;
       type.name = entry.title.en;
       type.validSlots = entry.definition.equipmentPositions;
       type.disabledSlots = entry.definition.equipmentDisabledPositions;
+
+      if (type.id === 611) {
+        type.validSlots = ['MOUNT'];
+      }
       return;
     }
   });
@@ -108,6 +108,10 @@ const getItemType = (itemTypeId) => {
         type.name = entry.title.en;
         type.validSlots = entry.definition.equipmentPositions;
         type.disabledSlots = entry.definition.equipmentDisabledPositions;
+
+        if (type.id === 611) {
+          type.validSlots = ['MOUNT'];
+        }
         return;
       }
     });

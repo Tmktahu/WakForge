@@ -33,3 +33,14 @@ body {
     border-radius: 8px;
     padding: 4px 6px;
 }
+
+.item-card-tooltip {
+    background-color: var(--bonta-blue);
+    border-radius: 4px;
+    border: 1px solid var(--bonta-blue-70);
+    overflow: hidden;
+  
+    .effect-header {
+      background: var(--bonta-blue-30);
+    }
+}

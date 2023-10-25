@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 export const LANDING_ROUTE = 'landing';
-export const HOME_ROUTE = 'home';
+export const CHARACTERS_ROUTE = 'characters';
 export const CHARACTER_BUILDER_ROUTE = 'character-builder';
+export const DATA_ROUTE = 'data';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -10,17 +11,22 @@ const router = createRouter({
     {
       path: '/',
       name: LANDING_ROUTE,
-      redirect: '/home',
+      redirect: '/characters',
     },
     {
-      path: '/home',
-      name: HOME_ROUTE,
-      component: () => import('@/components/HomePage.vue'),
+      path: '/characters',
+      name: CHARACTERS_ROUTE,
+      component: () => import('@/components/CharactersPage.vue'),
     },
     {
-      path: '/builder/:characterId',
+      path: '/characters/:characterId',
       name: CHARACTER_BUILDER_ROUTE,
       component: () => import('@/components/CharacterBuilder.vue'),
+    },
+    {
+      path: '/data',
+      name: DATA_ROUTE,
+      component: () => import('@/components/DataPage.vue'),
     },
   ],
 });

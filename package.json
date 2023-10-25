@@ -11,6 +11,11 @@
     "format": "prettier --write src/"
   },
   "dependencies": {
+    "@codemirror/commands": "^6.3.0",
+    "@codemirror/lang-json": "^6.0.1",
+    "@codemirror/state": "^6.3.1",
+    "@codemirror/view": "^6.21.4",
+    "codemirror": "^6.0.1",
     "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "primeflex": "^3.3.1",

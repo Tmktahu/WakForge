@@ -16,21 +16,20 @@
       </div>
 
       <div class="flex mt-4">
-        <p-button class="px-3" label="Download Current Data" icon="mdi-content-save-outline" @click="onSave" />
+        <p-button class="px-3" label="Download Current Data" icon="mdi mdi-content-save-outline" @click="onSave" />
         <div class="flex-grow-1" />
         <tippy :append-to="() => modelContent">
           <p-button
             :disabled="!downloadedData"
             :loading="updateLoading"
-            icon="mdi-content-save-outline"
-            label="Update Data to New Structure"
-            severity="danger"
-            class="px-3"
+            icon="mdi mdi-content-save-outline"
+            :label="updateLoading ? 'Updating Data. Please Wait' : 'Update Data to New Structure'"
+            class="update-data-button px-3"
             @click="onUpdate"
           />
 
           <template v-slot:content>
-            <div class="simple-tooltip" style="z-index: 999999"> You must download a backup of your data first. </div>
+            <div v-if="!downloadedData" class="simple-tooltip"> You must download a backup of your data first. </div>
           </template>
         </tippy>
       </div>
@@ -39,12 +38,13 @@
 </template>
 
 <script setup>
-import { ref, provide, nextTick, onMounted } from 'vue';
+import { ref } from 'vue';
 import { useStorage } from '@/models/useStorage';
 
 const visible = ref(false);
+const updateLoading = ref(false);
 
-const { updateLoading } = useStorage();
+const { migrateData, saveToLocalStorage } = useStorage();
 
 const modelContent = ref(null);
 
@@ -54,10 +54,6 @@ const downloadedData = ref(false);
 const open = (inData) => {
   visible.value = true;
   oldData.value = inData;
-};
-
-const close = () => {
-  visible.value = false;
 };
 
 const onSave = () => {
@@ -77,9 +73,11 @@ const onSave = () => {
 const onUpdate = () => {
   // we want to spin off the data migration update
   updateLoading.value = true;
+  let migratedData = migrateData(oldData.value);
+  saveToLocalStorage(migratedData);
 
   setTimeout(() => {
-    window.location.reload(false);
+    // window.location.reload(false);
   }, 5000);
 };
 
@@ -88,4 +86,12 @@ defineExpose({
 });
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.update-data-button {
+  background-color: rgba(rgb(255, 39, 19), 1);
+
+  &:hover {
+    background-color: rgba(rgb(255, 39, 19), 0.8);
+  }
+}
+</style>
