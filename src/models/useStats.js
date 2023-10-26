@@ -34,10 +34,14 @@ export const useStats = (currentCharacter) => {
         6 + currentCharacter.value.characteristics.major.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId);
       currentCharacter.value.movementPoints =
         3 + currentCharacter.value.characteristics.major.movementPointsAndDamage + calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId);
-      currentCharacter.value.wakfuPoints =
+
+      // wakfu points are capped at 20
+      currentCharacter.value.wakfuPoints = Math.min(
+        20,
         (currentCharacter.value.class === CLASS_CONSTANTS.xelor ? 12 : 6) +
-        currentCharacter.value.characteristics.major.wakfuPoints * 2 +
-        calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId);
+          currentCharacter.value.characteristics.major.wakfuPoints * 2 +
+          calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId)
+      );
       currentCharacter.value.quadrumentalBreeze =
         (currentCharacter.value.class === CLASS_CONSTANTS.huppermage ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
 
@@ -86,15 +90,22 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.forceOfWill =
         currentCharacter.value.characteristics.agility.forceOfWill * 1 + calcItemContribution(EFFECT_TYPE_DATA.forceOfWill.rawId);
 
-      currentCharacter.value.stats.block = (
-        (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01) *
-        100
-      ).toFixed(2);
-      currentCharacter.value.stats.criticalHit = (
-        (currentCharacter.value.characteristics.fortune.percentCriticalHit * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.criticalHit.rawId) * 0.01) *
-        100
-      ).toFixed(2);
-      currentCharacter.value.stats.damageInflicted = (currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100).toFixed(2);
+      // block has a cap of 100%
+      currentCharacter.value.stats.block = Math.min(
+        100,
+        Math.floor(
+          (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01) * 100
+        )
+      );
+
+      // crit has a cap of 100% and a base of 3%
+      currentCharacter.value.stats.criticalHit = Math.min(
+        Math.floor(
+          (0.03 + currentCharacter.value.characteristics.fortune.percentCriticalHit * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.criticalHit.rawId) * 0.01) *
+            100
+        )
+      );
+      currentCharacter.value.stats.damageInflicted = Math.floor(currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100);
 
       currentCharacter.value.stats.range = currentCharacter.value.characteristics.major.rangeAndDamage + calcItemContribution(EFFECT_TYPE_DATA.range.rawId);
       currentCharacter.value.stats.control =
@@ -209,7 +220,9 @@ export const useStats = (currentCharacter) => {
   };
 
   const calcElemResistancePercentage = (resistanceValue) => {
-    return ((1 - Math.pow(0.8, resistanceValue / 100)) * 100).toFixed(2);
+    // the resistance values are actually floored like this for damage calculations. weird
+    // in addition, there is a max of 90%
+    return Math.min(90, Math.floor((1 - Math.pow(0.8, resistanceValue / 100)) * 100));
   };
 
   return {
