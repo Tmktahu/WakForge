@@ -51,14 +51,14 @@
         <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/water_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Water Mastery</span>
+            <span class="ml-1">Water</span>
             <div class="flex-grow-1" />
             <span>{{ currentCharacter.masteries.water }}</span>
           </div>
 
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/air_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Air Mastery</span>
+            <span class="ml-1">Air</span>
             <div class="flex-grow-1" />
             <span>{{ currentCharacter.masteries.air }}</span>
           </div>
@@ -66,14 +66,14 @@
         <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/earth_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Earth Mastery</span>
+            <span class="ml-1">Earth</span>
             <div class="flex-grow-1" />
             <span>{{ currentCharacter.masteries.earth }}</span>
           </div>
 
           <div class="stat-block pr-2">
             <p-image src="https://tmktahu.github.io/WakfuAssets/statistics/fire_coin.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">Fire Mastery</span>
+            <span class="ml-1">Fire</span>
             <div class="flex-grow-1" />
             <span>{{ currentCharacter.masteries.fire }}</span>
           </div>
