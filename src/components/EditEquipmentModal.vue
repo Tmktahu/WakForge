@@ -152,8 +152,6 @@ watch(randomResistanceEffect, () => {
 });
 
 const onMasteryStatChange = (event, changedSlotKey) => {
-  console.log(event.value, changedSlotKey);
-
   let effect = item.value?.equipEffects?.find((effect) => {
     return effect.id === 1068;
   });
