@@ -32,7 +32,10 @@
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                       <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
-                      <div v-else>Level: {{ item.level }}</div>
+                      <div v-else>Lvl: {{ item.level }}</div>
+                      <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
+                        {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
+                      </div>
                     </div>
                   </div>
                   <div class="flex-grow-1" />
@@ -53,7 +56,10 @@
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                         <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
-                        <div v-else>Level: {{ item.level }}</div>
+                        <div v-else>Lvl: {{ item.level }}</div>
+                        <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
+                          {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
+                        </div>
                       </div>
                     </div>
                     <div class="flex-grow-1" />
@@ -72,7 +78,10 @@
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
                           <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
-                          <div v-else>Level: {{ item.level }}</div>
+                          <div v-else>Lvl: {{ item.level }}</div>
+                          <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
+                            {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
+                          </div>
                         </div>
                       </div>
                     </div>
