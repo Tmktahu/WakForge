@@ -15,12 +15,18 @@
         <p-button
           v-if="currentCharacter.equipment[data.id] === null"
           class="equipment-button"
-          :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }"
+          :class="{ 'has-item': currentCharacter.equipment[data.id] !== null, disabled: data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled }"
           @click="onSearch(data.id)"
         >
           <div class="flex align-items-center justify-content-center">
             <div class="hover-icon search"> <i class="pi pi-search" /> </div>
-            <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
+            <p-image
+              v-if="data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled"
+              class="equipment-image"
+              :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id]?.imageId}.png`"
+              image-style="width: 40px"
+            />
+            <p-image v-else :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
@@ -107,7 +113,7 @@
 </template>
 
 <script setup>
-import { ref, watch, inject } from 'vue';
+import { ref, watch, inject, computed } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
@@ -130,13 +136,25 @@ const confirm = useConfirm();
 
 const itemFilters = inject('itemFilters');
 const editEquipmentModal = ref(null);
-const currentCharacter = ref(props.character);
-watch(
-  () => props.character,
-  () => {
-    currentCharacter.value = props.character;
+const secondWeaponDisabled = computed(() => {
+  let firstWeaponItem = currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id];
+  if (firstWeaponItem) {
+    if (firstWeaponItem.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id)) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    // there is no first weapon equipped, make sure the second weapon is enabled
+    return false;
   }
-);
+});
+
+const masterData = inject('masterData');
+const currentCharacter = ref(props.character);
+watch(masterData, () => {
+  currentCharacter.value = props.character;
+});
 
 const onSearch = (slotKey) => {
   // here we filter our search by this slot type
@@ -209,6 +227,17 @@ const getRandomResistanceEffect = (slotKey, masteryKey) => {
       border-radius: 4px;
       padding: 5px;
       height: 50px;
+    }
+  }
+
+  &.disabled {
+    pointer-events: none;
+    .equipment-image {
+      background-color: var(--bonta-blue-20);
+      border-radius: 4px;
+      padding: 5px;
+      height: 50px;
+      opacity: 0.5;
     }
   }
 
