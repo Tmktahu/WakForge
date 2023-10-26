@@ -69,7 +69,10 @@
 
                     <div class="flex flex-column gap-1">
                       <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
-                      <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
+                      <tippy placement="left">
+                        <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
+                        <template v-slot:content> <div class="simple-tooltip">Open Encyclopedia Page</div></template>
+                      </tippy>
                     </div>
                   </div>
                 </div>
