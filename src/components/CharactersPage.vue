@@ -14,21 +14,23 @@
       <div class="character-enties-wrapper flex flex-column mt-2 pr-2 pb-3">
         <template v-for="character in masterData.characters" :key="character.id">
           <div class="character-entry py-2 mt-2" @click="gotoBuild(character.id)">
-            <div class="ml-3">
-              <p-image
-                v-if="character.class"
-                class="class-image"
-                :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
-                image-style="width: 40px"
-              />
-              <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+            <div class="character-info flex align-items-center justify-content-left flex-grow-1">
+              <div class="ml-3">
+                <p-image
+                  v-if="character.class"
+                  class="class-image"
+                  :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
+                  image-style="width: 40px"
+                />
+                <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+              </div>
+              <p-divider class="mx-2" layout="vertical" />
+              <div class="class-name flex-grow-1 truncate">{{ character.name }}</div>
+              <p-divider class="mx-2" layout="vertical" />
+              <div class="class-level">Lvl {{ character.level }}</div>
+              <p-divider class="mx-2" layout="vertical" />
             </div>
-            <p-divider class="mx-2" layout="vertical" />
-            <div class="flex-grow-1 truncate" style="max-width: 300px">{{ character.name }}</div>
-            <p-divider class="mx-2" layout="vertical" />
-            <div class="text-center" style="min-width: 60px">Lvl {{ character.level }}</div>
-            <p-divider class="mx-2" layout="vertical" />
-            <div class="flex-grow-1">
+            <div class="character-items flex-grow-1">
               <EquipmentButtons :character="character" read-only />
             </div>
           </div>
@@ -103,11 +105,53 @@ const gotoBuild = (id) => {
 .character-area {
   display: flex;
   flex-direction: column;
+  justify-content: left;
   flex-grow: 1;
   overflow: hidden;
 }
 
 .character-enties-wrapper {
   overflow-y: auto;
+
+  .class-name {
+    min-width: 100px;
+    max-width: 300px;
+  }
+
+  .class-level {
+    text-align: center;
+    min-width: 60px;
+  }
+
+  @media (max-width: 1024px) {
+    .character-entry {
+      flex-direction: column;
+      padding-top: 10px !important;
+
+      .p-divider-vertical {
+        display: none;
+      }
+
+      .character-info {
+        width: 100%;
+        justify-content: left;
+        margin-bottom: 12px;
+      }
+
+      .class-name {
+        max-width: 100%;
+        margin-left: 16px;
+      }
+
+      .class-level {
+        text-align: right;
+        margin-right: 16px;
+      }
+
+      .character-items {
+        padding: 0 16px;
+      }
+    }
+  }
 }
 </style>

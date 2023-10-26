@@ -111,3 +111,14 @@ body {
         }
     }
 }
+
+.p-tabview-nav-link.p-tabview-header-action {
+    padding: 0;
+    height: 100%;
+}
+
+.p-dropdown-items {
+    .p-dropdown-item {
+        padding: 0;
+    }
+}
