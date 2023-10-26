@@ -83,7 +83,9 @@ body {
     .p-confirm-popup-content {
         display: flex;
         justify-content: center;
-        padding: 6px 0px;
+        text-align: center;
+        padding: 6px 4px;
+        max-width: 250px;
     
         .p-confirm-popup-message {
             margin: 0;
@@ -91,6 +93,8 @@ body {
     }
     
     .p-confirm-popup-footer {
+        display: flex;
+        justify-content: space-between;
         padding: 0;
 
         .p-confirm-dialog-reject {

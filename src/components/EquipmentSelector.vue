@@ -37,7 +37,7 @@
                   </div>
                   <div class="flex-grow-1" />
 
-                  <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item)" />
+                  <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
                 </div>
 
                 <ItemStatList card-mode :item="item" />
@@ -58,7 +58,7 @@
                     </div>
                     <div class="flex-grow-1" />
 
-                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item)" />
+                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
                   </div>
                 </div>
 
@@ -87,11 +87,14 @@
         </template>
       </p-virtualScroller>
     </div>
+
+    <p-confirmPopup />
   </div>
 </template>
 
 <script setup>
 import { ref, inject, nextTick, computed, watch } from 'vue';
+import { useConfirm } from 'primevue/useconfirm';
 
 import { useItems } from '@/models/useItems';
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
@@ -99,6 +102,8 @@ import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
 import ItemFilters from '@/components/ItemFilters.vue';
 import ItemStatList from '@/components/ItemStatList.vue';
+
+const confirm = useConfirm();
 
 const currentCharacter = inject('currentCharacter');
 const currentItemList = inject('currentItemList');
@@ -158,7 +163,7 @@ watch(displayStatsInList, () => {
   });
 });
 
-const onEquipItem = (item) => {
+const onEquipItem = (item, event) => {
   // so here we want to equip the item in the slot it was made for
   let targetSlot = null;
 
@@ -168,6 +173,28 @@ const onEquipItem = (item) => {
     } else {
       targetSlot = ITEM_SLOT_DATA.RIGHT_HAND.id;
     }
+  } else if (item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) && currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] !== null) {
+    confirm.require({
+      target: event.currentTarget,
+      message: 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?',
+      accept: () => {
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] = item;
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] = null;
+      },
+    });
+  } else if (
+    item.type.validSlots[0] === ITEM_SLOT_DATA.SECOND_WEAPON.id &&
+    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] !== null &&
+    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id)
+  ) {
+    confirm.require({
+      target: event.currentTarget,
+      message: 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?',
+      accept: () => {
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] = null;
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] = item;
+      },
+    });
   } else if (item.type.validSlots.length > 1) {
     console.log('there is an item type with 2 valid slots that we are not handling');
   } else {
@@ -176,8 +203,6 @@ const onEquipItem = (item) => {
 
   if (targetSlot !== null) {
     currentCharacter.value.equipment[targetSlot] = item;
-  } else {
-    console.error('There was a problem picking the slot to equip that item');
   }
 };
 
