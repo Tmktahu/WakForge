@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter" class="flex flex-column w-full" style="height: 100vh">
+  <div v-if="currentCharacter" class="flex flex-column w-full" style="height: 100%">
     <div class="top-bar py-3 pl-3">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
