@@ -23,6 +23,7 @@
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
               :max-override="10"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="barrier"
@@ -31,6 +32,7 @@
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
               :max-override="10"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="percentHealsReceived"
@@ -39,6 +41,7 @@
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
               :max-override="5"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="percentArmorHeathPoints"
@@ -47,6 +50,7 @@
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
               :max-override="10"
+              :step="stepValue"
             />
           </div>
         </div>
@@ -63,6 +67,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/223.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="meleeMastery"
@@ -71,6 +76,7 @@
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
               :max-override="40"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="distanceMastery"
@@ -79,6 +85,7 @@
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
               :max-override="40"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="healthPoints"
@@ -86,6 +93,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/231.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
           </div>
         </div>
@@ -102,6 +110,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/4.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="dodge"
@@ -109,6 +118,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/3.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="initiative"
@@ -117,6 +127,7 @@
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="lockAndDodge"
@@ -124,6 +135,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/121.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="forceOfWill"
@@ -132,6 +144,7 @@
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
           </div>
         </div>
@@ -151,6 +164,7 @@
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="percentBlock"
@@ -159,6 +173,7 @@
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="criticalMastery"
@@ -166,6 +181,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/19.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="rearMastery"
@@ -173,6 +189,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/13.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="berserkMastery"
@@ -180,6 +197,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/5.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="healingMastery"
@@ -187,6 +205,7 @@
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/12.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="rearResistance"
@@ -195,6 +214,7 @@
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="criticalResistance"
@@ -203,6 +223,7 @@
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
               :max-override="20"
+              :step="stepValue"
             />
           </div>
         </div>
@@ -220,6 +241,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="movementPointsAndDamage"
@@ -228,6 +250,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="rangeAndDamage"
@@ -236,6 +259,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="wakfuPoints"
@@ -244,6 +268,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="controlAndDamage"
@@ -252,6 +277,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="percentDamageInflicted"
@@ -260,6 +286,7 @@
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
               :max-override="1"
+              :step="stepValue"
             />
             <CharacteristicInput
               v-model="majorElementalResistance"
