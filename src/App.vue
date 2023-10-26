@@ -5,7 +5,10 @@
 
   <div class="flex">
     <AppSidebar />
-    <router-view />
+    <div class="flex flex-column" style="height: 100vh; width: 100%">
+      <router-view />
+      <div class="disclaimer">WAKFU is an MMORPG published by Ankama. "WakForge" is an unofficial website with no link to Ankama.</div>
+    </div>
   </div>
 
   <OldDataDialog ref="oldDataDialog" />
@@ -143,5 +146,13 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+}
+
+.disclaimer {
+  padding: 3px 0;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  background-color: var(--bonta-blue);
 }
 </style>

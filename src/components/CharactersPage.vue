@@ -1,11 +1,7 @@
 <template>
-  <div class="flex flex-column flex-grow-1 ml-4 mr-3" style="height: 100vh; overflow: hidden">
+  <div class="flex flex-column flex-grow-1 ml-4 mr-3" style="height: 100%; overflow: hidden">
     <div class="mt-3" style="font-size: 42px">Welcome to Wakforge</div>
     <div class="mt-2">If you run into any issues, feel free to DM Fryke (fryke) on Discord.</div>
-
-    <p-divider />
-
-    <div>import / export things</div>
 
     <p-divider />
 
