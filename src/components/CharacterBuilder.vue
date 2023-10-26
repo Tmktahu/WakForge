@@ -43,11 +43,23 @@
 
       <div class="flex flex-column flex-grow-1">
         <p-tabView class="main-tab-view" @tab-change="onTabChange">
-          <p-tabPanel header="Characteristics">
-            <CharacteristicsConfig />
+          <p-tabPanel>
+            <template v-slot:header>
+              <div class="characteristics-tab-header px-3 h-full" :class="{ error: hasCharacteristicsError, 'points-to-spend': false }">
+                <span>Characteristics</span>
+                <i class="points-to-spend-icon mdi mdi-arrow-up-bold ml-2" style="font-size: 26px" />
+                <i class="error-icon mdi mdi-alert-octagon-outline ml-2" style="font-size: 26px" />
+              </div>
+            </template>
+            <CharacteristicsConfig ref="characteristicsConfig" />
           </p-tabPanel>
 
-          <p-tabPanel header="Equipment">
+          <p-tabPanel>
+            <template v-slot:header>
+              <div class="flex align-items-center px-3 py-3" :class="{ error: hasCharacteristicsError }">
+                <span>Equipment</span>
+              </div>
+            </template>
             <EquipmentSelector ref="equipmentSelector" />
           </p-tabPanel>
 
@@ -63,7 +75,7 @@
 </template>
 
 <script setup>
-import { ref, inject, watch, nextTick } from 'vue';
+import { ref, inject, watch, nextTick, computed } from 'vue';
 
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 
@@ -74,6 +86,7 @@ import EquipmentSelector from '@/components/EquipmentSelector.vue';
 const currentCharacter = inject('currentCharacter');
 
 const equipmentSelector = ref(null);
+const characteristicsConfig = ref(null);
 
 const characterName = ref(currentCharacter.value?.name);
 const characterLevel = ref(currentCharacter.value?.level);
@@ -115,6 +128,10 @@ const onTabChange = () => {
     equipmentSelector.value.showList();
   });
 };
+
+const hasCharacteristicsError = computed(() => {
+  return characteristicsConfig.value?.hasCharacteristicsError;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -155,6 +172,37 @@ const onTabChange = () => {
   .p-inputnumber-button {
     padding: 0;
     width: 1rem;
+  }
+}
+
+.characteristics-tab-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 175px;
+
+  .error-icon {
+    display: none;
+  }
+
+  .points-to-spend-icon {
+    display: none;
+  }
+
+  &.error {
+    padding-top: 1px;
+    color: var(--error);
+    background-color: var(--error-20);
+
+    .error-icon {
+      display: block;
+    }
+  }
+
+  &.points-to-spend {
+    .points-to-spend-icon {
+      display: block;
+    }
   }
 }
 </style>

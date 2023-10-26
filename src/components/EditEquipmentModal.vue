@@ -23,7 +23,12 @@
         <div class="text-center w-full text-lg mb-2 pt-2">+{{ randomMasteryEffect.values[0] }} Mastery Assignment</div>
         <div class="flex justify-content-center gap-2 px-3">
           <template v-for="index in randomMasteryEffect.values[2]" :key="index">
-            <p-dropdown v-model="inputModels['masterySlot' + index]" class="mastery-dropdown" :options="elementOptions" @change="onMasteryStatChange">
+            <p-dropdown
+              v-model="inputModels['masterySlot' + index]"
+              class="mastery-dropdown"
+              :options="elementOptions"
+              @change="onMasteryStatChange($event, 'masterySlot' + index)"
+            >
               <template v-slot:value="slotProps">
                 <div v-if="slotProps.value" class="flex align-items-center">
                   <p-image
@@ -42,7 +47,7 @@
               </template>
 
               <template v-slot:option="slotProps">
-                <div class="flex align-items-center">
+                <div class="flex align-items-center py-1 px-2">
                   <div class="capitalize">{{ slotProps.option.label }}</div>
                 </div>
               </template>
@@ -74,7 +79,7 @@
               </template>
 
               <template v-slot:option="slotProps">
-                <div class="flex align-items-center">
+                <div class="flex align-items-center py-1 px-2">
                   <div class="capitalize">{{ slotProps.option.label }}</div>
                 </div>
               </template>
@@ -146,17 +151,26 @@ watch(randomResistanceEffect, () => {
   });
 });
 
-const onMasteryStatChange = () => {
-  Object.keys(inputModels.value).forEach((key) => {
-    if (inputModels.value[key]) {
-      let effect = item.value?.equipEffects?.find((effect) => {
-        return effect.id === 1068;
-      });
+const onMasteryStatChange = (event, changedSlotKey) => {
+  let effect = item.value?.equipEffects?.find((effect) => {
+    return effect.id === 1068;
+  });
 
-      effect[key] = {
-        type: inputModels.value[key].value,
-        value: randomMasteryEffect.value.values[0],
-      };
+  effect[changedSlotKey] = {
+    type: inputModels.value[changedSlotKey].value,
+    value: randomMasteryEffect.value.values[0],
+  };
+
+  Object.keys(effect).forEach((key) => {
+    if (key !== changedSlotKey) {
+      if (effect[key]?.type === inputModels.value[changedSlotKey].value) {
+        effect[key] = {
+          type: elementOptions[0].value,
+          value: [],
+        };
+
+        inputModels.value[key] = elementOptions[0];
+      }
     }
   });
 };

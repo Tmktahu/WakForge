@@ -26,7 +26,7 @@
               :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id]?.imageId}.png`"
               image-style="width: 40px"
             />
-            <p-image v-else :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
+            <p-image v-else class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
@@ -77,6 +77,7 @@
               </div>
             </div>
           </div>
+
           <template v-slot:content>
             <div v-if="currentCharacter.equipment[data.id]" class="item-card-tooltip">
               <div class="effect-header flex pt-2 px-1">
@@ -98,6 +99,13 @@
                     <div v-else>Level: {{ currentCharacter.equipment[data.id]?.level }}</div>
                   </div>
                 </div>
+                <div class="flex-grow-1" />
+                <div class="flex">
+                  <tippy placement="left">
+                    <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(currentCharacter.equipment[data.id])" />
+                    <template v-slot:content> <div class="simple-tooltip">Open Encyclopedia Page</div></template>
+                  </tippy>
+                </div>
               </div>
               <ItemStatList :item="currentCharacter.equipment[data.id]" />
             </div>
@@ -117,6 +125,7 @@ import { ref, watch, inject, computed } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
+import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import ItemStatList from '@/components/ItemStatList.vue';
 import EditEquipmentModal from '@/components/EditEquipmentModal.vue';
@@ -133,6 +142,8 @@ let props = defineProps({
 });
 
 const confirm = useConfirm();
+
+const { getItemEncyclopediaUrl } = useEncyclopedia();
 
 const itemFilters = inject('itemFilters');
 const editEquipmentModal = ref(null);
@@ -196,15 +207,20 @@ const getRandomResistanceEffect = (slotKey, masteryKey) => {
     })?.[masteryKey] || null
   );
 };
+
+const onGotoEncyclopedia = (item) => {
+  let url = getItemEncyclopediaUrl(item);
+  window.open(url, '_blank');
+};
 </script>
 
 <style lang="scss" scoped>
 .equipment-slots-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   flex-wrap: wrap;
   width: 100%;
-  gap: 0.25rem;
+  gap: 1rem 0.5rem;
 }
 
 .equipment-button {
@@ -315,6 +331,19 @@ const getRandomResistanceEffect = (slotKey, masteryKey) => {
   border: 1px solid var(--bonta-blue-80);
   .p-image {
     height: 16px;
+  }
+}
+
+.equip-button {
+  padding: 2px;
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+
+  .p-button-icon {
+    font-size: 14px;
+    font-weight: 800;
   }
 }
 </style>

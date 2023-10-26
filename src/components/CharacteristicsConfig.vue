@@ -2,9 +2,11 @@
   <div class="flex flex-column h-full">
     <div class="characteristic-panels flex pb-3">
       <div class="flex flex-column flex-grow-1 mr-1">
-        <div class="category-wrapper flex flex-column">
+        <div class="category-wrapper flex flex-column" :class="{ error: calcRemainingPoints('intelligence') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            Intelligence - {{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }} Points
+            <span>Intelligence</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }} Points</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -55,9 +57,11 @@
           </div>
         </div>
 
-        <div class="category-wrapper flex flex-column mt-2">
+        <div class="category-wrapper flex flex-column mt-2" :class="{ error: calcRemainingPoints('strength') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            Strength - {{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }} Points
+            <span>Strength</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }} Points</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -98,9 +102,11 @@
           </div>
         </div>
 
-        <div class="category-wrapper flex flex-column mt-2">
+        <div class="category-wrapper flex flex-column mt-2" :class="{ error: calcRemainingPoints('agility') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            Agility - {{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }} Points
+            <span>Agility</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }} Points</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -151,9 +157,11 @@
       </div>
 
       <div class="flex flex-column flex-grow-1 ml-1">
-        <div class="category-wrapper flex flex-column flex-grow-1">
+        <div class="category-wrapper flex flex-column flex-grow-1" :class="{ error: calcRemainingPoints('fortune') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            Fortune - {{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }} Points
+            <span>Fortune</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }} Points</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -228,9 +236,11 @@
           </div>
         </div>
 
-        <div class="category-wrapper flex flex-column flex-grow-1 mt-2">
+        <div class="category-wrapper flex flex-column flex-grow-1 mt-2" :class="{ error: calcRemainingPoints('major') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            Major - {{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }} Points
+            <span>Major</span>
+            <div class="flex-grow-1" />
+            <span>{{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }} Points</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -442,6 +452,20 @@ const updateCharacteristics = () => {
   currentCharacter.value.characteristics.major.percentDamageInflicted = percentDamageInflicted.value;
   currentCharacter.value.characteristics.major.elementalResistance = majorElementalResistance.value;
 };
+
+const hasCharacteristicsError = computed(() => {
+  return (
+    calcRemainingPoints('intelligence') < 0 ||
+    calcRemainingPoints('strength') < 0 ||
+    calcRemainingPoints('agility') < 0 ||
+    calcRemainingPoints('fortune') < 0 ||
+    calcRemainingPoints('major') < 0
+  );
+});
+
+defineExpose({
+  hasCharacteristicsError,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -454,6 +478,14 @@ const updateCharacteristics = () => {
     border: 1px solid var(--bonta-blue-60);
     border-radius: 8px;
     overflow: hidden;
+
+    &.error {
+      background: var(--error-10);
+
+      .characteristics-category-header {
+        background: var(--error-60);
+      }
+    }
   }
 
   .p-inputnumber-button {
@@ -480,6 +512,7 @@ const updateCharacteristics = () => {
   }
 }
 .characteristics-category-header {
+  display: flex;
   font-size: 1rem;
   background-color: var(--bonta-blue-20);
   border-bottom: 1px solid var(--bonta-blue-50);

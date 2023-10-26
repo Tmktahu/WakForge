@@ -76,11 +76,15 @@
       <div class="filter-entry">
         <p-dropdown v-model="filter.type" class="filter-type-dropdown" :options="filterTypeOptions" @change="updateFilters">
           <template v-slot:value="slotProps"> {{ slotProps.value.text }} </template>
-          <template v-slot:option="slotProps">{{ slotProps.option.text }}</template>
+          <template v-slot:option="slotProps">
+            <div class="px-2 py-1">{{ slotProps.option.text }}</div>
+          </template>
         </p-dropdown>
         <p-dropdown v-model="filter.comparator" class="filter-comparator-dropdown" :options="COMPARATORS" @change="updateFilters">
           <template v-slot:value="slotProps"> {{ slotProps.value.symbol }} </template>
-          <template v-slot:option="slotProps">{{ slotProps.option.text }}</template>
+          <template v-slot:option="slotProps">
+            <div class="px-2 py-1">{{ slotProps.option.text }}</div>
+          </template>
         </p-dropdown>
         <p-inputNumber v-model="filter.value" class="filter-value-input" @input="updateFilters" />
         <p-button class="remove-filter-button" icon="pi pi-trash" @click="onRemoveFilter(filter)" />
