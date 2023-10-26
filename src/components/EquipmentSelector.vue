@@ -40,7 +40,10 @@
                   </div>
                   <div class="flex-grow-1" />
 
-                  <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
+                  <div class="flex flex-column gap-1">
+                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
+                    <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
+                  </div>
                 </div>
 
                 <ItemStatList card-mode :item="item" />
@@ -64,7 +67,10 @@
                     </div>
                     <div class="flex-grow-1" />
 
-                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
+                    <div class="flex flex-column gap-1">
+                      <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
+                      <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
+                    </div>
                   </div>
                 </div>
 
@@ -107,6 +113,7 @@ import { useConfirm } from 'primevue/useconfirm';
 
 import { useItems } from '@/models/useItems';
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
+import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
 import ItemFilters from '@/components/ItemFilters.vue';
@@ -121,6 +128,8 @@ const itemResultsWrapper = ref(null);
 const numItemsPerRow = ref(4);
 const { getNumTotalItems } = useItems();
 let documentVar = document;
+
+const { getItemEncyclopediaUrl } = useEncyclopedia();
 
 const onResize = () => {
   numItemsPerRow.value = Math.floor((itemResultsWrapper.value.clientWidth - 16) / (displayStatsInList.value ? 310 + 5 : 230 + 5));
@@ -285,6 +294,12 @@ const onEquipItem = (item, event) => {
       currentCharacter.value.equipment[item.type.validSlots[0]] = item;
     }
   }
+};
+
+const onGotoEncyclopedia = (item) => {
+  let url = getItemEncyclopediaUrl(item);
+  console.log(url);
+  window.open(url, '_blank');
 };
 
 defineExpose({
