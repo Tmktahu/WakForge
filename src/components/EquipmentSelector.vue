@@ -301,7 +301,6 @@ const onEquipItem = (item, event) => {
 
 const onGotoEncyclopedia = (item) => {
   let url = getItemEncyclopediaUrl(item);
-  console.log(url);
   window.open(url, '_blank');
 };
 
