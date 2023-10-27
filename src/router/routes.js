@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 export const LANDING_ROUTE = 'landing';
 export const CHARACTERS_ROUTE = 'characters';
 export const CHARACTER_BUILDER_ROUTE = 'character-builder';
+export const AUTO_BUILDER_ROUTE = 'auto-builder';
 export const DATA_ROUTE = 'data';
 
 const router = createRouter({
@@ -22,6 +23,11 @@ const router = createRouter({
       path: '/characters/:characterId',
       name: CHARACTER_BUILDER_ROUTE,
       component: () => import('@/components/CharacterBuilder.vue'),
+    },
+    {
+      path: '/auto-builder',
+      name: AUTO_BUILDER_ROUTE,
+      component: () => import('@/components/AutoBuilderPage.vue'),
     },
     {
       path: '/data',

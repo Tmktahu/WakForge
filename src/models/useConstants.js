@@ -20,21 +20,33 @@ export const CLASS_CONSTANTS = {
 };
 
 export const ITEM_SLOT_DATA = {
-  HEAD: { id: 'HEAD', name: 'Helmet' },
-  CHEST: { id: 'CHEST', name: 'Breastplace' },
-  SHOULDERS: { id: 'SHOULDERS', name: 'Epaulettes' },
-  LEGS: { id: 'LEGS', name: 'Boots' },
-  NECK: { id: 'NECK', name: 'Amulet' },
-  BACK: { id: 'BACK', name: 'Cloak' },
-  BELT: { id: 'BELT', name: 'Belt' },
-  FIRST_WEAPON: { id: 'FIRST_WEAPON', name: 'Primary Weapon' },
-  SECOND_WEAPON: { id: 'SECOND_WEAPON', name: 'Secondary Weapon' },
-  LEFT_HAND: { id: 'LEFT_HAND', name: 'Left Ring' },
-  RIGHT_HAND: { id: 'RIGHT_HAND', name: 'Right Ring' },
-  ACCESSORY: { id: 'ACCESSORY', name: 'Emblem' },
-  PET: { id: 'PET', name: 'Pet' },
-  MOUNT: { id: 'MOUNT', name: 'Mount' },
+  HEAD: { id: 'HEAD', name: 'Helmet', sortOrder: 1 },
+  CHEST: { id: 'CHEST', name: 'Breastplace', sortOrder: 2 },
+  SHOULDERS: { id: 'SHOULDERS', name: 'Epaulettes', sortOrder: 3 },
+  LEGS: { id: 'LEGS', name: 'Boots', sortOrder: 4 },
+  NECK: { id: 'NECK', name: 'Amulet', sortOrder: 5 },
+  BACK: { id: 'BACK', name: 'Cloak', sortOrder: 6 },
+  BELT: { id: 'BELT', name: 'Belt', sortOrder: 7 },
+  FIRST_WEAPON: { id: 'FIRST_WEAPON', name: 'Primary Weapon', sortOrder: 8 },
+  SECOND_WEAPON: { id: 'SECOND_WEAPON', name: 'Secondary Weapon', sortOrder: 9 },
+  LEFT_HAND: { id: 'LEFT_HAND', name: 'Left Ring', sortOrder: 10 },
+  RIGHT_HAND: { id: 'RIGHT_HAND', name: 'Right Ring', sortOrder: 11 },
+  ACCESSORY: { id: 'ACCESSORY', name: 'Emblem', sortOrder: 12 },
+  PET: { id: 'PET', name: 'Pet', sortOrder: 13 },
+  MOUNT: { id: 'MOUNT', name: 'Mount', sortOrder: 14 },
 };
+
+export const ITEM_SLOT_SORT_ORDER = Object.keys(ITEM_SLOT_DATA)
+  .map((key) => {
+    return {
+      id: ITEM_SLOT_DATA[key].id,
+      sortOrder: ITEM_SLOT_DATA[key].sortOrder,
+    };
+  })
+  .sort((entry1, entry2) => {
+    return entry1.sortOrder < entry2.sortOrder;
+  })
+  .map((item) => item.id);
 
 export const ITEM_RARITY_DATA = [
   { id: 0, name: 'Common' },

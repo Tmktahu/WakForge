@@ -24,6 +24,7 @@ import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
 import { useLevels } from '@/models/useLevels';
+import { useAutoBuilder } from '@/models/useAutoBuilder';
 
 import OldDataDialog from '@/components/OldDataDialog.vue';
 
@@ -50,6 +51,9 @@ const { currentItemList } = setupItems();
 
 const { setup: setupStats } = useStats(currentCharacter);
 setupStats();
+
+const { setup: setupAutoBuilder } = useAutoBuilder();
+setupAutoBuilder();
 
 const setContextIds = () => {
   setContext();

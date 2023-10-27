@@ -1,55 +1,44 @@
+import { ref } from 'vue';
 import itemData from './item_data.json';
 
+import { ITEM_SLOT_SORT_ORDER } from '@/models/useConstants';
+
+const itemSet = ref(null);
+const autoBuilderIsReady = ref(false);
+const builderLoading = ref(false);
+let worker = new Worker('src/models/autoBuilderWorker.js');
+
 export const useAutoBuilder = () => {
-  // so how the fuck is this going to work
+  const targetLevel = ref(0);
+  const targetClass = ref(null);
+  const targetEffect = ref(null);
 
-  // we are given
-  //   class (no impact)
-  //   level
-  //   1 prefered stat
-
-  let selectedEquipment = {};
-  let targetlevel = 1; // TODO need to also filter by level
-  let targetEffect = {};
-
-  // for each item
-  itemData.forEach((currentItem) => {
-    // check if the item has the target stat by looping over the item's effects
-    let hasStat = false;
-    let currentItemEffect = null;
-    currentItem.equipEffects.some((effect) => {
-      if (effect.id === targetEffect.rawId) {
-        currentItemEffect = effect;
-        hasStat = true;
-        return true;
+  const setup = async () => {
+    worker.onmessage = (message) => {
+      if (message.data === 'workerReady') {
+        autoBuilderIsReady.value = true;
       }
-    });
 
-    // if the item has the target stat
-    if (hasStat) {
-      // check the slots the item could go in
-      let validSlots = currentItem.type.validSlots;
-      for (const index in validSlots) {
-        let slottedItem = selectedEquipment[validSlots[index]];
-        if (slottedItem === null) {
-          // the slot is open, assign the item
-          selectedEquipment[validSlots[index]] = currentItem;
-        } else {
-          // something is already in that slot
-          // we need to compare the slotted item to the current item
-          let slottedEffect = slottedItem.equipEffects.find((effect) => {
-            return effect.id === targetEffect.rawId;
-          });
-
-          // now we do the actual comparing.
-          if (slottedEffect.valus[0] < currentItemEffect.value) {
-            // the slotted item is worse, swap it out
-            selectedEquipment[validSlots[index]] = currentItem;
-          }
-        }
+      if (message.data.items) {
+        itemSet.value = message.data.items;
+        builderLoading.value = false;
       }
-    }
-  });
+    };
+  };
 
-  return {};
+  const runCalculations = (params) => {
+    builderLoading.value = true;
+    worker.postMessage({ params, itemData, ITEM_SLOT_SORT_ORDER }); //, itemData, ITEM_SLOT_SORT_ORDER });
+  };
+
+  return {
+    setup,
+    autoBuilderIsReady,
+    targetLevel,
+    targetClass,
+    targetEffect,
+    runCalculations,
+    builderLoading,
+    itemSet,
+  };
 };
