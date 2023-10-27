@@ -17,6 +17,14 @@
 
       gtag('config', 'G-RCGLG7N62V');
     </script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        window.pyodide = pyodide;
+      }
+      main();
+    </script>
   </head>
   <body>
     <div id="app"></div>
