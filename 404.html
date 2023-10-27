@@ -17,8 +17,16 @@
 
       gtag('config', 'G-RCGLG7N62V');
     </script>
-    <script type="module" crossorigin src="/assets/index-47c0d2bb.js"></script>
-    <link rel="stylesheet" href="/assets/index-e47de91a.css">
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script type="text/javascript">
+      async function main(){
+        let pyodide = await loadPyodide();
+        window.pyodide = pyodide;
+      }
+      main();
+    </script>
+    <script type="module" crossorigin src="/assets/index-f36c9276.js"></script>
+    <link rel="stylesheet" href="/assets/index-4013f0c1.css">
   </head>
   <body>
     <div id="app"></div>
