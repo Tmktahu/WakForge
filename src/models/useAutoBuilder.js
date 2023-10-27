@@ -1,12 +1,13 @@
 import { ref } from 'vue';
 import itemData from './item_data.json';
+import workerThing from '@/models/autoBuilderWorker?worker&url';
 
 import { ITEM_SLOT_SORT_ORDER } from '@/models/useConstants';
 
 const itemSet = ref(null);
 const autoBuilderIsReady = ref(false);
 const builderLoading = ref(false);
-let worker = new Worker('autoBuilderWorker.js');
+let worker = new Worker(workerThing);
 
 export const useAutoBuilder = () => {
   const targetLevel = ref(0);
