@@ -6,7 +6,7 @@ import { ITEM_SLOT_SORT_ORDER } from '@/models/useConstants';
 const itemSet = ref(null);
 const autoBuilderIsReady = ref(false);
 const builderLoading = ref(false);
-let worker = new Worker('src/models/autoBuilderWorker.js');
+let worker = new Worker('autoBuilderWorker.js');
 
 export const useAutoBuilder = () => {
   const targetLevel = ref(0);
