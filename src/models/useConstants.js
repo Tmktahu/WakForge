@@ -127,6 +127,47 @@ export const ITEM_TYPE_DATA = [
   { id: 'costumes', rawId: 647, name: 'Costumes', validSlots: [] },
 ];
 
+export const ITEM_TYPE_FILTERS = [
+  { id: 'helmet', rawId: 134, name: 'Helmet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.HEAD] },
+  { id: 'amulet', rawId: 120, name: 'Amulet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.NECK] },
+  { id: 'epaulettes', rawId: 138, name: 'Epaulettes', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.SHOULDERS] },
+  { id: 'breastplate', rawId: 136, name: 'Breastplate', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.CHEST] },
+  { id: 'cloak', rawId: 132, name: 'Cloak', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BACK] },
+  { id: 'belt', rawId: 133, name: 'Belt', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BELT] },
+  { id: 'boots', rawId: 119, name: 'Boots', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.LEGS] },
+  { id: 'ring', rawId: 103, name: 'Ring', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.RIGHT_HAND, ITEM_SLOT_DATA.LEFT_HAND] },
+
+  // eslint-disable-next-line prettier/prettier
+  { id: 'oneHandedWeapons', rawIds: [108, 110, 113, 115, 254], name: 'One Handed Weapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  // eslint-disable-next-line prettier/prettier
+  { id: 'twoHandedWeapons', rawIds: [223, 101, 253, 114, 117, 111], name: 'Two Handed Weapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+
+  { id: 'wand', rawId: 108, name: 'Wand (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'sword', rawId: 110, name: 'Sword (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'staff', rawId: 113, name: 'Staff (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'clockHand', rawId: 115, name: 'Clock Hand (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'cards', rawId: 254, name: 'Cards (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+
+  { id: 'twoHandedSword', rawId: 223, name: 'Sword (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedAxe', rawId: 101, name: 'Axe (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedStaff', rawId: 253, name: 'Staff (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'hammer', rawId: 114, name: 'Hammer (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'bow', rawId: 117, name: 'Bow (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'shovel', rawId: 111, name: 'Shovel (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+
+  { id: 'dagger', rawId: 112, name: 'Dagger (Secondary Weapon)', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
+  { id: 'shield', rawId: 189, name: 'Shield (Secondary Weapon)', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
+
+  { id: 'emblem', rawId: 646, name: 'Emblem', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.ACCESSORY] },
+  { id: 'pets', rawId: 582, name: 'Pets', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.PET] },
+  { id: 'mounts', rawId: 611, name: 'Mounts', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.MOUNT] },
+  { id: 'tool', rawId: 537, name: 'Tool', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'torches', rawId: 480, name: 'Torches', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'costumes', rawId: 647, name: 'Costumes', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'sublimationScroll', rawId: 812, name: 'Sublimation Scroll', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'enchantement', rawId: 811, name: 'Enchantement', category: 'miscellaneous', advanced: true, validSlots: [] },
+];
+
 export const EFFECT_TYPE_DATA = {
   // skipped 1
   healthPoints: {

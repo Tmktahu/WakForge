@@ -9,9 +9,13 @@
     <p-button class="filter-button" label="Reset Filters" @click="onResetFilters" />
   </div>
 
-  <div class="flex gap-2">
+  <div class="checkmarks-container flex gap-2">
     <div class="rarity-container mt-2">
-      <div class="mb-1">Rarities</div>
+      <div class="flex align-items-center mb-1">
+        <p-button class="filter-button item-filter-action" label="All" @click="onSelectAllRarities" />
+        <div class="mx-2">Rarities</div>
+        <p-button class="filter-button item-filter-action" label="None" @click="onClearAllRarities" />
+      </div>
       <div class="rarity-button-wrapper">
         <template v-for="rarity in rarityFilters" :key="rarity.id">
           <tippy duration="0">
@@ -38,33 +42,114 @@
     </div>
 
     <div class="item-types-container mt-2">
-      <div class="flex align-items-center mb-1">
-        <p-button class="filter-button item-filter-action" label="Select All" @click="onSelectAllItemTypes" />
+      <div class="flex align-items-center justify-content-center mb-1 w-full">
+        <p-button class="filter-button item-filter-action" label="All" @click="onSelectAllItemTypes" />
         <div class="mx-2">Item Types</div>
-        <p-button class="filter-button item-filter-action" label="Clear All" @click="onClearAllItemTypes" />
+        <tippy>
+          <p-checkbox v-model="showAdvancedFilters" class="mr-2" :binary="true" />
+
+          <template v-slot:content>
+            <div class="simple-tooltip">Show All Filters</div>
+          </template>
+        </tippy>
+        <p-button class="filter-button item-filter-action" label="None" @click="onClearAllItemTypes" />
       </div>
       <div class="item-types-button-wrapper">
-        <template v-for="itemType in itemTypeFilters" :key="itemType.id">
-          <tippy duration="0">
-            <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="updateFilters">
-              <template v-slot:icon="slotProps">
-                <div class="flex justify-content-center align-items-center">
-                  <p-image
-                    :class="{ disabled: !slotProps.checked }"
-                    :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawId}.png`"
-                    image-style="width: 16px;"
-                  />
+        <div class="filter-category-wrapper">
+          <template v-for="itemType in itemTypeFilters.filter((entry) => entry.category === 'armor')" :key="itemType.id">
+            <tippy v-if="!itemType.advanced || showAdvancedFilters" duration="0">
+              <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="updateFilters">
+                <template v-slot:icon="slotProps">
+                  <div class="flex justify-content-center align-items-center">
+                    <p-image
+                      v-if="itemType.rawId"
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawId}.png`"
+                      image-style="width: 16px;"
+                    />
+
+                    <p-image
+                      v-else
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawIds[0]}.png`"
+                      image-style="width: 16px;"
+                    />
+                  </div>
+                </template>
+              </p-checkbox>
+
+              <template v-slot:content>
+                <div class="simple-tooltip">
+                  {{ itemType.name }}
                 </div>
               </template>
-            </p-checkbox>
+            </tippy>
+          </template>
+        </div>
 
-            <template v-slot:content>
-              <div class="simple-tooltip">
-                {{ itemType.name }}
-              </div>
-            </template>
-          </tippy>
-        </template>
+        <div class="filter-category-wrapper">
+          <template v-for="itemType in itemTypeFilters.filter((entry) => entry.category === 'weapons')" :key="itemType.id">
+            <tippy v-if="!itemType.advanced || showAdvancedFilters" duration="0">
+              <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="updateFilters(itemType)">
+                <template v-slot:icon="slotProps">
+                  <div class="flex justify-content-center align-items-center">
+                    <p-image
+                      v-if="itemType.rawId"
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawId}.png`"
+                      image-style="width: 16px;"
+                    />
+
+                    <p-image
+                      v-else
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawIds[0]}.png`"
+                      image-style="width: 16px;"
+                    />
+                  </div>
+                </template>
+              </p-checkbox>
+
+              <template v-slot:content>
+                <div class="simple-tooltip">
+                  {{ itemType.name }}
+                </div>
+              </template>
+            </tippy>
+          </template>
+        </div>
+
+        <div class="filter-category-wrapper">
+          <template v-for="itemType in itemTypeFilters.filter((entry) => entry.category === 'miscellaneous')" :key="itemType.id">
+            <tippy v-if="!itemType.advanced || showAdvancedFilters" duration="0">
+              <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="updateFilters">
+                <template v-slot:icon="slotProps">
+                  <div class="flex justify-content-center align-items-center">
+                    <p-image
+                      v-if="itemType.rawId"
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawId}.png`"
+                      image-style="width: 16px;"
+                    />
+
+                    <p-image
+                      v-else
+                      :class="{ disabled: !slotProps.checked }"
+                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${itemType.rawIds[0]}.png`"
+                      image-style="width: 16px;"
+                    />
+                  </div>
+                </template>
+              </p-checkbox>
+
+              <template v-slot:content>
+                <div class="simple-tooltip">
+                  {{ itemType.name }}
+                </div>
+              </template>
+            </tippy>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -167,6 +252,7 @@ const levelRange = ref([itemFilters.startLevel, itemFilters.endLevel]);
 const effectFilters = ref([]);
 const rarityFilters = ref(itemFilters.rarityFilters);
 const itemTypeFilters = ref(itemFilters.itemTypeFilters);
+const showAdvancedFilters = ref(false);
 
 const onSearchInput = () => {
   updateFilters();
@@ -180,13 +266,25 @@ const onLevelRangeChange = () => {
   updateFilters();
 };
 
-const updateFilters = () => {
+const updateFilters = (itemTypeFilter) => {
   itemFilters.searchTerm = searchTerm.value;
   itemFilters.startLevel = levelRange.value[0];
   itemFilters.endLevel = levelRange.value[1];
   itemFilters.effectFilters = effectFilters.value;
   itemFilters.rarityFilters = rarityFilters.value;
-  itemFilters.itemFilters = itemFilters.value;
+
+  if (itemTypeFilter && itemTypeFilter.rawIds?.length) {
+    handleGroupItemTypeFilter(itemTypeFilter);
+  } else {
+    itemFilters.itemTypeFilters = itemTypeFilters.value;
+  }
+};
+
+const handleGroupItemTypeFilter = (itemTypeFilter) => {
+  itemTypeFilter.rawIds.forEach((targetFilterRawId) => {
+    let targetFilter = itemTypeFilters.value.find((filter) => filter.rawId === targetFilterRawId);
+    targetFilter.checked = itemTypeFilter.checked;
+  });
 };
 
 const onAddFilter = () => {
@@ -214,6 +312,20 @@ const onResetFilters = () => {
   effectFilters.value = itemFilters.effectFilters;
   rarityFilters.value = itemFilters.rarityFilters;
   itemTypeFilters.value = itemFilters.itemTypeFilters;
+};
+
+const onSelectAllRarities = () => {
+  itemFilters.rarityFilters.forEach((filter) => {
+    filter.checked = true;
+  });
+  updateFilters();
+};
+
+const onClearAllRarities = () => {
+  itemFilters.rarityFilters.forEach((filter) => {
+    filter.checked = false;
+  });
+  updateFilters();
 };
 
 const onSelectAllItemTypes = () => {
@@ -363,10 +475,16 @@ const onClearAllItemTypes = () => {
 
   .item-types-button-wrapper {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .filter-category-wrapper {
+    display: flex;
     gap: 0.5rem;
+    flex-wrap: wrap;
+    border: 1px solid var(--bonta-blue-40);
+    border-radius: 8px;
+    padding: 6px 6px;
   }
 }
 
@@ -402,6 +520,12 @@ const onClearAllItemTypes = () => {
   .p-image.p-component {
     height: 16px;
     margin-right: 0px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .checkmarks-container {
+    flex-direction: column;
   }
 }
 </style>

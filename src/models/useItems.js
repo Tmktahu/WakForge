@@ -1,38 +1,6 @@
-import { computed, reactive } from 'vue';
+import { computed, reactive, watch } from 'vue';
 import itemData from './item_data.json';
-import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA, ITEM_TYPE_DATA } from '@/models/useConstants';
-
-const ITEM_TYPE_FILTERS_ID_LIST = [
-  'helmet',
-  'amulet',
-  'epaulettes',
-  'breastplate',
-  'cloak',
-  'belt',
-  'boots',
-  'ring',
-  'emblem',
-  'pets',
-  'mounts',
-  'wand',
-  'sword',
-  'dagger',
-  'staff',
-  'hammer',
-  'clockHand',
-  'cards',
-  'bow',
-  'shovel',
-  'twoHandedSword',
-  'twoHandedAxe',
-  'twoHandedStaff',
-  'shield',
-  'tool',
-  'torches',
-  'costumes',
-  'sublimationScroll',
-  'enchantement',
-];
+import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA, ITEM_TYPE_FILTERS } from '@/models/useConstants';
 
 const itemFilters = reactive({
   searchTerm: '',
@@ -45,13 +13,8 @@ const itemFilters = reactive({
       checked: true,
     };
   }),
-  itemTypeFilters: ITEM_TYPE_DATA.filter((entry) => {
-    return ITEM_TYPE_FILTERS_ID_LIST.includes(entry.id);
-  }).map((itemTypeEntry) => {
-    return {
-      ...itemTypeEntry,
-      checked: true,
-    };
+  itemTypeFilters: ITEM_TYPE_FILTERS.map((entry) => {
+    return { ...entry, checked: true };
   }),
   resetFilters() {
     this.searchTerm = '';
@@ -64,13 +27,8 @@ const itemFilters = reactive({
         checked: true,
       };
     });
-    this.itemTypeFilters = ITEM_TYPE_DATA.filter((entry) => {
-      return ITEM_TYPE_FILTERS_ID_LIST.includes(entry.id);
-    }).map((itemTypeEntry) => {
-      return {
-        ...itemTypeEntry,
-        checked: true,
-      };
+    this.itemTypeFilters = ITEM_TYPE_FILTERS.map((entry) => {
+      return { ...entry, checked: true };
     });
   },
 });
