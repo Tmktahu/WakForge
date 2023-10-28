@@ -41,7 +41,7 @@
         </div>
 
         <div class="flex align-items-center mt-3 ml-4">
-          <p-button class="py-2 px-3" :disabled="!hasValidValues" label="Generate Build" @click="onCalculate" />
+          <p-button class="py-2 px-3" :disabled="!hasValidValues" label="Generate Item Set" @click="onCalculate" />
           <!-- <div class="ml-3">warning message</div> -->
         </div>
       </div>
@@ -232,18 +232,20 @@
         <div v-else-if="builderError">
           <div v-if="builderError === 'noSolution'" class="flex flex-column">
             <span>Jimmy was unable to find an item set that matched your parameters. Please check them and try again.</span>
-            <span class="mt-2">
+            <div class="mt-2 py-1 px-2" style="background: var(--error-40); border-radius: 8px; width: fit-content">
               Remember that your settings above should reflect what the items should give, not what the completed character should have.
-            </span>
+            </div>
           </div>
         </div>
 
         <div v-else class="flex flex-column">
           <span>
-            Enter your parameters above and hit the Generate Build button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results will
-            be shown here.
+            Enter your parameters above and hit the Generate Item Set button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results
+            will be shown here.
           </span>
-          <span class="mt-2">Remember that your settings above should reflect what the items should give, not what the entire character should have. </span>
+          <div class="mt-2 py-1 px-2" style="background: var(--bonta-blue-40); border-radius: 8px; width: fit-content">
+            Remember that your settings above should reflect what the items should give, not what the entire character should have.
+          </div>
         </div>
       </div>
 
