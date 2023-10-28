@@ -5,7 +5,7 @@
         <div class="info-area pl-4 pb-3 pr-3">
           <div class="mt-3" style="font-size: 42px">Automatic Character Builder</div>
 
-          <div class="mt-2">This utlity will automatically calculate a best-in-slot item set based on the options below</div>
+          <div class="mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below</div>
           <div class="mt-2">
             It is powered by code written by
             <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
