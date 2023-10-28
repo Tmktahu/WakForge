@@ -2,7 +2,7 @@
   <div class="flex flex-column w-full h-full" style="overflow-y: auto">
     <div class="mt-3 ml-4" style="font-size: 42px">Automatic Character Builder (WIP)</div>
 
-    <div class="ml-4 mt-2">This utlity will automatically calculate a best-in-slot item set based on the options below</div>
+    <div class="ml-4 mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below</div>
     <div class="ml-4 mt-2">
       It is powered by code written by
       <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
