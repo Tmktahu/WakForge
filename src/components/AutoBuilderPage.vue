@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-column w-full h-full" style="overflow-y: auto">
-    <div class="flex">
+    <div class="top-section flex">
       <div class="flex flex-column">
         <div class="info-area pl-4 pb-3 pr-3">
-          <div class="mt-3" style="font-size: 42px">Automatic Character Builder</div>
+          <div class="mt-3" style="font-size: 42px">Automatic Item Set Builder</div>
 
-          <div class="mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below</div>
+          <div class="mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below.</div>
           <div class="mt-2">
             It is powered by code written by
             <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
@@ -34,7 +34,7 @@
           <div class="flex flex-grow-1 align-items-center">
             <span class="mr-2">Level</span>
             <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="230" :step="15" />
-            <div class="flex-grow-1">
+            <div class="flex-grow-1 mr-2">
               <p-slider v-model="selectedLevel" :min="20" :max="230" :step="15" />
             </div>
           </div>
@@ -106,9 +106,9 @@
             </div>
           </div>
 
-          <div class="flex flex-column ml-3">
+          <div class="flex flex-column ml-3 mr-3">
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetApAmount" :min="0" class="number-input" />
+              <p-inputNumber v-model="targetApAmount" class="number-input" />
               <div class="mx-2">Target AP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -119,7 +119,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetMpAmount" :min="0" class="number-input" />
+              <p-inputNumber v-model="targetMpAmount" class="number-input" />
               <div class="mx-2">Target MP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -130,7 +130,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetRangeAmount" :min="0" class="number-input" />
+              <p-inputNumber v-model="targetRangeAmount" class="number-input" />
               <div class="mx-2">Target Range Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -141,7 +141,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetWpAmount" :min="0" class="number-input" />
+              <p-inputNumber v-model="targetWpAmount" class="number-input" />
               <div class="mx-2">Target WP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -230,12 +230,20 @@
         </div>
 
         <div v-else-if="builderError">
-          <div v-if="builderError === 'noSolution'"> Jimmy was unable to find an item set that matched your parameters. Please check them and try again. </div>
+          <div v-if="builderError === 'noSolution'" class="flex flex-column">
+            <span>Jimmy was unable to find an item set that matched your parameters. Please check them and try again.</span>
+            <span class="mt-2">
+              Remember that your settings above should reflect what the items should give, not what the completed character should have.
+            </span>
+          </div>
         </div>
 
-        <div v-else>
-          Enter your parameters above and hit the Generate Build button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results will
-          be shown here.
+        <div v-else class="flex flex-column">
+          <span>
+            Enter your parameters above and hit the Generate Build button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results will
+            be shown here.
+          </span>
+          <span class="mt-2">Remember that your settings above should reflect what the items should give, not what the entire character should have. </span>
         </div>
       </div>
 
@@ -465,6 +473,17 @@ const onCreateCharacter = () => {
   .p-button-icon {
     font-size: 14px;
     font-weight: 800;
+  }
+}
+
+@media (max-width: 700px) {
+  .top-section {
+    flex-direction: column;
+  }
+
+  .info-area {
+    border-right: none;
+    border-bottom-right-radius: 0px;
   }
 }
 </style>
