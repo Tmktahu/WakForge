@@ -13,8 +13,9 @@ You can find the site at <https://wakforge.org>.<br>
 
 ## Features
 
-- Complete character builder including characteristics, items, sublimations, and runes.
-- Powerful, dynamic live item filtering capabilities.
+- Character builder including characteristics and items.
+- Powerful, dynamic live item filtering and sorting capabilities.
+- And automatic item set generator using [brilliant work by Keeper of Time (sinbad)](https://github.com/mikeshardmind/wakfu-utils)
 - Locally stored information with no backend server. Leverages JSON files and LocalStorage for persistance.
 - Import, export, and share character builds via JSON files.
 
@@ -38,4 +39,8 @@ If you are interested in contributing to this project, feel free to look through
 
 ## Special Thanks
 
+- Keeper of Time (sinbad) for allowing us to use his [auto-item-set](https://github.com/mikeshardmind/wakfu-utils) library on the site.
+- \<Krieg\> (fl_cl) for icon hunting.
+- Slendy (slendycandy) for pulling together the default equipment slot icons.
+- ALS Guy (scour.) for collecting data and doing the busy work no one likes.
 - Hooks (hooks0), Ruchi (ruchi), \<Krieg\> (fl_cl), Owlite (owlite), Hate (hatespawn), Soza (sozalord), Kimas (kimasage) for feature ideas and feedback.
