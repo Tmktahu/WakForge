@@ -1,63 +1,172 @@
 <template>
   <div class="flex flex-column w-full h-full" style="overflow-y: auto">
-    <div class="mt-3 ml-4" style="font-size: 42px">Automatic Character Builder (WIP)</div>
+    <div class="flex">
+      <div class="flex flex-column">
+        <div class="info-area pl-4 pb-3 pr-3">
+          <div class="mt-3" style="font-size: 42px">Automatic Character Builder</div>
 
-    <div class="ml-4 mt-2">This utlity will automatically calculate a best-in-slot item set based on the options below</div>
-    <div class="ml-4 mt-2">
-      It is powered by code written by
-      <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
-    </div>
-    <div class="ml-4 mt-2">Note that the logic behind this tool is still in development.</div>
+          <div class="mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below</div>
+          <div class="mt-2">
+            It is powered by code written by
+            <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
+          </div>
+          <div class="mt-2">Note that the logic behind this tool is still in development.</div>
+        </div>
 
-    <div v-if="autoBuilderIsReady" class="flex flex-column flex-grow-1 mx-4 mt-3 mb-3">
-      <div class="flex align-items-center gap-2">
-        <p-dropdown v-model="selectedClass" :options="classOptions" placeholder="Select a Class" option-value="value" class="mr-2">
-          <template v-slot:value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
-              <div class="capitalize">{{ slotProps.value }}</div>
+        <div class="flex align-items-center gap-2 pl-4 pt-3">
+          <p-dropdown v-model="selectedClass" class="class-dropdown mr-2" :options="classOptions" placeholder="Select a Class" option-value="value">
+            <template v-slot:value="slotProps">
+              <div v-if="slotProps.value" class="flex align-items-center">
+                <div class="capitalize">{{ slotProps.value }}</div>
+              </div>
+              <span v-else>
+                {{ slotProps.placeholder }}
+              </span>
+            </template>
+
+            <template v-slot:option="slotProps">
+              <div class="flex align-items-center">
+                <div class="capitalize">{{ slotProps.option.label }}</div>
+              </div>
+            </template>
+          </p-dropdown>
+
+          <div class="flex flex-grow-1 align-items-center">
+            <span class="mr-2">Level</span>
+            <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="230" :step="15" />
+            <div class="flex-grow-1">
+              <p-slider v-model="selectedLevel" :min="20" :max="230" :step="15" />
             </div>
-            <span v-else>
-              {{ slotProps.placeholder }}
-            </span>
-          </template>
-
-          <template v-slot:option="slotProps">
-            <div class="flex align-items-center">
-              <div class="capitalize">{{ slotProps.option.label }}</div>
-            </div>
-          </template>
-        </p-dropdown>
-
-        <div class="flex flex-grow-1 align-items-center" style="max-width: 200px">
-          <span class="mr-2">Level</span>
-          <p-inputNumber v-model="selectedLevel" class="number-input mr-2" :min="20" :max="230" :step="15" />
-          <div class="flex-grow-1">
-            <p-slider v-model="selectedLevel" :min="20" :max="230" :step="15" />
           </div>
         </div>
 
-        <p-dropdown v-model="selectedStat" :options="statOptions" placeholder="Select a Statistic to Prioratize" class="mr-2">
-          <template v-slot:value="slotProps">
-            <div v-if="slotProps.value" class="flex align-items-center">
-              <div class="capitalize">{{ slotProps.value.label }}</div>
-            </div>
-            <span v-else>
-              {{ slotProps.placeholder }}
-            </span>
-          </template>
-
-          <template v-slot:option="slotProps">
-            <div class="flex align-items-center">
-              <div class="capitalize">{{ slotProps.option.label }}</div>
-            </div>
-          </template>
-        </p-dropdown>
+        <div class="flex align-items-center mt-3 ml-4">
+          <p-button class="py-2 px-3" :disabled="!hasValidValues" label="Generate Build" @click="onCalculate" />
+          <!-- <div class="ml-3">warning message</div> -->
+        </div>
       </div>
 
-      <div class="flex mt-3">
-        <p-button label="Generate Build" @click="onCalculate" />
-      </div>
+      <div class="flex flex-column mt-3 ml-3">
+        <div class="text-center" style="font-size: 1.25rem">Target Stats from Items</div>
+        <div class="flex mt-3">
+          <div class="flex flex-column">
+            <div class="flex align-items-center mb-2">
+              <p-checkbox v-model="meleeMastery" :binary="true" />
+              <div class="mx-2">Melee Mastery</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want the items to include Melee Mastery if possible.</div>
+                </template>
+              </tippy>
+            </div>
 
+            <div class="flex align-items-center mb-2">
+              <p-checkbox v-model="distanceMastery" :binary="true" />
+              <div class="mx-2">Distance Mastery</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want the items to include Distance Mastery if possible.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-checkbox v-model="healingMastery" :binary="true" />
+              <div class="mx-2">Healing Mastery</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want the items to include Healing Mastery if possible.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-checkbox v-model="rearMastery" :binary="true" />
+              <div class="mx-2">Rear Mastery</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want the items to include Rear Mastery if possible.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-checkbox v-model="berserkMastery" :binary="true" />
+              <div class="mx-2">Berserk Mastery</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want the items to include Berserk Mastery if possible.</div>
+                </template>
+              </tippy>
+            </div>
+          </div>
+
+          <div class="flex flex-column ml-3">
+            <div class="flex align-items-center mb-2">
+              <p-inputNumber v-model="targetApAmount" :min="0" class="number-input" />
+              <div class="mx-2">Target AP Amount</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want to try and get this many Action Points from items.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-inputNumber v-model="targetMpAmount" :min="0" class="number-input" />
+              <div class="mx-2">Target MP Amount</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want to try and get this many Movement Points from items.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-inputNumber v-model="targetRangeAmount" :min="0" class="number-input" />
+              <div class="mx-2">Target Range Amount</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want to try and get this many Range from items.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-inputNumber v-model="targetWpAmount" :min="0" class="number-input" />
+              <div class="mx-2">Target WP Amount</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy that you want to try and get this many Wakfu Points from items.</div>
+                </template>
+              </tippy>
+            </div>
+
+            <div class="flex align-items-center mb-2">
+              <p-inputNumber v-model="targetNumElements" :min="0" :max="4" class="number-input" />
+              <div class="mx-2">Number of Elements</div>
+              <tippy placement="left">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">This tells Jimmy the desired number of elemental bonuses on each item.</div>
+                </template>
+              </tippy>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="autoBuilderIsReady" class="flex flex-column flex-grow-1 mx-4 mb-3">
       <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-3 py-2 px-2">
         <div v-if="itemSet?.length">
           <div class="flex flex-wrap gap-1">
@@ -120,6 +229,10 @@
           <div class="flex flex-grow-1"> stats summary? </div>
         </div>
 
+        <div v-else-if="builderError">
+          <div v-if="builderError === 'noSolution'"> Jimmy was unable to find an item set that matched your parameters. Please check them and try again. </div>
+        </div>
+
         <div v-else>
           Enter your parameters above and hit the Generate Build button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results will
           be shown here.
@@ -137,7 +250,7 @@
       </div>
 
       <div class="flex mt-3">
-        <p-button disabled label="Create Character With Above Items (WIP)" @click="onCreateCharacter" />
+        <p-button :disabled="!itemSet?.length" label="Create Character With Above Items" @click="onCreateCharacter" />
       </div>
     </div>
 
@@ -154,23 +267,39 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed, inject } from 'vue';
+import { useRouter } from 'vue-router';
+import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
+import { useCharacterBuilds } from '@/models/useCharacterBuilds';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 import { CLASS_CONSTANTS, LEVELABLE_ITEMS, ITEM_SLOT_DATA } from '@/models/useConstants';
 
 import ItemStatList from '@/components/ItemStatList.vue';
 
 let documentVar = document;
+const router = useRouter();
+const masterData = inject('masterData');
 
-const { runCalculations, autoBuilderIsReady, itemSet, builderLoading } = useAutoBuilder();
+const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderError } = useAutoBuilder();
+const { createNewCharacterFromAutoBuilder } = useCharacterBuilds(masterData);
 
 const selectedLevel = ref(20);
 const selectedClass = ref(null);
-const selectedStat = ref(null);
+
+const targetApAmount = ref(0);
+const targetMpAmount = ref(0);
+const targetRangeAmount = ref(0);
+const targetWpAmount = ref(0);
+const targetNumElements = ref(0);
+
+const meleeMastery = ref(false);
+const distanceMastery = ref(false);
+const healingMastery = ref(false);
+const rearMastery = ref(false);
+const berserkMastery = ref(false);
 
 const initLoading = ref(true);
-
 const resultData = ref(null);
 
 const classOptions = Object.entries(CLASS_CONSTANTS).map(([key, value]) => {
@@ -180,16 +309,9 @@ const classOptions = Object.entries(CLASS_CONSTANTS).map(([key, value]) => {
   };
 });
 
-const statOptions = [
-  {
-    label: 'Melee Mastery',
-    value: 'meleeMastery',
-  },
-  {
-    label: 'Distance Mastery',
-    value: 'distanceMastery',
-  },
-];
+const hasValidValues = computed(() => {
+  return autoBuilderIsReady.value && selectedClass.value !== null;
+});
 
 watch(autoBuilderIsReady, () => {
   initLoading.value = false;
@@ -203,32 +325,96 @@ watch(resultData, () => {
   }
 });
 
+watch(
+  selectedLevel,
+  () => {
+    if (selectedLevel.value <= 35) {
+      targetApAmount.value = 2;
+      targetMpAmount.value = 1;
+      targetRangeAmount.value = 0;
+      targetWpAmount.value = 0;
+      targetNumElements.value = 2;
+    } else {
+      targetApAmount.value = 5;
+      targetMpAmount.value = 2;
+      targetRangeAmount.value = 0;
+      targetWpAmount.value = 0;
+      targetNumElements.value = 2;
+    }
+  },
+  { immediate: true }
+);
+
 const onCalculate = async () => {
   let params = {
     targetLevel: selectedLevel.value,
     targetClass: selectedClass.value,
-    meleeMastery: selectedStat.value.value === 'meleeMastery',
-    distanceMastery: selectedStat.value.value === 'distanceMastery',
+
+    meleeMastery: meleeMastery.value,
+    distanceMastery: distanceMastery.value,
+    healingMastery: healingMastery.value,
+    rearMastery: rearMastery.value,
+    berserkMastery: berserkMastery.value,
+
+    targetApAmount: targetApAmount.value,
+    targetMpAmount: targetMpAmount.value,
+    targetRangeAmount: targetRangeAmount.value,
+    targetWpAmount: targetWpAmount.value,
+    targetNumElements: targetNumElements.value,
   };
 
   runCalculations(params);
 };
 
 const onCreateCharacter = () => {
-  console.log('trying to create character');
+  let newCharacterData = createNewCharacterFromAutoBuilder(selectedClass.value, selectedLevel.value, itemSet.value);
+
+  router.push({
+    name: CHARACTER_BUILDER_ROUTE,
+    params: {
+      characterId: newCharacterData.id,
+    },
+  });
 };
 </script>
 
 <style lang="scss" scoped>
+.info-area {
+  border-right: 1px solid var(--bonta-blue-100);
+  border-bottom: 1px solid var(--bonta-blue-100);
+  border-bottom-right-radius: 8px;
+}
+
 :deep(.number-input) {
   .p-inputtext {
     padding: 5px !important;
     width: 40px;
+    height: 32px;
   }
 
   .p-inputnumber-button {
     padding: 0;
     width: 1rem;
+  }
+}
+
+:deep(.class-dropdown) {
+  .p-dropdown-label {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 32px;
+    padding-left: 12px;
+  }
+}
+
+:deep(.stat-dropdown) {
+  .p-dropdown-label {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 32px;
+    padding-left: 12px;
   }
 }
 
