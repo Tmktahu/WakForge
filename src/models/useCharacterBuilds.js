@@ -46,10 +46,34 @@ export function useCharacterBuilds(masterData) {
     return newCharacterData;
   };
 
+  const createNewCharacterFromAutoBuilder = (targetClass, targetLevel, itemSet) => {
+    let newCharacterData = structuredClone(characterDataTemplate);
+    newCharacterData.id = uuidv4(); // add a UUID
+    newCharacterData.class = targetClass; // set the level
+    newCharacterData.level = targetLevel; // set the class
+
+    // equip all the items
+    itemSet.forEach((item) => {
+      let targetSlot = item.type.validSlots[0];
+
+      if (targetSlot === ITEM_SLOT_DATA.LEFT_HAND.id && newCharacterData.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] !== null) {
+        targetSlot = ITEM_SLOT_DATA.RIGHT_HAND.id;
+      }
+
+      newCharacterData.equipment[targetSlot] = item;
+    });
+
+    // then add it to our list of builds
+    masterData.characters.push(newCharacterData);
+
+    return newCharacterData;
+  };
+
   return {
     setup,
     setContext,
     createNewCharacter,
+    createNewCharacterFromAutoBuilder,
   };
 }
 

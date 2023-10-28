@@ -7,7 +7,9 @@ import { ITEM_SLOT_SORT_ORDER } from '@/models/useConstants';
 const itemSet = ref(null);
 const autoBuilderIsReady = ref(false);
 const builderLoading = ref(false);
-let worker = new Worker(workerThing);
+const builderError = ref(null);
+
+let worker = new Worker(import.meta.env.MODE === 'development' ? 'src/models/autoBuilderWorker.js' : workerThing);
 
 export const useAutoBuilder = () => {
   const targetLevel = ref(0);
@@ -24,10 +26,16 @@ export const useAutoBuilder = () => {
         itemSet.value = message.data.items;
         builderLoading.value = false;
       }
+
+      if (message.data === 'No possible solution found') {
+        builderError.value = 'noSolution';
+        builderLoading.value = false;
+      }
     };
   };
 
   const runCalculations = (params) => {
+    builderError.value = null;
     builderLoading.value = true;
     worker.postMessage({ params, itemData, ITEM_SLOT_SORT_ORDER }); //, itemData, ITEM_SLOT_SORT_ORDER });
   };
@@ -41,5 +49,6 @@ export const useAutoBuilder = () => {
     runCalculations,
     builderLoading,
     itemSet,
+    builderError,
   };
 };

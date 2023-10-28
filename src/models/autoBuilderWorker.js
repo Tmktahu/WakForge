@@ -54,12 +54,11 @@ const calculateBuild = async () => {
   if (calculationResults?.[0]?.length) {
     collectItems();
   } else {
-    // ERROR STATE> HOW DO WE HANDLE THIS
-    console.log(calculationResults[1]);
+    postMessage(calculationResults[1]);
   }
 };
 
-const performCalculations = async ({ targetLevel, targetClass, distanceMastery, meleeMastery }) => {
+const performCalculations = async (params) => {
   // level, int = target level, only supprts ALS levels rn (n mod 15 = 5)
   // class_ ClassNames, string
   // num_elements, int = should be a number from 1-4
@@ -69,8 +68,27 @@ const performCalculations = async ({ targetLevel, targetClass, distanceMastery, 
   // forbid_items, array[ints] = array of item IDs to exclude
 
   // let result = pythonPackage.v1_lv_class_solve(20, 'Feca', 3, dist, melee);
-  console.log('python params =', targetLevel, PYTHON_CLASS_NAME_MAPPING[targetClass], distanceMastery, meleeMastery);
-  let result = pythonPackage.v1_lv_class_solve(targetLevel, PYTHON_CLASS_NAME_MAPPING[targetClass], 2, distanceMastery, meleeMastery);
+
+  let pythonParams = {
+    lv: params.targetLevel,
+    ap: params.targetApAmount,
+    mp: params.targetMpAmount,
+    wp: params.targetWpAmount,
+    ra: params.targetRangeAmount,
+    num_mastery: params.targetNumElements,
+    dist: params.distanceMastery,
+    melee: params.meleeMastery,
+    zerk: params.berserkMastery,
+    rear: params.rearMastery,
+    heal: params.healingMastery,
+    hard_cap_depth: 7, // hardcoded for now
+    bcrit: 20, // hardcoded for now
+  };
+
+  console.log('Python Params (useful for debugging if you need them)', pythonParams);
+
+  let config = pythonPackage.Config.callKwargs(pythonParams);
+  let result = pythonPackage.solve_config(config);
 
   calculationResults = result;
 };
