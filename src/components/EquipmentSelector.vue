@@ -7,7 +7,21 @@
     <p-divider class="mt-3 mb-2" />
 
     <div class="flex align-items-center">
-      <div>{{ currentItemList.length }} Results out of {{ getNumTotalItems() }} Items Total</div>
+      <div>Sort by:</div>
+      <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" :options="sortByOptions">
+        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:option="slotProps">
+          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+        </template>
+      </p-dropdown>
+      <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" :options="sortOrderOptions">
+        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:option="slotProps">
+          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+        </template>
+      </p-dropdown>
+      <div class="flex-grow-1" />
+      <div class="ml-2">{{ currentItemList.length }} Results out of {{ getNumTotalItems() }} Items Total</div>
       <div class="flex-grow-1" />
       <span class="mr-1">Display Stats</span>
       <p-checkbox v-model="displayStatsInList" :binary="true" />
@@ -114,7 +128,7 @@
 import { ref, inject, nextTick, computed, watch } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
-import { useItems } from '@/models/useItems';
+import { useItems, sortByOptions, sortOrderOptions } from '@/models/useItems';
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
 
@@ -126,6 +140,7 @@ const confirm = useConfirm();
 
 const currentCharacter = inject('currentCharacter');
 const currentItemList = inject('currentItemList');
+const itemFilters = inject('itemFilters');
 
 const itemResultsWrapper = ref(null);
 const numItemsPerRow = ref(4);
@@ -351,6 +366,12 @@ defineExpose({
   .p-inputnumber-button {
     padding: 0;
     width: 1rem;
+  }
+}
+
+:deep(.sort-dropdown) {
+  .p-dropdown-label {
+    padding: 4px 6px;
   }
 }
 </style>

@@ -1,8 +1,57 @@
-import { computed, reactive, watch } from 'vue';
+import { ref, computed, reactive, watch } from 'vue';
 import itemData from './item_data.json';
 import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA, ITEM_TYPE_FILTERS } from '@/models/useConstants';
 
+let sortedItemData = ref([]);
+let currentSortBy = { id: 'none' };
+let currentSortOrder = 'ascending';
+
+export const sortOrderOptions = [
+  { id: 'ascending', label: 'Small to Big' },
+  { id: 'descending', label: 'Big to Small' },
+];
+
+export const sortByOptions = [
+  { id: 'none', label: 'None' },
+  { id: 'level', label: 'Level' },
+  { id: 'name', label: 'Name' },
+
+  { id: 20, label: 'Health Points (HP)' },
+  { id: 120, label: 'Elemental Mastery' },
+  { id: 124, label: 'Water Mastery' },
+  { id: 123, label: 'Earth Mastery' },
+  { id: 125, label: 'Air Mastery' },
+  { id: 122, label: 'Fire Mastery' },
+
+  { id: 1068, label: 'Rand Elem Mastery Value' },
+
+  { id: 1052, label: 'Melee Mastery' },
+  { id: 1053, label: 'Distance Mastery' },
+  { id: 149, label: 'Critical Mastery' },
+  { id: 180, label: 'Rear Mastery' },
+  { id: 1055, label: 'Berserk Mastery' },
+
+  { id: 150, label: 'Critical Hit Chance' },
+  { id: 875, label: 'Block Chance' },
+  { id: 173, label: 'Lock' },
+  { id: 175, label: 'Dodge' },
+  { id: 177, label: 'Force of Will' },
+  { id: 171, label: 'Initiative' },
+
+  { id: 80, label: 'Elemental Resistance' },
+  { id: 83, label: 'Water Resistance' },
+  { id: 84, label: 'Earth Resistance' },
+  { id: 85, label: 'Air Resistance' },
+  { id: 82, label: 'Fire Resistance' },
+  { id: 1069, label: 'Rand Elem Resistance Value' },
+
+  { id: 988, label: 'Critical Resistance' },
+  { id: 71, label: 'Rear Resistance' },
+];
+
 const itemFilters = reactive({
+  sortBy: sortByOptions[0],
+  sortOrder: sortOrderOptions[0], // ascending means 'smallest to largest', descending means 'largest to smallest'
   searchTerm: '',
   startLevel: 0,
   endLevel: 230,
@@ -17,6 +66,8 @@ const itemFilters = reactive({
     return { ...entry, checked: true };
   }),
   resetFilters() {
+    this.sortBy = sortByOptions[0];
+    this.sortOrder = sortOrderOptions[0];
     this.searchTerm = '';
     this.startLevel = 0;
     this.endLevel = 230;
@@ -36,6 +87,7 @@ const itemFilters = reactive({
 export const useItems = () => {
   const setup = () => {
     const currentItemList = computed(() => {
+      handleSortingLogic();
       return getFilteredItems();
     });
 
@@ -44,11 +96,99 @@ export const useItems = () => {
     };
   };
 
+  const handleSortingLogic = () => {
+    let targetSortBy = itemFilters.sortBy;
+    let targetSortOrder = itemFilters.sortOrder;
+
+    if (targetSortBy === currentSortBy && targetSortOrder === currentSortOrder) {
+      // there was no sorting change, so don't sort
+      return;
+    }
+
+    // we want to perform a sort
+    // first copy the original data incase the sort is 'none'
+    sortedItemData.value = structuredClone(itemData);
+
+    // save the current sort settings for next time
+    currentSortBy = targetSortBy;
+    currentSortOrder = targetSortOrder;
+
+    // if the sortBy is none, don't sort
+    if (targetSortBy.id === 'none') {
+      return;
+    }
+
+    // otherwise we want to do a sort
+    sortedItemData.value.sort((itemA, itemB) => {
+      if (targetSortBy.id === 'level') {
+        // we handle level sorting manually
+        return targetSortOrder.id === 'ascending' ? itemA.level - itemB.level : itemB.level - itemA.level;
+      } else if (targetSortBy.id === 'name') {
+        // we handle name sorting manually
+        let nameA = itemA.name.toLowerCase(),
+          nameB = itemB.name.toLowerCase();
+
+        if (targetSortOrder.id === 'ascending') {
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
+          return 0;
+        } else {
+          if (nameA > nameB) {
+            return -1;
+          }
+          if (nameA < nameB) {
+            return 1;
+          }
+          return 0;
+        }
+      } else {
+        // we use this function to sort by an equip effect
+        return sortByEquipEffect(itemA, itemB, targetSortBy, targetSortOrder);
+      }
+    });
+  };
+
+  const sortByEquipEffect = (itemA, itemB, targetSortBy, targetSortOrder) => {
+    // these are the vars that will contain the sorting data.
+    // we set them to very negative initially to handle items that don't have the target equip effect
+    let itemAStatValue = -10000;
+    let itemBStatValue = -10000;
+
+    // this finds the target effect and gets its value if it exists for item A
+    if (itemA.equipEffects?.length) {
+      let itemAStat = itemA.equipEffects.find((equipEffect) => {
+        return equipEffect.id === targetSortBy.id;
+      });
+
+      if (itemAStat !== undefined) {
+        itemAStatValue = itemAStat.values[0];
+      }
+    }
+
+    // this finds the target effect and gets its value if it exists for item B
+    if (itemB.equipEffects?.length) {
+      let itemBStat = itemB.equipEffects.find((equipEffect) => {
+        return equipEffect.id === targetSortBy.id;
+      });
+
+      if (itemBStat !== undefined) {
+        itemBStatValue = itemBStat.values[0];
+      }
+    }
+
+    // we do math here based on the sort order in order to sort them based on their values
+    return targetSortOrder.id === 'ascending' ? itemAStatValue - itemBStatValue : itemBStatValue - itemAStatValue;
+  };
+
   const getFilteredItems = () => {
     // Filter Logic
     // (itemType OR itemType OR ...) AND (level range check) AND (itemMod AND itemMod AND ...) AND (rarity OR rarity OR ...)
 
-    let filteredItems = itemData.filter((item) => {
+    let filteredItems = sortedItemData.value.filter((item) => {
       // TODO missing some from the item type filters
       return hasSearchTerm(item) && isWithinLevelRange(item) && matchesEffectFilters(item) && matchesRarityFilters(item) && matchesItemTypeFilters(item);
     });
