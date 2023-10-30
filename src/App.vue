@@ -82,7 +82,7 @@ provide('currentItemList', currentItemList);
 onMounted(() => {
   console.log(
     // eslint-disable-next-line quotes
-    "%cIf you're reading this, then I may be able to use your help!\nPoke Fryke (fryke) on Discord if you are interested!",
+    "%cIf you're reading this, then I may be able to use your help!\nJoin the Discord server at https://discord.gg/k3v2fXQWJp if you are interested!",
     'font-size: 1rem'
   );
 });

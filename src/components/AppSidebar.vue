@@ -6,6 +6,7 @@
     <p-button label="Data" icon="mdi mdi-graph" class="sidebar-button w-full text-left px-2" @click="gotoData" />
 
     <div class="flex-grow-1" />
+    <p-button label="Discord" icon="mdi mdi-discord" class="sidebar-button w-full text-left px-2" @click="onDiscord" />
     <p-button label="Github" icon="mdi mdi-github" class="sidebar-button w-full text-left px-2" @click="onGithub" />
   </div>
 </template>
@@ -38,6 +39,10 @@ const gotoData = () => {
 
 const onGithub = () => {
   window.open('https://github.com/Tmktahu/wakforge', '_blank').focus();
+};
+
+const onDiscord = () => {
+  window.open('https://discord.gg/k3v2fXQWJp', '_blank').focus();
 };
 </script>
 
