@@ -1,7 +1,7 @@
 import { watch } from 'vue';
 import { EventBus, Events } from '@/eventBus';
 import { masterData } from '@/models/useStorage.js';
-import { CLASS_CONSTANTS, EFFECT_TYPE_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
+import { CLASS_CONSTANTS, EFFECT_TYPE_DATA, LEVELABLE_ITEMS, PASSIVE_SPELL_LEVEL_MAP } from '@/models/useConstants';
 import { SPELL_CATEGORIES, useSpells } from '@/models/useSpells';
 const { getSpellData } = useSpells();
 
@@ -29,6 +29,7 @@ export const useStats = (currentCharacter) => {
         (50 +
           currentCharacter.value.characteristics.strength.healthPoints * 20 +
           calcItemContribution(EFFECT_TYPE_DATA.healthPoints.rawId) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.healthPointsFromLevel.rawId) * 0.01 * currentCharacter.value.level +
           10 * currentCharacter.value.level) *
           (1 + currentCharacter.value.characteristics.intelligence.percentHealthPoints * 0.04)
       );
@@ -41,14 +42,18 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.actionPoints =
         6 + currentCharacter.value.characteristics.major.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId);
       currentCharacter.value.movementPoints =
-        3 + currentCharacter.value.characteristics.major.movementPointsAndDamage + calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId);
+        3 +
+        currentCharacter.value.characteristics.major.movementPointsAndDamage +
+        calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.movementPoints.rawId);
 
       // wakfu points are capped at 20
       currentCharacter.value.wakfuPoints = Math.min(
         20,
         (currentCharacter.value.class === CLASS_CONSTANTS.xelor ? 12 : 6) +
           currentCharacter.value.characteristics.major.wakfuPoints * 2 +
-          calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId)
+          calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId)
       );
       currentCharacter.value.quadrumentalBreeze =
         (currentCharacter.value.class === CLASS_CONSTANTS.huppermage ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
@@ -63,7 +68,9 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.masteries.melee =
         currentCharacter.value.characteristics.strength.meleeMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.meleeMastery.rawId);
       currentCharacter.value.masteries.distance =
-        currentCharacter.value.characteristics.strength.distanceMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.distanceMastery.rawId);
+        currentCharacter.value.characteristics.strength.distanceMastery * 8 +
+        calcItemContribution(EFFECT_TYPE_DATA.distanceMastery.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.distanceMastery.rawId);
       currentCharacter.value.masteries.critical =
         currentCharacter.value.characteristics.fortune.criticalMastery * 4 + calcItemContribution(EFFECT_TYPE_DATA.criticalMastery.rawId);
       currentCharacter.value.masteries.rear =
@@ -74,10 +81,22 @@ export const useStats = (currentCharacter) => {
         currentCharacter.value.characteristics.fortune.healingMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.healingMastery.rawId);
 
       // Resistances
-      currentCharacter.value.resistances.water = calcElemResistanceBonus() + calcItemContribution(EFFECT_TYPE_DATA.waterResistance.rawId);
-      currentCharacter.value.resistances.air = calcElemResistanceBonus() + calcItemContribution(EFFECT_TYPE_DATA.airResistance.rawId);
-      currentCharacter.value.resistances.earth = calcElemResistanceBonus() + calcItemContribution(EFFECT_TYPE_DATA.earthResistance.rawId);
-      currentCharacter.value.resistances.fire = calcElemResistanceBonus() + calcItemContribution(EFFECT_TYPE_DATA.fireResistance.rawId);
+      currentCharacter.value.resistances.water =
+        calcElemResistanceBonus() +
+        calcItemContribution(EFFECT_TYPE_DATA.waterResistance.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.elementalResistance.rawId);
+      currentCharacter.value.resistances.air =
+        calcElemResistanceBonus() +
+        calcItemContribution(EFFECT_TYPE_DATA.airResistance.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.elementalResistance.rawId);
+      currentCharacter.value.resistances.earth =
+        calcElemResistanceBonus() +
+        calcItemContribution(EFFECT_TYPE_DATA.earthResistance.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.elementalResistance.rawId);
+      currentCharacter.value.resistances.fire =
+        calcElemResistanceBonus() +
+        calcItemContribution(EFFECT_TYPE_DATA.fireResistance.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.elementalResistance.rawId);
 
       currentCharacter.value.resistances.critical =
         currentCharacter.value.characteristics.fortune.criticalResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.criticalResistance.rawId);
@@ -86,17 +105,34 @@ export const useStats = (currentCharacter) => {
 
       // Other stats
       currentCharacter.value.stats.lock =
-        currentCharacter.value.characteristics.agility.lock * 6 +
-        currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
-        calcItemContribution(EFFECT_TYPE_DATA.lock.rawId);
-      currentCharacter.value.stats.dodge =
-        currentCharacter.value.characteristics.agility.dodge * 6 +
-        currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
-        calcItemContribution(EFFECT_TYPE_DATA.dodge.rawId);
+        (currentCharacter.value.characteristics.agility.lock * 6 +
+          currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
+          calcItemContribution(EFFECT_TYPE_DATA.lock.rawId) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.lockFromLevel.rawId) * 0.01 * currentCharacter.value.level) *
+        calcPassivesContribution(EFFECT_TYPE_DATA.lockOverride.rawId) *
+        calcPassivesContribution(EFFECT_TYPE_DATA.lockDoubled.rawId);
+
+      currentCharacter.value.stats.dodge = Math.floor(
+        (currentCharacter.value.characteristics.agility.dodge * 6 +
+          currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
+          calcItemContribution(EFFECT_TYPE_DATA.dodge.rawId) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.dodge.rawId) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.dodgeFromLevel.rawId) * 0.01 * currentCharacter.value.level) *
+          (1 + calcPassivesContribution(EFFECT_TYPE_DATA.percentDodge.rawId) * 0.01) *
+          calcPassivesContribution(EFFECT_TYPE_DATA.dodgeOverride.rawId)
+      );
+
       currentCharacter.value.stats.initiative =
         currentCharacter.value.characteristics.agility.initiative * 6 + calcItemContribution(EFFECT_TYPE_DATA.initiative.rawId);
+
       currentCharacter.value.stats.forceOfWill =
-        currentCharacter.value.characteristics.agility.forceOfWill * 1 + calcItemContribution(EFFECT_TYPE_DATA.forceOfWill.rawId);
+        currentCharacter.value.characteristics.agility.forceOfWill * 1 +
+        calcItemContribution(EFFECT_TYPE_DATA.forceOfWill.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.forceOfWill.rawId);
+
+      currentCharacter.value.stats.armorReceived = calcPassivesContribution(EFFECT_TYPE_DATA.armorReceived.rawId);
+
+      currentCharacter.value.stats.healsPerformed = calcPassivesContribution(EFFECT_TYPE_DATA.healsPerformed.rawId);
 
       // block has a cap of 100%
       currentCharacter.value.stats.block = Math.min(
@@ -116,11 +152,23 @@ export const useStats = (currentCharacter) => {
             100
         )
       );
-      currentCharacter.value.stats.damageInflicted = Math.floor(currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100);
+      currentCharacter.value.stats.damageInflicted = Math.floor(
+        currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100 + calcPassivesContribution(EFFECT_TYPE_DATA.damageInflicted.rawId)
+      );
 
-      currentCharacter.value.stats.range = currentCharacter.value.characteristics.major.rangeAndDamage + calcItemContribution(EFFECT_TYPE_DATA.range.rawId);
+      currentCharacter.value.stats.range =
+        currentCharacter.value.characteristics.major.rangeAndDamage +
+        calcItemContribution(EFFECT_TYPE_DATA.range.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.range.rawId);
+
       currentCharacter.value.stats.control =
-        currentCharacter.value.characteristics.major.controlAndDamage * 2 + calcItemContribution(EFFECT_TYPE_DATA.control.rawId);
+        currentCharacter.value.characteristics.major.controlAndDamage * 2 +
+        calcItemContribution(EFFECT_TYPE_DATA.control.rawId) +
+        calcPassivesContribution(EFFECT_TYPE_DATA.control.rawId);
+
+      currentCharacter.value.stats.indirectDamage = calcPassivesContribution(EFFECT_TYPE_DATA.indirectDamageInflicted.rawId);
+      currentCharacter.value.stats.healsReceived = calcPassivesContribution(EFFECT_TYPE_DATA.healsReceived.rawId);
+      currentCharacter.value.stats.armorGiven = calcPassivesContribution(EFFECT_TYPE_DATA.armorGiven.rawId);
     }
   };
 
@@ -232,15 +280,32 @@ export const useStats = (currentCharacter) => {
 
   const calcPassivesContribution = (targetEffectRawId) => {
     let contribution = 0;
+    let isOverride = targetEffectRawId === EFFECT_TYPE_DATA.dodgeOverride.rawId || targetEffectRawId === EFFECT_TYPE_DATA.lockOverride.rawId;
+    let isDouble = targetEffectRawId === EFFECT_TYPE_DATA.lockDoubled.rawId;
+
+    if (isOverride || isDouble) {
+      // these we multiple because the overrides are used to set the value to 0
+      contribution = 1;
+    }
+
     Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
       if (slotKey.includes(SPELL_CATEGORIES.passive) && currentCharacter.value.spells[slotKey] !== null) {
-        let spellDefData = currentCharacter.value.spells[slotKey];
-        let spellData = getSpellData(spellDefData.id, currentCharacter.value.class);
+        let spellData = currentCharacter.value.spells[slotKey];
+        let targetEffects = null;
+        if (currentCharacter.value.level >= PASSIVE_SPELL_LEVEL_MAP[spellData.id]) {
+          targetEffects = spellData?.normalEffects['2'];
+        } else {
+          targetEffects = spellData?.normalEffects['1'];
+        }
 
-        if (spellData.normalEffects['1']) {
-          spellData.normalEffects['1'].equipEffects.forEach((equipEffect) => {
+        if (targetEffects) {
+          targetEffects.equipEffects.forEach((equipEffect) => {
             if (equipEffect.rawId === targetEffectRawId) {
-              contribution += equipEffect.value;
+              if (isOverride || isDouble) {
+                contribution = equipEffect.value;
+              } else {
+                contribution += equipEffect.value;
+              }
             }
           });
         }

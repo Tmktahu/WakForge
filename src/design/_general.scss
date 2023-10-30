@@ -35,6 +35,19 @@ body {
     border: 1px solid var(--bonta-blue-100);
 }
 
+.spell-tooltip {
+    border-radius: 8px;
+    border: 1px solid var(--bonta-blue-100);
+    overflow: hidden;
+    width: fit-content;
+
+    .spell-name {
+        padding: 6px 4px;
+        background-color: var(--bonta-blue);
+        border-bottom: 1px solid var(--bonta-blue-100);
+    }
+}
+
 .item-card-tooltip {
     background-color: var(--bonta-blue);
     border-radius: 4px;
@@ -120,5 +133,43 @@ body {
 .p-dropdown-items {
     .p-dropdown-item {
         padding: 0;
+    }
+}
+
+.ak-container {
+    .ak-list-element {
+        .ak-main {
+            .ak-main-content {
+                display: flex;
+                flex-direction: column;
+
+                .ak-content {
+                    background: var(--bonta-blue-50);
+
+                    &:not(:has(.ak-title)) {
+                        height: 6px;
+                    }
+
+                    .ak-title {
+                        display: flex;
+                        align-items: center;
+                        padding: 4px 6px;
+                        background: var(--bonta-blue-20);
+                        white-space: nowrap;
+
+                        .picto:has(img) {
+                            width: 24px;
+                            height: 16px;
+
+                            img {
+                                padding: 0px 4px;
+                                width: 24px;
+                                height: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

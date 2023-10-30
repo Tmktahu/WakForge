@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="w-full h-full">
     <div>Active Spells (WIP)</div>
@@ -62,7 +63,10 @@
             </div>
 
             <template v-slot:content>
-              <div class="simple-tooltip">{{ spell.name }}</div>
+              <div class="spell-tooltip">
+                <div class="spell-name">{{ spell.name }}</div>
+                <div v-html="getSpellHtml(spell)" />
+              </div>
             </template>
           </tippy>
         </template>
@@ -100,7 +104,7 @@ import { useSpells, SPELL_CATEGORIES } from '@/models/useSpells';
 
 const currentCharacter = inject('currentCharacter');
 
-const { getClassPassiveSpells } = useSpells();
+const { getClassPassiveSpells, getSpellHtml } = useSpells();
 const passiveSpells = computed(() => {
   return getClassPassiveSpells(currentCharacter.value.class);
 });
