@@ -39,7 +39,6 @@
         </template>
       </div>
     </div>
-    <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, null)" />
   </div>
 </template>
 
@@ -75,7 +74,7 @@ const onCreateCharacter = () => {
 const onDeleteCharacter = (event, targetCharacterId) => {
   confirm.require({
     target: event.currentTarget,
-    message: 'Are you sure? This is irreversable.',
+    message: 'Are you sure? This is irreversible.',
     accept: () => {
       deleteCharacter(targetCharacterId);
     },
