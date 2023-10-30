@@ -2,6 +2,8 @@ import { watch } from 'vue';
 import { EventBus, Events } from '@/eventBus';
 import { masterData } from '@/models/useStorage.js';
 import { CLASS_CONSTANTS, EFFECT_TYPE_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
+import { SPELL_CATEGORIES, useSpells } from '@/models/useSpells';
+const { getSpellData } = useSpells();
 
 export const useStats = (currentCharacter) => {
   const setup = () => {
@@ -63,7 +65,7 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.masteries.distance =
         currentCharacter.value.characteristics.strength.distanceMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.distanceMastery.rawId);
       currentCharacter.value.masteries.critical =
-        currentCharacter.value.characteristics.fortune.criticalMastery * 1 + calcItemContribution(EFFECT_TYPE_DATA.criticalMastery.rawId);
+        currentCharacter.value.characteristics.fortune.criticalMastery * 4 + calcItemContribution(EFFECT_TYPE_DATA.criticalMastery.rawId);
       currentCharacter.value.masteries.rear =
         currentCharacter.value.characteristics.fortune.rearMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.rearMastery.rawId);
       currentCharacter.value.masteries.berserk =
@@ -100,7 +102,10 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.block = Math.min(
         100,
         Math.floor(
-          (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01) * 100
+          (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 +
+            calcItemContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01 +
+            calcPassivesContribution(EFFECT_TYPE_DATA.percentBlock.rawId) * 0.01) *
+            100
         )
       );
 
@@ -221,6 +226,26 @@ export const useStats = (currentCharacter) => {
         contribution = effect['resistanceSlot3']?.value;
       }
     }
+
+    return contribution;
+  };
+
+  const calcPassivesContribution = (targetEffectRawId) => {
+    let contribution = 0;
+    Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
+      if (slotKey.includes(SPELL_CATEGORIES.passive) && currentCharacter.value.spells[slotKey] !== null) {
+        let spellDefData = currentCharacter.value.spells[slotKey];
+        let spellData = getSpellData(spellDefData.id, currentCharacter.value.class);
+
+        if (spellData.normalEffects['1']) {
+          spellData.normalEffects['1'].equipEffects.forEach((equipEffect) => {
+            if (equipEffect.rawId === targetEffectRawId) {
+              contribution += equipEffect.value;
+            }
+          });
+        }
+      }
+    });
 
     return contribution;
   };
