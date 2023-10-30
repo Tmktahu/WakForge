@@ -29,7 +29,7 @@
 
       <div class="flex flex-grow-1 align-items-center" style="max-width: 200px">
         <span class="mr-2">Level</span>
-        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" @input="saveData($event, 'levelText')" />
+        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" :allow-empty="false" @input="saveData($event, 'levelText')" />
         <div class="flex-grow-1">
           <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
         </div>
@@ -56,16 +56,21 @@
 
           <p-tabPanel>
             <template v-slot:header>
-              <div class="flex align-items-center px-3 py-3" :class="{ error: hasCharacteristicsError }">
+              <div class="flex align-items-center px-3 py-3">
                 <span>Equipment</span>
               </div>
             </template>
             <EquipmentSelector ref="equipmentSelector" />
           </p-tabPanel>
 
-          <!-- <p-tabPanel header="Spells">
+          <p-tabPanel>
+            <template v-slot:header>
+              <div class="flex align-items-center px-3 py-3">
+                <span>Spells & Passives</span>
+              </div>
+            </template>
             <SpellSelector />
-          </p-tabPanel> -->
+          </p-tabPanel>
         </p-tabView>
       </div>
     </div>
@@ -82,6 +87,7 @@ import { CLASS_CONSTANTS } from '@/models/useConstants';
 import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsConfig from '@/components/CharacteristicsConfig.vue';
 import EquipmentSelector from '@/components/EquipmentSelector.vue';
+import SpellSelector from '@/components/SpellSelector.vue';
 
 const currentCharacter = inject('currentCharacter');
 

@@ -11,6 +11,7 @@
     </div>
   </div>
 
+  <p-confirmPopup />
   <OldDataDialog ref="oldDataDialog" />
 </template>
 
@@ -23,6 +24,7 @@ import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
+import { useSpells } from '@/models/useSpells';
 import { useLevels } from '@/models/useLevels';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 
@@ -48,6 +50,9 @@ setupLevels();
 
 const { itemFilters, setup: setupItems } = useItems();
 const { currentItemList } = setupItems();
+
+const { setup: setupSpells } = useSpells(currentCharacter);
+setupSpells();
 
 const { setup: setupStats } = useStats(currentCharacter);
 setupStats();
