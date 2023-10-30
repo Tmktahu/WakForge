@@ -11,6 +11,7 @@
     </div>
   </div>
 
+  <p-confirmPopup />
   <OldDataDialog ref="oldDataDialog" />
 </template>
 
@@ -23,6 +24,7 @@ import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
+import { useSpells } from '@/models/useSpells';
 import { useLevels } from '@/models/useLevels';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 
@@ -48,6 +50,9 @@ setupLevels();
 
 const { itemFilters, setup: setupItems } = useItems();
 const { currentItemList } = setupItems();
+
+const { setup: setupSpells } = useSpells(currentCharacter);
+setupSpells();
 
 const { setup: setupStats } = useStats(currentCharacter);
 setupStats();
@@ -77,7 +82,7 @@ provide('currentItemList', currentItemList);
 onMounted(() => {
   console.log(
     // eslint-disable-next-line quotes
-    "%cIf you're reading this, then I may be able to use your help!\nPoke Fryke (fryke) on Discord if you are interested!",
+    "%cIf you're reading this, then I may be able to use your help!\nJoin the Discord server at https://discord.gg/k3v2fXQWJp if you are interested!",
     'font-size: 1rem'
   );
 });

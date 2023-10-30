@@ -119,8 +119,6 @@
         </template>
       </p-virtualScroller>
     </div>
-
-    <p-confirmPopup />
   </div>
 </template>
 

@@ -154,6 +154,18 @@ const getItemEffects = (equipEffects) => {
         newEffect.description = action.description?.en;
         newEffect.longEntry = LONG_EFFECT_ENTRIES.includes(action.definition.id);
 
+        if (targetActionId === 39 && effectObject?.effect?.definition?.description?.en?.includes('Armor received')) {
+          // armor received stat
+          newEffect.id = 10000; // we use this custom ID
+          newEffect.description = effectObject.effect.definition.description.en; // we use this description
+        }
+
+        if (targetActionId === 39 && effectObject?.effect?.definition?.description?.en?.includes('Armor given')) {
+          // armor given stat
+          newEffect.id = 10001; // we use this custom ID
+          newEffect.description = effectObject.effect.definition.description.en; // we use this description
+        }
+
         if (action.definition.id === 1068) {
           newEffect.masterySlot1 = { type: 'empty', value: 0 };
           newEffect.masterySlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;

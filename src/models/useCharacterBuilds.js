@@ -69,11 +69,22 @@ export function useCharacterBuilds(masterData) {
     return newCharacterData;
   };
 
+  const deleteCharacter = (targetCharacterId) => {
+    let targetIndex = masterData.characters
+      .map((char) => {
+        return char.id;
+      })
+      .indexOf(targetCharacterId);
+
+    masterData.characters.splice(targetIndex, 1);
+  };
+
   return {
     setup,
     setContext,
     createNewCharacter,
     createNewCharacterFromAutoBuilder,
+    deleteCharacter,
   };
 }
 
@@ -186,28 +197,26 @@ export const characterDataTemplate = {
     },
   },
 
-  activeSpells: {
-    slot1: { assignedSpell: null, levelRequirement: 0 },
-    slot2: { assignedSpell: null, levelRequirement: 0 },
-    slot3: { assignedSpell: null, levelRequirement: 0 },
-    slot4: { assignedSpell: null, levelRequirement: 0 },
-    slot5: { assignedSpell: null, levelRequirement: 0 },
-    slot6: { assignedSpell: null, levelRequirement: 0 },
-    slot7: { assignedSpell: null, levelRequirement: 10 },
-    slot8: { assignedSpell: null, levelRequirement: 20 },
-    slot9: { assignedSpell: null, levelRequirement: 30 },
-    slot10: { assignedSpell: null, levelRequirement: 40 },
-    slot11: { assignedSpell: null, levelRequirement: 60 },
-    slot12: { assignedSpell: null, levelRequirement: 80 },
-  },
+  spells: {
+    activeSlot1: null,
+    activeSlot2: null,
+    activeSlot3: null,
+    activeSlot4: null,
+    activeSlot5: null,
+    activeSlot6: null,
+    activeSlot7: null,
+    activeSlot8: null,
+    activeSlot9: null,
+    activeSlot10: null,
+    activeSlot11: null,
+    activeSlot12: null,
 
-  passiveSpells: {
-    slot1: { assignedSpell: null, levelRequirement: 10 },
-    slot2: { assignedSpell: null, levelRequirement: 30 },
-    slot3: { assignedSpell: null, levelRequirement: 50 },
-    slot4: { assignedSpell: null, levelRequirement: 100 },
-    slot5: { assignedSpell: null, levelRequirement: 150 },
-    slot6: { assignedSpell: null, levelRequirement: 200 },
+    passiveSlot1: null,
+    passiveSlot2: null,
+    passiveSlot3: null,
+    passiveSlot4: null,
+    passiveSlot5: null,
+    passiveSlot6: null,
   },
 
   equipment: {

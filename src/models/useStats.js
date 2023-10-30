@@ -30,6 +30,12 @@ export const useStats = (currentCharacter) => {
           10 * currentCharacter.value.level) *
           (1 + currentCharacter.value.characteristics.intelligence.percentHealthPoints * 0.04)
       );
+
+      // armor points are capped at 50% of the character's max health
+      currentCharacter.value.armorPoints = Math.min(
+        currentCharacter.value.healthPoints * 0.5,
+        Math.floor(currentCharacter.value.healthPoints * currentCharacter.value.characteristics.intelligence.percentArmorHeathPoints * 0.04)
+      );
       currentCharacter.value.actionPoints =
         6 + currentCharacter.value.characteristics.major.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId);
       currentCharacter.value.movementPoints =

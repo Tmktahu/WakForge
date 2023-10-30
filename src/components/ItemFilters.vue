@@ -2,9 +2,9 @@
   <div class="flex align-items-center flex-wrap mt-3">
     <p-inputText v-model="searchTerm" placeholder="Search Items" class="search-input mr-2" @input="onSearchInput" />
     <div class="flex align-items-center mr-2" style="width: 100%; max-width: 400px">
-      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" @input="onLevelRangeTextInput" />
+      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput" />
       <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
-      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" @input="onLevelRangeTextInput" />
+      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput" />
     </div>
     <p-button class="filter-button" label="Reset Filters" @click="onResetFilters" />
   </div>
@@ -171,7 +171,7 @@
             <div class="px-2 py-1">{{ slotProps.option.text }}</div>
           </template>
         </p-dropdown>
-        <p-inputNumber v-model="filter.value" class="filter-value-input" @input="updateFilters" />
+        <p-inputNumber v-model="filter.value" class="filter-value-input" :allow-empty="false" @input="updateFilters" />
         <p-button class="remove-filter-button" icon="pi pi-trash" @click="onRemoveFilter(filter)" />
       </div>
     </template>

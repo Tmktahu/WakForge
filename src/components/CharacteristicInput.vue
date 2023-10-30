@@ -12,6 +12,7 @@
       button-layout="horizontal"
       increment-button-icon="pi pi-plus"
       decrement-button-icon="pi pi-minus"
+      :allow-empty="false"
       @input="updateFunction"
     />
   </div>
