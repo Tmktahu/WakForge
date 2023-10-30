@@ -110,7 +110,6 @@ const onChange = (event, slotKey) => {
 };
 
 const onEquipSpell = (spell) => {
-  console.log('trying to equip spell', spell);
   if (spell.category === SPELL_CATEGORIES.passive) {
     Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
       if (slotKey.includes(SPELL_CATEGORIES.passive)) {
@@ -128,13 +127,10 @@ const onEquipSpell = (spell) => {
         }
       }
     });
-
-    console.log(currentCharacter.value.spells);
   }
 };
 
 const onRemoveSpell = (slotKey) => {
-  console.log('trying to remove spell', slotKey);
   currentCharacter.value.spells[slotKey] = null;
 };
 

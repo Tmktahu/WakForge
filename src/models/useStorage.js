@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
-export const CURRENT_STORAGE_VERSION = '0.0.2';
+export const CURRENT_STORAGE_VERSION = '0.0.3';
 
 export let masterData = reactive({
   appVersion: '',
@@ -140,13 +140,53 @@ export function useStorage() {
   const migrateData = (oldData) => {
     let newData = oldData;
     // we place migration data shenanigans here
-    oldData.characters.forEach((character) => {
+
+    // this handles old pet and mount data. could remove after some time
+    newData.characters.forEach((character) => {
       if (!([ITEM_SLOT_DATA.PET.id] in character.equipment)) {
         character.equipment[ITEM_SLOT_DATA.PET.id] = null;
       }
 
       if (!([ITEM_SLOT_DATA.MOUNT.id] in character.equipment)) {
         character.equipment[ITEM_SLOT_DATA.MOUNT.id] = null;
+      }
+    });
+
+    // this handles old spell keys. could remove after some time
+    newData.characters.forEach((character) => {
+      if (character.passiveSpells) {
+        delete character.passiveSpells;
+      }
+
+      if (character.activeSpells) {
+        delete character.activeSpells;
+      }
+    });
+
+    // this handles adding new spell keys if they don't exist
+    newData.characters.forEach((character) => {
+      if (!character.spells) {
+        character.spells = {
+          activeSlot1: null,
+          activeSlot2: null,
+          activeSlot3: null,
+          activeSlot4: null,
+          activeSlot5: null,
+          activeSlot6: null,
+          activeSlot7: null,
+          activeSlot8: null,
+          activeSlot9: null,
+          activeSlot10: null,
+          activeSlot11: null,
+          activeSlot12: null,
+
+          passiveSlot1: null,
+          passiveSlot2: null,
+          passiveSlot3: null,
+          passiveSlot4: null,
+          passiveSlot5: null,
+          passiveSlot6: null,
+        };
       }
     });
 

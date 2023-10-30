@@ -36,7 +36,6 @@ export const SPELL_SLOT_DEFS = {
 export const useSpells = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
-      console.log('checking spell vs class', currentCharacter);
       Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
         if (currentCharacter.value.spells[slotKey]?.className !== currentCharacter.value.class) {
           currentCharacter.value.spells[slotKey] = null;
