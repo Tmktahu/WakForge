@@ -146,6 +146,7 @@ export const characterDataTemplate = {
     armorGiven: 0.0,
     armorReceived: 0.0,
     indirectDamage: 0.0,
+    healsReceived: 0.0,
   },
 
   characteristics: {

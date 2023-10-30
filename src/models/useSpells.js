@@ -1,6 +1,7 @@
 import { watch } from 'vue';
 
 import { masterData } from '@/models/useStorage.js';
+import { SHARED_PASSIVE_SPELLS } from '@/models/useConstants';
 
 import spellData from './spell_data.json';
 
@@ -36,7 +37,7 @@ export const useSpells = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
       Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
-        if (currentCharacter.value.spells[slotKey]?.class !== currentCharacter.value.class) {
+        if (currentCharacter.value.spells[slotKey]?.class !== currentCharacter.value.class && currentCharacter.value.spells[slotKey]?.class !== 'all') {
           currentCharacter.value.spells[slotKey] = null;
         }
       });
@@ -54,7 +55,7 @@ export const useSpells = (currentCharacter) => {
       return spellEntry.category === SPELL_CATEGORIES.passive;
     });
 
-    return spells;
+    return [...spells, ...SHARED_PASSIVE_SPELLS];
   };
 
   const getClassActiveSpells = (targetClass) => {
@@ -70,11 +71,19 @@ export const useSpells = (currentCharacter) => {
       return classEntry.className.toLowerCase() === className;
     });
 
-    let targetSpellData = classEntry.spells.find((spellEntry) => {
+    let mergedSpellData = [...classEntry.spells, ...SHARED_PASSIVE_SPELLS];
+
+    let targetSpellData = mergedSpellData.find((spellEntry) => {
       return parseInt(spellEntry.id) === spellId;
     });
 
     return targetSpellData;
+  };
+
+  const getSpellHtml = (spell) => {
+    return (spell?.normalEffects['1']?.html || '')
+      .replaceAll('<img src="http://staticns.ankama.com/wakfu/portal/game/element/b.png">', '') // wtf even is this?? a bold effect via an image? excuse me?
+      .replaceAll('http://staticns.ankama.com/wakfu/portal/game/element', 'https://tmktahu.github.io/WakfuAssets/misc');
   };
 
   return {
@@ -82,5 +91,6 @@ export const useSpells = (currentCharacter) => {
     getClassPassiveSpells,
     getClassActiveSpells,
     getSpellData,
+    getSpellHtml,
   };
 };

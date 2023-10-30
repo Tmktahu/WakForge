@@ -625,3 +625,406 @@ export const EFFECT_TYPE_DATA = {
     text: '% Dodge',
   },
 };
+
+export const SHARED_PASSIVE_SPELLS = [
+  {
+    class: 'all',
+    name: 'Evasion',
+    description: 'This passive is ideal for getting away from it all!',
+    iconId: 4957,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'dDodge',
+            rawId: 175,
+            text: 'Dodge',
+            value: 60,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'dodge',
+            rawId: 175,
+            text: 'Dodge',
+            value: 180,
+          },
+        ],
+      },
+    },
+    id: 20000,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Interception',
+    // eslint-disable-next-line prettier/prettier
+    description: 'Hey, where do you think you\'re going? You\'re staying right there!',
+    iconId: 4958,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'lock',
+            rawId: 173,
+            text: 'Lock',
+            value: 60,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'lock',
+            rawId: 173,
+            text: 'Lock',
+            value: 180,
+          },
+        ],
+      },
+    },
+    id: 20001,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Inhalation',
+    description: 'A deep breath, a cold drink, and... to battle!',
+    iconId: 4956,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'initiative',
+            rawId: 171,
+            text: 'Initiative',
+            value: 60,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'initiative',
+            rawId: 171,
+            text: 'Initiative',
+            value: 120,
+          },
+        ],
+      },
+    },
+    id: 20002,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Motivation',
+    // eslint-disable-next-line prettier/prettier
+    description: 'It\s easy to be one step ahead of your enemies if you are Motivated.',
+    iconId: 5237,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'actionPoints',
+            rawId: 31,
+            text: 'AP',
+            value: 1,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 20,
+            isNegative: true,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'actionPoints',
+            rawId: 1,
+            text: 'AP',
+            value: 1,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 20,
+            isNegative: true,
+          },
+          {
+            id: 'forceOfWill',
+            rawId: 177,
+            text: 'Force of Will',
+            value: 10,
+          },
+        ],
+      },
+    },
+    id: 20003,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Medicine',
+    description: 'Need a healer in your team? Here I am!',
+    iconId: 5146,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 25,
+          },
+          {
+            id: 'armorGiven',
+            rawId: 10000,
+            text: '% Armor Given',
+            value: 20,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 15,
+            isNegative: true,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 30,
+          },
+          {
+            id: 'armorGiven',
+            rawId: 10000,
+            text: '% Armor Given',
+            value: 25,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 15,
+            isNegative: true,
+          },
+        ],
+      },
+    },
+    id: 20004,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Rock',
+    description: 'Solid as a rock, let me take that damage for you!',
+    iconId: 5145,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'percentHealthPoints',
+            rawId: 10008,
+            text: '% Health Points',
+            value: 30,
+          },
+          {
+            id: 'healsReceived',
+            rawId: 10005,
+            text: '% Heals Received',
+            value: 20,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 25,
+            isNegative: true,
+          },
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 50,
+            isNegative: true,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'percentHealthPoints',
+            rawId: 10008,
+            text: '% Health Points',
+            value: 60,
+          },
+          {
+            id: 'healsReceived',
+            rawId: 10005,
+            text: '% Heals Received',
+            value: 25,
+          },
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 25,
+            isNegative: true,
+          },
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 50,
+            isNegative: true,
+          },
+        ],
+      },
+    },
+    id: 20005,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Carnage',
+    description: 'Want to know the secret ingredient in carnage rolls, extra damage!',
+    iconId: 5144,
+    normalEffects: {
+      // eslint-disable-next-line prettier/prettier
+      '1': {
+        level: '1',
+        equipEffects: [
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 10,
+          },
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 30,
+            isNegative: true,
+          },
+        ],
+      },
+      // eslint-disable-next-line prettier/prettier
+      '2': {
+        level: '2',
+        equipEffects: [
+          {
+            id: 'damageInflicted',
+            rawId: 1,
+            text: '% Damage Inflicted',
+            value: 15,
+          },
+          {
+            id: 'healsPerformed',
+            rawId: 10002,
+            text: '% Heals Performed',
+            value: 30,
+            isNegative: true,
+          },
+        ],
+      },
+    },
+    id: 20006,
+    category: 'passive',
+  },
+  {
+    class: 'all',
+    name: 'Fluctuation',
+    description:
+      'Fluctuation increases the damages of the next spell cast on this target by whoever placed this state. Fluctuation is consumed in the process.',
+    iconId: 5621,
+    normalEffects: {},
+    id: 20007,
+    category: 'passive',
+  },
+];
+
+export const PASSIVE_SPELL_LEVEL_MAP = {
+  20000: 0, // Evasion
+  20001: 0, // Interception
+  20002: 0, // Inhalation
+  20003: 0, // Motivation
+  20004: 0, // Medicine
+  20005: 0, // Rock
+  20006: 0, // Carnage
+  20007: 0, // Fluctuation
+  5122: 0, // Sram Ambush
+  5123: 0, // Sram Bloody Blade
+  4606: 0, // Sram Brutal Assault
+  5089: 0, // Sram Crazy Scheme
+  5126: 0, // Sram Dupery
+  5124: 0, // Sram Fraud
+  4608: 0, // Sram Murderer
+  4607: 0, // Sram Shadow Master
+  4610: 0, // Sram Sram to the Bone
+  4609: 0, // Sram Trap Master
+  4797: 0, // Iop Authority
+  5100: 0, // Iop Bravery
+  4796: 0, // Iop Compulsion
+  5101: 0, // Iop Furious Charge
+  5102: 0, // Iop King of the Hill
+  4799: 0, // Iop Locking Pro
+  5104: 0, // Iop Seismic Rift
+  4798: 0, // Iop Show Off
+  5103: 0, // Iop Tormentor
+  4795: 0, // Iop Virility
+  916: 0, // Sadida Doll Link
+  933: 0, // Sadida Explodoll
+  913: 0, // Sadida Green Guard
+  5055: 0, // Sadida Harmless Toxin
+  917: 0, // Sadida Knowledge of Dolls
+  912: 0, // Sadida Lone Sadida
+  4959: 0, // Sadida Sadida Prayer
+  5234: 0, // Sadida Venomous
+  5058: 0, // Sadida Wild Whispers
+  4725: 0, // Pandawa Aggressive Barrel
+  5148: 0, // Pandawa Bambottle
+  4724: 0, // Pandawa Bottomless Barrel
+  6846: 0, // Pandawa Buzzed
+  4722: 0, // Pandawa Cocktail
+  4723: 0, // Pandawa Master of Merriment
+  4726: 0, // Pandawa Milky Instinct
+  5151: 0, // Pandawa Pandemic
+  5149: 0, // Pandawa Poisoned Chalice
+  5150: 0, // Pandawa Refreshment
+};

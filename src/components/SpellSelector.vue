@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="w-full h-full">
     <div>Active Spells (WIP)</div>
@@ -38,12 +39,22 @@
     <div class="flex mt-2">
       <div class="flex gap-1 mr-3" style="max-width: 260px">
         <template v-for="index in 6" :key="index">
-          <div v-if="currentCharacter.spells['passiveSlot' + index] !== null" class="spell-button" @click="onRemoveSpell('passiveSlot' + index)">
-            <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-            <p-image
-              :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['passiveSlot' + index].iconId}.png`"
-              image-style="width: 40px"
-            />
+          <div v-if="currentCharacter.spells['passiveSlot' + index] !== null">
+            <tippy duration="0">
+              <div class="spell-button" @click="onRemoveSpell('passiveSlot' + index)">
+                <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
+                <p-image
+                  :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['passiveSlot' + index].iconId}.png`"
+                  image-style="width: 40px"
+                />
+              </div>
+              <template v-slot:content>
+                <div class="spell-tooltip">
+                  <div class="spell-name">{{ currentCharacter.spells['passiveSlot' + index].name }}</div>
+                  <div v-html="getSpellHtml(currentCharacter.spells['passiveSlot' + index])" />
+                </div>
+              </template>
+            </tippy>
           </div>
 
           <div v-else>
@@ -62,7 +73,10 @@
             </div>
 
             <template v-slot:content>
-              <div class="simple-tooltip">{{ spell.name }}</div>
+              <div class="spell-tooltip">
+                <div class="spell-name">{{ spell.name }}</div>
+                <div v-html="getSpellHtml(spell)" />
+              </div>
             </template>
           </tippy>
         </template>
@@ -100,7 +114,7 @@ import { useSpells, SPELL_CATEGORIES } from '@/models/useSpells';
 
 const currentCharacter = inject('currentCharacter');
 
-const { getClassPassiveSpells } = useSpells();
+const { getClassPassiveSpells, getSpellHtml } = useSpells();
 const passiveSpells = computed(() => {
   return getClassPassiveSpells(currentCharacter.value.class);
 });
