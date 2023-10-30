@@ -115,8 +115,6 @@
         <EditEquipmentModal ref="editEquipmentModal" />
       </template>
     </template>
-
-    <p-confirmPopup />
   </div>
 </template>
 
@@ -308,6 +306,7 @@ const onGotoEncyclopedia = (item) => {
   width: 60px;
   height: 60px;
   padding: 0px;
+  border-radius: 4px;
 
   background: var(--bonta-blue-80);
 
