@@ -33,7 +33,7 @@
 
           <div class="flex flex-grow-1 align-items-center">
             <span class="mr-2">Level</span>
-            <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="230" :step="15" />
+            <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="230" :step="15" :allow-empty="false" />
             <div class="flex-grow-1 mr-2">
               <p-slider v-model="selectedLevel" :min="20" :max="230" :step="15" />
             </div>
@@ -108,7 +108,7 @@
 
           <div class="flex flex-column ml-3 mr-3">
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetApAmount" class="number-input" />
+              <p-inputNumber v-model="targetApAmount" class="number-input" :allow-empty="false" />
               <div class="mx-2">Target AP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -119,7 +119,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetMpAmount" class="number-input" />
+              <p-inputNumber v-model="targetMpAmount" class="number-input" :allow-empty="false" />
               <div class="mx-2">Target MP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -130,7 +130,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetRangeAmount" class="number-input" />
+              <p-inputNumber v-model="targetRangeAmount" class="number-input" :allow-empty="false" />
               <div class="mx-2">Target Range Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -141,7 +141,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetWpAmount" class="number-input" />
+              <p-inputNumber v-model="targetWpAmount" class="number-input" :allow-empty="false" />
               <div class="mx-2">Target WP Amount</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
@@ -152,7 +152,7 @@
             </div>
 
             <div class="flex align-items-center mb-2">
-              <p-inputNumber v-model="targetNumElements" :min="0" :max="4" class="number-input" />
+              <p-inputNumber v-model="targetNumElements" :min="0" :max="4" class="number-input" :allow-empty="false" />
               <div class="mx-2">Number of Elements</div>
               <tippy placement="left">
                 <i class="mdi mdi-information-outline" />
