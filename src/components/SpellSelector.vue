@@ -7,7 +7,10 @@
           <div v-if="currentCharacter.spells['activeSlot' + index] !== null" class="spell-button disabled" @click="onRemoveSpell(spell)">
             <div class="disabled-mask"> {{}} </div>
             <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-            <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['activeSlot' + index].id}.png`" image-style="width: 40px" />
+            <p-image
+              :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['activeSlot' + index].iconId}.png`"
+              image-style="width: 40px"
+            />
           </div>
 
           <div v-else class="spell-button disabled">
@@ -37,7 +40,10 @@
         <template v-for="index in 6" :key="index">
           <div v-if="currentCharacter.spells['passiveSlot' + index] !== null" class="spell-button" @click="onRemoveSpell('passiveSlot' + index)">
             <div class="hover-icon remove"> <i class="pi pi-trash" /> </div>
-            <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['passiveSlot' + index].id}.png`" image-style="width: 40px" />
+            <p-image
+              :src="`https://tmktahu.github.io/WakfuAssets/spells/${currentCharacter.spells['passiveSlot' + index].iconId}.png`"
+              image-style="width: 40px"
+            />
           </div>
 
           <div v-else>
@@ -52,7 +58,7 @@
             <div class="spell-button" :class="{ disabled: hasSpellEquipped(spell) }" @click="onEquipSpell(spell)">
               <div class="hover-icon add"> <i class="mdi mdi-plus-thick" /> </div>
               <div class="disabled-mask" />
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.id}.png`" image-style="width: 40px" />
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.iconId}.png`" image-style="width: 40px" />
             </div>
 
             <template v-slot:content>
@@ -94,20 +100,10 @@ import { useSpells, SPELL_CATEGORIES } from '@/models/useSpells';
 
 const currentCharacter = inject('currentCharacter');
 
-// const currentActiveSpells = computed(() => currentCharacter.activeSpells)
-
 const { getClassPassiveSpells } = useSpells();
 const passiveSpells = computed(() => {
   return getClassPassiveSpells(currentCharacter.value.class);
 });
-
-const onChange = (event, slotKey) => {
-  Object.keys(currentCharacter.value.activeSpells).forEach((key) => {
-    if (key !== slotKey && currentCharacter.value.activeSpells[key]?.assignedSpell?.id === event.value.id) {
-      currentCharacter.value.activeSpells[key].assignedSpell = null;
-    }
-  });
-};
 
 const onEquipSpell = (spell) => {
   if (spell.category === SPELL_CATEGORIES.passive) {

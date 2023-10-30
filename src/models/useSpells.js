@@ -3,7 +3,6 @@ import { watch } from 'vue';
 import { masterData } from '@/models/useStorage.js';
 
 import spellData from './spell_data.json';
-import spellDefinitionData from './spell_definitions.json';
 
 export const SPELL_CATEGORIES = {
   passive: 'passive',
@@ -37,7 +36,7 @@ export const useSpells = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
       Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
-        if (currentCharacter.value.spells[slotKey]?.className !== currentCharacter.value.class) {
+        if (currentCharacter.value.spells[slotKey]?.class !== currentCharacter.value.class) {
           currentCharacter.value.spells[slotKey] = null;
         }
       });
@@ -47,15 +46,41 @@ export const useSpells = (currentCharacter) => {
   };
 
   const getClassPassiveSpells = (targetClass) => {
-    let spells = spellDefinitionData.filter((spell) => {
-      return spell.className === targetClass && spell.category === SPELL_CATEGORIES.passive;
+    let targetClassEntry = spellData.find((classEntry) => {
+      return classEntry.className.toLowerCase() === targetClass;
+    });
+
+    let spells = targetClassEntry.spells.filter((spellEntry) => {
+      return spellEntry.category === SPELL_CATEGORIES.passive;
     });
 
     return spells;
   };
 
+  const getClassActiveSpells = (targetClass) => {
+    let spells = spellData.filter((spell) => {
+      return spell.className === targetClass && spell.category === SPELL_CATEGORIES.active;
+    });
+
+    return spells;
+  };
+
+  const getSpellData = (spellId, className) => {
+    let classEntry = spellData.find((classEntry) => {
+      return classEntry.className.toLowerCase() === className;
+    });
+
+    let targetSpellData = classEntry.spells.find((spellEntry) => {
+      return parseInt(spellEntry.id) === spellId;
+    });
+
+    return targetSpellData;
+  };
+
   return {
     setup,
     getClassPassiveSpells,
+    getClassActiveSpells,
+    getSpellData,
   };
 };
