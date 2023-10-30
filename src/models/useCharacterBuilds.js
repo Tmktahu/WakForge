@@ -69,11 +69,22 @@ export function useCharacterBuilds(masterData) {
     return newCharacterData;
   };
 
+  const deleteCharacter = (targetCharacterId) => {
+    let targetIndex = masterData.characters
+      .map((char) => {
+        return char.id;
+      })
+      .indexOf(targetCharacterId);
+
+    masterData.characters.splice(targetIndex, 1);
+  };
+
   return {
     setup,
     setContext,
     createNewCharacter,
     createNewCharacterFromAutoBuilder,
+    deleteCharacter,
   };
 }
 
@@ -184,6 +195,28 @@ export const characterDataTemplate = {
       percentDamageInflicted: 0,
       elementalResistance: 0,
     },
+  },
+
+  spells: {
+    activeSlot1: null,
+    activeSlot2: null,
+    activeSlot3: null,
+    activeSlot4: null,
+    activeSlot5: null,
+    activeSlot6: null,
+    activeSlot7: null,
+    activeSlot8: null,
+    activeSlot9: null,
+    activeSlot10: null,
+    activeSlot11: null,
+    activeSlot12: null,
+
+    passiveSlot1: null,
+    passiveSlot2: null,
+    passiveSlot3: null,
+    passiveSlot4: null,
+    passiveSlot5: null,
+    passiveSlot6: null,
   },
 
   activeSpells: {

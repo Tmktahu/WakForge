@@ -13,7 +13,7 @@
 
       <div class="character-enties-wrapper flex flex-column mt-2 pr-2 pb-3">
         <template v-for="character in masterData.characters" :key="character.id">
-          <div class="character-entry py-2 mt-2" @click="gotoBuild(character.id)">
+          <div class="character-entry py-2 mt-2" @click="gotoBuild($event, character.id)">
             <div class="character-info flex align-items-center justify-content-left flex-grow-1">
               <div class="ml-3">
                 <p-image
@@ -29,14 +29,17 @@
               <p-divider class="mx-2" layout="vertical" />
               <div class="class-level">Lvl {{ character.level }}</div>
               <p-divider class="mx-2" layout="vertical" />
+              <p-button class="by-level-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, character.id)" />
             </div>
             <div class="character-items flex-grow-1">
               <EquipmentButtons :character="character" read-only />
             </div>
+            <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, character.id)" />
           </div>
         </template>
       </div>
     </div>
+    <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, null)" />
   </div>
 </template>
 
@@ -48,17 +51,17 @@ import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
-
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
+
+import { useConfirm } from 'primevue/useconfirm';
+const confirm = useConfirm();
 
 const router = useRouter();
 const masterData = inject('masterData');
 
-const { createNewCharacter } = useCharacterBuilds(masterData);
+const { createNewCharacter, deleteCharacter } = useCharacterBuilds(masterData);
 
 const onCreateCharacter = () => {
-  // we want to init new character data and then route to it
-
   let newCharacterData = createNewCharacter();
 
   router.push({
@@ -69,13 +72,26 @@ const onCreateCharacter = () => {
   });
 };
 
-const gotoBuild = (id) => {
-  router.push({
-    name: CHARACTER_BUILDER_ROUTE,
-    params: {
-      characterId: id,
+const onDeleteCharacter = (event, targetCharacterId) => {
+  confirm.require({
+    target: event.currentTarget,
+    message: 'Are you sure? This is irreversable.',
+    accept: () => {
+      deleteCharacter(targetCharacterId);
     },
   });
+};
+
+const gotoBuild = (event, id) => {
+  // we have to do this nonsense so the confirm popup will work right. can't stop propogation
+  if (!event.target.classList.contains('delete-button')) {
+    router.push({
+      name: CHARACTER_BUILDER_ROUTE,
+      params: {
+        characterId: id,
+      },
+    });
+  }
 };
 </script>
 
@@ -110,7 +126,7 @@ const gotoBuild = (id) => {
   overflow: hidden;
 }
 
-.character-enties-wrapper {
+:deep(.character-enties-wrapper) {
   overflow-y: auto;
 
   .class-name {
@@ -121,6 +137,26 @@ const gotoBuild = (id) => {
   .class-level {
     text-align: center;
     min-width: 60px;
+  }
+
+  .delete-button {
+    width: 40px;
+    height: 40px;
+    background-color: var(--error-70);
+
+    .p-button-icon {
+      font-size: 24px;
+      font-weight: 800;
+      pointer-events: none;
+    }
+
+    &:hover {
+      background-color: var(--error-90);
+    }
+  }
+
+  .by-level-delete-button {
+    display: none;
   }
 
   @media (max-width: 1024px) {
@@ -150,6 +186,14 @@ const gotoBuild = (id) => {
 
       .character-items {
         padding: 0 16px;
+      }
+
+      .by-level-delete-button {
+        display: block;
+      }
+
+      .at-end-delete-button {
+        display: none;
       }
     }
   }
