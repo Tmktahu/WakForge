@@ -169,7 +169,12 @@ export const ITEM_TYPE_FILTERS = [
 ];
 
 export const EFFECT_TYPE_DATA = {
-  // skipped 1
+  // unsure if this first one is correct
+  damageInflicted: {
+    id: 'damageInflicted',
+    rawId: 1,
+    text: '% Damage Inflicted',
+  },
   healthPoints: {
     id: 'healthPoints',
     rawId: 20,
@@ -196,15 +201,15 @@ export const EFFECT_TYPE_DATA = {
     rawId: 31,
     text: 'AP',
   },
-  armorReceived: {
-    id: 'armorReceived',
-    rawId: 39,
-    text: 'Armor Received',
-  },
+  // armorReceived: {
+  //   id: 'armorReceived',
+  //   rawId: 39,
+  //   text: '% Armor Received',
+  // },
   armorReceivedReduction: {
     id: 'armorReceivedReduction',
     rawId: 40,
-    text: 'Armor Received',
+    text: '% Armor Received',
     isNegative: true,
   },
   movementPoints: {
@@ -552,5 +557,71 @@ export const EFFECT_TYPE_DATA = {
     id: 'harvestingQuantity',
     rawId: 2001,
     text: 'Harvesting Quantity',
+  },
+  // ones below this point were picked out manually
+  armorGiven: {
+    id: 'armorGiven',
+    rawId: 10000,
+    text: '% Armor Given',
+  },
+  armorReceived: {
+    id: 'armorReceived',
+    rawId: 10001,
+    text: '% Armor Received',
+  },
+  healsPerformed: {
+    id: 'healsPerformed',
+    rawId: 10002,
+    text: '% Heals Performed',
+  },
+  indirectDamageInflicted: {
+    id: 'indirectDamageInflicted',
+    rawId: 10003,
+    text: '% Indirect Damage Inflicted',
+  },
+  dodgeOverride: {
+    id: 'dodgeOverride',
+    rawId: 10004,
+    text: 'Dodge Override',
+  },
+  healsReceived: {
+    id: 'healsReceived',
+    rawId: 10005,
+    text: '% Heals Received',
+  },
+  healthPointsFromLevel: {
+    id: 'healthPointsFromLevel',
+    rawId: 10006,
+    text: 'Health Points from Level',
+  },
+  lockOverride: {
+    id: 'lockOverride',
+    rawId: 10007,
+    text: 'Lock Override',
+  },
+  percentHealthPoints: {
+    id: 'percentHealthPoints',
+    rawId: 10008,
+    text: '% Health Points',
+  },
+  lockDoubled: {
+    id: 'lockDoubled',
+    rawId: 10009,
+    text: 'Lock Doubled',
+  },
+  dodgeFromLevel: {
+    id: 'dodgeFromLevel',
+    rawId: 10010,
+    text: 'Dodge from Level',
+  },
+  lockFromLevel: {
+    id: 'lockFromLevel',
+    rawId: 10011,
+    text: 'Lock from Level',
+  },
+  percentDodge: {
+    id: 'percentDodge',
+    rawId: 10012,
+    text: '% Dodge',
   },
 };
