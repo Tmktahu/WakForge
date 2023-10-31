@@ -24,7 +24,7 @@ import { masterData, useStorage } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
-import { useSpells } from '@/models/useSpells';
+import { useSpells } from '@/models/spells/useSpells';
 import { useLevels } from '@/models/useLevels';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 

@@ -980,14 +980,14 @@ export const SHARED_PASSIVE_SPELLS = [
 ];
 
 export const PASSIVE_SPELL_LEVEL_MAP = {
-  20000: 0, // Evasion
-  20001: 0, // Interception
-  20002: 0, // Inhalation
-  20003: 0, // Motivation
-  20004: 0, // Medicine
-  20005: 0, // Rock
-  20006: 0, // Carnage
-  20007: 0, // Fluctuation
+  20000: 105, // Evasion
+  20001: 115, // Interception
+  20002: 125, // Inhalation
+  20003: 135, // Motivation
+  20004: 155, // Medicine
+  20005: 165, // Rock
+  20006: 175, // Carnage
+  20007: 185, // Fluctuation
   5122: 0, // Sram Ambush
   5123: 0, // Sram Bloody Blade
   4606: 0, // Sram Brutal Assault

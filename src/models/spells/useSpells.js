@@ -1,9 +1,11 @@
 import { watch } from 'vue';
+import { marked } from 'marked';
 
 import { masterData } from '@/models/useStorage.js';
-import { SHARED_PASSIVE_SPELLS } from '@/models/useConstants';
+import { SHARED_PASSIVE_SPELLS, PASSIVE_SPELL_LEVEL_MAP } from '@/models/useConstants';
 
 import spellData from './spell_data.json';
+import { SPELL_TOOLTIP_DATA } from './spellTooltipDefs';
 
 export const SPELL_CATEGORIES = {
   passive: 'passive',
@@ -80,10 +82,49 @@ export const useSpells = (currentCharacter) => {
     return targetSpellData;
   };
 
+  const getSpellLevel = (spell) => {
+    if (spell.category === SPELL_CATEGORIES.passive) {
+      let levelCheckpoint = PASSIVE_SPELL_LEVEL_MAP[spell.id];
+      if (currentCharacter.value.level >= levelCheckpoint) {
+        return 2;
+      } else {
+        return 1;
+      }
+    } else {
+      return currentCharacter.value.level;
+    }
+  };
+
   const getSpellHtml = (spell) => {
-    return (spell?.normalEffects['1']?.html || '')
-      .replaceAll('<img src="http://staticns.ankama.com/wakfu/portal/game/element/b.png">', '') // wtf even is this?? a bold effect via an image? excuse me?
-      .replaceAll('http://staticns.ankama.com/wakfu/portal/game/element', 'https://tmktahu.github.io/WakfuAssets/misc');
+    let tooltipDataEntry = SPELL_TOOLTIP_DATA[spell.id];
+
+    if (tooltipDataEntry) {
+      let markdown = tooltipDataEntry.markdown;
+
+      if (tooltipDataEntry.value1) {
+        markdown = markdown.replaceAll('{value1}', tooltipDataEntry.value1(getSpellLevel(spell)));
+      }
+
+      if (tooltipDataEntry.value2) {
+        markdown = markdown.replaceAll('{value2}', tooltipDataEntry.value2(getSpellLevel(spell)));
+      }
+
+      if (tooltipDataEntry.value3) {
+        markdown = markdown.replaceAll('{value3}', tooltipDataEntry.value3(getSpellLevel(spell)));
+      }
+
+      if (tooltipDataEntry.img1) {
+        markdown = markdown.replaceAll('{img1}', `![](https://tmktahu.github.io/WakfuAssets/misc/${tooltipDataEntry.img1})`);
+      }
+
+      console.log(markdown);
+      let html = marked.parse(markdown, { breaks: true });
+      return html;
+    } else {
+      return (spell?.normalEffects['1']?.html || '')
+        .replaceAll('<img src="http://staticns.ankama.com/wakfu/portal/game/element/b.png">', '') // wtf even is this?? a bold effect via an image? excuse me?
+        .replaceAll('http://staticns.ankama.com/wakfu/portal/game/element', 'https://tmktahu.github.io/WakfuAssets/misc');
+    }
   };
 
   return {
