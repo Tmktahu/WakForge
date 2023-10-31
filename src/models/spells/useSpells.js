@@ -117,7 +117,6 @@ export const useSpells = (currentCharacter) => {
         markdown = markdown.replaceAll('{img1}', `![](https://tmktahu.github.io/WakfuAssets/misc/${tooltipDataEntry.img1})`);
       }
 
-      console.log(markdown);
       let html = marked.parse(markdown, { breaks: true });
       return html;
     } else {
