@@ -74,7 +74,7 @@
 
             <template v-slot:content>
               <div class="spell-tooltip">
-                <div class="spell-name px-2 py-1">{{ spell.name }}</div>
+                <div class="spell-name px-2 py-1">{{ spell.name }} (Level {{ getSpellLevel(spell) }})</div>
                 <div class="spell-description px-2 py-1">{{ spell.description }}</div>
                 <div class="spell-details" v-html="getSpellHtml(spell)" />
               </div>
@@ -115,7 +115,7 @@ import { useSpells, SPELL_CATEGORIES } from '@/models/spells/useSpells';
 
 const currentCharacter = inject('currentCharacter');
 
-const { getClassPassiveSpells, getSpellHtml } = useSpells(currentCharacter);
+const { getClassPassiveSpells, getSpellHtml, getSpellLevel } = useSpells(currentCharacter);
 const passiveSpells = computed(() => {
   return getClassPassiveSpells(currentCharacter.value.class);
 });
