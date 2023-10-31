@@ -120,7 +120,8 @@ export const useSpells = (currentCharacter) => {
       let html = marked.parse(markdown, { breaks: true });
       return html;
     } else {
-      return (spell?.normalEffects['1']?.html || '')
+      let spellLevel = getSpellLevel(spell);
+      return (spell?.normalEffects[spellLevel]?.html || '')
         .replaceAll('<img src="http://staticns.ankama.com/wakfu/portal/game/element/b.png">', '') // wtf even is this?? a bold effect via an image? excuse me?
         .replaceAll('http://staticns.ankama.com/wakfu/portal/game/element', 'https://tmktahu.github.io/WakfuAssets/misc');
     }

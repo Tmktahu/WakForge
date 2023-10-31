@@ -50,8 +50,11 @@
               </div>
               <template v-slot:content>
                 <div class="spell-tooltip">
-                  <div class="spell-name">{{ currentCharacter.spells['passiveSlot' + index].name }}</div>
-                  <div v-html="getSpellHtml(currentCharacter.spells['passiveSlot' + index])" />
+                  <div class="spell-name px-2 py-1">
+                    {{ currentCharacter.spells['passiveSlot' + index].name }} (Level {{ getSpellLevel(currentCharacter.spells['passiveSlot' + index]) }})
+                  </div>
+                  <div class="spell-description px-2 py-1">{{ currentCharacter.spells['passiveSlot' + index].description }}</div>
+                  <div class="spell-details" v-html="getSpellHtml(currentCharacter.spells['passiveSlot' + index])" />
                 </div>
               </template>
             </tippy>
