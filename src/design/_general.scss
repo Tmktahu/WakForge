@@ -35,19 +35,6 @@ body {
     border: 1px solid var(--bonta-blue-100);
 }
 
-.spell-tooltip {
-    border-radius: 8px;
-    border: 1px solid var(--bonta-blue-100);
-    overflow: hidden;
-    width: fit-content;
-
-    .spell-name {
-        padding: 6px 4px;
-        background-color: var(--bonta-blue);
-        border-bottom: 1px solid var(--bonta-blue-100);
-    }
-}
-
 .item-card-tooltip {
     background-color: var(--bonta-blue);
     border-radius: 4px;
@@ -173,3 +160,58 @@ body {
         }
     }
 }
+
+
+.spell-tooltip {
+    border-radius: 8px;
+    border: 1px solid var(--bonta-blue-100);
+    overflow: hidden;
+    width: fit-content;
+
+    .spell-name {
+        background-color: var(--bonta-blue);
+    }
+
+    .spell-description {
+        background-color: var(--bonta-blue);
+        border-bottom: 1px solid var(--bonta-blue-100);
+    }
+
+    .spell-details {
+        p {
+            display: flex;
+            align-items: center;
+            margin: 0px;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            background-color: var(--bonta-blue-30);
+        }
+    
+        ul {
+            margin: 0;
+            padding-top: 4px;
+            padding-bottom: 4px;
+            padding-left: 30px;
+            background-color: var(--bonta-blue-50);
+
+            li {
+                padding-top: 1px;
+                padding-bottom: 1px;
+
+                img {
+                    margin-bottom: -2px;
+                }
+            }
+        }
+
+        img {
+            margin-left: 3px;
+            margin-right: 3px;
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+

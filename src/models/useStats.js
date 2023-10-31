@@ -2,7 +2,7 @@ import { watch } from 'vue';
 import { EventBus, Events } from '@/eventBus';
 import { masterData } from '@/models/useStorage.js';
 import { CLASS_CONSTANTS, EFFECT_TYPE_DATA, LEVELABLE_ITEMS, PASSIVE_SPELL_LEVEL_MAP } from '@/models/useConstants';
-import { SPELL_CATEGORIES, useSpells } from '@/models/useSpells';
+import { SPELL_CATEGORIES, useSpells } from '@/models/spells/useSpells';
 const { getSpellData } = useSpells();
 
 export const useStats = (currentCharacter) => {
