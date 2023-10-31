@@ -132,5 +132,6 @@ export const useSpells = (currentCharacter) => {
     getClassActiveSpells,
     getSpellData,
     getSpellHtml,
+    getSpellLevel,
   };
 };

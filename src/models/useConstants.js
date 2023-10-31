@@ -988,43 +988,44 @@ export const PASSIVE_SPELL_LEVEL_MAP = {
   20005: 165, // Rock
   20006: 175, // Carnage
   20007: 185, // Fluctuation
-  5122: 0, // Sram Ambush
-  5123: 0, // Sram Bloody Blade
-  4606: 0, // Sram Brutal Assault
-  5089: 0, // Sram Crazy Scheme
-  5126: 0, // Sram Dupery
-  5124: 0, // Sram Fraud
-  4608: 0, // Sram Murderer
-  4607: 0, // Sram Shadow Master
-  4610: 0, // Sram Sram to the Bone
-  4609: 0, // Sram Trap Master
-  4797: 0, // Iop Authority
-  5100: 0, // Iop Bravery
-  4796: 0, // Iop Compulsion
-  5101: 0, // Iop Furious Charge
-  5102: 0, // Iop King of the Hill
-  4799: 0, // Iop Locking Pro
-  5104: 0, // Iop Seismic Rift
-  4798: 0, // Iop Show Off
-  5103: 0, // Iop Tormentor
-  4795: 0, // Iop Virility
-  916: 0, // Sadida Doll Link
-  933: 0, // Sadida Explodoll
-  913: 0, // Sadida Green Guard
-  5055: 0, // Sadida Harmless Toxin
-  917: 0, // Sadida Knowledge of Dolls
-  912: 0, // Sadida Lone Sadida
-  4959: 0, // Sadida Sadida Prayer
-  5234: 0, // Sadida Venomous
-  5058: 0, // Sadida Wild Whispers
-  4725: 0, // Pandawa Aggressive Barrel
-  5148: 0, // Pandawa Bambottle
-  4724: 0, // Pandawa Bottomless Barrel
-  6846: 0, // Pandawa Buzzed
-  4722: 0, // Pandawa Cocktail
-  4723: 0, // Pandawa Master of Merriment
-  4726: 0, // Pandawa Milky Instinct
-  5151: 0, // Pandawa Pandemic
-  5149: 0, // Pandawa Poisoned Chalice
-  5150: 0, // Pandawa Refreshment
+  4608: 110, // Sram Murderer
+  5123: 120, // Sram Bloody Blade
+  4606: 130, // Sram Brutal Assault
+  4607: 140, // Sram Shadow Master
+  4609: 150, // Sram Trap Master
+  5089: 160, // Sram Crazy Scheme
+  5122: 170, // Sram Ambush
+  5124: 180, // Sram Fraud
+  5126: 190, // Sram Dupery
+  4610: 200, // Sram Sram to the Bone
+  4795: 110, // Iop Virility
+  4797: 120, // Iop Authority
+  4798: 130, // Iop Show Off
+  4799: 140, // Iop Locking Pro
+  5102: 150, // Iop King of the Hill
+  4796: 160, // Iop Compulsion
+  5101: 170, // Iop Furious Charge
+  5104: 180, // Iop Seismic Rift
+  5100: 190, // Iop Bravery
+  5103: 200, // Iop Tormentor
+  917: 110, // Sadida Knowledge of Dolls
+  4959: 120, // Sadida Sadida Prayer
+  916: 130, // Sadida Doll Link
+  913: 140, // Sadida Green Guard
+  933: 150, // Sadida Explodoll
+  5055: 160, // Sadida Harmless Toxin
+  912: 170, // Sadida Lone Sadida
+  5058: 180, // Sadida Wild Whispers
+  5234: 190, // Sadida Venomous
+  7053: 200, // Sadida Common Ground
+  4722: 110, // Pandawa Cocktail
+  4723: 120, // Pandawa Master of Merriment
+  4724: 130, // Pandawa Bottomless Barrel
+  4725: 140, // Pandawa Aggressive Barrel
+  4726: 150, // Pandawa Milky Instinct
+  5148: 160, // Pandawa Bambottle
+  5149: 170, // Pandawa Poisoned Chalice
+  5150: 180, // Pandawa Refreshment
+  5151: 190, // Pandawa Pandemic
+  6846: 200, // Pandawa Buzzed
 };
