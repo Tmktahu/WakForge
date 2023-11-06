@@ -40,38 +40,22 @@
                 image-style="width: 40px"
               />
 
-              <div v-if="getRandomMasteryEffect(data.id, 'masterySlot1') !== null" class="random-stat-icons-wrapper">
+              <div v-if="getRandomMasteryEffect(data.id) !== null" class="random-stat-icons-wrapper">
                 <p-image
-                  v-if="getRandomMasteryEffect(data.id, 'masterySlot1') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot1').type}_coin.png`"
-                  image-style="width: 16px"
-                />
-                <p-image
-                  v-if="getRandomMasteryEffect(data.id, 'masterySlot2') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot2').type}_coin.png`"
-                  image-style="width: 16px"
-                />
-                <p-image
-                  v-if="getRandomMasteryEffect(data.id, 'masterySlot3') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id, 'masterySlot3').type}_coin.png`"
+                  v-for="masteryIndex in getRandomMasteryEffect(data.id).values[2]"
+                  :key="masteryIndex"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id)[`masterySlot${masteryIndex}`].type}_coin.png`"
                   image-style="width: 16px"
                 />
               </div>
 
-              <div v-if="getRandomResistanceEffect(data.id, 'resistanceSlot1') !== null" class="random-stat-icons-wrapper">
+              <div v-if="getRandomResistanceEffect(data.id) !== null" class="random-stat-icons-wrapper">
                 <p-image
-                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot1') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot1').type}_coin.png`"
-                  image-style="width: 16px"
-                />
-                <p-image
-                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot2') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot2').type}_coin.png`"
-                  image-style="width: 16px"
-                />
-                <p-image
-                  v-if="getRandomResistanceEffect(data.id, 'resistanceSlot3') !== null"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id, 'resistanceSlot3').type}_coin.png`"
+                  v-for="resistanceIndex in getRandomResistanceEffect(data.id).values[2]"
+                  :key="resistanceIndex"
+                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${
+                    getRandomResistanceEffect(data.id)[`resistanceSlot${resistanceIndex}`].type
+                  }_coin.png`"
                   image-style="width: 16px"
                 />
               </div>
@@ -190,19 +174,19 @@ const onRemove = (slotKey, event) => {
   });
 };
 
-const getRandomMasteryEffect = (slotKey, masteryKey) => {
+const getRandomMasteryEffect = (slotKey) => {
   return (
     currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
       return effect.id === 1068;
-    })?.[masteryKey] || null
+    }) || null
   );
 };
 
-const getRandomResistanceEffect = (slotKey, masteryKey) => {
+const getRandomResistanceEffect = (slotKey) => {
   return (
     currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
       return effect.id === 1069;
-    })?.[masteryKey] || null
+    }) || null
   );
 };
 

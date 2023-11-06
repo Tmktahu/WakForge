@@ -87,6 +87,10 @@
           </template>
         </div>
       </div>
+
+      <div class="flex justify-content-center mt-2">
+        <p-button class="py-2" label="Apply to all Items" @click="onApplyToAll" />
+      </div>
     </div>
   </p-dialog>
 </template>
@@ -95,6 +99,7 @@
 import { ref, nextTick, inject, computed, watch } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
 import { LEVELABLE_ITEMS } from '@/models/useConstants';
+import { masterData } from '@/models/useStorage.js';
 
 let uuid = uuidv4();
 const currentCharacter = inject('currentCharacter');
@@ -119,15 +124,7 @@ const randomMasteryEffect = computed(() => {
 
 watch(randomMasteryEffect, () => {
   nextTick(() => {
-    inputModels.value['masterySlot1'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot1']?.type || undefined;
-    });
-    inputModels.value['masterySlot2'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot2']?.type || undefined;
-    });
-    inputModels.value['masterySlot3'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot3']?.type || undefined;
-    });
+    updateMasterySelectors();
   });
 });
 
@@ -139,17 +136,42 @@ const randomResistanceEffect = computed(() => {
 
 watch(randomResistanceEffect, () => {
   nextTick(() => {
-    inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value['resistanceSlot1']?.type || undefined;
-    });
-    inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value['resistanceSlot2']?.type || undefined;
-    });
-    inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value['resistanceSlot3']?.type || undefined;
-    });
+    updateResistanceSelectors();
   });
 });
+
+watch(masterData, () => {
+  updateMasterySelectors();
+  updateResistanceSelectors();
+});
+
+const updateMasterySelectors = () => {
+  if (randomMasteryEffect.value !== undefined) {
+    inputModels.value['masterySlot1'] = elementOptions.find((option) => {
+      return option.value === randomMasteryEffect.value['masterySlot1']?.type;
+    });
+    inputModels.value['masterySlot2'] = elementOptions.find((option) => {
+      return option.value === randomMasteryEffect.value['masterySlot2']?.type;
+    });
+    inputModels.value['masterySlot3'] = elementOptions.find((option) => {
+      return option.value === randomMasteryEffect.value['masterySlot3']?.type;
+    });
+  }
+};
+
+const updateResistanceSelectors = () => {
+  if (randomResistanceEffect.value !== undefined) {
+    inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
+      return option.value === randomResistanceEffect.value?.['resistanceSlot1']?.type;
+    });
+    inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
+      return option.value === randomResistanceEffect.value?.['resistanceSlot2']?.type;
+    });
+    inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
+      return option.value === randomResistanceEffect.value?.['resistanceSlot3']?.type;
+    });
+  }
+};
 
 const onMasteryStatChange = (event, changedSlotKey) => {
   let effect = item.value?.equipEffects?.find((effect) => {
@@ -190,6 +212,61 @@ const onResistanceStatChange = () => {
   });
 };
 
+const onApplyToAll = () => {
+  Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
+    if (currentCharacter.value.equipment[slotKey] !== null) {
+      currentCharacter.value.equipment[slotKey].equipEffects.forEach((equipEffect) => {
+        if (equipEffect.id === 1068 && randomMasteryEffect.value) {
+          // mastery handling
+
+          equipEffect.masterySlot1 = {
+            type: inputModels.value.masterySlot1?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+
+          equipEffect.masterySlot2 = {
+            type: inputModels.value.masterySlot2?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+
+          equipEffect.masterySlot3 = {
+            type: inputModels.value.masterySlot3?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+        }
+
+        if (equipEffect.id === 1069 && randomResistanceEffect.value) {
+          // resistance handling
+          equipEffect.resistanceSlot1 = {
+            type: inputModels.value.resistanceSlot1?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+
+          equipEffect.resistanceSlot2 = {
+            type: inputModels.value.resistanceSlot2?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+
+          equipEffect.resistanceSlot3 = {
+            type: inputModels.value.resistanceSlot3?.value || 'empty',
+            value: equipEffect.values[0],
+          };
+        }
+
+        // Object.keys(inputModels.value).forEach((inputModelKey) => {
+        //   if (inputModelKey in equipEffect && inputModels.value[inputModelKey] !== undefined) {
+        //     console.log(equipEffect);
+        //     equipEffect[inputModelKey] = {
+        //       type: inputModels.value[inputModelKey].value,
+        //       value: equipEffect.values[0],
+        //     };
+        //   }
+        // });
+      });
+    }
+  });
+};
+
 const open = (slotKey, left, top) => {
   item.value = currentCharacter.value.equipment[slotKey];
   visible.value = true;
@@ -200,6 +277,9 @@ const open = (slotKey, left, top) => {
     dialogElement.style.position = 'fixed';
     dialogElement.style.left = `${left}px`;
     dialogElement.style.top = `${top}px`;
+
+    updateMasterySelectors();
+    updateResistanceSelectors();
   });
 };
 
