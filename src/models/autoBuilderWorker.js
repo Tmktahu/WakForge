@@ -72,27 +72,37 @@ const performCalculations = async (params) => {
   let currentStats = null;
   if (params.currentCharacter) {
     currentStatParams = {
-      ap: params.currentCharacter.actionPoints,
-      mp: params.currentCharacter.movementPoints,
-      wp: params.currentCharacter.wakfuPoints,
-      ra: params.currentCharacter.stats.range,
-      crit: params.currentCharacter.stats.criticalHit,
-      crit_mastery: params.currentCharacter.masteries.critical,
-      elemental_mastery: null,
-      one_element_mastery: null,
-      two_element_mastery: null,
-      three_element_mastery: null,
-      distance_mastery: params.currentCharacter.masteries.distance,
-      rear_mastery: params.currentCharacter.masteries.rear,
-      heal_mastery: params.currentCharacter.masteries.healing,
-      beserk_mastery: params.currentCharacter.masteries.berserk,
-      melee_mastery: params.currentCharacter.masteries.melee,
-      control: params.currentCharacter.stats.control,
-      block: params.currentCharacter.stats.block,
-      // fd: null, 'final damage', unused for now
-      heals_performed: params.currentCharacter.stats.healsPerformed,
-      lock: params.currentCharacter.stats.lock,
-      dodge: params.currentCharacter.stats.dodge,
+      ap: 6 + params.currentCharacter.value.characteristics.major.actionPoints,
+      mp: 3 + params.currentCharacter.value.characteristics.major.movementPointsAndDamage,
+      wp: (
+        (params.currentCharacter.value.class === CLASS_CONSTANTS.xelor ? 12 : 6)
+        + params.currentCharacter.value.characteristics.major.wakfuPoints * 2
+      ),
+      ra: params.currentCharacter.value.characteristics.major.rangeAndDamage,
+      crit: params.currentCharacter.value.characteristics.fortune.percentCriticalHit,
+      crit_mastery: params.currentCharacter.value.characteristics.fortune.criticalMastery * 4,
+      elemental_mastery: (
+        currentCharacter.value.characteristics.strength.elementalMastery * 5 +
+        currentCharacter.value.characteristics.major.movementPointsAndDamage * 20 +
+        currentCharacter.value.characteristics.major.rangeAndDamage * 40 +
+        currentCharacter.value.characteristics.major.controlAndDamage * 40
+      ),
+      distance_mastery: params.currentCharacter.value.characteristics.strength.distanceMastery * 8,
+      rear_mastery: params.currentCharacter.value.characteristics.fortune.rearMastery * 6,
+      heal_mastery: params.currentCharacter.value.characteristics.fortune.healingMastery * 6,
+      beserk_mastery: params.currentCharacter.value.characteristics.fortune.berserkMastery * 8,
+      melee_mastery: params.currentCharacter.value.characteristics.strength.meleeMastery * 8,
+      control: params.currentCharacter.value.characteristics.major.controlAndDamage * 2,
+      block: params.currentCharacter.value.characteristics.fortune.percentBlock,
+      fd: params.currentCharacter.value.characteristics.major.percentDamageInflicted * 10,
+      lock: (
+        params.currentCharacter.value.characteristics.agility.lock * 6 +
+        params.currentCharacter.value.characteristics.agility.lockAndDodge * 4
+      ),
+      dodge: (
+        params.currentCharacter.value.characteristics.agility.dodge * 6 +
+        params.currentCharacter.value.characteristics.agility.lockAndDodge * 4
+      ),
     };
   }
 

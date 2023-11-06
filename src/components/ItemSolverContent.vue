@@ -215,10 +215,10 @@ const onCalculate = async () => {
     currentCharacter: currentCharacter.value,
 
     targetStats: {
-      actionPoints: targetApAmount.value - currentCharacter.value.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId),
-      movementPoints: targetMpAmount.value - currentCharacter.value.movementPoints + calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId),
-      range: targetRangeAmount.value - currentCharacter.value.stats.range + calcItemContribution(EFFECT_TYPE_DATA.range.rawId),
-      wakfuPoints: targetWpAmount.value - currentCharacter.value.wakfuPoints + calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId),
+      actionPoints: targetApAmount.value,
+      movementPoints: targetMpAmount.value,
+      range: targetRangeAmount.value,
+      wakfuPoints: targetWpAmount.value,
     },
 
     selectedRarityIds: rarityIds,
