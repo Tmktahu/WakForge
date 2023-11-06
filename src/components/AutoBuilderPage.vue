@@ -230,7 +230,7 @@
         </div>
 
         <div v-else-if="builderError">
-          <div v-if="builderError === 'noSolution'" class="flex flex-column">
+          <div v-if="builderError.type === 'noSolution'" class="flex flex-column">
             <span>Jimmy was unable to find an item set that matched your parameters. Please check them and try again.</span>
             <div class="mt-2 py-1 px-2" style="background: var(--error-40); border-radius: 8px; width: fit-content">
               Remember that your settings above should reflect what the items should give, not what the completed character should have.

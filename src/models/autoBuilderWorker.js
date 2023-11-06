@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 importScripts('https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js');
 
 const PYTHON_CLASS_NAME_MAPPING = {
@@ -30,6 +31,7 @@ let itemData = null;
 let ITEM_SLOT_SORT_ORDER = null;
 
 const setup = async () => {
+  // eslint-disable-next-line no-undef
   pyodide = await loadPyodide();
 
   await pyodide.loadPackage('micropip');
@@ -64,30 +66,57 @@ const calculateBuild = async () => {
 };
 
 const performCalculations = async (params) => {
-  // level, int = target level, only supprts ALS levels rn (n mod 15 = 5)
-  // class_ ClassNames, string
-  // num_elements, int = should be a number from 1-4
-  // dist, bool = distance mastery bool
-  // melee, bool = melee mastery bool
-  // force_items, array[ints] = array of item IDs to force
-  // forbid_items, array[ints] = array of item IDs to exclude
+  let currentStatParams = {
+    ap: params.currentCharacter.actionPoints,
+    mp: params.currentCharacter.movementPoints,
+    wp: params.currentCharacter.stats.range,
+    ra: params.currentCharacter.wakfuPoints,
+    crit: params.currentCharacter.stats.criticalHit,
+    crit_mastery: params.currentCharacter.masteries.critical,
+    elemental_mastery: null,
+    one_element_mastery: null,
+    two_element_mastery: null,
+    three_element_mastery: null,
+    distance_mastery: params.currentCharacter.masteries.distance,
+    rear_mastery: params.currentCharacter.masteries.rear,
+    heal_mastery: params.currentCharacter.masteries.healing,
+    beserk_mastery: params.currentCharacter.masteries.berserk,
+    melee_mastery: params.currentCharacter.masteries.melee,
+    control: params.currentCharacter.stats.control,
+    block: params.currentCharacter.stats.block,
+    fd: null,
+    heals_performed: params.currentCharacter.stats.healsPerformed,
+    lock: params.currentCharacter.stats.lock,
+    dodge: params.currentCharacter.stats.dodge,
+  };
 
-  // let result = pythonPackage.v1_lv_class_solve(20, 'Feca', 3, dist, melee);
+  let targetStatParams = {
+    ap: params.targetStats.actionPoints,
+    mp: params.targetStats.movementPoints,
+    ra: params.targetStats.range,
+    wp: params.targetStats.wakfuPoints,
+  };
+
+  let currentStats = pythonPackage.Stats.callKwargs(currentStatParams);
+  let targetStats = pythonPackage.SetMinimum.callKwargs(targetStatParams);
 
   let pythonParams = {
     lv: params.targetLevel,
-    ap: params.targetApAmount,
-    mp: params.targetMpAmount,
-    wp: params.targetWpAmount,
-    ra: params.targetRangeAmount,
+
+    stats: currentStats,
+    target_stats: targetStats,
+
+    equipped_items: params.currentItemIds,
     num_mastery: params.targetNumElements,
+    allowed_rarities: params.selectedRarityIds,
+
     dist: params.distanceMastery,
     melee: params.meleeMastery,
+    heal: params.healingMastery,
     zerk: params.berserkMastery,
     rear: params.rearMastery,
-    heal: params.healingMastery,
     hard_cap_depth: 7, // hardcoded for now
-    bcrit: 20, // hardcoded for now
+    dry_run: false,
   };
 
   console.log('Python Params (useful for debugging if you need them)', pythonParams);
