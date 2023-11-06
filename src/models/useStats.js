@@ -324,5 +324,6 @@ export const useStats = (currentCharacter) => {
   return {
     setup,
     calcElemResistancePercentage,
+    calcItemContribution,
   };
 };

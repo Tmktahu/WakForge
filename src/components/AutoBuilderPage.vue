@@ -358,7 +358,7 @@ watch(
 const onCalculate = async () => {
   let params = {
     targetLevel: selectedLevel.value,
-    targetClass: selectedClass.value,
+    // targetClass: currentCharacter.value.class,
 
     meleeMastery: meleeMastery.value,
     distanceMastery: distanceMastery.value,
@@ -366,11 +366,20 @@ const onCalculate = async () => {
     rearMastery: rearMastery.value,
     berserkMastery: berserkMastery.value,
 
-    targetApAmount: targetApAmount.value,
-    targetMpAmount: targetMpAmount.value,
-    targetRangeAmount: targetRangeAmount.value,
-    targetWpAmount: targetWpAmount.value,
     targetNumElements: targetNumElements.value,
+
+    // currentCharacter: currentCharacter.value,
+
+    targetStats: {
+      actionPoints: targetApAmount.value,
+      movementPoints: targetMpAmount.value,
+      range: targetRangeAmount.value,
+      wakfuPoints: targetWpAmount.value,
+    },
+
+    // selectedRarityIds: rarityIds,
+
+    // currentItemIds,
   };
 
   runCalculations(params);

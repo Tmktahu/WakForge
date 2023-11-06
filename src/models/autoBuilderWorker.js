@@ -68,30 +68,35 @@ const calculateBuild = async () => {
 };
 
 const performCalculations = async (params) => {
-  console.log(params);
-  let currentStatParams = {
-    ap: params.currentCharacter.actionPoints,
-    mp: params.currentCharacter.movementPoints,
-    wp: params.currentCharacter.stats.range,
-    ra: params.currentCharacter.wakfuPoints,
-    crit: params.currentCharacter.stats.criticalHit,
-    crit_mastery: params.currentCharacter.masteries.critical,
-    elemental_mastery: null,
-    one_element_mastery: null,
-    two_element_mastery: null,
-    three_element_mastery: null,
-    distance_mastery: params.currentCharacter.masteries.distance,
-    rear_mastery: params.currentCharacter.masteries.rear,
-    heal_mastery: params.currentCharacter.masteries.healing,
-    beserk_mastery: params.currentCharacter.masteries.berserk,
-    melee_mastery: params.currentCharacter.masteries.melee,
-    control: params.currentCharacter.stats.control,
-    block: params.currentCharacter.stats.block,
-    // fd: null, 'final damage', unused for now
-    heals_performed: params.currentCharacter.stats.healsPerformed,
-    lock: params.currentCharacter.stats.lock,
-    dodge: params.currentCharacter.stats.dodge,
-  };
+  let currentStatParams = {};
+  let currentStats = null;
+  if (params.currentCharacter) {
+    currentStatParams = {
+      ap: params.currentCharacter.actionPoints,
+      mp: params.currentCharacter.movementPoints,
+      wp: params.currentCharacter.wakfuPoints,
+      ra: params.currentCharacter.stats.range,
+      crit: params.currentCharacter.stats.criticalHit,
+      crit_mastery: params.currentCharacter.masteries.critical,
+      elemental_mastery: null,
+      one_element_mastery: null,
+      two_element_mastery: null,
+      three_element_mastery: null,
+      distance_mastery: params.currentCharacter.masteries.distance,
+      rear_mastery: params.currentCharacter.masteries.rear,
+      heal_mastery: params.currentCharacter.masteries.healing,
+      beserk_mastery: params.currentCharacter.masteries.berserk,
+      melee_mastery: params.currentCharacter.masteries.melee,
+      control: params.currentCharacter.stats.control,
+      block: params.currentCharacter.stats.block,
+      // fd: null, 'final damage', unused for now
+      heals_performed: params.currentCharacter.stats.healsPerformed,
+      lock: params.currentCharacter.stats.lock,
+      dodge: params.currentCharacter.stats.dodge,
+    };
+  }
+
+  currentStats = pythonPackage.Stats.callKwargs(currentStatParams);
 
   let targetStatParams = {
     ap: params.targetStats.actionPoints,
@@ -100,7 +105,6 @@ const performCalculations = async (params) => {
     wp: params.targetStats.wakfuPoints,
   };
 
-  let currentStats = pythonPackage.Stats.callKwargs(currentStatParams);
   let targetStats = pythonPackage.SetMinimums.callKwargs(targetStatParams);
 
   let pythonParams = {
@@ -111,7 +115,7 @@ const performCalculations = async (params) => {
 
     equipped_items: params.currentItemIds,
     num_mastery: params.targetNumElements,
-    allowed_rarities: params.selectedRarityIds,
+    allowed_rarities: params.selectedRarityIds !== undefined ? params.selectedRarityIds : [0, 1, 2, 3, 4, 5, 6, 7],
 
     dist: params.distanceMastery,
     melee: params.meleeMastery,
@@ -122,8 +126,9 @@ const performCalculations = async (params) => {
     dry_run: false,
   };
 
-  console.log('Python Params (useful for debugging if you need them)', pythonParams);
-
+  console.log('Python Params (useful for debugging if you need them)', params);
+  console.log('Current Stats', currentStatParams);
+  console.log('Target Stats From Items', targetStatParams);
   // let config = pythonPackage.Config.callKwargs(pythonParams);
   let result = pythonPackage.partial_solve_v1.callKwargs(pythonParams);
 
