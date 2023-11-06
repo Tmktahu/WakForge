@@ -49,15 +49,19 @@ export const useSpells = (currentCharacter) => {
   };
 
   const getClassPassiveSpells = (targetClass) => {
-    let targetClassEntry = spellData.find((classEntry) => {
-      return classEntry.className.toLowerCase() === targetClass;
-    });
+    if (targetClass) {
+      let targetClassEntry = spellData.find((classEntry) => {
+        return classEntry.className.toLowerCase() === targetClass;
+      });
 
-    let spells = targetClassEntry.spells.filter((spellEntry) => {
-      return spellEntry.category === SPELL_CATEGORIES.passive;
-    });
+      let spells = targetClassEntry.spells.filter((spellEntry) => {
+        return spellEntry.category === SPELL_CATEGORIES.passive;
+      });
 
-    return [...spells, ...SHARED_PASSIVE_SPELLS];
+      return [...spells, ...SHARED_PASSIVE_SPELLS];
+    } else {
+      return [];
+    }
   };
 
   const getClassActiveSpells = (targetClass) => {

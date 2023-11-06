@@ -1,5 +1,8 @@
 import { ref } from 'vue';
+import deepUnref from '@/plugins/deepUnref.js';
+
 import itemData from './item_data.json';
+// eslint-disable-next-line import/no-unresolved
 import workerThing from '@/models/autoBuilderWorker?worker&url';
 
 import { ITEM_SLOT_SORT_ORDER } from '@/models/useConstants';
@@ -9,7 +12,7 @@ const autoBuilderIsReady = ref(false);
 const builderLoading = ref(false);
 const builderError = ref(null);
 
-let worker = new Worker(import.meta.env.MODE === 'development' ? 'src/models/autoBuilderWorker.js' : workerThing);
+let worker = new Worker(import.meta.env.MODE === 'development' ? '../src/models/autoBuilderWorker.js' : workerThing);
 
 export const useAutoBuilder = () => {
   const targetLevel = ref(0);
@@ -28,7 +31,7 @@ export const useAutoBuilder = () => {
       }
 
       if (message.data === 'No possible solution found') {
-        builderError.value = 'noSolution';
+        builderError.value = { type: 'noSolution', messages: [] };
         builderLoading.value = false;
       }
     };
@@ -37,7 +40,27 @@ export const useAutoBuilder = () => {
   const runCalculations = (params) => {
     builderError.value = null;
     builderLoading.value = true;
-    worker.postMessage({ params, itemData, ITEM_SLOT_SORT_ORDER }); //, itemData, ITEM_SLOT_SORT_ORDER });
+    let isValid = validateInputParams(params);
+    if (isValid) {
+      let unreffedParams = deepUnref(params);
+      worker.postMessage({ params: unreffedParams, itemData, ITEM_SLOT_SORT_ORDER });
+    }
+  };
+
+  const validateInputParams = (params) => {
+    let isValid = true;
+    let messages = [];
+
+    if (params.targetClass === null) {
+      messages.push('A class must be selected.');
+      isValid = false;
+    }
+
+    if (!isValid) {
+      builderError.value = { type: 'invalidParams', messages };
+    }
+
+    return isValid;
   };
 
   return {

@@ -230,6 +230,7 @@ const FILTER_TYPE_IDS = [
   EFFECT_TYPE_DATA.wakfuPoints.id,
   EFFECT_TYPE_DATA.percentBlock.id,
   EFFECT_TYPE_DATA.criticalResistance.id,
+  EFFECT_TYPE_DATA.meleeMastery.id,
   EFFECT_TYPE_DATA.distanceMastery.id,
   EFFECT_TYPE_DATA.berserkMastery.id,
   EFFECT_TYPE_DATA.randomElementalMasteries.id,

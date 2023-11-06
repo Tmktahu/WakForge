@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter" class="flex flex-column w-full" style="height: 100%">
+  <div v-if="currentCharacter" :key="currentCharacter.id" class="flex flex-column w-full" style="height: 100%">
     <div class="top-bar py-3 pl-3">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
@@ -66,6 +66,15 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
+                <span>Auto Item Solver</span>
+              </div>
+            </template>
+            <ItemSolverContent />
+          </p-tabPanel>
+
+          <p-tabPanel>
+            <template v-slot:header>
+              <div class="flex align-items-center px-3 py-3">
                 <span>Spells & Passives</span>
               </div>
             </template>
@@ -88,6 +97,7 @@ import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsConfig from '@/components/CharacteristicsConfig.vue';
 import EquipmentSelector from '@/components/EquipmentSelector.vue';
 import SpellSelector from '@/components/SpellSelector.vue';
+import ItemSolverContent from '@/components/ItemSolverContent.vue';
 
 const currentCharacter = inject('currentCharacter');
 

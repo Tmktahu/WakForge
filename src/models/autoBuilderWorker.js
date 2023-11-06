@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 importScripts('https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js');
 
 const PYTHON_CLASS_NAME_MAPPING = {
@@ -30,6 +31,7 @@ let itemData = null;
 let ITEM_SLOT_SORT_ORDER = null;
 
 const setup = async () => {
+  // eslint-disable-next-line no-undef
   pyodide = await loadPyodide();
 
   await pyodide.loadPackage('micropip');
@@ -37,8 +39,10 @@ const setup = async () => {
 
   // After the next pyodide release, this can become micropip.install('msgspec');
   // see https://github.com/pyodide/pyodide/issues/4264
-  console.log('Installing msgspec')
-  await micropip.install('https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl');
+  console.log('Installing msgspec');
+  await micropip.install(
+    'https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl'
+  );
 
   // we use micropip to install the auto builder package
   console.log('Setting up the AutoBuild package loaded.');
@@ -47,7 +51,7 @@ const setup = async () => {
   console.log('AutoBuild package installed.');
 
   // then we import the auto builder package
-  pythonPackage = pyodide.pyimport('wakautosolver');
+  pythonPackage = pyodide.pyimport('wakautosolver.versioned_entrypoints');
   console.log('AutoBuild package loaded.');
 
   postMessage('workerReady');
@@ -64,36 +68,64 @@ const calculateBuild = async () => {
 };
 
 const performCalculations = async (params) => {
-  // level, int = target level, only supprts ALS levels rn (n mod 15 = 5)
-  // class_ ClassNames, string
-  // num_elements, int = should be a number from 1-4
-  // dist, bool = distance mastery bool
-  // melee, bool = melee mastery bool
-  // force_items, array[ints] = array of item IDs to force
-  // forbid_items, array[ints] = array of item IDs to exclude
+  console.log(params);
+  let currentStatParams = {
+    ap: params.currentCharacter.actionPoints,
+    mp: params.currentCharacter.movementPoints,
+    wp: params.currentCharacter.stats.range,
+    ra: params.currentCharacter.wakfuPoints,
+    crit: params.currentCharacter.stats.criticalHit,
+    crit_mastery: params.currentCharacter.masteries.critical,
+    elemental_mastery: null,
+    one_element_mastery: null,
+    two_element_mastery: null,
+    three_element_mastery: null,
+    distance_mastery: params.currentCharacter.masteries.distance,
+    rear_mastery: params.currentCharacter.masteries.rear,
+    heal_mastery: params.currentCharacter.masteries.healing,
+    beserk_mastery: params.currentCharacter.masteries.berserk,
+    melee_mastery: params.currentCharacter.masteries.melee,
+    control: params.currentCharacter.stats.control,
+    block: params.currentCharacter.stats.block,
+    // fd: null, 'final damage', unused for now
+    heals_performed: params.currentCharacter.stats.healsPerformed,
+    lock: params.currentCharacter.stats.lock,
+    dodge: params.currentCharacter.stats.dodge,
+  };
 
-  // let result = pythonPackage.v1_lv_class_solve(20, 'Feca', 3, dist, melee);
+  let targetStatParams = {
+    ap: params.targetStats.actionPoints,
+    mp: params.targetStats.movementPoints,
+    ra: params.targetStats.range,
+    wp: params.targetStats.wakfuPoints,
+  };
+
+  let currentStats = pythonPackage.Stats.callKwargs(currentStatParams);
+  let targetStats = pythonPackage.SetMinimums.callKwargs(targetStatParams);
 
   let pythonParams = {
     lv: params.targetLevel,
-    ap: params.targetApAmount,
-    mp: params.targetMpAmount,
-    wp: params.targetWpAmount,
-    ra: params.targetRangeAmount,
+
+    stats: currentStats,
+    target_stats: targetStats,
+
+    equipped_items: params.currentItemIds,
     num_mastery: params.targetNumElements,
+    allowed_rarities: params.selectedRarityIds,
+
     dist: params.distanceMastery,
     melee: params.meleeMastery,
+    heal: params.healingMastery,
     zerk: params.berserkMastery,
     rear: params.rearMastery,
-    heal: params.healingMastery,
-    hard_cap_depth: 7, // hardcoded for now
-    bcrit: 20, // hardcoded for now
+
+    dry_run: false,
   };
 
   console.log('Python Params (useful for debugging if you need them)', pythonParams);
 
-  let config = pythonPackage.Config.callKwargs(pythonParams);
-  let result = pythonPackage.solve_config(config);
+  // let config = pythonPackage.Config.callKwargs(pythonParams);
+  let result = pythonPackage.partial_solve_v1.callKwargs(pythonParams);
 
   calculationResults = result;
 };
