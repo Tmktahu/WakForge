@@ -102,9 +102,10 @@
 import { ref, watch, computed, inject } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
-import { ITEM_RARITY_DATA } from '@/models/useConstants';
+import { ITEM_RARITY_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 import { useItems } from '@/models/useItems';
+import { useStats } from '@/models/useStats';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
 import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
@@ -115,6 +116,7 @@ const confirm = useConfirm();
 
 const currentCharacter = inject('currentCharacter');
 
+const { calcItemContribution } = useStats(currentCharacter);
 const { equipItem } = useItems(currentCharacter);
 const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderError } = useAutoBuilder();
 
@@ -213,10 +215,10 @@ const onCalculate = async () => {
     currentCharacter: currentCharacter.value,
 
     targetStats: {
-      actionPoints: targetApAmount.value - currentCharacter.value.actionPoints,
-      movementPoints: targetMpAmount.value - currentCharacter.value.movementPoints,
-      range: targetRangeAmount.value - currentCharacter.value.stats.range,
-      wakfuPoints: targetWpAmount.value - currentCharacter.value.wakfuPoints,
+      actionPoints: targetApAmount.value - currentCharacter.value.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId),
+      movementPoints: targetMpAmount.value - currentCharacter.value.movementPoints + calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId),
+      range: targetRangeAmount.value - currentCharacter.value.stats.range + calcItemContribution(EFFECT_TYPE_DATA.range.rawId),
+      wakfuPoints: targetWpAmount.value - currentCharacter.value.wakfuPoints + calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId),
     },
 
     selectedRarityIds: rarityIds,
@@ -233,8 +235,6 @@ const onEquipAll = (event) => {
     message: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.',
     accept: () => {
       itemSet.value.forEach((item) => {
-        console.log('trying to equip', item);
-        // let item = getItemById(itemId);
         equipItem(item);
       });
     },

@@ -252,16 +252,6 @@ const onApplyToAll = () => {
             value: equipEffect.values[0],
           };
         }
-
-        // Object.keys(inputModels.value).forEach((inputModelKey) => {
-        //   if (inputModelKey in equipEffect && inputModels.value[inputModelKey] !== undefined) {
-        //     console.log(equipEffect);
-        //     equipEffect[inputModelKey] = {
-        //       type: inputModels.value[inputModelKey].value,
-        //       value: equipEffect.values[0],
-        //     };
-        //   }
-        // });
       });
     }
   });
