@@ -1,4 +1,6 @@
 import { ref } from 'vue';
+import deepUnref from '@/plugins/deepUnref.js';
+
 import itemData from './item_data.json';
 // eslint-disable-next-line import/no-unresolved
 import workerThing from '@/models/autoBuilderWorker?worker&url';
@@ -40,7 +42,8 @@ export const useAutoBuilder = () => {
     builderLoading.value = true;
     let isValid = validateInputParams(params);
     if (isValid) {
-      worker.postMessage({ params, itemData, ITEM_SLOT_SORT_ORDER });
+      let unreffedParams = deepUnref(params);
+      worker.postMessage({ params: unreffedParams, itemData, ITEM_SLOT_SORT_ORDER });
     }
   };
 

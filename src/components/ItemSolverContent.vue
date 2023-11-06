@@ -69,17 +69,17 @@
       <p-button
         class="py-2 px-3 mr-2"
         :disabled="!hasValidValues"
-        :label="itemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'"
+        :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'"
         @click="onCalculate"
       />
-      <p-button class="py-2 px-3" :disabled="!itemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
+      <p-button class="py-2 px-3" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
       <!-- <div class="ml-3">warning message</div> -->
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
-      <div v-if="itemSet?.length">
+      <div v-if="filteredItemSet?.length">
         <div class="flex flex-wrap gap-1 mt-2">
-          <template v-for="item in itemSet" :key="item.id">
+          <template v-for="item in filteredItemSet" :key="item.id">
             <ItemListCard :item="item" />
           </template>
         </div>
@@ -117,6 +117,25 @@ const currentCharacter = inject('currentCharacter');
 
 const { equipItem } = useItems(currentCharacter);
 const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderError } = useAutoBuilder();
+
+const filteredItemSet = computed(() => {
+  return itemSet.value;
+  let currentItemIds = Object.keys(currentCharacter.value.equipment)
+    .map((key) => {
+      if (currentCharacter.value.equipment[key]) {
+        return currentCharacter.value.equipment[key].id;
+      }
+    })
+    .filter((id) => id !== undefined);
+
+  if (itemSet.value) {
+    return itemSet.value.filter((item) => {
+      return !currentItemIds.includes(item.id);
+    });
+  } else {
+    return [];
+  }
+});
 
 const targetApAmount = ref(currentCharacter.value.actionPoints);
 const targetMpAmount = ref(currentCharacter.value.movementPoints);
@@ -177,7 +196,7 @@ const onCalculate = async () => {
       .filter((id) => id !== undefined);
   }
 
-  console.log(allowedRarities.value);
+  let rarityIds = allowedRarities.value.filter((rarity) => rarity.checked).map((rarity) => rarity.id);
 
   let params = {
     targetLevel: currentCharacter.value.level,
@@ -200,7 +219,7 @@ const onCalculate = async () => {
       wakfuPoints: targetWpAmount.value - currentCharacter.value.wakfuPoints,
     },
 
-    selectedRarityIds: null, // TODO
+    selectedRarityIds: rarityIds,
 
     currentItemIds,
   };

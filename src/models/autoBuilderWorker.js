@@ -39,8 +39,10 @@ const setup = async () => {
 
   // After the next pyodide release, this can become micropip.install('msgspec');
   // see https://github.com/pyodide/pyodide/issues/4264
-  console.log('Installing msgspec')
-  await micropip.install('https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl');
+  console.log('Installing msgspec');
+  await micropip.install(
+    'https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl'
+  );
 
   // we use micropip to install the auto builder package
   console.log('Setting up the AutoBuild package loaded.');
@@ -49,7 +51,7 @@ const setup = async () => {
   console.log('AutoBuild package installed.');
 
   // then we import the auto builder package
-  pythonPackage = pyodide.pyimport('wakautosolver');
+  pythonPackage = pyodide.pyimport('wakautosolver.versioned_entrypoints');
   console.log('AutoBuild package loaded.');
 
   postMessage('workerReady');
@@ -66,6 +68,7 @@ const calculateBuild = async () => {
 };
 
 const performCalculations = async (params) => {
+  console.log(params);
   let currentStatParams = {
     ap: params.currentCharacter.actionPoints,
     mp: params.currentCharacter.movementPoints,
@@ -84,7 +87,7 @@ const performCalculations = async (params) => {
     melee_mastery: params.currentCharacter.masteries.melee,
     control: params.currentCharacter.stats.control,
     block: params.currentCharacter.stats.block,
-    fd: null,
+    // fd: null, 'final damage', unused for now
     heals_performed: params.currentCharacter.stats.healsPerformed,
     lock: params.currentCharacter.stats.lock,
     dodge: params.currentCharacter.stats.dodge,
@@ -98,7 +101,7 @@ const performCalculations = async (params) => {
   };
 
   let currentStats = pythonPackage.Stats.callKwargs(currentStatParams);
-  let targetStats = pythonPackage.SetMinimum.callKwargs(targetStatParams);
+  let targetStats = pythonPackage.SetMinimums.callKwargs(targetStatParams);
 
   let pythonParams = {
     lv: params.targetLevel,
@@ -115,14 +118,14 @@ const performCalculations = async (params) => {
     heal: params.healingMastery,
     zerk: params.berserkMastery,
     rear: params.rearMastery,
-    hard_cap_depth: 7, // hardcoded for now
+
     dry_run: false,
   };
 
   console.log('Python Params (useful for debugging if you need them)', pythonParams);
 
-  let config = pythonPackage.Config.callKwargs(pythonParams);
-  let result = pythonPackage.solve_config(config);
+  // let config = pythonPackage.Config.callKwargs(pythonParams);
+  let result = pythonPackage.partial_solve_v1.callKwargs(pythonParams);
 
   calculationResults = result;
 };
