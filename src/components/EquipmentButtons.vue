@@ -1,5 +1,5 @@
 <template>
-  <div class="flex equipment-slots-wrapper pr-3">
+  <div class="flex equipment-slots-wrapper">
     <template v-for="(data, key, index) in ITEM_SLOT_DATA" :key="data.id">
       <template v-if="readOnly">
         <div class="equipment-display" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
@@ -225,6 +225,7 @@ const onGotoEncyclopedia = (item) => {
   display: flex;
   justify-content: center;
   position: relative;
+  border-radius: 4px;
 
   min-width: 0px;
   width: 60px;
