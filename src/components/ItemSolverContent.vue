@@ -11,7 +11,7 @@
         />
       </div>
 
-      <div class="flex mt-1">
+      <div class="flex mt-3">
         <div class="flex flex-column mr-3">
           <OptionNumInput v-model="targetApAmount" label="Action Points" tooltip-text="How many total Action Points you want." />
           <OptionNumInput v-model="targetMpAmount" label="Movement Points" tooltip-text="How many total Movement Points you want." />
@@ -21,7 +21,7 @@
         </div>
 
         <div class="flex flex-column">
-          <div class="flex flex-column mt-2">
+          <div class="flex flex-column gap-2 mt-2">
             <OptionCheckbox v-model="meleeMastery" label="Melee Mastery" tooltip-text="Should Melee Mastery be included if possible?" />
             <OptionCheckbox v-model="distanceMastery" label="Distance Mastery" tooltip-text="Should Distance Mastery be included if possible?" />
             <OptionCheckbox v-model="healingMastery" label="Healing Mastery" tooltip-text="Should Healing Mastery be included if possible?" />
@@ -72,8 +72,10 @@
         :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'"
         @click="onCalculate"
       />
-      <p-button class="py-2 px-3" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
-      <!-- <div class="ml-3">warning message</div> -->
+      <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
+      <OptionCheckbox v-model="showAllItems" label="Show All Items" />
+      <div class="flex-grow-1" />
+      <div>Powered by <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>'s code.</div>
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
@@ -102,10 +104,9 @@
 import { ref, watch, computed, inject } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
-import { ITEM_RARITY_DATA, EFFECT_TYPE_DATA } from '@/models/useConstants';
+import { ITEM_RARITY_DATA } from '@/models/useConstants';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 import { useItems } from '@/models/useItems';
-import { useStats } from '@/models/useStats';
 
 import EquipmentButtons from '@/components/EquipmentButtons.vue';
 import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
@@ -116,26 +117,30 @@ const confirm = useConfirm();
 
 const currentCharacter = inject('currentCharacter');
 
-const { calcItemContribution } = useStats(currentCharacter);
 const { equipItem } = useItems(currentCharacter);
 const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderError } = useAutoBuilder();
 
-const filteredItemSet = computed(() => {
-  return itemSet.value;
-  let currentItemIds = Object.keys(currentCharacter.value.equipment)
-    .map((key) => {
-      if (currentCharacter.value.equipment[key]) {
-        return currentCharacter.value.equipment[key].id;
-      }
-    })
-    .filter((id) => id !== undefined);
+const showAllItems = ref(false);
 
-  if (itemSet.value) {
-    return itemSet.value.filter((item) => {
-      return !currentItemIds.includes(item.id);
-    });
+const filteredItemSet = computed(() => {
+  if (showAllItems.value) {
+    return itemSet.value;
   } else {
-    return [];
+    let currentItemIds = Object.keys(currentCharacter.value.equipment)
+      .map((key) => {
+        if (currentCharacter.value.equipment[key]) {
+          return currentCharacter.value.equipment[key].id;
+        }
+      })
+      .filter((id) => id !== undefined);
+
+    if (itemSet.value) {
+      return itemSet.value.filter((item) => {
+        return !currentItemIds.includes(item.id);
+      });
+    } else {
+      return [];
+    }
   }
 });
 
@@ -202,7 +207,6 @@ const onCalculate = async () => {
 
   let params = {
     targetLevel: currentCharacter.value.level,
-    // targetClass: currentCharacter.value.class,
 
     meleeMastery: meleeMastery.value,
     distanceMastery: distanceMastery.value,
@@ -214,12 +218,10 @@ const onCalculate = async () => {
 
     currentCharacter: currentCharacter.value,
 
-    targetStats: {
-      actionPoints: targetApAmount.value - currentCharacter.value.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints.rawId),
-      movementPoints: targetMpAmount.value - currentCharacter.value.movementPoints + calcItemContribution(EFFECT_TYPE_DATA.movementPoints.rawId),
-      range: targetRangeAmount.value - currentCharacter.value.stats.range + calcItemContribution(EFFECT_TYPE_DATA.range.rawId),
-      wakfuPoints: targetWpAmount.value - currentCharacter.value.wakfuPoints + calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints.rawId),
-    },
+    targetApAmount: targetApAmount.value,
+    targetMpAmount: targetMpAmount.value,
+    targetRangeAmount: targetRangeAmount.value,
+    targetWpAmount: targetWpAmount.value,
 
     selectedRarityIds: rarityIds,
 
