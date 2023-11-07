@@ -3,14 +3,17 @@
     <div class="top-section flex">
       <div class="flex flex-column">
         <div class="info-area pl-4 pb-3 pr-3">
-          <div class="mt-3" style="font-size: 42px">Automatic Item Set Builder</div>
+          <div class="mt-3" style="font-size: 42px">Automatic Item Set Builder <span style="color: var(--error)">(Deprecated)</span></div>
 
           <div class="mt-2">This utlity will automatically calculate a reasonably well-optimized item set based on the options below.</div>
           <div class="mt-2">
             It is powered by code written by
             <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>.
           </div>
-          <div class="mt-2">Note that the logic behind this tool is still in development.</div>
+          <div class="mt-2 font-bold" style="color: var(--error)">
+            This page is deprecated and may no longer function correctly.<br />
+            To better use this feature, go check out the "Auto Item Solver" tab on a character sheet.</div
+          >
         </div>
 
         <div class="flex align-items-center gap-2 pl-4 pt-3">
@@ -358,7 +361,6 @@ watch(
 const onCalculate = async () => {
   let params = {
     targetLevel: selectedLevel.value,
-    // targetClass: currentCharacter.value.class,
 
     meleeMastery: meleeMastery.value,
     distanceMastery: distanceMastery.value,
@@ -368,18 +370,10 @@ const onCalculate = async () => {
 
     targetNumElements: targetNumElements.value,
 
-    // currentCharacter: currentCharacter.value,
-
-    targetStats: {
-      actionPoints: targetApAmount.value,
-      movementPoints: targetMpAmount.value,
-      range: targetRangeAmount.value,
-      wakfuPoints: targetWpAmount.value,
-    },
-
-    // selectedRarityIds: rarityIds,
-
-    // currentItemIds,
+    targetApAmount: targetApAmount.value,
+    targetMpAmount: targetMpAmount.value,
+    targetRangeAmount: targetRangeAmount.value,
+    targetWpAmount: targetWpAmount.value,
   };
 
   runCalculations(params);

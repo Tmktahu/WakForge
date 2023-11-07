@@ -1,8 +1,8 @@
 <template>
-  <div class="flex align-items-center mb-2">
+  <div class="flex align-items-center">
     <p-checkbox v-bind="$attrs" :binary="true" />
     <div class="mx-2">{{ label }}</div>
-    <tippy placement="left" duration="0">
+    <tippy v-if="tooltipText" placement="left" duration="0">
       <i class="mdi mdi-information-outline" />
       <template v-slot:content>
         <div class="simple-tooltip">{{ tooltipText }}</div>
