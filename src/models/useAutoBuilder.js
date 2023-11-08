@@ -32,7 +32,7 @@ export const useAutoBuilder = () => {
       }
 
       if (message.data === 'No possible solution found') {
-        builderError.value = { type: 'noSolution', messages: [] };
+        builderError.value = { type: 'noSolution', messages: ['No possible solution found.'] };
         builderLoading.value = false;
       }
     };
@@ -88,7 +88,7 @@ export const useAutoBuilder = () => {
         wp: paramData.targetWpAmount,
       },
 
-      selectedRarityIds: paramData.rarityIds,
+      selectedRarityIds: paramData.selectedRarityIds,
 
       currentItemIds: paramData.currentItemIds,
     };

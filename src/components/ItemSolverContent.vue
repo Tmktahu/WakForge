@@ -86,14 +86,30 @@
           </template>
         </div>
       </div>
+
+      <div v-else-if="builderError" class="error-state px-3 py-3">
+        <div> There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord. </div>
+        <div v-if="builderError" class="mt-3">
+          <span>Code: {{ builderError.type }}</span>
+          <div v-for="message in builderError.messages" :key="message" class="mt-1">
+            {{ message }}
+          </div>
+        </div>
+      </div>
+
+      <div v-else class="loading-state px-3 py-3">
+        <div> Enter your parameters above and click "Generate Item Set". </div>
+        <div class="mt-2">If you need any guidance, feel free to poke us on Discord with questions.</div>
+      </div>
     </div>
 
-    <div v-else class="loading-state flex flex-column flex-grow-1 w-full">
-      <div class="text-center mb-5">Jimmy is doing the math and stuff... Please wait...</div>
+    <div v-else class="loading-state flex flex-column flex-grow-1 w-full mt-3">
+      <div class="text-center mt-2">Jimmy is doing the math and stuff... Please wait...</div>
+      <div class="text-center mb-5 mt-2">Note that depending on your above options, this can take some time.</div>
       <div class="flex justify-content-center">
-        <div style="position: relative; width: 200px; height: 200px">
-          <p-progressSpinner class="first-spinner" stroke-width="4" style="width: 100px; height: 100px" />
-          <p-progressSpinner class="second-spinner" animation-duration="1s" stroke-width="2" style="width: 200px; height: 200px" />
+        <div style="position: relative; width: 100px; height: 100px">
+          <p-progressSpinner class="first-spinner" stroke-width="4" style="width: 50px; height: 50px" />
+          <p-progressSpinner class="second-spinner" animation-duration="1s" stroke-width="2" style="width: 100px; height: 100px" />
         </div>
       </div>
     </div>
@@ -177,18 +193,16 @@ const onSelectAllRarities = () => {
   allowedRarities.value.forEach((filter) => {
     filter.checked = true;
   });
-  // updateFilters();
 };
 
 const onClearAllRarities = () => {
   allowedRarities.value.forEach((filter) => {
     filter.checked = false;
   });
-  // updateFilters();
 };
 
 const hasValidValues = computed(() => {
-  return autoBuilderIsReady.value && currentCharacter.value.class !== null;
+  return autoBuilderIsReady.value;
 });
 
 const onCalculate = async () => {
@@ -214,14 +228,14 @@ const onCalculate = async () => {
     rearMastery: rearMastery.value,
     berserkMastery: berserkMastery.value,
 
-    targetNumElements: targetNumElements.value,
+    targetNumElements: targetNumElements.value || 0,
 
     currentCharacter: currentCharacter.value,
 
-    targetApAmount: targetApAmount.value,
-    targetMpAmount: targetMpAmount.value,
-    targetRangeAmount: targetRangeAmount.value,
-    targetWpAmount: targetWpAmount.value,
+    targetApAmount: targetApAmount.value || 0,
+    targetMpAmount: targetMpAmount.value || 0,
+    targetRangeAmount: targetRangeAmount.value || 0,
+    targetWpAmount: targetWpAmount.value || 0,
 
     selectedRarityIds: rarityIds,
 
@@ -246,15 +260,22 @@ const onEquipAll = (event) => {
 
 <style lang="scss" scoped>
 .loading-state {
+  border: 1px solid var(--bonta-blue-100);
+  border-radius: 8px;
   .first-spinner {
     position: absolute;
-    left: 50px;
-    top: 50px;
+    left: 25px;
+    top: 25px;
   }
 
   .second-spinner {
     position: absolute;
   }
+}
+
+.error-state {
+  border: 1px solid var(--error);
+  border-radius: 8px;
 }
 
 .rarity-container {

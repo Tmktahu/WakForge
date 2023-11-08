@@ -63,6 +63,7 @@ const calculateBuild = async () => {
   if (calculationResults?.[0]?.length) {
     collectItems();
   } else {
+    console.log('We had no calculation results, which means an error occured', calculationResults[1]);
     postMessage(calculationResults[1]);
   }
 };
@@ -92,12 +93,15 @@ const performCalculations = async (params) => {
     dry_run: false,
   };
 
+  console.log('Calling the Python solver method now.');
   let result = pythonPackage.partial_solve_v1.callKwargs(pythonParams);
 
+  console.log('Assigning results.');
   calculationResults = result;
 };
 
 const collectItems = () => {
+  console.log('Collecting the item data for the FE display.');
   let itemIds = calculationResults[0];
   let items = [];
   itemData.forEach((item) => {
@@ -109,6 +113,8 @@ const collectItems = () => {
   items.sort((entry1, entry2) => {
     return ITEM_SLOT_SORT_ORDER.indexOf(entry1.type.validSlots[0]) - ITEM_SLOT_SORT_ORDER.indexOf(entry2.type.validSlots[0]);
   });
+
+  console.log('Item data is', items);
 
   postMessage({ items });
 };

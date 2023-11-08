@@ -1,6 +1,6 @@
 <template>
   <div class="flex align-items-center mb-2">
-    <p-inputNumber v-bind="$attrs" class="number-input" :allow-empty="false" />
+    <p-inputNumber v-bind="$attrs" class="number-input" />
     <div class="mx-2">{{ label }}</div>
     <tippy placement="left" duration="0">
       <i class="mdi mdi-information-outline" />
