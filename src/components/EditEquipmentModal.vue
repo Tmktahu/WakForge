@@ -219,38 +219,50 @@ const onApplyToAll = () => {
         if (equipEffect.id === 1068 && randomMasteryEffect.value) {
           // mastery handling
 
-          equipEffect.masterySlot1 = {
-            type: inputModels.value.masterySlot1?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 1) {
+            equipEffect.masterySlot1 = {
+              type: inputModels.value.masterySlot1?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
 
-          equipEffect.masterySlot2 = {
-            type: inputModels.value.masterySlot2?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 2) {
+            equipEffect.masterySlot2 = {
+              type: inputModels.value.masterySlot2?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
 
-          equipEffect.masterySlot3 = {
-            type: inputModels.value.masterySlot3?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 3) {
+            equipEffect.masterySlot3 = {
+              type: inputModels.value.masterySlot3?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
         }
 
         if (equipEffect.id === 1069 && randomResistanceEffect.value) {
           // resistance handling
-          equipEffect.resistanceSlot1 = {
-            type: inputModels.value.resistanceSlot1?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 1) {
+            equipEffect.resistanceSlot1 = {
+              type: inputModels.value.resistanceSlot1?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
 
-          equipEffect.resistanceSlot2 = {
-            type: inputModels.value.resistanceSlot2?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 2) {
+            equipEffect.resistanceSlot2 = {
+              type: inputModels.value.resistanceSlot2?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
 
-          equipEffect.resistanceSlot3 = {
-            type: inputModels.value.resistanceSlot3?.value || 'empty',
-            value: equipEffect.values[0],
-          };
+          if (equipEffect.values[2] >= 3) {
+            equipEffect.resistanceSlot3 = {
+              type: inputModels.value.resistanceSlot3?.value || 'empty',
+              value: equipEffect.values[0],
+            };
+          }
         }
       });
     }
