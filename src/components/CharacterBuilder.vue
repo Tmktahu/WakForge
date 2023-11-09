@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter" :key="currentCharacter.id" class="flex flex-column w-full" style="height: 100%">
+  <div v-if="currentCharacter" :key="pageKey" class="flex flex-column w-full" style="height: 100%">
     <div class="top-bar py-3 pl-3">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
@@ -33,6 +33,23 @@
         <div class="flex-grow-1">
           <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
         </div>
+      </div>
+
+      <div class="flex-grow-1" />
+
+      <div class="build-code flex align-items-center ml-2 mr-3">
+        <tippy placement="left" duration="0">
+          <i class="mdi mdi-information-outline" />
+          <template v-slot:content>
+            <div class="simple-tooltip">You can copy-paste this code to people to share this build.</div>
+          </template>
+        </tippy>
+        <div class="ml-2">Build Code:</div>
+        <div class="code flex align-items-center px-2 py-1 ml-2">
+          <span style="line-height: 0">{{ buildCode }}</span>
+        </div>
+        <p-button class="py-1 ml-2" label="Copy" @click="onCopyBuildCode" />
+        <!-- <p-button class="py-1 ml-2" label="Paste" @click="onPasteBuildCode" /> -->
       </div>
     </div>
 
@@ -90,8 +107,11 @@
 
 <script setup>
 import { ref, inject, watch, nextTick, computed } from 'vue';
+import { useConfirm } from 'primevue/useconfirm';
 
 import { CLASS_CONSTANTS } from '@/models/useConstants';
+import { useBuildCodes } from '@/models/useBuildCodes';
+import { useCharacterBuilds } from '@/models/useCharacterBuilds';
 
 import StatDisplay from '@/components/StatDisplay.vue';
 import CharacteristicsConfig from '@/components/CharacteristicsConfig.vue';
@@ -99,7 +119,27 @@ import EquipmentSelector from '@/components/EquipmentSelector.vue';
 import SpellSelector from '@/components/SpellSelector.vue';
 import ItemSolverContent from '@/components/ItemSolverContent.vue';
 
+const confirm = useConfirm();
+
+const masterData = inject('masterData');
 const currentCharacter = inject('currentCharacter');
+
+const needsReload = ref(false);
+const pageKey = ref(null);
+watch(
+  [needsReload, masterData],
+  () => {
+    if (needsReload.value) {
+      pageKey.value = null;
+      nextTick(() => {
+        needsReload.value = false;
+      });
+    } else {
+      pageKey.value = currentCharacter.id;
+    }
+  },
+  { immediate: true }
+);
 
 const equipmentSelector = ref(null);
 const characteristicsConfig = ref(null);
@@ -113,6 +153,13 @@ const classOptions = Object.entries(CLASS_CONSTANTS).map(([key, value]) => {
     label: value,
     value: value,
   };
+});
+
+const { overwriteCharacterData } = useCharacterBuilds(masterData);
+const { createBuildCode, decodeBuildCode, parseBuildData } = useBuildCodes();
+
+const buildCode = computed(() => {
+  return createBuildCode(currentCharacter.value);
 });
 
 watch(currentCharacter, () => {
@@ -148,6 +195,28 @@ const onTabChange = () => {
 const hasCharacteristicsError = computed(() => {
   return characteristicsConfig.value?.hasCharacteristicsError;
 });
+
+const onCopyBuildCode = () => {
+  navigator.clipboard.writeText(buildCode.value);
+};
+
+// const onPasteBuildCode = async () => {
+//   let data = await navigator.clipboard.readText();
+//   let decodedData = decodeBuildCode(data);
+
+//   if (decodedData) {
+//     confirm.require({
+//       group: 'dialog',
+//       header: 'Confirmation',
+//       message: 'Are you sure? This is an irreversable action and will override your current build.',
+//       accept: () => {
+//         let parsedData = parseBuildData(decodedData);
+//         overwriteCharacterData(parsedData, currentCharacter.value.id);
+//         needsReload.value = true;
+//       },
+//     });
+//   }
+// };
 </script>
 
 <style lang="scss" scoped>
@@ -219,6 +288,14 @@ const hasCharacteristicsError = computed(() => {
     .points-to-spend-icon {
       display: block;
     }
+  }
+}
+
+.build-code {
+  .code {
+    height: 32px;
+    border: 1px solid var(--bonta-blue-100);
+    border-radius: 8px;
   }
 }
 </style>

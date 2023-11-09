@@ -38,11 +38,13 @@ export const SPELL_SLOT_DEFS = {
 export const useSpells = (currentCharacter) => {
   const setup = () => {
     watch(masterData, () => {
-      Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
-        if (currentCharacter.value.spells[slotKey]?.class !== currentCharacter.value.class && currentCharacter.value.spells[slotKey]?.class !== 'all') {
-          currentCharacter.value.spells[slotKey] = null;
-        }
-      });
+      if (currentCharacter.value?.spells) {
+        Object.keys(currentCharacter.value.spells).forEach((slotKey) => {
+          if (currentCharacter.value.spells[slotKey]?.class !== currentCharacter.value.class && currentCharacter.value.spells[slotKey]?.class !== 'all') {
+            currentCharacter.value.spells[slotKey] = null;
+          }
+        });
+      }
     });
 
     return {};

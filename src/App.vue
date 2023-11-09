@@ -11,7 +11,8 @@
     </div>
   </div>
 
-  <p-confirmPopup />
+  <p-confirmPopup group="popup" />
+  <p-confirmDialog group="dialog" />
   <OldDataDialog ref="oldDataDialog" />
 </template>
 

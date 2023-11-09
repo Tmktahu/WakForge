@@ -19,6 +19,13 @@ export const CLASS_CONSTANTS = {
   huppermage: 'huppermage',
 };
 
+export const ELEMENT_TYPE_ENUM = {
+  fire: 0,
+  earth: 1,
+  water: 2,
+  air: 3,
+};
+
 export const ITEM_SLOT_DATA = {
   HEAD: { id: 'HEAD', name: 'Helmet', sortOrder: 1 },
   CHEST: { id: 'CHEST', name: 'Breastplace', sortOrder: 2 },

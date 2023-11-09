@@ -2,7 +2,9 @@ import { ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { v4 as uuidv4 } from 'uuid';
 import { EventBus, Events } from '@/eventBus';
+import deepUnref from '@/plugins/deepUnref.js';
 
+import { useBuildCodes } from '@/models/useBuildCodes';
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
 
 export function useCharacterBuilds(masterData) {
@@ -46,6 +48,22 @@ export function useCharacterBuilds(masterData) {
     return newCharacterData;
   };
 
+  const createNewCharacterFromCode = (buildCode) => {
+    const { decodeBuildCode, parseBuildData } = useBuildCodes();
+    let decodedData = decodeBuildCode(buildCode);
+    let parsedData = parseBuildData(decodedData);
+
+    let newCharacterData = structuredClone(characterDataTemplate);
+    newCharacterData.id = uuidv4(); // add a UUID
+
+    let newObject = mergeDeep(newCharacterData, parsedData);
+
+    // then add it to our list of builds
+    masterData.characters.push(newObject);
+
+    return newObject;
+  };
+
   const createNewCharacterFromAutoBuilder = (targetClass, targetLevel, itemSet) => {
     let newCharacterData = structuredClone(characterDataTemplate);
     newCharacterData.id = uuidv4(); // add a UUID
@@ -79,12 +97,64 @@ export function useCharacterBuilds(masterData) {
     masterData.characters.splice(targetIndex, 1);
   };
 
+  const overwriteCharacterData = (incomingData, targetCharacterId) => {
+    let targetCharIndex = masterData.characters
+      .map((char) => {
+        return char.id;
+      })
+      .indexOf(targetCharacterId);
+    let targetCharacter = masterData.characters[targetCharIndex];
+
+    let characterCopy = structuredClone(deepUnref(targetCharacter));
+    let newObject = mergeDeep(characterCopy, incomingData);
+
+    masterData.characters[targetCharIndex] = newObject;
+  };
+
+  /**
+   * Simple object check.
+   * @param item
+   * @returns {boolean}
+   */
+  const isObject = (item) => {
+    return item && typeof item === 'object' && !Array.isArray(item);
+  };
+
+  /**
+   * Deep merge two objects.
+   * @param target
+   * @param ...sources
+   */
+  const mergeDeep = (target, ...sources) => {
+    if (!sources.length) {
+      return target;
+    }
+    const source = sources.shift();
+
+    if (isObject(target) && isObject(source)) {
+      for (const key in source) {
+        if (isObject(source[key])) {
+          if (!target[key]) {
+            Object.assign(target, { [key]: {} });
+          }
+          mergeDeep(target[key], source[key]);
+        } else {
+          Object.assign(target, { [key]: source[key] });
+        }
+      }
+    }
+
+    return mergeDeep(target, ...sources);
+  };
+
   return {
     setup,
     setContext,
     createNewCharacter,
+    createNewCharacterFromCode,
     createNewCharacterFromAutoBuilder,
     deleteCharacter,
+    overwriteCharacterData,
   };
 }
 
