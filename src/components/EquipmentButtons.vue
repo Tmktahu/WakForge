@@ -2,9 +2,9 @@
   <div class="flex equipment-slots-wrapper">
     <template v-for="(data, key, index) in ITEM_SLOT_DATA" :key="data.id">
       <template v-if="readOnly">
-        <div class="equipment-display" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
-          <div v-if="currentCharacter?.equipment[data.id]?.imageId" class="flex align-items-center justify-content-center">
-            <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id]?.imageId}.png`" image-style="width: 40px" />
+        <div class="equipment-display" :class="{ 'has-item': items[data.id] !== null }">
+          <div v-if="items[data.id]?.imageId" class="flex align-items-center justify-content-center">
+            <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
           </div>
           <div v-else class="flex align-items-center justify-content-center">
             <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
@@ -13,9 +13,9 @@
       </template>
       <template v-else>
         <p-button
-          v-if="currentCharacter.equipment[data.id] === null"
+          v-if="items[data.id] === null"
           class="equipment-button"
-          :class="{ 'has-item': currentCharacter.equipment[data.id] !== null, disabled: data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled }"
+          :class="{ 'has-item': items[data.id] !== null, disabled: data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled }"
           @click="onSearch(data.id)"
         >
           <div class="flex align-items-center justify-content-center">
@@ -23,22 +23,18 @@
             <p-image
               v-if="data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled"
               class="equipment-image"
-              :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id]?.imageId}.png`"
+              :src="`https://tmktahu.github.io/WakfuAssets/items/${items[ITEM_SLOT_DATA.FIRST_WEAPON.id]?.imageId}.png`"
               image-style="width: 40px"
             />
             <p-image v-else class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
         <tippy v-else placement="bottom" interactive>
-          <div class="equipment-button" :class="{ 'has-item': currentCharacter.equipment[data.id] !== null }">
+          <div class="equipment-button" :class="{ 'has-item': items[data.id] !== null }">
             <div class="flex align-items-center justify-content-center w-full" style="position: relative">
               <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
               <div class="hover-icon remove" @click="onRemove(data.id, $event)"> <i class="pi pi-trash" /> </div>
-              <p-image
-                class="equipment-image"
-                :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id]?.imageId}.png`"
-                image-style="width: 40px"
-              />
+              <p-image class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
 
               <div v-if="getRandomMasteryEffect(data.id) !== null" class="random-stat-icons-wrapper">
                 <p-image
@@ -63,35 +59,27 @@
           </div>
 
           <template v-slot:content>
-            <div v-if="currentCharacter.equipment[data.id]" class="item-card-tooltip">
+            <div v-if="items[data.id]" class="item-card-tooltip">
               <div class="effect-header flex pt-2 px-1">
-                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[data.id]?.imageId}.png`" image-style="width: 40px" />
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
                 <div class="flex flex-column">
-                  <div class="item-name mr-2">{{ currentCharacter.equipment[data.id]?.name }}</div>
+                  <div class="item-name mr-2">{{ items[data.id]?.name }}</div>
                   <div class="flex">
-                    <p-image
-                      class="mr-1"
-                      :src="`https://tmktahu.github.io/WakfuAssets/rarities/${currentCharacter.equipment[data.id]?.rarity}.png`"
-                      image-style="width: 12px;"
-                    />
-                    <p-image
-                      class="mr-1"
-                      :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${currentCharacter.equipment[data.id]?.type?.id}.png`"
-                      image-style="width: 18px;"
-                    />
-                    <div v-if="LEVELABLE_ITEMS.includes(currentCharacter.equipment[data.id]?.type?.id)">Item Level: 50</div>
-                    <div v-else>Level: {{ currentCharacter.equipment[data.id]?.level }}</div>
+                    <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${items[data.id]?.rarity}.png`" image-style="width: 12px;" />
+                    <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${items[data.id]?.type?.id}.png`" image-style="width: 18px;" />
+                    <div v-if="LEVELABLE_ITEMS.includes(items[data.id]?.type?.id)">Item Level: 50</div>
+                    <div v-else>Level: {{ items[data.id]?.level }}</div>
                   </div>
                 </div>
                 <div class="flex-grow-1" />
                 <div class="flex">
                   <tippy placement="left">
-                    <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(currentCharacter.equipment[data.id])" />
+                    <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(items[data.id])" />
                     <template v-slot:content> <div class="simple-tooltip">Open Encyclopedia Page</div></template>
                   </tippy>
                 </div>
               </div>
-              <ItemStatList :item="currentCharacter.equipment[data.id]" />
+              <ItemStatList :item="items[data.id]" />
             </div>
           </template>
         </tippy>
@@ -103,7 +91,7 @@
 </template>
 
 <script setup>
-import { ref, watch, inject, computed } from 'vue';
+import { ref, watch, inject, computed, nextTick } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
@@ -145,9 +133,17 @@ const secondWeaponDisabled = computed(() => {
 
 const masterData = inject('masterData');
 const currentCharacter = ref(props.character);
-watch(masterData, () => {
-  currentCharacter.value = props.character;
-});
+const items = ref({});
+watch(
+  masterData,
+  () => {
+    nextTick(() => {
+      currentCharacter.value = props.character;
+      items.value = currentCharacter.value?.equipment;
+    });
+  },
+  { immediate: true }
+);
 
 const onSearch = (slotKey) => {
   // here we filter our search by this slot type
@@ -166,6 +162,7 @@ const onEdit = (index, slotKey, event) => {
 
 const onRemove = (slotKey, event) => {
   confirm.require({
+    group: 'popup',
     target: event.currentTarget,
     message: 'Are you sure?',
     accept: () => {
@@ -176,7 +173,7 @@ const onRemove = (slotKey, event) => {
 
 const getRandomMasteryEffect = (slotKey) => {
   return (
-    currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
+    currentCharacter.value.equipment[slotKey]?.equipEffects.find((effect) => {
       return effect.id === 1068;
     }) || null
   );
@@ -184,7 +181,7 @@ const getRandomMasteryEffect = (slotKey) => {
 
 const getRandomResistanceEffect = (slotKey) => {
   return (
-    currentCharacter.value.equipment[slotKey].equipEffects.find((effect) => {
+    currentCharacter.value.equipment[slotKey]?.equipEffects.find((effect) => {
       return effect.id === 1069;
     }) || null
   );

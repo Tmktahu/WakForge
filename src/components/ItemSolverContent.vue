@@ -247,6 +247,7 @@ const onCalculate = async () => {
 
 const onEquipAll = (event) => {
   confirm.require({
+    group: 'popup',
     target: event.currentTarget,
     message: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.',
     accept: () => {

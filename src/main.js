@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router/routes.js';
 
 import { createI18n } from 'vue-i18n';
-import { i18nMessages } from '@/plugins/i18nMessages';
+import { i18nMessages } from '@/plugins/i18n/i18nMessages';
 
 import { usePrimeVue } from '@/plugins/usePrimeVue';
 import VueTippy from 'vue-tippy';

@@ -1,14 +1,36 @@
 <template>
   <div class="flex flex-column flex-grow-1 ml-4 mr-3" style="height: 100%; overflow: hidden">
-    <div class="mt-3" style="font-size: 42px">Welcome to Wakforge</div>
-    <div class="mt-2">If you run into any issues, feel free to DM Fryke (fryke) on Discord.</div>
+    <div class="mt-3" style="font-size: 42px">{{ $t('charactersPage.title') }}</div>
+    <div class="mt-2">{{ $t('charactersPage.description') }}</div>
+
+    <p-divider />
+
+    <div>
+      <div class="flex align-items-center w-full">
+        <div class="text-xl mr-3">{{ $t('charactersPage.codeInputLabel') }}:</div>
+        <p-inputText v-model="buildCode" :placeholder="$t('charactersPage.codeInputPlaceholder')" class="flex-grow-1 py-2" />
+        <p-button
+          icon="mdi mdi-plus-thick"
+          :disabled="!isValidBuildCode"
+          :label="$t('charactersPage.codeInputButton')"
+          class="create-character-button py-1 pr-3 pl-2 ml-3"
+          @click="onCreateCharacterFromCode"
+        />
+      </div>
+      <div v-if="!isValidBuildCode && buildCode !== ''" class="mt-2" style="color: var(--error)">{{ $t('charactersPage.invalidBuildCode') }}</div>
+    </div>
 
     <p-divider />
 
     <div class="character-area">
       <div class="flex justify-content-between w-full">
-        <div class="text-xl">Saved Characters</div>
-        <p-button icon="mdi mdi-plus-thick" label="Create New Character" class="create-character-button py-1 pr-3 pl-2" @click="onCreateCharacter" />
+        <div class="text-xl">{{ $t('charactersPage.savedCharactersTitle') }}</div>
+        <p-button
+          icon="mdi mdi-plus-thick"
+          :label="$t('charactersPage.createNewCharacterButton')"
+          class="create-character-button py-1 pr-3 pl-2"
+          @click="onCreateCharacter"
+        />
       </div>
 
       <div class="character-enties-wrapper flex flex-column mt-2 pr-2 pb-3">
@@ -43,9 +65,10 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { ref, computed, inject } from 'vue';
 import { useRouter } from 'vue-router';
 
+import { useBuildCodes } from '@/models/useBuildCodes.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
@@ -58,7 +81,14 @@ const confirm = useConfirm();
 const router = useRouter();
 const masterData = inject('masterData');
 
-const { createNewCharacter, deleteCharacter } = useCharacterBuilds(masterData);
+const buildCode = ref('');
+
+const { decodeBuildCode } = useBuildCodes();
+const { createNewCharacter, createNewCharacterFromCode, deleteCharacter } = useCharacterBuilds(masterData);
+
+const isValidBuildCode = computed(() => {
+  return decodeBuildCode(buildCode.value) !== null;
+});
 
 const onCreateCharacter = () => {
   let newCharacterData = createNewCharacter();
@@ -71,8 +101,20 @@ const onCreateCharacter = () => {
   });
 };
 
+const onCreateCharacterFromCode = () => {
+  let newCharacterData = createNewCharacterFromCode(buildCode.value);
+
+  router.push({
+    name: CHARACTER_BUILDER_ROUTE,
+    params: {
+      characterId: newCharacterData.id,
+    },
+  });
+};
+
 const onDeleteCharacter = (event, targetCharacterId) => {
   confirm.require({
+    group: 'popup',
     target: event.currentTarget,
     message: 'Are you sure? This is irreversible.',
     accept: () => {

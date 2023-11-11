@@ -449,11 +449,19 @@ export const useItems = (character = ref(null)) => {
     return itemData.length;
   };
 
+  const getItemById = (itemId) => {
+    let potentialitem = itemData.find((item) => {
+      return item.id === itemId;
+    });
+    return potentialitem || null;
+  };
+
   return {
     setup,
     itemFilters,
     getFilteredItems,
     getNumTotalItems,
     equipItem,
+    getItemById,
   };
 };

@@ -1,13 +1,13 @@
 <template>
   <div class="sidebar">
     <div class="flex justify-content-center mt-3 mb-2"> <p-image :src="wakforgeLogoURL" image-style="width: 60px" /> </div>
-    <p-button label="Characters" icon="mdi mdi-account-multiple" class="sidebar-button w-full text-left px-2" @click="gotoCharacters" />
-    <p-button label="AutoBuilder" icon="mdi mdi-creation" class="sidebar-button w-full text-left px-2" @click="gotoAutoBuilder" />
-    <p-button label="Data" icon="mdi mdi-graph" class="sidebar-button w-full text-left px-2" @click="gotoData" />
+    <p-button :label="$t('sidebar.charactersTab')" icon="mdi mdi-account-multiple" class="sidebar-button w-full text-left px-2" @click="gotoCharacters" />
+    <!-- <p-button label="AutoBuilder" icon="mdi mdi-creation" class="sidebar-button w-full text-left px-2" @click="gotoAutoBuilder" /> -->
+    <p-button :label="$t('sidebar.dataTab')" icon="mdi mdi-graph" class="sidebar-button w-full text-left px-2" @click="gotoData" />
 
     <div class="flex-grow-1" />
-    <p-button label="Discord" icon="mdi mdi-discord" class="sidebar-button w-full text-left px-2" @click="onDiscord" />
-    <p-button label="Github" icon="mdi mdi-github" class="sidebar-button w-full text-left px-2" @click="onGithub" />
+    <p-button :label="$t('sidebar.discordTab')" icon="mdi mdi-discord" class="sidebar-button w-full text-left px-2" @click="onDiscord" />
+    <p-button :label="$t('sidebar.githubTab')" icon="mdi mdi-github" class="sidebar-button w-full text-left px-2" @click="onGithub" />
   </div>
 </template>
 

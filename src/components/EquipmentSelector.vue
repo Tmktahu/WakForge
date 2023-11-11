@@ -262,6 +262,7 @@ const onEquipItem = (item, event) => {
 
   if (hasConflict) {
     confirm.require({
+      group: 'popup',
       target: event.currentTarget,
       message: confirmMessage,
       accept: () => {
