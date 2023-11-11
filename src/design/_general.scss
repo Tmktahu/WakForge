@@ -97,18 +97,12 @@ body {
         display: flex;
         justify-content: space-between;
         padding: 0;
+    }
 
-        .p-confirm-dialog-reject {
-            padding: 4px 0px;
-            margin: 6px 6px;
-            color: black;
-        }
-
-        .p-confirm-dialog-accept {
-            padding: 4px 0px;
-            margin: 6px 6px;
-            color: black;
-        }
+    .p-button {
+        padding: 4px 0px;
+        margin: 6px 6px;
+        color: black;
     }
 }
 

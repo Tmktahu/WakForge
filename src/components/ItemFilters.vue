@@ -261,7 +261,6 @@ const onSearchInput = () => {
 };
 
 const onLevelRangeTextInput = (event, type) => {
-  console.log(event);
   if (type === 'min') {
     levelRange.value[0] = event.value;
   }
