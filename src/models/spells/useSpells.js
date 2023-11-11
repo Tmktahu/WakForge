@@ -133,6 +133,21 @@ export const useSpells = (currentCharacter) => {
     }
   };
 
+  const getSpellById = (spellId) => {
+    let possibleSpell = null;
+    spellData.some((classEntry) => {
+      classEntry.spells.some((spell) => {
+        if (spell.id === spellId) {
+          possibleSpell = spell;
+          return true;
+        }
+      });
+      return possibleSpell !== null;
+    });
+
+    return possibleSpell;
+  };
+
   return {
     setup,
     getClassPassiveSpells,
@@ -140,5 +155,6 @@ export const useSpells = (currentCharacter) => {
     getSpellData,
     getSpellHtml,
     getSpellLevel,
+    getSpellById,
   };
 };

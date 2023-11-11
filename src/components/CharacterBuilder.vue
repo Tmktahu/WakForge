@@ -1,6 +1,6 @@
 <template>
   <div v-if="currentCharacter" :key="pageKey" class="flex flex-column w-full" style="height: 100%">
-    <div class="top-bar py-3 pl-3">
+    <div class="top-bar py-3 px-3">
       <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
 
       <p-dropdown
@@ -35,8 +35,6 @@
         </div>
       </div>
 
-      <div class="flex-grow-1" />
-
       <div class="build-code flex align-items-center ml-2 mr-3">
         <tippy placement="left" duration="0">
           <i class="mdi mdi-information-outline" />
@@ -46,7 +44,7 @@
         </tippy>
         <div class="ml-2">Build Code:</div>
         <div class="code flex align-items-center px-2 py-1 ml-2">
-          <span style="line-height: 0">{{ buildCode }}</span>
+          <span>{{ buildCode }}</span>
         </div>
         <p-button class="py-1 ml-2" label="Copy" @click="onCopyBuildCode" />
         <!-- <p-button class="py-1 ml-2" label="Paste" @click="onPasteBuildCode" /> -->
@@ -296,6 +294,11 @@ const onCopyBuildCode = () => {
     height: 32px;
     border: 1px solid var(--bonta-blue-100);
     border-radius: 8px;
+    span {
+      line-height: 0px;
+      word-wrap: break-word;
+      max-width: calc(100vw - 933px);
+    }
   }
 }
 </style>

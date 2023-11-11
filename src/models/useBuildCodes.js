@@ -1,109 +1,11 @@
-import { encode as base2048Encode, decode as base2048Decode } from '@/plugins/base2048/encoder';
+import { encode as base2048Encode, decode as base2048Decode } from '@mikeshardmind/base2048';
 import { encode as msgpackEncode, decode as msgpackDecode } from '@msgpack/msgpack';
 
 import { CLASS_CONSTANTS, ELEMENT_TYPE_ENUM, ITEM_SLOT_DATA } from '@/models/useConstants';
 import { useItems } from '@/models/useItems';
+import { useSpells } from '@/models/spells/useSpells';
 
 export const useBuildCodes = () => {
-  //// so how dafuq is this gunna work
-
-  // what is the bare min I need for a build
-
-  /*
-  id: null,
-  name: 'New Character',
-
-  class: null, // Should always use a class constant, string
-  level: 1,
-
-  characteristics: {
-    intelligence: {
-      percentHealthPoints: 0,
-      elementalResistance: 0,
-      barrier: 0,
-      percentHealsReceived: 0,
-      percentArmorHeathPoints: 0,
-    },
-    strength: {
-      elementalMastery: 0,
-      meleeMastery: 0,
-      distanceMastery: 0,
-      healthPoints: 0,
-    },
-    agility: {
-      lock: 0,
-      dodge: 0,
-      initiative: 0,
-      lockAndDodge: 0,
-      forceOfWill: 0,
-    },
-    fortune: {
-      percentCriticalHit: 0,
-      percentBlock: 0,
-      criticalMastery: 0,
-      rearMastery: 0,
-      berserkMastery: 0,
-      healingMastery: 0,
-      rearResistance: 0,
-      criticalResistance: 0,
-    },
-    major: {
-      actionPoints: 0,
-      movementPointsAndDamage: 0,
-      rangeAndDamage: 0,
-      wakfuPoints: 0,
-      controlAndDamage: 0,
-      percentDamageInflicted: 0,
-      elementalResistance: 0,
-    },
-  },
-
-  spells: {
-    activeSlot1: null,
-    activeSlot2: null,
-    activeSlot3: null,
-    activeSlot4: null,
-    activeSlot5: null,
-    activeSlot6: null,
-    activeSlot7: null,
-    activeSlot8: null,
-    activeSlot9: null,
-    activeSlot10: null,
-    activeSlot11: null,
-    activeSlot12: null,
-
-    passiveSlot1: null, // IDs
-    passiveSlot2: null,
-    passiveSlot3: null,
-    passiveSlot4: null,
-    passiveSlot5: null,
-    passiveSlot6: null,
-  },
-
-  equipment: {
-    [ITEM_SLOT_DATA.HEAD.id]: null, // ideally IDs, but we have to account for random allocations
-    [ITEM_SLOT_DATA.NECK.id]: null,
-    [ITEM_SLOT_DATA.BELT.id]: null,
-    [ITEM_SLOT_DATA.LEGS.id]: null,
-    [ITEM_SLOT_DATA.CHEST.id]: null,
-    [ITEM_SLOT_DATA.BACK.id]: null,
-    [ITEM_SLOT_DATA.SHOULDERS.id]: null,
-    [ITEM_SLOT_DATA.LEFT_HAND.id]: null,
-    [ITEM_SLOT_DATA.RIGHT_HAND.id]: null,
-    [ITEM_SLOT_DATA.SECOND_WEAPON.id]: null,
-    [ITEM_SLOT_DATA.FIRST_WEAPON.id]: null,
-    [ITEM_SLOT_DATA.ACCESSORY.id]: null,
-    [ITEM_SLOT_DATA.PET.id]: null,
-    [ITEM_SLOT_DATA.MOUNT.id]: null,
-  },
-};
-
-  */
-
-  // CLASSINT:LEVELINT:
-
-  // we need to convert this stuff to binary first
-
   const createBuildCode = (character) => {
     if (character === null) {
       return '';
@@ -154,11 +56,16 @@ export const useBuildCodes = () => {
     dataArray.push(character.characteristics.major.percentDamageInflicted);
     dataArray.push(character.characteristics.major.elementalResistance);
 
+    // Handling items
     Object.keys(character.equipment)
       .sort()
       .forEach((key, index) => {
         if (character.equipment[key] !== null) {
           let assignableEffect = null;
+          let itemDataArray = [];
+
+          // index 0 is the item ID
+          itemDataArray.push(character.equipment[key].id);
 
           character.equipment[key].equipEffects.forEach((effect) => {
             if (effect.id === 1068 || effect.id === 1069) {
@@ -166,33 +73,60 @@ export const useBuildCodes = () => {
             }
           });
 
+          // index 1 is an array of 3 values for random stat allocation
+          let assignableData = 0;
           if (assignableEffect !== null) {
             if (assignableEffect.id === 1068) {
               // handling random mastery assignments
-              dataArray.push([
-                character.equipment[key].id,
-                ELEMENT_TYPE_ENUM[assignableEffect.masterySlot1?.type] || -1,
-                ELEMENT_TYPE_ENUM[assignableEffect.masterySlot2?.type] || -1,
-                ELEMENT_TYPE_ENUM[assignableEffect.masterySlot3?.type] || -1,
-              ]);
+              assignableData =
+                (ELEMENT_TYPE_ENUM[assignableEffect.masterySlot1?.type] || 0) +
+                (ELEMENT_TYPE_ENUM[assignableEffect.masterySlot2?.type] || 0) +
+                (ELEMENT_TYPE_ENUM[assignableEffect.masterySlot3?.type] || 0);
             }
 
             if (assignableEffect.id === 1069) {
               // handling random resistance assignments
-              dataArray.push([
-                character.equipment[key].id,
-                ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot1?.type] || -1,
-                ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot2?.type] || -1,
-                ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot3?.type] || -1,
-              ]);
+              assignableData =
+                (ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot1?.type] || 0) +
+                (ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot2?.type] || 0) +
+                (ELEMENT_TYPE_ENUM[assignableEffect.resistanceSlot3?.type] || 0);
             }
-          } else {
-            dataArray.push(character.equipment[key].id);
           }
+
+          itemDataArray.push(assignableData);
+
+          // index 2, will be arrays for rune information
+          itemDataArray.push([[], [], [], []]); // each will include ID, color, level
+
+          // index 3 will be for sublimations
+          itemDataArray.push([]);
+
+          dataArray.push(itemDataArray);
         } else {
-          dataArray.push(-1);
+          dataArray.push([]);
         }
       });
+
+    // Handling spells
+    dataArray.push(character.spells.activeSlot1?.id || -1);
+    dataArray.push(character.spells.activeSlot2?.id || -1);
+    dataArray.push(character.spells.activeSlot3?.id || -1);
+    dataArray.push(character.spells.activeSlot4?.id || -1);
+    dataArray.push(character.spells.activeSlot5?.id || -1);
+    dataArray.push(character.spells.activeSlot6?.id || -1);
+    dataArray.push(character.spells.activeSlot7?.id || -1);
+    dataArray.push(character.spells.activeSlot8?.id || -1);
+    dataArray.push(character.spells.activeSlot9?.id || -1);
+    dataArray.push(character.spells.activeSlot10?.id || -1);
+    dataArray.push(character.spells.activeSlot11?.id || -1);
+    dataArray.push(character.spells.activeSlot12?.id || -1);
+
+    dataArray.push(character.spells.passiveSlot1?.id || -1);
+    dataArray.push(character.spells.passiveSlot2?.id || -1);
+    dataArray.push(character.spells.passiveSlot3?.id || -1);
+    dataArray.push(character.spells.passiveSlot4?.id || -1);
+    dataArray.push(character.spells.passiveSlot5?.id || -1);
+    dataArray.push(character.spells.passiveSlot6?.id || -1);
 
     let msgpackBinary = msgpackEncode(dataArray);
     buildCode = base2048Encode(msgpackBinary);
@@ -201,16 +135,19 @@ export const useBuildCodes = () => {
   };
 
   const decodeBuildCode = (buildCode) => {
+    buildCode.replaceAll('\n', ''); // catch for stray newlines when people triple-click-copy a code
+
     try {
       let decodedBase2048 = base2048Decode(buildCode);
       let decodedData = msgpackDecode(decodedBase2048);
 
-      if (Array.isArray(decodedData) && decodedData.length === 47) {
+      if (Array.isArray(decodedData)) {
         return decodedData;
       } else {
         return null;
       }
     } catch (error) {
+      // console.error(error);
       return null;
     }
   };
@@ -241,6 +178,8 @@ export const useBuildCodes = () => {
         [ITEM_SLOT_DATA.PET.id]: null,
         [ITEM_SLOT_DATA.MOUNT.id]: null,
       },
+
+      spells: {},
     };
 
     characterData.class = Object.keys(CLASS_CONSTANTS)[buildData.shift()] || null;
@@ -291,89 +230,65 @@ export const useBuildCodes = () => {
         characterData.equipment[key] = reassembleItemData(buildData.shift());
       });
 
-    // characterData.equipment[ITEM_SLOT_DATA.HEAD.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.NECK.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.BELT.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.LEGS.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.CHEST.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.BACK.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.SHOULDERS.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.ACCESSORY.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.PET.id] = reassembleItemData(buildData.shift());
-    // characterData.equipment[ITEM_SLOT_DATA.MOUNT.id] = reassembleItemData(buildData.shift());
+    const { getSpellById } = useSpells();
 
-    // equipment: {
-    //   [ITEM_SLOT_DATA.LEFT_HAND.id]: null,
-    //   [ITEM_SLOT_DATA.RIGHT_HAND.id]: null,
-    //   [ITEM_SLOT_DATA.SECOND_WEAPON.id]: null,
-    //   [ITEM_SLOT_DATA.FIRST_WEAPON.id]: null,
-    //   [ITEM_SLOT_DATA.ACCESSORY.id]: null,
-    //   [ITEM_SLOT_DATA.PET.id]: null,
-    //   [ITEM_SLOT_DATA.MOUNT.id]: null,
-    // },
+    for (let activeSpellIndex = 1; activeSpellIndex <= 12; activeSpellIndex++) {
+      characterData.spells[`activeSlot${activeSpellIndex}`] = getSpellById(buildData.shift());
+    }
 
-    // characterData.spells.activeSlot1 = buildData.shift();
-    // characterData.spells.activeSlot2 = buildData.shift();
-    // characterData.spells.activeSlot3 = buildData.shift();
-    // characterData.spells.activeSlot4 = buildData.shift();
-    // characterData.spells.activeSlot5 = buildData.shift();
-    // characterData.spells.activeSlot6 = buildData.shift();
-    // characterData.spells.activeSlot7 = buildData.shift();
-    // characterData.spells.activeSlot8 = buildData.shift();
-    // characterData.spells.activeSlot9 = buildData.shift();
-    // characterData.spells.activeSlot10 = buildData.shift();
-    // characterData.spells.activeSlot11 = buildData.shift();
-    // characterData.spells.activeSlot12 = buildData.shift();
-
-    // characterData.spells.passiveSlot1 = buildData.shift();
-    // characterData.spells.passiveSlot2 = buildData.shift();
-    // characterData.spells.passiveSlot3 = buildData.shift();
-    // characterData.spells.passiveSlot4 = buildData.shift();
-    // characterData.spells.passiveSlot5 = buildData.shift();
-    // characterData.spells.passiveSlot6 = buildData.shift();
+    for (let activeSpellIndex = 1; activeSpellIndex <= 6; activeSpellIndex++) {
+      characterData.spells[`passiveSlot${activeSpellIndex}`] = getSpellById(buildData.shift());
+    }
 
     return characterData;
   };
 
   const reassembleItemData = (itemData) => {
-    const { getItemById } = useItems();
-
-    if (Array.isArray(itemData)) {
-      let item = getItemById(itemData[0]);
-      let randomEffect = item.equipEffects.find((effect) => {
-        return effect.id === 1068 || effect.id === 1069;
-      });
-
-      if (randomEffect.id === 1068) {
-        for (let slotIndex = 1; slotIndex < 4; slotIndex++) {
-          if (itemData[slotIndex] !== -1) {
-            randomEffect[`masterySlot${slotIndex}`] = {
-              type: Object.keys(ELEMENT_TYPE_ENUM)[itemData[slotIndex]],
-              value: randomEffect.values[0],
-            };
-          }
-        }
-      }
-
-      if (randomEffect.id === 1069) {
-        for (let slotIndex = 1; slotIndex < 4; slotIndex++) {
-          if (itemData[slotIndex] !== -1) {
-            randomEffect[`resistanceSlot${slotIndex}`] = {
-              type: Object.keys(ELEMENT_TYPE_ENUM)[itemData[slotIndex]],
-              value: randomEffect.values[0],
-            };
-          }
-        }
-      }
-
-      return item;
-    } else {
-      return getItemById(itemData);
+    if (!itemData.length) {
+      return null;
     }
+
+    const { getItemById } = useItems();
+    let item = getItemById(itemData[0]);
+
+    let randomEffect = item.equipEffects?.find((effect) => {
+      return effect.id === 1068 || effect.id === 1069;
+    });
+
+    if (randomEffect) {
+      let bitNumberString = itemData[1].toString(2);
+      let elementIdArray = [];
+
+      if (parseInt(bitNumberString[3]) === 1) {
+        elementIdArray.push('fire'); // has fire
+      }
+
+      if (parseInt(bitNumberString[2]) === 1) {
+        elementIdArray.push('earth'); // has earth
+      }
+
+      if (parseInt(bitNumberString[1]) === 1) {
+        elementIdArray.push('water'); // has water
+      }
+
+      if (parseInt(bitNumberString[0]) === 1) {
+        elementIdArray.push('air'); // has air
+      }
+
+      elementIdArray.sort();
+      elementIdArray.push(...['empty', 'empty', 'empty']); // we buffer this incase there are empty slots
+
+      for (let slotIndex = 1; slotIndex < randomEffect.values[2] + 1; slotIndex++) {
+        let slotKey = `${randomEffect.id === 1068 ? 'mastery' : 'resistance'}Slot${slotIndex}`;
+
+        randomEffect[slotKey] = {
+          type: elementIdArray[slotIndex - 1],
+          value: randomEffect.values[0],
+        };
+      }
+    }
+
+    return item;
   };
 
   return {

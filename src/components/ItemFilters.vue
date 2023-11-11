@@ -2,9 +2,9 @@
   <div class="flex align-items-center flex-wrap mt-3">
     <p-inputText v-model="searchTerm" placeholder="Search Items" class="search-input mr-2" @input="onSearchInput" />
     <div class="flex align-items-center mr-2" style="width: 100%; max-width: 400px">
-      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput" />
+      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'min')" />
       <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
-      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput" />
+      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'max')" />
     </div>
     <p-button class="filter-button" label="Reset Filters" @click="onResetFilters" />
   </div>
@@ -180,6 +180,7 @@
 
 <script setup>
 import { ref, inject } from 'vue';
+import { debounce } from 'lodash';
 import { EFFECT_TYPE_DATA } from '@/models/useConstants.js';
 
 const COMPARATORS = [
@@ -259,7 +260,16 @@ const onSearchInput = () => {
   updateFilters();
 };
 
-const onLevelRangeTextInput = () => {
+const onLevelRangeTextInput = (event, type) => {
+  console.log(event);
+  if (type === 'min') {
+    levelRange.value[0] = event.value;
+  }
+
+  if (type === 'max') {
+    levelRange.value[1] = event.value;
+  }
+
   updateFilters();
 };
 
@@ -267,7 +277,7 @@ const onLevelRangeChange = () => {
   updateFilters();
 };
 
-const updateFilters = (itemTypeFilter) => {
+const updateFilters = debounce((itemTypeFilter) => {
   itemFilters.searchTerm = searchTerm.value;
   itemFilters.startLevel = levelRange.value[0];
   itemFilters.endLevel = levelRange.value[1];
@@ -279,7 +289,7 @@ const updateFilters = (itemTypeFilter) => {
   } else {
     itemFilters.itemTypeFilters = itemTypeFilters.value;
   }
-};
+}, 100);
 
 const handleGroupItemTypeFilter = (itemTypeFilter) => {
   itemTypeFilter.rawIds.forEach((targetFilterRawId) => {

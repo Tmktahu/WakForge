@@ -8,15 +8,16 @@
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "upgrade-item-solver": "yarn upgrade @mikeshardmind/base2048"
   },
   "dependencies": {
     "@codemirror/commands": "^6.3.0",
     "@codemirror/lang-json": "^6.0.1",
     "@codemirror/state": "^6.3.1",
     "@codemirror/view": "^6.21.4",
+    "@mikeshardmind/base2048": "^1.0.1",
     "@msgpack/msgpack": "^3.0.0-beta2",
-    "base2048": "^2.0.2",
     "codemirror": "^6.0.1",
     "lodash": "^4.17.21",
     "marked": "^9.1.3",

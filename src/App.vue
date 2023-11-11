@@ -1,13 +1,9 @@
 <template>
-  <!-- <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-  </header> -->
-
   <div class="flex">
     <AppSidebar />
-    <div class="flex flex-column" style="height: 100vh; width: 100%">
+    <div class="flex flex-column" style="height: 100vh; width: calc(100vw - 130px)">
       <router-view />
-      <div class="disclaimer">WAKFU is an MMORPG published by Ankama. "WakForge" is an unofficial website with no link to Ankama.</div>
+      <div class="disclaimer">{{ $t('app.disclaimer') }}</div>
     </div>
   </div>
 

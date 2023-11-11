@@ -20,10 +20,11 @@ export const CLASS_CONSTANTS = {
 };
 
 export const ELEMENT_TYPE_ENUM = {
-  fire: 0,
-  earth: 1,
-  water: 2,
-  air: 3,
+  empty: 0,
+  fire: 1,
+  earth: 2,
+  water: 4,
+  air: 8,
 };
 
 export const ITEM_SLOT_DATA = {

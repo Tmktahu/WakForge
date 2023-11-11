@@ -1,16 +1,16 @@
 <template>
   <div class="flex flex-column w-full" style="height: 100vh">
-    <div class="mt-3 ml-4" style="font-size: 42px">Application Data Management</div>
+    <div class="mt-3 ml-4" style="font-size: 42px">{{ $t('dataPage.title') }}</div>
 
     <div class="flex gap-2 w-full mt-3 h-full" style="overflow: hidden">
       <div class="flex flex-column flex-grow-1 ml-3 pb-2">
-        <div class="mb-2">Here you can upload a JSON file to import characters.</div>
+        <div class="mb-2">{{ $t('dataPage.importDescription') }}</div>
         <div class="flex">
           <div class="flex-grow-1">
             <p-fileUpload accept="application/json" custom-upload auto @uploader="onLoadJSON">
               <template v-slot:header="{ chooseCallback, files }">
                 <div class="w-full">
-                  <p-button class="select-file-button" label="Select JSON File" :disabled="files?.length !== 0" @click="chooseCallback" />
+                  <p-button class="select-file-button" :label="$t('dataPage.selectJson')" :disabled="files?.length !== 0" @click="chooseCallback" />
                 </div>
               </template>
 
@@ -18,8 +18,7 @@
                 <div class="flex align-items-center justify-content-center flex-column py-3">
                   <i class="pi pi-cloud-upload border-2 border-circle p-1" />
                   <div class="mt-2">
-                    Or drag and drop<br />
-                    a JSON file here.
+                    {{ $t('dataPage.dragOrDrop') }}
                   </div>
                 </div>
               </template>
@@ -27,20 +26,17 @@
           </div>
 
           <div class="imported-data-status flex-grow-1 px-2 py-2 ml-2" style="max-width: 50%">
-            <div v-if="importedData === undefined">The current data is not recognized as WakForge data.</div>
-            <div v-else-if="importedData === null">Before you can import characters, the version of your imported data will be checked here.</div>
+            <div v-if="importedData === undefined">{{ $t('dataPage.dataNotRecognized') }}</div>
+            <div v-else-if="importedData === null">{{ $t('dataPage.beforeImport') }}</div>
             <div v-else-if="needsMigration(importedData)" class="flex flex-column h-full needs-migration">
-              <span>
-                Your data seems to be from an old storage version, and thus needs to be updated before it can be used. This is a safe operation and will make no
-                permanent changes to your existing data.
-              </span>
+              <span>{{ $t('dataPage.needsMigration') }}</span>
               <div class="flex-grow-1" />
-              <p-button label="Migrate Data" @click="onMigrateData" />
+              <p-button :label="$t('dataPage.migrateData')" @click="onMigrateData" />
             </div>
             <div v-else class="flex flex-column gap-2 valid-data">
-              <span>Your data is good to go.</span>
-              <span>Data Size: {{ getImportedDataSize() }}</span>
-              <span>Number of Characters: {{ importedData.characters.length }}</span>
+              <span>{{ $t('dataPage.goodToGo') }}</span>
+              <span>{{ $t('dataPage.dataSize') }}: {{ getImportedDataSize() }}</span>
+              <span>{{ $t('dataPage.numberOfCharacters') }}: {{ importedData.characters.length }}</span>
             </div>
           </div>
         </div>
@@ -72,44 +68,43 @@
             </div>
           </template>
         </div>
-        <div v-else class="mt-3 ml-2"> No characters were found </div>
+        <div v-else class="mt-3 ml-2">{{ $t('dataPage.noCharactersFound') }}</div>
 
         <div class="flex-grow-1" />
-        <p-button label="Import Selected Characters" @click="onImportCharacters" />
+        <p-button :label="$t('dataPage.importCharacters')" @click="onImportCharacters" />
       </div>
 
       <div class="flex flex-column flex-grow-1" style="max-width: 550px; min-width: 550px">
         <div class="mr-2">
           <div class="mb-2">
-            WakForge operates off locally saved data in your browser via LocalStorage.<br />
-            The current key for the LocalStorage data is
+            {{ $t('dataPage.operatesOffLocalstorage') }}<br />
+            {{ $t('dataPage.currentLocalstorageKey') }}
             <span style="color: var(--bonta-blue-100); font-weight: bold"> {{ LOCALSTORAGE_KEY }}</span>
           </div>
           <div class="mb-2">
-            LocalStorage has a storage size limit of 10 MB.<br />
-            Your storage has a current size of
+            {{ $t('dataPage.storageLimit') }}<br />
+            {{ $t('dataPage.currentStorageSize') }}
             <span style="color: var(--bonta-blue-100); font-weight: bold">{{ getLocalStorageSize() }}</span>
-            <br />If you ever approach this limit, please contact Fryke (fryke) on Discord.
+            <br />{{ $t('dataPage.contactForHelp') }}
           </div>
           <div class="mb-2">
-            <span style="color: orangered; font-weight: 800">!!! WARNING !!!</span>
-            Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have
-            made a backup and understand what you are doing.
+            <span style="color: orangered; font-weight: 800">!!! {{ $t('dataPage.warning') }} !!!</span>
+            {{ $t('dataPage.warningMessage') }}
           </div>
           <div class="flex">
             <p-button
               class="local-storage-button mr-2"
               :disabled="invalidJson"
-              :label="invalidJson ? 'That is invalid JSON' : 'Save to LocalStorage'"
+              :label="invalidJson ? $t('dataPage.invalidJSON') : $t('dataPage.saveToLocalstorage')"
               @click="onSaveEditorToLocalStorage"
             />
-            <p-button class="local-storage-button" label="Download Current Data" @click="onDownloadData" />
+            <p-button class="local-storage-button" :label="$t('dataPage.downloadData')" @click="onDownloadData" />
             <div class="flex-grow-1" />
             <tippy>
-              <p-button :disabled="!downloadedData" class="local-storage-button delete" label="Delete All Data" @click="onDeleteData" />
+              <p-button :disabled="!downloadedData" class="local-storage-button delete" :label="$t('dataPage.deleteAllData')" @click="onDeleteData" />
 
               <template v-slot:content>
-                <div v-if="!downloadedData" class="simple-tooltip"> You must download a backup of your data first. </div>
+                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('dataPage.mustDownloadFirst') }}</div>
               </template>
             </tippy>
           </div>
@@ -194,7 +189,7 @@ onMounted(() => {
   });
 
   let startState = EditorState.create({
-    doc: storageEntry || 'No Data Found',
+    doc: storageEntry || this.$t('dataPage.noDataFound'),
     extensions: [eventHandlers, basicSetup, json(), keymap.of(defaultKeymap)],
   });
 
@@ -237,7 +232,7 @@ const onDownloadData = () => {
 const onDeleteData = () => {
   window.localStorage.removeItem(LOCALSTORAGE_KEY);
   editorView.dispatch({
-    changes: { from: 0, to: editorView.state.doc.length, insert: 'No Data Found' },
+    changes: { from: 0, to: editorView.state.doc.length, insert: this.$t('dataPage.noDataFound') },
   });
 };
 
