@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { fileURLToPath, URL } from 'node:url';
 import { polyfillNode } from 'esbuild-plugin-polyfill-node';
 import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
@@ -12,7 +13,13 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+      util: 'rollup-plugin-node-polyfills/polyfills/util',
+      string_decoder: 'rollup-plugin-node-polyfills/polyfills/string-decoder',
+      events: 'rollup-plugin-node-polyfills/polyfills/events',
+      stream: 'rollup-plugin-node-polyfills/polyfills/stream',
       zlib: 'rollup-plugin-node-polyfills/polyfills/zlib',
+      _stream_transform: 'rollup-plugin-node-polyfills/polyfills/readable-stream/transform',
+      process: 'rollup-plugin-node-polyfills/polyfills/process-es6',
     },
   },
   optimizeDeps: {
