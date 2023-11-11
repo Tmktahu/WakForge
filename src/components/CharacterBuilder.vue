@@ -27,13 +27,15 @@
         </template>
       </p-dropdown>
 
-      <div class="flex flex-grow-1 align-items-center" style="max-width: 200px">
+      <div class="flex flex-grow-1 align-items-center" style="max-width: 200px; min-width: 200px">
         <span class="mr-2">Level</span>
         <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" :allow-empty="false" @input="saveData($event, 'levelText')" />
         <div class="flex-grow-1">
           <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
         </div>
       </div>
+
+      <div class="flex-grow-1" />
 
       <div class="build-code flex align-items-center ml-2 mr-3">
         <tippy placement="left" duration="0">
