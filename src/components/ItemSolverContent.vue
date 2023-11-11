@@ -79,21 +79,21 @@
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
-      <div v-if="filteredItemSet?.length">
-        <div class="flex flex-wrap gap-1 mt-2">
-          <template v-for="item in filteredItemSet" :key="item.id">
-            <ItemListCard :item="item" />
-          </template>
-        </div>
-      </div>
-
-      <div v-else-if="builderError" class="error-state px-3 py-3">
+      <div v-if="builderError" class="error-state px-3 py-3">
         <div> There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord. </div>
         <div v-if="builderError" class="mt-3">
           <span>Code: {{ builderError.type }}</span>
           <div v-for="message in builderError.messages" :key="message" class="mt-1">
             {{ message }}
           </div>
+        </div>
+      </div>
+
+      <div v-else-if="filteredItemSet?.length">
+        <div class="flex flex-wrap gap-1 mt-2">
+          <template v-for="item in filteredItemSet" :key="item.id">
+            <ItemListCard :item="item" />
+          </template>
         </div>
       </div>
 
@@ -164,7 +164,7 @@ const targetApAmount = ref(currentCharacter.value.actionPoints);
 const targetMpAmount = ref(currentCharacter.value.movementPoints);
 const targetRangeAmount = ref(currentCharacter.value.stats.range);
 const targetWpAmount = ref(currentCharacter.value.wakfuPoints);
-const targetNumElements = ref(3);
+const targetNumElements = ref(2);
 
 const meleeMastery = ref(false);
 const distanceMastery = ref(false);
