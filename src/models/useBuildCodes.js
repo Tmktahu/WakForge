@@ -1,9 +1,13 @@
 import { encode as base2048Encode, decode as base2048Decode } from '@mikeshardmind/base2048';
 import { encode as msgpackEncode, decode as msgpackDecode } from '@msgpack/msgpack';
+import zlib from 'zlib';
+import { Buffer } from 'buffer';
 
 import { CLASS_CONSTANTS, ELEMENT_TYPE_ENUM, ITEM_SLOT_DATA } from '@/models/useConstants';
 import { useItems } from '@/models/useItems';
 import { useSpells } from '@/models/spells/useSpells';
+
+const BUILD_CODE_VERSION = 1;
 
 export const useBuildCodes = () => {
   const createBuildCode = (character) => {
@@ -13,6 +17,8 @@ export const useBuildCodes = () => {
 
     let buildCode = '';
     let dataArray = [];
+
+    dataArray.push(BUILD_CODE_VERSION);
 
     // dataArray.push(character.name);
 
@@ -129,7 +135,9 @@ export const useBuildCodes = () => {
     dataArray.push(character.spells.passiveSlot6?.id || -1);
 
     let msgpackBinary = msgpackEncode(dataArray);
-    buildCode = base2048Encode(msgpackBinary);
+    let intermediatyBuffer = Buffer(msgpackBinary.buffer, msgpackBinary.byteOffset, msgpackBinary.byteLength);
+    let zlibData = zlib.deflateRawSync(intermediatyBuffer, { windowBits: 15, level: 9 });
+    buildCode = base2048Encode(zlibData);
 
     return buildCode;
   };
@@ -139,7 +147,9 @@ export const useBuildCodes = () => {
 
     try {
       let decodedBase2048 = base2048Decode(buildCode);
-      let decodedData = msgpackDecode(decodedBase2048);
+      let intermediatyBuffer = Buffer(decodedBase2048.buffer);
+      let decidedZlibData = zlib.inflateRawSync(intermediatyBuffer, { windowBits: 15, level: 9 });
+      let decodedData = msgpackDecode(decidedZlibData);
 
       if (Array.isArray(decodedData)) {
         return decodedData;
@@ -181,6 +191,8 @@ export const useBuildCodes = () => {
 
       spells: {},
     };
+
+    let buildCodeVersion = buildData.shift();
 
     characterData.class = Object.keys(CLASS_CONSTANTS)[buildData.shift()] || null;
     characterData.level = buildData.shift();
