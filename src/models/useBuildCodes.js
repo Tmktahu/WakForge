@@ -150,6 +150,7 @@ export const useBuildCodes = () => {
       let intermediatyBuffer = Buffer(decodedBase2048.buffer);
       let decidedZlibData = zlib.inflateRawSync(intermediatyBuffer, { windowBits: 15, level: 9 });
       let decodedData = msgpackDecode(decidedZlibData);
+      console.log(decodedData);
 
       if (Array.isArray(decodedData)) {
         return decodedData;
@@ -262,6 +263,10 @@ export const useBuildCodes = () => {
 
     const { getItemById } = useItems();
     let item = getItemById(itemData[0]);
+
+    if (!item) {
+      return null;
+    }
 
     let randomEffect = item.equipEffects?.find((effect) => {
       return effect.id === 1068 || effect.id === 1069;
