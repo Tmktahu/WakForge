@@ -72,7 +72,7 @@ import { useBuildCodes } from '@/models/useBuildCodes.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
-import EquipmentButtons from '@/components/EquipmentButtons.vue';
+import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
 
 import { useConfirm } from 'primevue/useconfirm';

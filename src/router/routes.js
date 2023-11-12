@@ -22,7 +22,7 @@ const router = createRouter({
     {
       path: '/characters/:characterId',
       name: CHARACTER_BUILDER_ROUTE,
-      component: () => import('@/components/CharacterBuilder.vue'),
+      component: () => import('@/components/characterSheet/CharacterSheet.vue'),
     },
     {
       path: '/auto-builder',

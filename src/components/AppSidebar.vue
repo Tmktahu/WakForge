@@ -13,7 +13,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
-import { CHARACTERS_ROUTE, AUTO_BUILDER_ROUTE, DATA_ROUTE } from '@/router/routes.js';
+import { CHARACTERS_ROUTE, DATA_ROUTE } from '@/router/routes.js';
 
 import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
@@ -25,11 +25,11 @@ const gotoCharacters = () => {
   });
 };
 
-const gotoAutoBuilder = () => {
-  router.push({
-    name: AUTO_BUILDER_ROUTE,
-  });
-};
+// const gotoAutoBuilder = () => {
+//   router.push({
+//     name: AUTO_BUILDER_ROUTE,
+//   });
+// };
 
 const gotoData = () => {
   router.push({

@@ -449,6 +449,18 @@ export const useItems = (character = ref(null)) => {
     return itemData.length;
   };
 
+  const getRunes = () => {
+    return itemData.filter((item) => {
+      return item.type.id === 811;
+    });
+  };
+
+  const getSublimations = () => {
+    return itemData.filter((item) => {
+      return item.type.id === 812;
+    });
+  };
+
   const getItemById = (itemId) => {
     let potentialitem = itemData.find((item) => {
       return item.id === itemId;
@@ -463,5 +475,7 @@ export const useItems = (character = ref(null)) => {
     getNumTotalItems,
     equipItem,
     getItemById,
+    getRunes,
+    getSublimations,
   };
 };
