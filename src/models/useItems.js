@@ -451,7 +451,7 @@ export const useItems = (character = ref(null)) => {
 
   const getRunes = () => {
     return itemData.filter((item) => {
-      return item.type.id === 811;
+      return item.type.id === 811 && item.id !== 27095 && item.id !== 27096;
     });
   };
 
