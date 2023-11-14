@@ -4,7 +4,7 @@
       <div class="main-stat-box">
         <div class="flex align-items-center my-1">
           <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/health_points.png" />
-          <span class="ml-1">{{ $t('characterSheet.statsDisplay.hp') }}</span>
+          <span class="ml-1">{{ $t('constants.hp') }}</span>
         </div>
         <div class="stat-value py-1">{{ currentCharacter.healthPoints }}</div>
       </div>
@@ -18,14 +18,14 @@
       <div class="main-stat-box">
         <div class="flex align-items-center my-1">
           <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/action_points.png" />
-          <span class="ml-1">{{ $t('characterSheet.statsDisplay.ap') }}</span>
+          <span class="ml-1">{{ $t('constants.ap') }}</span>
         </div>
         <div class="stat-value py-1">{{ currentCharacter.actionPoints }}</div>
       </div>
       <div class="main-stat-box">
         <div class="flex align-items-center my-1">
           <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/movement_points.png" />
-          <span class="ml-1">{{ $t('characterSheet.statsDisplay.mp') }}</span>
+          <span class="ml-1">{{ $t('constants.mp') }}</span>
         </div>
         <div class="stat-value py-1">{{ currentCharacter.movementPoints }}</div>
       </div>
@@ -39,7 +39,7 @@
       <div v-else class="main-stat-box">
         <div class="flex align-items-center my-1">
           <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/wakfu_points.png" />
-          <span class="ml-1">{{ $t('characterSheet.statsDisplay.wp') }}</span>
+          <span class="ml-1">{{ $t('constants.wp') }}</span>
         </div>
         <div class="stat-value py-1">{{ currentCharacter.wakfuPoints }}</div>
       </div>
@@ -134,28 +134,28 @@
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/initiative.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.initiative') }}</span>
+              <span class="ml-1">{{ $t('constants.initiative') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.initiative }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/dodge.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.dodge') }}</span>
+              <span class="ml-1">{{ $t('constants.dodge') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.dodge }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/wisdom.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.wisdom') }}</span>
+              <span class="ml-1">{{ $t('constants.wisdom') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.wisdom }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/control.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.control') }}</span>
+              <span class="ml-1">{{ $t('constants.control') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.control }}</span>
             </div>
@@ -177,28 +177,28 @@
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/range.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.range') }}</span>
+              <span class="ml-1">{{ $t('constants.range') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.range }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/lock.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.lock') }}</span>
+              <span class="ml-1">{{ $t('constants.lock') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.lock }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/prospecting.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.prospecting') }}</span>
+              <span class="ml-1">{{ $t('constants.prospecting') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.prospecting }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/force_of_will.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.forceOfWill') }}</span>
+              <span class="ml-1">{{ $t('constants.forceOfWill') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.forceOfWill }}</span>
             </div>
@@ -212,42 +212,42 @@
           <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/critical_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.criticalMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.criticalMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.critical }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/rear_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.rearMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.rearMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.rear }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/melee_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.meleeMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.meleeMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.melee }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/distance_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.distanceMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.distanceMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.distance }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/healing_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.healingMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.healingMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.healing }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/berserk_mastery.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.berserkMastery') }}</span>
+              <span class="ml-1">{{ $t('constants.berserkMastery') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.masteries.berserk }}</span>
             </div>
@@ -255,14 +255,14 @@
           <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/critical_resistance.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.criticalResistance') }}</span>
+              <span class="ml-1">{{ $t('constants.criticalResistance') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.resistances.critical }}</span>
             </div>
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/rear_resistance.png" />
-              <span class="ml-1">{{ $t('characterSheet.shared.rearResistance') }}</span>
+              <span class="ml-1">{{ $t('constants.rearResistance') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.resistances.rear }}</span>
             </div>

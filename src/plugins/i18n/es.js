@@ -67,42 +67,9 @@ export const es = {
     runesAndSubs: 'Engraces y Sublimaciones (WIP)',
     spellsAndPassives: 'Hechizos y Pasivas',
 
-    shared: {
-      meleeMastery: 'Dominio de melé',
-      distanceMastery: 'Dominio distancia',
-      lock: 'Placaje',
-      dodge: 'Esquiva',
-      initiative: 'Iniciativa',
-      forceOfWill: 'Voluntad',
-      criticalMastery: 'Dominio Crítico',
-      rearMastery: 'Dominio Espalda',
-      berserkMastery: 'Dominio Berserker',
-      healingMastery: 'Dominio Cura',
-      rearResistance: 'Resistencia por la espalda',
-      criticalResistance: 'Resistencia Critica',
-      actionPoints: 'Puntos de Acción',
-      wakfuPoints: 'Puntos Wakfu',
-      elementalResistance: 'Resistencia Elemental',
-      waterResistance: 'Water Resistance', // NEEDS TRANSLATION
-      earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
-      airResistance: 'Air Resistance', // NEEDS TRANSLATION
-      fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
-      level: 'Level', // NEEDS TRANSLATION
-      name: 'Name', // NEEDS TRANSLATION
-      elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
-      waterMastery: 'Water Mastery', // NEEDS TRANSLATION
-      earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
-      airMastery: 'Air Mastery', // NEEDS TRANSLATION
-      fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
-    },
-
     statsDisplay: {
-      hp: 'PdV',
       ar: 'AR',
-      ap: 'PA',
-      mp: 'PM',
       qb: 'BC',
-      wp: 'PW',
       elementalMasteries: 'Maestrías Elementales',
       water: 'Agua',
       air: 'Aire',
@@ -112,12 +79,8 @@ export const es = {
       battle: 'Combate',
       damageInflicted: 'Daños Finales',
       criticalHit: 'Golpe Crítico',
-      wisdom: 'Sabiduría',
-      control: 'Control',
       healsPerformed: 'Curas Finales',
       block: 'AAnticipación',
-      range: 'Alcance',
-      prospecting: 'Prospección',
       secondary: 'Secundario',
       armorGiven: 'Armadura Dada',
       armorReceived: 'Armodura Recibida',
@@ -127,9 +90,7 @@ export const es = {
     characteristicsContent: {
       points: 'Puntos',
       intelligence: 'Inteligencia',
-      percentHealth: '% de Puntos de Vida',
       barrier: 'Parapeto',
-      percentHealsReceived: '% de curas recibidas',
       percentArmorHealthPoints: '% de puntos de vida en armadura',
       strength: 'Fuerza',
       elementalMastery: 'Dominio Elemental',
@@ -137,13 +98,10 @@ export const es = {
       agility: 'Agilidad',
       lockAndDodge: 'Placaje y esquiva',
       fortune: 'Suerte',
-      percentCriticalHit: '% de golpe crítico',
-      percentBlock: '% de anticipación',
       major: 'Mayor',
       movementPointsAndDamage: 'Puntos de movimiento y daños',
       rangeAndDamage: 'Alcance y daños',
       controlAndDamage: 'Control y daños',
-      percentDamageInflicted: '% de daños causados',
     },
 
     equipmentContent: {
@@ -178,11 +136,11 @@ export const es = {
         lessThanOrEqualTo: 'Less Than or Equal To', // NEEDS TRANSLATION
         greaterThanOrEqualTo: 'Greater Than or Equal To', // NEEDS TRANSLATION
         smallToBig: 'Small to Big', // NEEDS TRANSLATION
-        bigToSmall: 'Big to Small',
+        bigToSmall: 'Big to Small', // NEEDS TRANSLATION
         healthPoints: 'Health Points (HP)', // NEEDS TRANSLATION
         randElemMasteryValue: 'Rand Elem Mastery Value', // NEEDS TRANSLATION
         criticalHitChance: 'Critical Hit Chance', // NEEDS TRANSLATION
-        blockChance: 'Block Chance',
+        blockChance: 'Block Chance', // NEEDS TRANSLATION
         randElemResistanceValue: 'Rand Elem Resistance Value', // NEEDS TRANSLATION
       },
     },
@@ -235,5 +193,62 @@ export const es = {
     shovelTwoHanded: 'Shovel (Two Handed)', // NEEDS TRANSLATION
     daggerSecondaryWeapon: 'Dagger (Secondary Weapon)', // NEEDS TRANSLATION
     shieldSecondaryWeapon: 'Shield (Secondary Weapon)', // NEEDS TRANSLATION
+
+    percentDamageInflicted: '% de daños causados',
+    percentCriticalHit: '% de golpe crítico',
+    hp: 'PdV',
+    ap: 'PA',
+    mp: 'PM',
+    wp: 'PW',
+    healthSteal: 'Health Steal', // NEEDS TRANSLATION
+    range: 'Alcance',
+    prospecting: 'Prospección',
+    wisdom: 'Sabiduría',
+    control: 'Control',
+    percentBlock: '% de anticipación',
+
+    meleeMastery: 'Dominio de melé',
+    distanceMastery: 'Dominio distancia',
+    lock: 'Placaje',
+    dodge: 'Esquiva',
+    initiative: 'Iniciativa',
+    forceOfWill: 'Voluntad',
+    criticalMastery: 'Dominio Crítico',
+    rearMastery: 'Dominio Espalda',
+    berserkMastery: 'Dominio Berserker',
+    healingMastery: 'Dominio Cura',
+    rearResistance: 'Resistencia por la espalda',
+    criticalResistance: 'Resistencia Critica',
+    actionPoints: 'Puntos de Acción',
+    wakfuPoints: 'Puntos Wakfu',
+    elementalResistance: 'Resistencia Elemental',
+    waterResistance: 'Water Resistance', // NEEDS TRANSLATION
+    earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
+    airResistance: 'Air Resistance', // NEEDS TRANSLATION
+    fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
+    level: 'Level', // NEEDS TRANSLATION
+    name: 'Name', // NEEDS TRANSLATION
+    elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
+    waterMastery: 'Water Mastery', // NEEDS TRANSLATION
+    earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
+    airMastery: 'Air Mastery', // NEEDS TRANSLATION
+    fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
+    randElemMastery: 'Random Elemental Masteries', // NEEDS TRANSLATION
+    randElemResistances: 'Random Elemental Resistances', // NEEDS TRANSLATION
+    harvestingQuantity: 'Harvesting Quantity', // NEEDS TRANSLATION
+
+    percentArmorGiven: '% Armor Given', // NEEDS TRANSLATION
+    percentArmorReceived: '% Armor Received', // NEEDS TRANSLATION
+    percentHealsPerformed: '% Heals Performed', // NEEDS TRANSLATION
+    percentIndirectDamageInflicted: '% Indirect Damage Inflicted', // NEEDS TRANSLATION
+    dodgeOverride: 'Dodge Override', // NEEDS TRANSLATION
+    percentHealsReceived: '% de curas recibidas',
+    healthFromLevel: 'Health Points from Level', // NEEDS TRANSLATION
+    lockOverride: 'Lock Override', // NEEDS TRANSLATION
+    percentHealthPoints: '% de Puntos de Vida',
+    lockDoubled: 'Lock Doubled', // NEEDS TRANSLATION
+    dodgeFromLevel: 'Dodge from Level', // NEEDS TRANSLATION
+    lockFromLevel: 'Lock from Level', // NEEDS TRANSLATION
+    percentDodge: '% Dodge', // NEEDS TRANSLATION
   },
 };

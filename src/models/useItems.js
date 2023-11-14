@@ -13,40 +13,40 @@ export const sortOrderOptions = [
 
 export const sortByOptions = [
   { id: 'none', label: 'characterSheet.equipmentContent.itemFilters.none' },
-  { id: 'level', label: 'characterSheet.shared.level' },
-  { id: 'name', label: 'characterSheet.shared.name' },
+  { id: 'level', label: 'constants.level' },
+  { id: 'name', label: 'constants.name' },
 
   { id: 20, label: 'characterSheet.equipmentContent.itemFilters.healthPoints' },
-  { id: 120, label: 'characterSheet.shared.elementalMastery' },
-  { id: 124, label: 'characterSheet.shared.waterMastery' },
-  { id: 123, label: 'characterSheet.shared.earthMastery' },
-  { id: 125, label: 'characterSheet.shared.airMastery' },
-  { id: 122, label: 'characterSheet.shared.fireMastery' },
+  { id: 120, label: 'constants.elementalMastery' },
+  { id: 124, label: 'constants.waterMastery' },
+  { id: 123, label: 'constants.earthMastery' },
+  { id: 125, label: 'constants.airMastery' },
+  { id: 122, label: 'constants.fireMastery' },
 
   { id: 1068, label: 'characterSheet.equipmentContent.itemFilters.randElemMasteryValue' },
 
-  { id: 1052, label: 'characterSheet.shared.meleeMastery' },
-  { id: 1053, label: 'characterSheet.shared.distanceMastery' },
-  { id: 149, label: 'characterSheet.shared.criticalMastery' },
-  { id: 180, label: 'characterSheet.shared.rearMastery' },
-  { id: 1055, label: 'characterSheet.shared.berserkMastery' },
+  { id: 1052, label: 'constants.meleeMastery' },
+  { id: 1053, label: 'constants.distanceMastery' },
+  { id: 149, label: 'constants.criticalMastery' },
+  { id: 180, label: 'constants.rearMastery' },
+  { id: 1055, label: 'constants.berserkMastery' },
 
   { id: 150, label: 'characterSheet.equipmentContent.itemFilters.criticalHitChance' },
   { id: 875, label: 'characterSheet.equipmentContent.itemFilters.blockChance' },
-  { id: 173, label: 'characterSheet.shared.lock' },
-  { id: 175, label: 'characterSheet.shared.dodge' },
-  { id: 177, label: 'characterSheet.shared.forceOfWill' },
-  { id: 171, label: 'characterSheet.shared.initiative' },
+  { id: 173, label: 'constants.lock' },
+  { id: 175, label: 'constants.dodge' },
+  { id: 177, label: 'constants.forceOfWill' },
+  { id: 171, label: 'constants.initiative' },
 
-  { id: 80, label: 'characterSheet.shared.elementalResistance' },
-  { id: 83, label: 'characterSheet.shared.waterResistance' },
-  { id: 84, label: 'characterSheet.shared.earthResistance' },
-  { id: 85, label: 'characterSheet.shared.airResistance' },
-  { id: 82, label: 'characterSheet.shared.fireResistance' },
+  { id: 80, label: 'constants.elementalResistance' },
+  { id: 83, label: 'constants.waterResistance' },
+  { id: 84, label: 'constants.earthResistance' },
+  { id: 85, label: 'constants.airResistance' },
+  { id: 82, label: 'constants.fireResistance' },
   { id: 1069, label: 'characterSheet.equipmentContent.itemFilters.randElemResistanceValue' },
 
-  { id: 988, label: 'characterSheet.shared.criticalResistance' },
-  { id: 71, label: 'characterSheet.shared.rearResistance' },
+  { id: 988, label: 'constants.criticalResistance' },
+  { id: 71, label: 'constants.rearResistance' },
 ];
 
 const itemFilters = reactive({

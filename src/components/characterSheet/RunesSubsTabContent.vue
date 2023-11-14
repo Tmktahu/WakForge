@@ -40,6 +40,7 @@
                     onDragStart(
                       $event,
                       currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
+                      // eslint-disable-next-line vue/comma-dangle
                       currentCharacter.equipment[slotKey][`runeSlot${index}`].level
                     )
                   "
@@ -56,7 +57,8 @@
                       getRuneValue(
                         currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
                         currentCharacter.equipment[slotKey][`runeSlot${index}`].level,
-                        slotKey,
+                        // eslint-disable-next-line vue/comma-dangle
+                        slotKey
                       )
                     }}
                     {{ currentCharacter.equipment[slotKey][`runeSlot${index}`].rune.name }}

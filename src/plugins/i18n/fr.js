@@ -68,42 +68,9 @@ export const fr = {
     runesAndSubs: 'Runes & Sublimations (WIP)',
     spellsAndPassives: 'Sorts & Passifs',
 
-    shared: {
-      meleeMastery: 'Maîtrise Mêlée',
-      distanceMastery: 'Maîtrise Distance',
-      lock: 'Tacle',
-      dodge: 'Esquive',
-      initiative: 'Initiative',
-      forceOfWill: 'Volonté',
-      criticalMastery: 'Maîtrise Critique',
-      rearMastery: 'Maîtrise Dos',
-      berserkMastery: 'Maîtrise Berserk',
-      healingMastery: 'Maîtrise Soin',
-      rearResistance: 'Résistance Dos',
-      criticalResistance: 'Résistance Critique',
-      actionPoints: "Points d'actions",
-      wakfuPoints: 'Points Wakfu',
-      elementalResistance: 'Résistance Elémentaire',
-      waterResistance: 'Water Resistance', // NEEDS TRANSLATION
-      earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
-      airResistance: 'Air Resistance', // NEEDS TRANSLATION
-      fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
-      level: 'Level', // NEEDS TRANSLATION
-      name: 'Name', // NEEDS TRANSLATION
-      elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
-      waterMastery: 'Water Mastery', // NEEDS TRANSLATION
-      earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
-      airMastery: 'Air Mastery', // NEEDS TRANSLATION
-      fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
-    },
-
     statsDisplay: {
-      hp: 'PV',
       ar: 'Ar',
-      ap: 'PA',
-      mp: 'PM',
       qb: 'BQ',
-      wp: 'PW',
       elementalMasteries: 'Maîtrises Elémentaires',
       water: 'Eau',
       air: 'Air',
@@ -113,12 +80,8 @@ export const fr = {
       battle: 'Combat',
       damageInflicted: 'Dommages Infligés',
       criticalHit: 'Coup Critique',
-      wisdom: 'Sagesse',
-      control: 'Contrôle',
       healsPerformed: 'Soins réalisés',
       block: 'Parade',
-      range: 'PO',
-      prospecting: 'Prospection',
       secondary: 'Secondaire',
       armorGiven: 'Armure donnée',
       armorReceived: 'Armure reçue',
@@ -128,9 +91,7 @@ export const fr = {
     characteristicsContent: {
       points: 'Points',
       intelligence: 'Intelligence',
-      percentHealth: '% Points de Vie',
       barrier: 'Barrière',
-      percentHealsReceived: '% Soins reçus',
       percentArmorHealthPoints: '% Points de Vie en Armure',
       strength: 'Force',
       elementalMastery: 'Maîtrise élémentaire',
@@ -138,13 +99,10 @@ export const fr = {
       agility: 'Agilité',
       lockAndDodge: 'Tacle et Esquive',
       fortune: 'Chance',
-      percentCriticalHit: '% Coup Critique',
-      percentBlock: '% Parade',
       major: 'Majeur',
       movementPointsAndDamage: 'Point de Mouvement et dégâts',
       rangeAndDamage: 'Portée et dégâts',
       controlAndDamage: 'Contrôle et dégâts',
-      percentDamageInflicted: '% Dommages infligés',
     },
 
     equipmentContent: {
@@ -179,11 +137,11 @@ export const fr = {
         lessThanOrEqualTo: 'Less Than or Equal To', // NEEDS TRANSLATION
         greaterThanOrEqualTo: 'Greater Than or Equal To', // NEEDS TRANSLATION
         smallToBig: 'Small to Big', // NEEDS TRANSLATION
-        bigToSmall: 'Big to Small',
+        bigToSmall: 'Big to Small', // NEEDS TRANSLATION
         healthPoints: 'Health Points (HP)', // NEEDS TRANSLATION
         randElemMasteryValue: 'Rand Elem Mastery Value', // NEEDS TRANSLATION
         criticalHitChance: 'Critical Hit Chance', // NEEDS TRANSLATION
-        blockChance: 'Block Chance',
+        blockChance: 'Block Chance', // NEEDS TRANSLATION
         randElemResistanceValue: 'Rand Elem Resistance Value', // NEEDS TRANSLATION
       },
     },
@@ -236,5 +194,59 @@ export const fr = {
     shovelTwoHanded: 'Shovel (Two Handed)', // NEEDS TRANSLATION
     daggerSecondaryWeapon: 'Dagger (Secondary Weapon)', // NEEDS TRANSLATION
     shieldSecondaryWeapon: 'Shield (Secondary Weapon)', // NEEDS TRANSLATION
+
+    percentDamageInflicted: '% Dommages infligés',
+    percentCriticalHit: '% Coup Critique',
+    hp: 'PV',
+    ap: 'PA',
+    mp: 'PM',
+    wp: 'PW',
+    healthSteal: 'Health Steal', // NEEDS TRANSLATION
+    range: 'PO',
+    prospecting: 'Prospection',
+    wisdom: 'Sagesse',
+    control: 'Contrôle',
+    percentBlock: '% Parade',
+
+    meleeMastery: 'Maîtrise Mêlée',
+    distanceMastery: 'Maîtrise Distance',
+    lock: 'Tacle',
+    dodge: 'Esquive',
+    initiative: 'Initiative',
+    forceOfWill: 'Volonté',
+    criticalMastery: 'Maîtrise Critique',
+    rearMastery: 'Maîtrise Dos',
+    berserkMastery: 'Maîtrise Berserk',
+    healingMastery: 'Maîtrise Soin',
+    rearResistance: 'Résistance Dos',
+    criticalResistance: 'Résistance Critique',
+    actionPoints: "Points d'actions",
+    wakfuPoints: 'Points Wakfu',
+    elementalResistance: 'Résistance Elémentaire',
+    waterResistance: 'Water Resistance', // NEEDS TRANSLATION
+    earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
+    airResistance: 'Air Resistance', // NEEDS TRANSLATION
+    fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
+    level: 'Level', // NEEDS TRANSLATION
+    name: 'Name', // NEEDS TRANSLATION
+    elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
+    waterMastery: 'Water Mastery', // NEEDS TRANSLATION
+    earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
+    airMastery: 'Air Mastery', // NEEDS TRANSLATION
+    fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
+
+    percentArmorGiven: '% Armor Given', // NEEDS TRANSLATION
+    percentArmorReceived: '% Armor Received', // NEEDS TRANSLATION
+    percentHealsPerformed: '% Heals Performed', // NEEDS TRANSLATION
+    percentIndirectDamageInflicted: '% Indirect Damage Inflicted', // NEEDS TRANSLATION
+    dodgeOverride: 'Dodge Override', // NEEDS TRANSLATION
+    percentHealsReceived: '% Soins reçus',
+    healthFromLevel: 'Health Points from Level', // NEEDS TRANSLATION
+    lockOverride: 'Lock Override', // NEEDS TRANSLATION
+    percentHealthPoints: '% Points de Vie',
+    lockDoubled: 'Lock Doubled', // NEEDS TRANSLATION
+    dodgeFromLevel: 'Dodge from Level', // NEEDS TRANSLATION
+    lockFromLevel: 'Lock from Level', // NEEDS TRANSLATION
+    percentDodge: '% Dodge', // NEEDS TRANSLATION
   },
 };

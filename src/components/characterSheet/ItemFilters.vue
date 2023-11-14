@@ -165,15 +165,15 @@
     <template v-for="filter in effectFilters" :key="filter.id">
       <div class="filter-entry">
         <p-dropdown v-model="filter.type" class="filter-type-dropdown" :options="filterTypeOptions" @change="updateFilters">
-          <template v-slot:value="slotProps"> {{ slotProps.value.text }} </template>
+          <template v-slot:value="slotProps"> {{ $t(slotProps.value.text) }} </template>
           <template v-slot:option="slotProps">
-            <div class="px-2 py-1">{{ slotProps.option.text }}</div>
+            <div class="px-2 py-1">{{ $t(slotProps.option.text) }}</div>
           </template>
         </p-dropdown>
         <p-dropdown v-model="filter.comparator" class="filter-comparator-dropdown" :options="COMPARATORS" @change="updateFilters">
           <template v-slot:value="slotProps"> {{ slotProps.value.symbol }} </template>
           <template v-slot:option="slotProps">
-            <div class="px-2 py-1">{{ slotProps.option.text }}</div>
+            <div class="px-2 py-1">{{ $t(slotProps.option.text) }}</div>
           </template>
         </p-dropdown>
         <p-inputNumber v-model="filter.value" class="filter-value-input" :allow-empty="false" @input="updateFilters" />
@@ -186,26 +186,23 @@
 <script setup>
 import { ref, inject } from 'vue';
 import { debounce } from 'lodash';
-import { useI18n } from 'vue-i18n';
 
 import { EFFECT_TYPE_DATA } from '@/models/useConstants.js';
-
-const { t } = useI18n();
 
 const COMPARATORS = [
   {
     id: 'equalTo',
-    text: t('characterSheet.equipmentContent.itemFilters.equalTo'),
+    text: 'characterSheet.equipmentContent.itemFilters.equalTo',
     symbol: '=',
   },
   {
     id: 'lessThanOrEqualTo',
-    text: t('characterSheet.equipmentContent.itemFilters.lessThanOrEqualTo'),
+    text: 'characterSheet.equipmentContent.itemFilters.lessThanOrEqualTo',
     symbol: '<=',
   },
   {
     id: 'greaterThanOrEqualTo',
-    text: t('characterSheet.equipmentContent.itemFilters.greaterThanOrEqualTo'),
+    text: 'characterSheet.equipmentContent.itemFilters.greaterThanOrEqualTo',
     symbol: '>=',
   },
 ];

@@ -6,7 +6,7 @@
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
         <div v-else>
           <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
-          <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+          <span>{{ $t(getEffectData(effect.id).text).charAt(0) === '%' ? $t(getEffectData(effect.id).text) : ' ' + $t(getEffectData(effect.id).text) }}</span>
         </div>
       </div>
     </template>
@@ -19,7 +19,7 @@
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
         <div v-else>
           <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
-          <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
+          <span>{{ $t(getEffectData(effect.id).text).charAt(0) === '%' ? $t(getEffectData(effect.id).text) : ' ' + $t(getEffectData(effect.id).text) }}</span>
         </div>
       </div>
     </template>
