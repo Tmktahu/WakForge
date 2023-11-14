@@ -48,7 +48,7 @@
         <div class="code flex align-items-center px-2 py-1 ml-2">
           <span>{{ buildCode }}</span>
         </div>
-        <p-button class="py-1 ml-2" :label="$t('characterSheet.copy')" @click="onCopyBuildCode" />
+        <p-button class="py-1 ml-2 px-2" :label="$t('characterSheet.copy')" @click="onCopyBuildCode" />
         <!-- <p-button class="py-1 ml-2" label="Paste" @click="onPasteBuildCode" /> -->
       </div>
     </div>
@@ -304,7 +304,7 @@ const onCopyBuildCode = () => {
     span {
       line-height: 0px;
       word-wrap: break-word;
-      max-width: calc(100vw - 933px);
+      max-width: calc(100vw - 1100px);
     }
   }
 }

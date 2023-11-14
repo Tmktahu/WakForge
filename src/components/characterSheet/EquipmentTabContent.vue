@@ -9,15 +9,15 @@
     <div class="flex align-items-center">
       <div>{{ $t('characterSheet.equipmentContent.sortBy') }}:</div>
       <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" :options="sortByOptions">
-        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
         </template>
       </p-dropdown>
       <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" :options="sortOrderOptions">
-        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
         </template>
       </p-dropdown>
       <div class="flex-grow-1" />
@@ -44,7 +44,7 @@
                 <div class="flex px-2 pt-2">
                   <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                   <div class="flex flex-column ml-1">
-                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
+                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
                     <div class="flex">
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
@@ -71,7 +71,7 @@
                   <div class="flex px-2 pt-2">
                     <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                     <div class="flex flex-column ml-1">
-                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
+                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
                       <div class="flex">
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
@@ -103,7 +103,7 @@
                     <div class="effect-header flex pt-2 px-1">
                       <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                       <div class="flex flex-column ml-1">
-                        <div class="item-name mr-2">{{ item.name }}</div>
+                        <div class="item-name mr-2">{{ $t(`items.${item.id}`) }}</div>
                         <div class="flex">
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />

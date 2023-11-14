@@ -7,46 +7,46 @@ let currentSortBy = { id: 'none' };
 let currentSortOrder = 'ascending';
 
 export const sortOrderOptions = [
-  { id: 'ascending', label: 'Small to Big' },
-  { id: 'descending', label: 'Big to Small' },
+  { id: 'ascending', label: 'characterSheet.equipmentContent.itemFilters.smallToBig' },
+  { id: 'descending', label: 'characterSheet.equipmentContent.itemFilters.bigToSmall' },
 ];
 
 export const sortByOptions = [
-  { id: 'none', label: 'None' },
-  { id: 'level', label: 'Level' },
-  { id: 'name', label: 'Name' },
+  { id: 'none', label: 'characterSheet.equipmentContent.itemFilters.none' },
+  { id: 'level', label: 'constants.level' },
+  { id: 'name', label: 'constants.name' },
 
-  { id: 20, label: 'Health Points (HP)' },
-  { id: 120, label: 'Elemental Mastery' },
-  { id: 124, label: 'Water Mastery' },
-  { id: 123, label: 'Earth Mastery' },
-  { id: 125, label: 'Air Mastery' },
-  { id: 122, label: 'Fire Mastery' },
+  { id: 20, label: 'characterSheet.equipmentContent.itemFilters.healthPoints' },
+  { id: 120, label: 'constants.elementalMastery' },
+  { id: 124, label: 'constants.waterMastery' },
+  { id: 123, label: 'constants.earthMastery' },
+  { id: 125, label: 'constants.airMastery' },
+  { id: 122, label: 'constants.fireMastery' },
 
-  { id: 1068, label: 'Rand Elem Mastery Value' },
+  { id: 1068, label: 'characterSheet.equipmentContent.itemFilters.randElemMasteryValue' },
 
-  { id: 1052, label: 'Melee Mastery' },
-  { id: 1053, label: 'Distance Mastery' },
-  { id: 149, label: 'Critical Mastery' },
-  { id: 180, label: 'Rear Mastery' },
-  { id: 1055, label: 'Berserk Mastery' },
+  { id: 1052, label: 'constants.meleeMastery' },
+  { id: 1053, label: 'constants.distanceMastery' },
+  { id: 149, label: 'constants.criticalMastery' },
+  { id: 180, label: 'constants.rearMastery' },
+  { id: 1055, label: 'constants.berserkMastery' },
 
-  { id: 150, label: 'Critical Hit Chance' },
-  { id: 875, label: 'Block Chance' },
-  { id: 173, label: 'Lock' },
-  { id: 175, label: 'Dodge' },
-  { id: 177, label: 'Force of Will' },
-  { id: 171, label: 'Initiative' },
+  { id: 150, label: 'characterSheet.equipmentContent.itemFilters.criticalHitChance' },
+  { id: 875, label: 'characterSheet.equipmentContent.itemFilters.blockChance' },
+  { id: 173, label: 'constants.lock' },
+  { id: 175, label: 'constants.dodge' },
+  { id: 177, label: 'constants.forceOfWill' },
+  { id: 171, label: 'constants.initiative' },
 
-  { id: 80, label: 'Elemental Resistance' },
-  { id: 83, label: 'Water Resistance' },
-  { id: 84, label: 'Earth Resistance' },
-  { id: 85, label: 'Air Resistance' },
-  { id: 82, label: 'Fire Resistance' },
-  { id: 1069, label: 'Rand Elem Resistance Value' },
+  { id: 80, label: 'constants.elementalResistance' },
+  { id: 83, label: 'constants.waterResistance' },
+  { id: 84, label: 'constants.earthResistance' },
+  { id: 85, label: 'constants.airResistance' },
+  { id: 82, label: 'constants.fireResistance' },
+  { id: 1069, label: 'characterSheet.equipmentContent.itemFilters.randElemResistanceValue' },
 
-  { id: 988, label: 'Critical Resistance' },
-  { id: 71, label: 'Rear Resistance' },
+  { id: 988, label: 'constants.criticalResistance' },
+  { id: 71, label: 'constants.rearResistance' },
 ];
 
 const itemFilters = reactive({
@@ -227,7 +227,7 @@ export const useItems = (character = ref(null)) => {
       let hadEffect = false;
       item.equipEffects.some((itemEffect) => {
         // if the item has the effect, then we need to check it against our filters
-        if (itemEffect.id === targetFilterEffectData.rawId) {
+        if (targetFilterEffectData.rawIds.includes(itemEffect.id)) {
           hadEffect = true;
 
           if (filter.comparator.id === 'equalTo') {

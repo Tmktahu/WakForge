@@ -218,3 +218,25 @@ body {
         padding: 12px 16px;
     }
 }
+
+.p-menu {
+    background-color: var(--bonta-blue-20);
+    border-radius: 8px;
+    border: 1px solid var(--bonta-blue-100);
+
+    .p-submenu-header {
+        padding: 8px 16px;
+    }
+
+    .p-menuitem-link {
+        padding: 8px 8px;
+    }
+
+    .p-menuitem-content{
+        background-color: transparent;
+
+        &:hover {
+            background-color: var(--bonta-blue-70);
+        }
+    }
+}
