@@ -227,7 +227,7 @@ export const useItems = (character = ref(null)) => {
       let hadEffect = false;
       item.equipEffects.some((itemEffect) => {
         // if the item has the effect, then we need to check it against our filters
-        if (itemEffect.id === targetFilterEffectData.rawId) {
+        if (targetFilterEffectData.rawIds.includes(itemEffect.id)) {
           hadEffect = true;
 
           if (filter.comparator.id === 'equalTo') {

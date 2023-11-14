@@ -54,6 +54,7 @@ const fixedItemProperties = [
 const jsonActionsData = fs.readFileSync('./actions.json');
 const actionsData = JSON.parse(jsonActionsData);
 
+const NEGATIVE_EFFECTS = [21, 40, 42, 56, 57, 90, 96, 97, 98, 100, 130, 132, 161, 168, 172, 174, 176, 181, 192, 194, 876, 1056, 1059, 1060, 1061, 1062, 1063];
 const LONG_EFFECT_ENTRIES = [1068, 1069];
 
 let formattedItemData = [];
@@ -180,6 +181,10 @@ const getItemEffects = (equipEffects) => {
           newEffect.resistanceSlot1 = { type: 'empty', value: 0 };
           newEffect.resistanceSlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;
           newEffect.resistanceSlot3 = effectObject.effect.definition?.params[2] > 2 ? { type: 'empty', value: 0 } : undefined;
+        }
+
+        if (NEGATIVE_EFFECTS.includes(newEffect.id)) {
+          newEffect.values[0] = newEffect.values[0] * -1;
         }
       }
     });

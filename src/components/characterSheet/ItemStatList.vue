@@ -5,7 +5,7 @@
         <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
         <div v-else>
-          <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
+          <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
           <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
         </div>
       </div>
@@ -18,7 +18,7 @@
         <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
         <div v-else>
-          <span>{{ getEffectData(effect.id)?.isNegative ? '-' : '+' }}{{ getEffectValue(effect) }}</span>
+          <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
           <span>{{ getEffectData(effect.id).text.charAt(0) === '%' ? getEffectData(effect.id).text : ' ' + getEffectData(effect.id).text }}</span>
         </div>
       </div>
@@ -51,7 +51,7 @@ const shouldSkipEffect = (effect) => {
 };
 
 const getEffectData = (rawId) => {
-  let effectEntryKey = Object.keys(EFFECT_TYPE_DATA).find((key) => EFFECT_TYPE_DATA[key].rawId === rawId);
+  let effectEntryKey = Object.keys(EFFECT_TYPE_DATA).find((key) => EFFECT_TYPE_DATA[key].rawIds.includes(rawId));
   if (effectEntryKey === undefined) {
     return null;
   } else {
