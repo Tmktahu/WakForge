@@ -1,0 +1,52 @@
+export const fr = {
+    app: {
+      disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
+    },
+    sidebar: {
+      charactersTab: 'Personnages',
+      dataTab: 'Données',
+      discordTab: 'Discord',
+      githubTab: 'GitHub',
+    },
+    charactersPage: {
+      title: 'Bienvenue sur Wakforge',
+      description: 'Si vous rencontrez le moindre problème, n\'hésitez pas à contacter Fryke (fryke) sur Discord.',
+      codeInputLabel: 'Code Build',
+      codeInputPlaceholder: 'Entrer le code d\'un build',
+      codeInputButton: 'Créer à partir d\'un code',
+      invalidBuildCode: 'Code de Build invalide.',
+      savedCharactersTitle: 'Personnages Sauvegardés',
+      createNewCharacterButton: 'Créer un nouveau Personnage',
+    },
+    dataPage: {
+      title: 'Gestion des données de l\'application',
+      importDescription: 'Vous pouvez upload ici un fichier JSON pour importer des personnages',
+      selectJson: 'Sélectionner un fichier JSON',
+      dragOrDrop: 'Ou glisser/déposer le fichier JSON ici.',
+      dataNotRecognized: 'Les données actuelles ne sont pas reconnues comme des données WakForge.',
+      beforeImport: 'Avant d\'importer les personnages, la version de vos données sera vérifiée.',
+      needsMigration:
+        'Il semble que vous utilisez des données d\'une ancienne version nécessitant d\'être mises à jour avant d\'être utilisées. Ceci est une opération sans risque et ne fera aucun changement permanent sur vos données existantes.',
+      goodToGo: 'Vos données sont prêtes.',
+      dataSize: 'Taille des données',
+      numberOfCharacters: 'Nombre de personnages',
+      noCharactersFound: 'Aucun personnage trouvé',
+      operatesOffLocalstorage: 'WakForge fonctionne avec des données sauvegardées dans le navigateur via LocalStorage.',
+      currentLocalstorageKey: 'La clé utilisée pour les données du LocalStorage est',
+      storageLimit: 'Le LocalStorage a une taille limite de 10Mo.',
+      currentStorageSize: 'Votre stockage a une taille actuelle de',
+      contactForHelp: 'Si vous approchez de cette limite, merci de contacter Fryke (fryke) sur Discord.',
+      warning: 'ATTENTION',
+      warningMessage:
+        'Editer les données du LocalStorage directement est dangereux et peut corrompre définitivement vos données. Ne le faites qu\'après avoir fait une sauvegarde et si vous savez ce que vous faites.',
+      mustDownloadFirst: 'Vous devez d\'abort télecharger vos données',
+      invalidJSON: 'JSON invalide',
+      saveToLocalstorage: 'Sauvegarder dans le LocalStorage',
+      downloadData: 'Télécharger les données actuelles',
+      deleteAllData: 'Supprimer toutes les données',
+      migrateData: 'Migrer les données',
+      importCharacters: 'Importer les personnages sélectionnés',
+      noDataFound: 'Aucune donnée trouvée',
+    },
+  };
+  
