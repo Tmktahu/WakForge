@@ -161,6 +161,14 @@ export function useStorage() {
       if (character.activeSpells) {
         delete character.activeSpells;
       }
+
+      if (character.equipment.pet) {
+        delete character.equipment.pet;
+      }
+
+      if (character.equipment.mount) {
+        delete character.equipment.mount;
+      }
     });
 
     // this handles adding new spell keys if they don't exist
