@@ -53,20 +53,20 @@ export const RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES = [2, 4, 6, 8, 10, 1
 export const RUNE_HEALTH_LEVEL_VALUES = [4, 8, 12, 16, 20, 28, 40, 52, 64, 80, 88];
 
 export const ITEM_SLOT_DATA = {
-  HEAD: { id: 'HEAD', rawId: 0, name: 'Helmet', sortOrder: 1 },
-  CHEST: { id: 'CHEST', rawId: 5, name: 'Breastplace', sortOrder: 2 },
-  SHOULDERS: { id: 'SHOULDERS', rawId: 3, name: 'Epaulettes', sortOrder: 3 },
-  LEGS: { id: 'LEGS', rawId: 12, name: 'Boots', sortOrder: 4 },
-  NECK: { id: 'NECK', rawId: 4, name: 'Amulet', sortOrder: 5 },
-  BACK: { id: 'BACK', rawId: 13, name: 'Cloak', sortOrder: 6 },
-  BELT: { id: 'BELT', rawId: 10, name: 'Belt', sortOrder: 7 },
-  FIRST_WEAPON: { id: 'FIRST_WEAPON', rawId: 15, name: 'Primary Weapon', sortOrder: 8 },
-  SECOND_WEAPON: { id: 'SECOND_WEAPON', name: 'Secondary Weapon', sortOrder: 9 },
-  LEFT_HAND: { id: 'LEFT_HAND', rawId: 7, name: 'Left Ring', sortOrder: 10 },
-  RIGHT_HAND: { id: 'RIGHT_HAND', rawId: 8, name: 'Right Ring', sortOrder: 11 },
-  ACCESSORY: { id: 'ACCESSORY', name: 'Emblem', sortOrder: 12 },
-  PET: { id: 'PET', name: 'Pet', sortOrder: 13 },
-  MOUNT: { id: 'MOUNT', name: 'Mount', sortOrder: 14 },
+  HEAD: { id: 'HEAD', rawId: 0, name: 'constants.helmet', sortOrder: 1 },
+  CHEST: { id: 'CHEST', rawId: 5, name: 'constants.breastplate', sortOrder: 2 },
+  SHOULDERS: { id: 'SHOULDERS', rawId: 3, name: 'constants.epaulettes', sortOrder: 3 },
+  LEGS: { id: 'LEGS', rawId: 12, name: 'constants.boots', sortOrder: 4 },
+  NECK: { id: 'NECK', rawId: 4, name: 'constants.amulet', sortOrder: 5 },
+  BACK: { id: 'BACK', rawId: 13, name: 'constants.cloak', sortOrder: 6 },
+  BELT: { id: 'BELT', rawId: 10, name: 'constants.belt', sortOrder: 7 },
+  FIRST_WEAPON: { id: 'FIRST_WEAPON', rawId: 15, name: 'constants.primaryWeapon', sortOrder: 8 },
+  SECOND_WEAPON: { id: 'SECOND_WEAPON', name: 'constants.secondaryWeapon', sortOrder: 9 },
+  LEFT_HAND: { id: 'LEFT_HAND', rawId: 7, name: 'constants.leftRing', sortOrder: 10 },
+  RIGHT_HAND: { id: 'RIGHT_HAND', rawId: 8, name: 'constants.rightRing', sortOrder: 11 },
+  ACCESSORY: { id: 'ACCESSORY', name: 'constants.emblem', sortOrder: 12 },
+  PET: { id: 'PET', name: 'constants.pet', sortOrder: 13 },
+  MOUNT: { id: 'MOUNT', name: 'constants.mount', sortOrder: 14 },
 };
 
 export const ITEM_SLOT_SORT_ORDER = Object.keys(ITEM_SLOT_DATA)
@@ -82,14 +82,14 @@ export const ITEM_SLOT_SORT_ORDER = Object.keys(ITEM_SLOT_DATA)
   .map((item) => item.id);
 
 export const ITEM_RARITY_DATA = [
-  { id: 0, name: 'Common' },
-  { id: 1, name: 'Unusual' },
-  { id: 2, name: 'Rare' },
-  { id: 3, name: 'Mythical' },
-  { id: 4, name: 'Legendary' },
-  { id: 5, name: 'Relic' },
-  { id: 6, name: 'Souvenir' },
-  { id: 7, name: 'Epic' },
+  { id: 0, name: 'constants.common' },
+  { id: 1, name: 'constants.unusual' },
+  { id: 2, name: 'constants.rare' },
+  { id: 3, name: 'constants.mythical' },
+  { id: 4, name: 'constants.legendary' },
+  { id: 5, name: 'constants.relic' },
+  { id: 6, name: 'constants.souvenir' },
+  { id: 7, name: 'constants.epic' },
 ];
 
 export const LEVELABLE_ITEMS = [582, 611];
@@ -161,44 +161,44 @@ export const ITEM_TYPE_DATA = [
 ];
 
 export const ITEM_TYPE_FILTERS = [
-  { id: 'helmet', rawId: 134, name: 'Helmet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.HEAD] },
-  { id: 'amulet', rawId: 120, name: 'Amulet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.NECK] },
-  { id: 'epaulettes', rawId: 138, name: 'Epaulettes', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.SHOULDERS] },
-  { id: 'breastplate', rawId: 136, name: 'Breastplate', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.CHEST] },
-  { id: 'cloak', rawId: 132, name: 'Cloak', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BACK] },
-  { id: 'belt', rawId: 133, name: 'Belt', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BELT] },
-  { id: 'boots', rawId: 119, name: 'Boots', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.LEGS] },
-  { id: 'ring', rawId: 103, name: 'Ring', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.RIGHT_HAND, ITEM_SLOT_DATA.LEFT_HAND] },
+  { id: 'helmet', rawId: 134, name: 'constants.helmet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.HEAD] },
+  { id: 'amulet', rawId: 120, name: 'constants.amulet', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.NECK] },
+  { id: 'epaulettes', rawId: 138, name: 'constants.epaulettes', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.SHOULDERS] },
+  { id: 'breastplate', rawId: 136, name: 'constants.breastplate', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.CHEST] },
+  { id: 'cloak', rawId: 132, name: 'constants.cloak', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BACK] },
+  { id: 'belt', rawId: 133, name: 'constants.belt', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.BELT] },
+  { id: 'boots', rawId: 119, name: 'constants.boots', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.LEGS] },
+  { id: 'ring', rawId: 103, name: 'constants.ring', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.RIGHT_HAND, ITEM_SLOT_DATA.LEFT_HAND] },
 
   // eslint-disable-next-line prettier/prettier
-  { id: 'oneHandedWeapons', rawIds: [108, 110, 113, 115, 254], name: 'One Handed Weapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'oneHandedWeapons', rawIds: [108, 110, 113, 115, 254], name: 'constants.oneHandedWeapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
   // eslint-disable-next-line prettier/prettier
-  { id: 'twoHandedWeapons', rawIds: [223, 101, 253, 114, 117, 111], name: 'Two Handed Weapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedWeapons', rawIds: [223, 101, 253, 114, 117, 111], name: 'constants.twoHandedWeapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
 
-  { id: 'wand', rawId: 108, name: 'Wand (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'sword', rawId: 110, name: 'Sword (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'staff', rawId: 113, name: 'Staff (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'clockHand', rawId: 115, name: 'Clock Hand (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'cards', rawId: 254, name: 'Cards (One Hand)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'wand', rawId: 108, name: 'constants.wandOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'sword', rawId: 110, name: 'constants.swordOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'staff', rawId: 113, name: 'constants.staffOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'clockHand', rawId: 115, name: 'constants.clockHandOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'cards', rawId: 254, name: 'constants.cardsOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
 
-  { id: 'twoHandedSword', rawId: 223, name: 'Sword (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'twoHandedAxe', rawId: 101, name: 'Axe (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'twoHandedStaff', rawId: 253, name: 'Staff (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'hammer', rawId: 114, name: 'Hammer (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'bow', rawId: 117, name: 'Bow (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
-  { id: 'shovel', rawId: 111, name: 'Shovel (Two Handed)', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedSword', rawId: 223, name: 'constants.swordTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedAxe', rawId: 101, name: 'constants.axeTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'twoHandedStaff', rawId: 253, name: 'constants.staffTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'hammer', rawId: 114, name: 'constants.hammerTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'bow', rawId: 117, name: 'constants.bowTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  { id: 'shovel', rawId: 111, name: 'constants.shovelTwoHanded', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
 
-  { id: 'dagger', rawId: 112, name: 'Dagger (Secondary Weapon)', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
-  { id: 'shield', rawId: 189, name: 'Shield (Secondary Weapon)', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
+  { id: 'dagger', rawId: 112, name: 'constants.daggerSecondaryWeapon', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
+  { id: 'shield', rawId: 189, name: 'constants.shieldSecondaryWeapon', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.SECOND_WEAPON] },
 
-  { id: 'emblem', rawId: 646, name: 'Emblem', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.ACCESSORY] },
-  { id: 'pets', rawId: 582, name: 'Pets', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.PET] },
-  { id: 'mounts', rawId: 611, name: 'Mounts', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.MOUNT] },
-  { id: 'tool', rawId: 537, name: 'Tool', category: 'miscellaneous', advanced: true, validSlots: [] },
-  { id: 'torches', rawId: 480, name: 'Torches', category: 'miscellaneous', advanced: true, validSlots: [] },
-  { id: 'costumes', rawId: 647, name: 'Costumes', category: 'miscellaneous', advanced: true, validSlots: [] },
-  { id: 'sublimationScroll', rawId: 812, name: 'Sublimation Scroll', category: 'miscellaneous', advanced: true, validSlots: [] },
-  { id: 'enchantement', rawId: 811, name: 'Enchantement', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'emblem', rawId: 646, name: 'constants.emblem', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.ACCESSORY] },
+  { id: 'pets', rawId: 582, name: 'constants.pets', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.PET] },
+  { id: 'mounts', rawId: 611, name: 'constants.mounts', category: 'miscellaneous', advanced: false, validSlots: [ITEM_SLOT_DATA.MOUNT] },
+  { id: 'tool', rawId: 537, name: 'constants.tool', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'torches', rawId: 480, name: 'constants.torches', category: 'miscellaneous', advanced: true, validSlots: [] },
+  { id: 'costumes', rawId: 647, name: 'constants.costumes', category: 'miscellaneous', advanced: true, validSlots: [] },
+  // { id: 'sublimationScroll', rawId: 812, name: 'constants.sublimationScroll', category: 'miscellaneous', advanced: true, validSlots: [] },
+  // { id: 'enchantement', rawId: 811, name: 'constants.enchantment', category: 'miscellaneous', advanced: true, validSlots: [] },
 ];
 
 export const EFFECT_TYPE_DATA = {

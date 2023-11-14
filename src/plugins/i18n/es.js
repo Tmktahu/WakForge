@@ -80,6 +80,17 @@ export const es = {
       actionPoints: 'Puntos de Acción',
       wakfuPoints: 'Puntos Wakfu',
       elementalResistance: 'Resistencia Elemental',
+      waterResistance: 'Water Resistance', // NEEDS TRANSLATION
+      earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
+      airResistance: 'Air Resistance', // NEEDS TRANSLATION
+      fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
+      level: 'Level', // NEEDS TRANSLATION
+      name: 'Name', // NEEDS TRANSLATION
+      elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
+      waterMastery: 'Water Mastery', // NEEDS TRANSLATION
+      earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
+      airMastery: 'Air Mastery', // NEEDS TRANSLATION
+      fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
     },
 
     statsDisplay: {
@@ -150,6 +161,76 @@ export const es = {
       epicAndTwoHandedWarning:
         'Tienes un objeto en tu segunda ranura de arma y un objeto Épico ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
       epicAndSecondWeaponWarning: 'Ya tienes equipados un arma a dos manos y un objeto Épico ya equipiado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+
+      itemFilters: {
+        searchItems: 'Search Items', // NEEDS TRANSLATION
+        resetFilters: 'Reset Filters', // NEEDS TRANSLATION
+        rarities: 'Rarities', // NEEDS TRANSLATION
+        all: 'All', // NEEDS TRANSLATION
+        none: 'None', // NEEDS TRANSLATION
+        itemTypes: 'Item Types', // NEEDS TRANSLATION
+        showAllFilters: 'Show All Filters', // NEEDS TRANSLATION
+        newFilter: 'New Filter', // NEEDS TRANSLATION
+        equalTo: 'Equal To', // NEEDS TRANSLATION
+        lessThanOrEqualTo: 'Less Than or Equal To', // NEEDS TRANSLATION
+        greaterThanOrEqualTo: 'Greater Than or Equal To', // NEEDS TRANSLATION
+        smallToBig: 'Small to Big', // NEEDS TRANSLATION
+        bigToSmall: 'Big to Small',
+        healthPoints: 'Health Points (HP)', // NEEDS TRANSLATION
+        randElemMasteryValue: 'Rand Elem Mastery Value', // NEEDS TRANSLATION
+        criticalHitChance: 'Critical Hit Chance', // NEEDS TRANSLATION
+        blockChance: 'Block Chance',
+        randElemResistanceValue: 'Rand Elem Resistance Value', // NEEDS TRANSLATION
+      },
     },
+  },
+  constants: {
+    common: 'Common', // NEEDS TRANSLATION
+    unusual: 'Unusual', // NEEDS TRANSLATION
+    rare: 'Rare', // NEEDS TRANSLATION
+    mythical: 'Mythical', // NEEDS TRANSLATION
+    legendary: 'Legendary', // NEEDS TRANSLATION
+    relic: 'Relic', // NEEDS TRANSLATION
+    souvenir: 'Souvenir', // NEEDS TRANSLATION
+    epic: 'Epic', // NEEDS TRANSLATION
+
+    helmet: 'Helmet', // NEEDS TRANSLATION
+    breastplate: 'Breastplate', // NEEDS TRANSLATION
+    epaulettes: 'Epaulettes', // NEEDS TRANSLATION
+    boots: 'Boots', // NEEDS TRANSLATION
+    amulet: 'Amulet', // NEEDS TRANSLATION
+    cloak: 'Cloak', // NEEDS TRANSLATION
+    belt: 'Belt', // NEEDS TRANSLATION
+    primaryWeapon: 'Primary Weapon', // NEEDS TRANSLATION
+    secondaryWeapon: 'Secondary Weapon', // NEEDS TRANSLATION
+    leftRing: 'Left Ring', // NEEDS TRANSLATION
+    rightRing: 'Right Ring', // NEEDS TRANSLATION
+    ring: 'Ring', // NEEDS TRANSLATION
+    emblem: 'Emblem', // NEEDS TRANSLATION
+    pet: 'Pet', // NEEDS TRANSLATION
+    pets: 'Pets', // NEEDS TRANSLATION
+    mount: 'Mount', // NEEDS TRANSLATION
+    mounts: 'Mounts', // NEEDS TRANSLATION
+    tool: 'Tool', // NEEDS TRANSLATION
+    torches: 'Torches', // NEEDS TRANSLATION
+    costumes: 'Costumes', // NEEDS TRANSLATION
+    sublimationScroll: 'Sublimation Scroll', // NEEDS TRANSLATION
+    enchantment: 'Rune', // NEEDS TRANSLATION
+
+    oneHandedWeapons: 'One Handed Weapons', // NEEDS TRANSLATION
+    twoHandedWeapons: 'Two Handed Weapons', // NEEDS TRANSLATION
+    wandOneHand: 'Wand (One Hand)', // NEEDS TRANSLATION
+    swordOneHand: 'Sword (One Hand)', // NEEDS TRANSLATION
+    staffOneHand: 'Staff (One Hand)', // NEEDS TRANSLATION
+    clockHandOneHand: 'Clock Hand (One Hand)', // NEEDS TRANSLATION
+    cardsOneHand: 'Cards (One Hand)', // NEEDS TRANSLATION
+    swordTwoHanded: 'Sword (Two Handed)', // NEEDS TRANSLATION
+    axeTwoHanded: 'Axe (Two Handed)', // NEEDS TRANSLATION
+    staffTwoHanded: 'Staff (Two Handed)', // NEEDS TRANSLATION
+    hammerTwoHanded: 'Hammer (Two Handed)', // NEEDS TRANSLATION
+    bowTwoHanded: 'Bow (Two Handed)', // NEEDS TRANSLATION
+    shovelTwoHanded: 'Shovel (Two Handed)', // NEEDS TRANSLATION
+    daggerSecondaryWeapon: 'Dagger (Secondary Weapon)', // NEEDS TRANSLATION
+    shieldSecondaryWeapon: 'Shield (Secondary Weapon)', // NEEDS TRANSLATION
   },
 };

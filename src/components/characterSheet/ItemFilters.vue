@@ -1,20 +1,25 @@
 <template>
   <div class="flex align-items-center flex-wrap mt-3">
-    <p-inputText v-model="searchTerm" placeholder="Search Items" class="search-input mr-2" @input="onSearchInput" />
+    <p-inputText
+      v-model="searchTerm"
+      :placeholder="$t('characterSheet.equipmentContent.itemFilters.searchItems')"
+      class="search-input mr-2"
+      @input="onSearchInput"
+    />
     <div class="flex align-items-center mr-2" style="width: 100%; max-width: 400px">
       <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'min')" />
       <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
       <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'max')" />
     </div>
-    <p-button class="filter-button" label="Reset Filters" @click="onResetFilters" />
+    <p-button class="filter-button" :label="$t('characterSheet.equipmentContent.itemFilters.resetFilters')" @click="onResetFilters" />
   </div>
 
   <div class="checkmarks-container flex gap-2">
     <div class="rarity-container mt-2">
       <div class="flex align-items-center mb-1">
-        <p-button class="filter-button item-filter-action" label="All" @click="onSelectAllRarities" />
-        <div class="mx-2">Rarities</div>
-        <p-button class="filter-button item-filter-action" label="None" @click="onClearAllRarities" />
+        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
+        <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
+        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
       </div>
       <div class="rarity-button-wrapper">
         <template v-for="rarity in rarityFilters" :key="rarity.id">
@@ -33,7 +38,7 @@
 
             <template v-slot:content>
               <div class="simple-tooltip">
-                {{ rarity.name }}
+                {{ $t(rarity.name) }}
               </div>
             </template>
           </tippy>
@@ -43,16 +48,16 @@
 
     <div class="item-types-container mt-2">
       <div class="flex align-items-center justify-content-center mb-1 w-full">
-        <p-button class="filter-button item-filter-action" label="All" @click="onSelectAllItemTypes" />
-        <div class="mx-2">Item Types</div>
+        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllItemTypes" />
+        <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.itemTypes') }}</div>
         <tippy>
           <p-checkbox v-model="showAdvancedFilters" class="mr-2" :binary="true" />
 
           <template v-slot:content>
-            <div class="simple-tooltip">Show All Filters</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.itemFilters.showAllFilters') }}</div>
           </template>
         </tippy>
-        <p-button class="filter-button item-filter-action" label="None" @click="onClearAllItemTypes" />
+        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllItemTypes" />
       </div>
       <div class="item-types-button-wrapper">
         <div class="filter-category-wrapper">
@@ -80,7 +85,7 @@
 
               <template v-slot:content>
                 <div class="simple-tooltip">
-                  {{ itemType.name }}
+                  {{ $t(itemType.name) }}
                 </div>
               </template>
             </tippy>
@@ -112,7 +117,7 @@
 
               <template v-slot:content>
                 <div class="simple-tooltip">
-                  {{ itemType.name }}
+                  {{ $t(itemType.name) }}
                 </div>
               </template>
             </tippy>
@@ -144,7 +149,7 @@
 
               <template v-slot:content>
                 <div class="simple-tooltip">
-                  {{ itemType.name }}
+                  {{ $t(itemType.name) }}
                 </div>
               </template>
             </tippy>
@@ -155,7 +160,7 @@
   </div>
 
   <div class="filter-list-wrapper mt-3">
-    <p-button icon="pi pi-plus" class="filter-button" label="New Filter" @click="onAddFilter" />
+    <p-button icon="pi pi-plus" class="filter-button" :label="$t('characterSheet.equipmentContent.itemFilters.newFilter')" @click="onAddFilter" />
 
     <template v-for="filter in effectFilters" :key="filter.id">
       <div class="filter-entry">
@@ -181,22 +186,26 @@
 <script setup>
 import { ref, inject } from 'vue';
 import { debounce } from 'lodash';
+import { useI18n } from 'vue-i18n';
+
 import { EFFECT_TYPE_DATA } from '@/models/useConstants.js';
+
+const { t } = useI18n();
 
 const COMPARATORS = [
   {
     id: 'equalTo',
-    text: 'Equal To',
+    text: t('characterSheet.equipmentContent.itemFilters.equalTo'),
     symbol: '=',
   },
   {
     id: 'lessThanOrEqualTo',
-    text: 'Less Than Or Equal To',
+    text: t('characterSheet.equipmentContent.itemFilters.lessThanOrEqualTo'),
     symbol: '<=',
   },
   {
     id: 'greaterThanOrEqualTo',
-    text: 'Greater Than Or Equal To',
+    text: t('characterSheet.equipmentContent.itemFilters.greaterThanOrEqualTo'),
     symbol: '>=',
   },
 ];

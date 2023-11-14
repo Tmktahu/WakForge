@@ -7,46 +7,46 @@ let currentSortBy = { id: 'none' };
 let currentSortOrder = 'ascending';
 
 export const sortOrderOptions = [
-  { id: 'ascending', label: 'Small to Big' },
-  { id: 'descending', label: 'Big to Small' },
+  { id: 'ascending', label: 'characterSheet.equipmentContent.itemFilters.smallToBig' },
+  { id: 'descending', label: 'characterSheet.equipmentContent.itemFilters.bigToSmall' },
 ];
 
 export const sortByOptions = [
-  { id: 'none', label: 'None' },
-  { id: 'level', label: 'Level' },
-  { id: 'name', label: 'Name' },
+  { id: 'none', label: 'characterSheet.equipmentContent.itemFilters.none' },
+  { id: 'level', label: 'characterSheet.shared.level' },
+  { id: 'name', label: 'characterSheet.shared.name' },
 
-  { id: 20, label: 'Health Points (HP)' },
-  { id: 120, label: 'Elemental Mastery' },
-  { id: 124, label: 'Water Mastery' },
-  { id: 123, label: 'Earth Mastery' },
-  { id: 125, label: 'Air Mastery' },
-  { id: 122, label: 'Fire Mastery' },
+  { id: 20, label: 'characterSheet.equipmentContent.itemFilters.healthPoints' },
+  { id: 120, label: 'characterSheet.shared.elementalMastery' },
+  { id: 124, label: 'characterSheet.shared.waterMastery' },
+  { id: 123, label: 'characterSheet.shared.earthMastery' },
+  { id: 125, label: 'characterSheet.shared.airMastery' },
+  { id: 122, label: 'characterSheet.shared.fireMastery' },
 
-  { id: 1068, label: 'Rand Elem Mastery Value' },
+  { id: 1068, label: 'characterSheet.equipmentContent.itemFilters.randElemMasteryValue' },
 
-  { id: 1052, label: 'Melee Mastery' },
-  { id: 1053, label: 'Distance Mastery' },
-  { id: 149, label: 'Critical Mastery' },
-  { id: 180, label: 'Rear Mastery' },
-  { id: 1055, label: 'Berserk Mastery' },
+  { id: 1052, label: 'characterSheet.shared.meleeMastery' },
+  { id: 1053, label: 'characterSheet.shared.distanceMastery' },
+  { id: 149, label: 'characterSheet.shared.criticalMastery' },
+  { id: 180, label: 'characterSheet.shared.rearMastery' },
+  { id: 1055, label: 'characterSheet.shared.berserkMastery' },
 
-  { id: 150, label: 'Critical Hit Chance' },
-  { id: 875, label: 'Block Chance' },
-  { id: 173, label: 'Lock' },
-  { id: 175, label: 'Dodge' },
-  { id: 177, label: 'Force of Will' },
-  { id: 171, label: 'Initiative' },
+  { id: 150, label: 'characterSheet.equipmentContent.itemFilters.criticalHitChance' },
+  { id: 875, label: 'characterSheet.equipmentContent.itemFilters.blockChance' },
+  { id: 173, label: 'characterSheet.shared.lock' },
+  { id: 175, label: 'characterSheet.shared.dodge' },
+  { id: 177, label: 'characterSheet.shared.forceOfWill' },
+  { id: 171, label: 'characterSheet.shared.initiative' },
 
-  { id: 80, label: 'Elemental Resistance' },
-  { id: 83, label: 'Water Resistance' },
-  { id: 84, label: 'Earth Resistance' },
-  { id: 85, label: 'Air Resistance' },
-  { id: 82, label: 'Fire Resistance' },
-  { id: 1069, label: 'Rand Elem Resistance Value' },
+  { id: 80, label: 'characterSheet.shared.elementalResistance' },
+  { id: 83, label: 'characterSheet.shared.waterResistance' },
+  { id: 84, label: 'characterSheet.shared.earthResistance' },
+  { id: 85, label: 'characterSheet.shared.airResistance' },
+  { id: 82, label: 'characterSheet.shared.fireResistance' },
+  { id: 1069, label: 'characterSheet.equipmentContent.itemFilters.randElemResistanceValue' },
 
-  { id: 988, label: 'Critical Resistance' },
-  { id: 71, label: 'Rear Resistance' },
+  { id: 988, label: 'characterSheet.shared.criticalResistance' },
+  { id: 71, label: 'characterSheet.shared.rearResistance' },
 ];
 
 const itemFilters = reactive({

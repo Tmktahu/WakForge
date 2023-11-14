@@ -9,15 +9,15 @@
     <div class="flex align-items-center">
       <div>{{ $t('characterSheet.equipmentContent.sortBy') }}:</div>
       <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" :options="sortByOptions">
-        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
         </template>
       </p-dropdown>
       <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" :options="sortOrderOptions">
-        <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
+        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ slotProps.option.label }}</div>
+          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
         </template>
       </p-dropdown>
       <div class="flex-grow-1" />
