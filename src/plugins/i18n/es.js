@@ -7,6 +7,10 @@ export const es = {
     dataTab: 'Datos',
     discordTab: 'Discord',
     githubTab: 'GitHub',
+    language: 'Language', // NEEDS TRANSLATION
+    english: 'English', // NEEDS TRANSLATION
+    spanish: 'Spanish', // NEEDS TRANSLATION
+    french: 'French', // NEEDS TRANSLATION
   },
   charactersPage: {
     title: 'Bienvenido a Wakforge',

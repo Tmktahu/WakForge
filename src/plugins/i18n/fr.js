@@ -8,6 +8,10 @@ export const fr = {
     dataTab: 'Données',
     discordTab: 'Discord',
     githubTab: 'GitHub',
+    language: 'Language', // NEEDS TRANSLATION
+    english: 'English', // NEEDS TRANSLATION
+    spanish: 'Spanish', // NEEDS TRANSLATION
+    french: 'French', // NEEDS TRANSLATION
   },
   charactersPage: {
     title: 'Bienvenue sur Wakforge',
@@ -74,7 +78,7 @@ export const fr = {
       healingMastery: 'Maîtrise Soin',
       rearResistance: 'Résistance Dos',
       criticalResistance: 'Résistance Critique',
-      actionPoints: 'Points d\'actions',
+      actionPoints: "Points d'actions",
       wakfuPoints: 'Points Wakfu',
       elementalResistance: 'Résistance Elémentaire',
     },
@@ -134,18 +138,18 @@ export const fr = {
       resultsOutOf: 'Résultats sur',
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',
-      itemLevel: 'Niveau de l\'item',
-      openEncyclopediaPage: 'Ouvrir la page de l\'encyclopédie',
-      noItemsFound: 'Aucun item n\'a été trouvé avec ces filtres. N\'hésitez pas à changer votre recherche.',
+      itemLevel: "Niveau de l'item",
+      openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
+      noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
       hasRelicWarning: 'Vous avez déjà un item Relique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
       hasEpicWarning: 'Vous avez déjà un item Epique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
-      twoHandedWeaponWarning: 'Ceci est une arme à deux mains et il existe déjà un item dans le slot d\'arme secondaire. Êtes-vous sûr ?',
+      twoHandedWeaponWarning: "Ceci est une arme à deux mains et il existe déjà un item dans le slot d'arme secondaire. Êtes-vous sûr ?",
       secondWeaponWarning: 'Vous avez une arme à deux mains équipée. Cette dernière sera retirée avec cette action. Êtes-vous sûr ?',
       relicAndTwoHandedWarning:
-      'Vous avez un item dans le slot d\'arme secondaire et un item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
+        "Vous avez un item dans le slot d'arme secondaire et un item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
       relicAndSecondWeaponWarning: 'Vous avez une arme à deux main et un item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
       epicAndTwoHandedWarning:
-        'Vous avez un item dans le slot d\'arme secondaire et un item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
+        "Vous avez un item dans le slot d'arme secondaire et un item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
       epicAndSecondWeaponWarning: 'Vous avez une arme à deux main et un item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
     },
   },
