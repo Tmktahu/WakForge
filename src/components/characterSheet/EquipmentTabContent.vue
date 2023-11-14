@@ -44,7 +44,7 @@
                 <div class="flex px-2 pt-2">
                   <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                   <div class="flex flex-column ml-1">
-                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
+                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
                     <div class="flex">
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
@@ -71,7 +71,7 @@
                   <div class="flex px-2 pt-2">
                     <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                     <div class="flex flex-column ml-1">
-                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
+                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
                       <div class="flex">
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
@@ -103,7 +103,7 @@
                     <div class="effect-header flex pt-2 px-1">
                       <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                       <div class="flex flex-column ml-1">
-                        <div class="item-name mr-2">{{ item.name }}</div>
+                        <div class="item-name mr-2">{{ $t(`items.${item.id}`) }}</div>
                         <div class="flex">
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />

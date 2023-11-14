@@ -1,5 +1,8 @@
 /* eslint-disable quotes */
+import frItemTranslations from './itemTranslations/fr_items.json';
+
 export const fr = {
+  items: frItemTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
   },

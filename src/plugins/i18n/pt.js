@@ -1,7 +1,8 @@
-import enItemTranslations from './itemTranslations/en_items.json';
+import ptItemTranslations from './itemTranslations/pt_items.json';
 
+// WHOLE FILE NEEDS TRANSLATION
 export const en = {
-  items: enItemTranslations,
+  items: ptItemTranslations,
   app: {
     disclaimer: 'WAKFU is an MMORPG published by Ankama. "WakForge" is an unofficial website with no link to Ankama.',
   },

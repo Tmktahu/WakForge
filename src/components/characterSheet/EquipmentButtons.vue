@@ -29,7 +29,7 @@
             <p-image v-else class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
-        <tippy v-else placement="bottom" interactive>
+        <tippy v-else placement="bottom" interactive duration="0">
           <div class="equipment-button" :class="{ 'has-item': items[data.id] !== null }">
             <div class="flex align-items-center justify-content-center w-full" style="position: relative">
               <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
@@ -63,7 +63,7 @@
               <div class="effect-header flex pt-2 px-1">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
                 <div class="flex flex-column">
-                  <div class="item-name mr-2">{{ items[data.id]?.name }}</div>
+                  <div class="item-name mr-2">{{ $t(`items.${items[data.id].id}`) }}</div>
                   <div class="flex">
                     <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${items[data.id]?.rarity}.png`" image-style="width: 12px;" />
                     <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${items[data.id]?.type?.id}.png`" image-style="width: 18px;" />
