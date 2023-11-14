@@ -75,6 +75,10 @@ const processItemData = () => {
     newItem.type = getItemType(itemObject.definition.item.baseParameters.itemTypeId);
     newItem.properties = getItemProperties(itemObject.definition.item.properties);
 
+    if (newItem.type.id === 811) {
+      newItem.shardsParameters = itemObject.definition.item.shardsParameters;
+    }
+
     formattedItemData.push(newItem);
   });
 };

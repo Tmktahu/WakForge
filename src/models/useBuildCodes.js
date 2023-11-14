@@ -102,7 +102,28 @@ export const useBuildCodes = () => {
           itemDataArray.push(assignableData);
 
           // index 2, will be arrays for rune information
-          itemDataArray.push([[], [], [], []]); // each will include ID, color, level
+          itemDataArray.push([
+            [
+              character.equipment[key]?.runeSlot1?.rune?.id || -1,
+              character.equipment[key]?.runeSlot1?.level || -1,
+              character.equipment[key]?.runeSlot1?.color || -1,
+            ],
+            [
+              character.equipment[key]?.runeSlot2?.rune?.id || -1,
+              character.equipment[key]?.runeSlot2?.level || -1,
+              character.equipment[key]?.runeSlot2?.color || -1,
+            ],
+            [
+              character.equipment[key]?.runeSlot3?.rune?.id || -1,
+              character.equipment[key]?.runeSlot3?.level || -1,
+              character.equipment[key]?.runeSlot3?.color || -1,
+            ],
+            [
+              character.equipment[key]?.runeSlot4?.rune?.id || -1,
+              character.equipment[key]?.runeSlot4?.level || -1,
+              character.equipment[key]?.runeSlot4?.color || -1,
+            ],
+          ]); // each will include ID, color, level
 
           // index 3 will be for sublimations
           itemDataArray.push([]);
@@ -150,7 +171,6 @@ export const useBuildCodes = () => {
       let intermediatyBuffer = Buffer(decodedBase2048.buffer);
       let decidedZlibData = zlib.inflateRawSync(intermediatyBuffer, { windowBits: 15, level: 9 });
       let decodedData = msgpackDecode(decidedZlibData);
-      console.log(decodedData);
 
       if (Array.isArray(decodedData)) {
         return decodedData;
@@ -261,7 +281,7 @@ export const useBuildCodes = () => {
       return null;
     }
 
-    const { getItemById } = useItems();
+    const { getItemById, getRuneById } = useItems();
     let item = getItemById(itemData[0]);
 
     if (!item) {
@@ -304,6 +324,22 @@ export const useBuildCodes = () => {
         };
       }
     }
+
+    let runeData = itemData[2];
+    runeData.forEach((runeDataArray, index) => {
+      let runeId = runeDataArray[0];
+      if (runeId && runeId !== -1) {
+        let rune = getItemById(runeId);
+
+        if (rune) {
+          item[`runeSlot${index + 1}`] = {
+            rune: rune,
+            level: runeDataArray[1],
+            color: runeDataArray[2],
+          };
+        }
+      }
+    });
 
     return item;
   };

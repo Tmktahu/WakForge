@@ -438,7 +438,7 @@ export const useItems = (character = ref(null)) => {
           currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id] = item;
         }
       } else if (item.type.validSlots.length > 1) {
-        console.log('there is an item type with 2 valid slots that we are not handling');
+        console.log('There is an item type with 2 valid slots that we are not handling', item.type);
       } else {
         currentCharacter.value.equipment[item.type.validSlots[0]] = item;
       }
@@ -447,6 +447,18 @@ export const useItems = (character = ref(null)) => {
 
   const getNumTotalItems = () => {
     return itemData.length;
+  };
+
+  const getRunes = () => {
+    return itemData.filter((item) => {
+      return item.type.id === 811 && item.id !== 27095 && item.id !== 27096;
+    });
+  };
+
+  const getSublimations = () => {
+    return itemData.filter((item) => {
+      return item.type.id === 812;
+    });
   };
 
   const getItemById = (itemId) => {
@@ -463,5 +475,7 @@ export const useItems = (character = ref(null)) => {
     getNumTotalItems,
     equipItem,
     getItemById,
+    getRunes,
+    getSublimations,
   };
 };

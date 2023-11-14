@@ -209,3 +209,12 @@ body {
     }
 }
 
+.p-contextmenu {
+    background-color: var(--bonta-blue-20);
+    border-radius: 8px;
+    border: 1px solid var(--bonta-blue-100);
+
+    .p-menuitem-link {
+        padding: 12px 16px;
+    }
+}

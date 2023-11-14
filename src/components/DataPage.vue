@@ -129,7 +129,7 @@ import { basicSetup } from 'codemirror';
 import { defaultKeymap } from '@codemirror/commands';
 import { json } from '@codemirror/lang-json';
 
-import EquipmentButtons from '@/components/EquipmentButtons.vue';
+import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
 
 const jsonEditor = ref(null);

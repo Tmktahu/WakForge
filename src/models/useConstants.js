@@ -27,18 +27,43 @@ export const ELEMENT_TYPE_ENUM = {
   air: 8,
 };
 
+export const RUNE_TYPES = {
+  meleeMastery: 27097,
+  distanceMastery: 27098,
+  berserkMastery: 27099,
+  earthResistance: 27107,
+  criticalMastery: 27100,
+  rearMastery: 27101,
+  dodge: 27103,
+  initiative: 27104,
+  fireResistance: 27105,
+  elementalMastery: 27094,
+  lock: 27102,
+  waterResistance: 27106,
+  airResistance: 27108,
+  healthPoints: 27109,
+  healingMastery: 27110,
+};
+
+export const RUNE_LEVEL_REQUIREMENTS = [0, 36, 51, 66, 81, 96, 126, 141, 171, 186, 216];
+export const RUNE_MASTERY_LEVEL_VALUES = [1, 3, 4, 6, 7, 10, 15, 19, 24, 30, 33];
+export const RUNE_RESISTANCE_LEVEL_VALUES = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+export const RUNE_DODGE_LOCK_LEVEL_VALUES = [3, 6, 9, 12, 15, 21, 30, 39, 48, 60, 66];
+export const RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES = [2, 4, 6, 8, 10, 14, 20, 26, 32, 40, 44];
+export const RUNE_HEALTH_LEVEL_VALUES = [4, 8, 12, 16, 20, 28, 40, 52, 64, 80, 88];
+
 export const ITEM_SLOT_DATA = {
-  HEAD: { id: 'HEAD', name: 'Helmet', sortOrder: 1 },
-  CHEST: { id: 'CHEST', name: 'Breastplace', sortOrder: 2 },
-  SHOULDERS: { id: 'SHOULDERS', name: 'Epaulettes', sortOrder: 3 },
-  LEGS: { id: 'LEGS', name: 'Boots', sortOrder: 4 },
-  NECK: { id: 'NECK', name: 'Amulet', sortOrder: 5 },
-  BACK: { id: 'BACK', name: 'Cloak', sortOrder: 6 },
-  BELT: { id: 'BELT', name: 'Belt', sortOrder: 7 },
-  FIRST_WEAPON: { id: 'FIRST_WEAPON', name: 'Primary Weapon', sortOrder: 8 },
+  HEAD: { id: 'HEAD', rawId: 0, name: 'Helmet', sortOrder: 1 },
+  CHEST: { id: 'CHEST', rawId: 5, name: 'Breastplace', sortOrder: 2 },
+  SHOULDERS: { id: 'SHOULDERS', rawId: 3, name: 'Epaulettes', sortOrder: 3 },
+  LEGS: { id: 'LEGS', rawId: 12, name: 'Boots', sortOrder: 4 },
+  NECK: { id: 'NECK', rawId: 4, name: 'Amulet', sortOrder: 5 },
+  BACK: { id: 'BACK', rawId: 13, name: 'Cloak', sortOrder: 6 },
+  BELT: { id: 'BELT', rawId: 10, name: 'Belt', sortOrder: 7 },
+  FIRST_WEAPON: { id: 'FIRST_WEAPON', rawId: 15, name: 'Primary Weapon', sortOrder: 8 },
   SECOND_WEAPON: { id: 'SECOND_WEAPON', name: 'Secondary Weapon', sortOrder: 9 },
-  LEFT_HAND: { id: 'LEFT_HAND', name: 'Left Ring', sortOrder: 10 },
-  RIGHT_HAND: { id: 'RIGHT_HAND', name: 'Right Ring', sortOrder: 11 },
+  LEFT_HAND: { id: 'LEFT_HAND', rawId: 7, name: 'Left Ring', sortOrder: 10 },
+  RIGHT_HAND: { id: 'RIGHT_HAND', rawId: 8, name: 'Right Ring', sortOrder: 11 },
   ACCESSORY: { id: 'ACCESSORY', name: 'Emblem', sortOrder: 12 },
   PET: { id: 'PET', name: 'Pet', sortOrder: 13 },
   MOUNT: { id: 'MOUNT', name: 'Mount', sortOrder: 14 },

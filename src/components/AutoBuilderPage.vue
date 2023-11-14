@@ -288,7 +288,7 @@ import { useCharacterBuilds } from '@/models/useCharacterBuilds';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 import { CLASS_CONSTANTS, LEVELABLE_ITEMS, ITEM_SLOT_DATA } from '@/models/useConstants';
 
-import ItemStatList from '@/components/ItemStatList.vue';
+import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 
 let documentVar = document;
 const router = useRouter();
