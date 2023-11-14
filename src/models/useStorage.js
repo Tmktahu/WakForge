@@ -6,7 +6,7 @@ import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
-export const CURRENT_STORAGE_VERSION = '0.0.3';
+export const CURRENT_STORAGE_VERSION = '0.0.4';
 
 export let masterData = reactive({
   appVersion: '',
@@ -160,6 +160,14 @@ export function useStorage() {
 
       if (character.activeSpells) {
         delete character.activeSpells;
+      }
+
+      if (character.equipment.pet) {
+        delete character.equipment.pet;
+      }
+
+      if (character.equipment.mount) {
+        delete character.equipment.mount;
       }
     });
 
