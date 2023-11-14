@@ -1,6 +1,6 @@
 {
   "name": "wakfu-wizard",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "private": true,
   "scripts": {
     "serve": "vite",
