@@ -12,8 +12,10 @@ import {
   RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES,
   RUNE_HEALTH_LEVEL_VALUES,
   RUNE_TYPES,
+  ITEM_SLOT_DATA,
 } from '@/models/useConstants';
 import { SPELL_CATEGORIES, useSpells } from '@/models/spells/useSpells';
+
 const { getSpellData } = useSpells();
 
 export const useStats = (currentCharacter) => {
@@ -359,7 +361,7 @@ export const useStats = (currentCharacter) => {
         for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
           let possibleRune = item[`runeSlot${runeSlotIndex}`];
           if (possibleRune && possibleRune.rune.id === targetRuneId) {
-            let value = getRuneValue(possibleRune.rune, possibleRune.level);
+            let value = getRuneValue(possibleRune.rune, possibleRune.level, slotKey);
             contribution += value;
           }
         }
@@ -375,8 +377,10 @@ export const useStats = (currentCharacter) => {
     return Math.min(90, Math.floor((1 - Math.pow(0.8, resistanceValue / 100)) * 100));
   };
 
-  const getRuneValue = (rune, level) => {
+  const getRuneValue = (rune, level, itemSlotKey) => {
     // we have this stuff hardcoded because ankama is dumb and their method of calculating this stuff was literally dreamed up by someone on shrooms
+    let baseValue = 0;
+
     if (
       rune.id === RUNE_TYPES.meleeMastery ||
       rune.id === RUNE_TYPES.distanceMastery ||
@@ -385,21 +389,32 @@ export const useStats = (currentCharacter) => {
       rune.id === RUNE_TYPES.rearMastery ||
       rune.id === RUNE_TYPES.healingMastery
     ) {
-      return RUNE_MASTERY_LEVEL_VALUES[level - 1];
+      baseValue = RUNE_MASTERY_LEVEL_VALUES[level - 1];
     } else if (
       rune.id === RUNE_TYPES.earthResistance ||
       rune.id === RUNE_TYPES.fireResistance ||
       rune.id === RUNE_TYPES.waterResistance ||
       rune.id === RUNE_TYPES.airResistance
     ) {
-      return RUNE_RESISTANCE_LEVEL_VALUES[level - 1];
+      baseValue = RUNE_RESISTANCE_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.lock || rune.id === RUNE_TYPES.dodge) {
-      return RUNE_DODGE_LOCK_LEVEL_VALUES[level - 1];
+      baseValue = RUNE_DODGE_LOCK_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.initiative || rune.id === RUNE_TYPES.elementalMastery) {
-      return RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES[level - 1];
+      baseValue = RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.healthPoints) {
-      return RUNE_HEALTH_LEVEL_VALUES[level - 1];
+      baseValue = RUNE_HEALTH_LEVEL_VALUES[level - 1];
     }
+
+    let finalValue = baseValue;
+
+    if (itemSlotKey) {
+      let slotRawId = ITEM_SLOT_DATA[itemSlotKey].rawId;
+      if (rune.shardsParameters.doubleBonusPosition.includes(slotRawId)) {
+        finalValue = finalValue * 2;
+      }
+    }
+
+    return finalValue;
   };
 
   return {

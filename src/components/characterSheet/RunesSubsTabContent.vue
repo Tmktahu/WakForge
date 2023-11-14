@@ -53,7 +53,11 @@
                 <template v-slot:content>
                   <div class="simple-tooltip">
                     +{{
-                      getRuneValue(currentCharacter.equipment[slotKey][`runeSlot${index}`].rune, currentCharacter.equipment[slotKey][`runeSlot${index}`].level)
+                      getRuneValue(
+                        currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
+                        currentCharacter.equipment[slotKey][`runeSlot${index}`].level,
+                        slotKey,
+                      )
                     }}
                     {{ currentCharacter.equipment[slotKey][`runeSlot${index}`].rune.name }}
                   </div>
@@ -209,7 +213,7 @@ const summaryEntries = computed(() => {
             };
           }
 
-          entries[possibleRune.rune.id].totalValue += getRuneValue(possibleRune.rune, possibleRune.level);
+          entries[possibleRune.rune.id].totalValue += getRuneValue(possibleRune.rune, possibleRune.level, slotKey);
         }
       }
     }
