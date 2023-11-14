@@ -4,15 +4,18 @@
       <div class="flex flex-column flex-grow-1 mr-1">
         <div class="category-wrapper flex flex-column" :class="{ error: calcRemainingPoints('intelligence') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            <span>Intelligence</span>
+            <span>{{ $t('characterSheet.characteristicsContent.intelligence') }}</span>
             <div class="flex-grow-1" />
-            <span>{{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }} Points</span>
+            <span
+              >{{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }}
+              {{ $t('characterSheet.characteristicsContent.points') }}</span
+            >
           </div>
 
           <div class="flex flex-column px-2 py-1">
             <CharacteristicInput
               v-model="percentHealthPoints"
-              label="% Health Points"
+              :label="$t('characterSheet.characteristicsContent.percentHealth')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/1.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
@@ -20,7 +23,7 @@
             />
             <CharacteristicInput
               v-model="intelligenceElementalResistance"
-              label="Elemental Resistance"
+              :label="$t('characterSheet.shared.elementalResistance')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/116.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
@@ -29,7 +32,7 @@
             />
             <CharacteristicInput
               v-model="barrier"
-              label="Barrier"
+              :label="$t('characterSheet.characteristicsContent.barrier')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/17.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
@@ -38,7 +41,7 @@
             />
             <CharacteristicInput
               v-model="percentHealsReceived"
-              label="% Heals Received"
+              :label="$t('characterSheet.characteristicsContent.percentHealsReceived')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/50.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
@@ -47,7 +50,7 @@
             />
             <CharacteristicInput
               v-model="percentArmorHeathPoints"
-              label="% Armor Health Points"
+              :label="$t('characterSheet.characteristicsContent.percentArmorHealthPoints')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/136.png"
               :remaining-points="calcRemainingPoints('intelligence')"
               :update-function="updateCharacteristics"
@@ -59,15 +62,18 @@
 
         <div class="category-wrapper flex flex-column mt-2" :class="{ error: calcRemainingPoints('strength') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            <span>Strength</span>
+            <span>{{ $t('characterSheet.characteristicsContent.strength') }}</span>
             <div class="flex-grow-1" />
-            <span>{{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }} Points</span>
+            <span
+              >{{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }}
+              {{ $t('characterSheet.characteristicsContent.points') }}</span
+            >
           </div>
 
           <div class="flex flex-column px-2 py-1">
             <CharacteristicInput
               v-model="elementalMastery"
-              label="Elemental Mastery"
+              :label="$t('characterSheet.characteristicsContent.elementalMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/223.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
@@ -75,7 +81,7 @@
             />
             <CharacteristicInput
               v-model="meleeMastery"
-              label="Melee Mastery"
+              :label="$t('characterSheet.shared.meleeMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/226.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
@@ -84,7 +90,7 @@
             />
             <CharacteristicInput
               v-model="distanceMastery"
-              label="Distance Mastery"
+              :label="$t('characterSheet.shared.distanceMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/230.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
@@ -93,7 +99,7 @@
             />
             <CharacteristicInput
               v-model="healthPoints"
-              label="Health Points"
+              :label="$t('characterSheet.characteristicsContent.healthPoints')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/231.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"
@@ -104,15 +110,18 @@
 
         <div class="category-wrapper flex flex-column mt-2" :class="{ error: calcRemainingPoints('agility') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            <span>Agility</span>
+            <span>{{ $t('characterSheet.characteristicsContent.agility') }}</span>
             <div class="flex-grow-1" />
-            <span>{{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }} Points</span>
+            <span
+              >{{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }}
+              {{ $t('characterSheet.characteristicsContent.points') }}</span
+            >
           </div>
 
           <div class="flex flex-column px-2 py-1">
             <CharacteristicInput
               v-model="lock"
-              label="Lock"
+              :label="$t('characterSheet.shared.lock')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/4.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
@@ -120,7 +129,7 @@
             />
             <CharacteristicInput
               v-model="dodge"
-              label="Dodge"
+              :label="$t('characterSheet.shared.dodge')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/3.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
@@ -128,7 +137,7 @@
             />
             <CharacteristicInput
               v-model="initiative"
-              label="Initiative"
+              :label="$t('characterSheet.shared.initiative')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/2.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
@@ -137,7 +146,7 @@
             />
             <CharacteristicInput
               v-model="lockAndDodge"
-              label="Lock and Dodge"
+              :label="$t('characterSheet.characteristicsContent.lockAndDodge')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/121.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
@@ -145,7 +154,7 @@
             />
             <CharacteristicInput
               v-model="forceOfWill"
-              label="Force of Will"
+              :label="$t('characterSheet.shared.forceOfWill')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/233.png"
               :remaining-points="calcRemainingPoints('agility')"
               :update-function="updateCharacteristics"
@@ -159,15 +168,18 @@
       <div class="flex flex-column flex-grow-1 ml-1">
         <div class="category-wrapper flex flex-column flex-grow-1" :class="{ error: calcRemainingPoints('fortune') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            <span>Fortune</span>
+            <span>{{ $t('characterSheet.characteristicsContent.fortune') }}</span>
             <div class="flex-grow-1" />
-            <span>{{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }} Points</span>
+            <span
+              >{{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }}
+              {{ $t('characterSheet.characteristicsContent.points') }}</span
+            >
           </div>
 
           <div class="flex flex-column px-2 py-1">
             <CharacteristicInput
               v-model="percentCriticalHit"
-              label="% Critical Hit"
+              :label="$t('characterSheet.characteristicsContent.percentCriticalHit')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/109.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -176,7 +188,7 @@
             />
             <CharacteristicInput
               v-model="percentBlock"
-              label="% Block"
+              :label="$t('characterSheet.characteristicsContent.percentBlock')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/49.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -185,7 +197,7 @@
             />
             <CharacteristicInput
               v-model="criticalMastery"
-              label="Critical Mastery"
+              :label="$t('characterSheet.shared.criticalMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/19.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -193,7 +205,7 @@
             />
             <CharacteristicInput
               v-model="rearMastery"
-              label="Rear Mastery"
+              :label="$t('characterSheet.shared.rearMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/13.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -201,7 +213,7 @@
             />
             <CharacteristicInput
               v-model="berserkMastery"
-              label="Berserk Mastery"
+              :label="$t('characterSheet.shared.berserkMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/5.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -209,7 +221,7 @@
             />
             <CharacteristicInput
               v-model="healingMastery"
-              label="Healing Mastery"
+              :label="$t('characterSheet.shared.healingMastery')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/12.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -217,7 +229,7 @@
             />
             <CharacteristicInput
               v-model="rearResistance"
-              label="Rear Resistance"
+              :label="$t('characterSheet.shared.rearResistance')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/115.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -226,7 +238,7 @@
             />
             <CharacteristicInput
               v-model="criticalResistance"
-              label="Critical Resistance"
+              :label="$t('characterSheet.shared.criticalResistance')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/20.png"
               :remaining-points="calcRemainingPoints('fortune')"
               :update-function="updateCharacteristics"
@@ -238,15 +250,18 @@
 
         <div class="category-wrapper flex flex-column flex-grow-1 mt-2" :class="{ error: calcRemainingPoints('major') < 0 }">
           <div class="characteristics-category-header px-2 py-2">
-            <span>Major</span>
+            <span>{{ $t('characterSheet.characteristicsContent.major') }}</span>
             <div class="flex-grow-1" />
-            <span>{{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }} Points</span>
+            <span
+              >{{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }}
+              {{ $t('characterSheet.characteristicsContent.points') }}</span
+            >
           </div>
 
           <div class="flex flex-column px-2 py-1">
             <CharacteristicInput
               v-model="actionPoints"
-              label="Action Points"
+              :label="$t('characterSheet.shared.actionPoints')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/8.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -255,7 +270,7 @@
             />
             <CharacteristicInput
               v-model="movementPointsAndDamage"
-              label="Movement Points and Damage"
+              :label="$t('characterSheet.characteristicsContent.movementPointsAndDamage')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/16.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -264,7 +279,7 @@
             />
             <CharacteristicInput
               v-model="rangeAndDamage"
-              label="Range and Damage"
+              :label="$t('characterSheet.characteristicsContent.rangeAndDamage')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/48.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -273,7 +288,7 @@
             />
             <CharacteristicInput
               v-model="wakfuPoints"
-              label="Wakfu Points"
+              :label="$t('characterSheet.shared.wakfuPoints')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/105.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -282,7 +297,7 @@
             />
             <CharacteristicInput
               v-model="controlAndDamage"
-              label="Control and Damage"
+              :label="$t('characterSheet.characteristicsContent.controlAndDamage')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/10.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -291,7 +306,7 @@
             />
             <CharacteristicInput
               v-model="percentDamageInflicted"
-              label="% Damage Inflicted"
+              :label="$t('characterSheet.characteristicsContent.percentDamageInflicted')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/52.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"
@@ -300,7 +315,7 @@
             />
             <CharacteristicInput
               v-model="majorElementalResistance"
-              label="Elemental Resistance"
+              :label="$t('characterSheet.shared.elementalResistance')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/116.png"
               :remaining-points="calcRemainingPoints('major')"
               :update-function="updateCharacteristics"

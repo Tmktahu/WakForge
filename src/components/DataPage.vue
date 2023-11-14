@@ -120,6 +120,7 @@
 
 <script setup>
 import { ref, onMounted, nextTick } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { useStorage, LOCALSTORAGE_KEY } from '@/models/useStorage';
 
@@ -131,6 +132,8 @@ import { json } from '@codemirror/lang-json';
 
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
+
+const { t } = useI18n();
 
 const jsonEditor = ref(null);
 const editedJson = ref(null);
@@ -189,7 +192,7 @@ onMounted(() => {
   });
 
   let startState = EditorState.create({
-    doc: storageEntry || this.$t('dataPage.noDataFound'),
+    doc: storageEntry || t('dataPage.noDataFound'),
     extensions: [eventHandlers, basicSetup, json(), keymap.of(defaultKeymap)],
   });
 
@@ -232,7 +235,7 @@ const onDownloadData = () => {
 const onDeleteData = () => {
   window.localStorage.removeItem(LOCALSTORAGE_KEY);
   editorView.dispatch({
-    changes: { from: 0, to: editorView.state.doc.length, insert: this.$t('dataPage.noDataFound') },
+    changes: { from: 0, to: editorView.state.doc.length, insert: t('dataPage.noDataFound') },
   });
 };
 

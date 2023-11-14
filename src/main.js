@@ -24,6 +24,7 @@ app.use(VueTippy, {
 const i18n = createI18n({
   locale: 'en',
   messages: i18nMessages,
+  legacy: false,
   // something vue-i18n options here ...
 });
 

@@ -6,7 +6,7 @@
       <p-dropdown
         v-model="characterClass"
         :options="classOptions"
-        placeholder="Select a Class"
+        :placeholder="$t('characterSheet.selectAClass')"
         option-value="value"
         class="mr-2"
         @change="saveData($event, 'class')"
@@ -28,7 +28,7 @@
       </p-dropdown>
 
       <div class="flex flex-grow-1 align-items-center" style="max-width: 200px; min-width: 200px">
-        <span class="mr-2">Level</span>
+        <span class="mr-2">{{ $t('characterSheet.level') }}</span>
         <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" :allow-empty="false" @input="saveData($event, 'levelText')" />
         <div class="flex-grow-1">
           <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
@@ -41,14 +41,14 @@
         <tippy placement="left" duration="0">
           <i class="mdi mdi-information-outline" />
           <template v-slot:content>
-            <div class="simple-tooltip">You can copy-paste this code to people to share this build.</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.buildCopyPaste') }}</div>
           </template>
         </tippy>
-        <div class="ml-2">Build Code:</div>
+        <div class="ml-2">{{ $t('characterSheet.buildCode') }}:</div>
         <div class="code flex align-items-center px-2 py-1 ml-2">
           <span>{{ buildCode }}</span>
         </div>
-        <p-button class="py-1 ml-2" label="Copy" @click="onCopyBuildCode" />
+        <p-button class="py-1 ml-2" :label="$t('characterSheet.copy')" @click="onCopyBuildCode" />
         <!-- <p-button class="py-1 ml-2" label="Paste" @click="onPasteBuildCode" /> -->
       </div>
     </div>
@@ -63,7 +63,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="characteristics-tab-header px-3 h-full" :class="{ error: hasCharacteristicsError, 'points-to-spend': false }">
-                <span>Characteristics</span>
+                <span>{{ $t('characterSheet.characteristics') }}</span>
                 <i class="points-to-spend-icon mdi mdi-arrow-up-bold ml-2" style="font-size: 26px" />
                 <i class="error-icon mdi mdi-alert-octagon-outline ml-2" style="font-size: 26px" />
               </div>
@@ -74,7 +74,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
-                <span>Equipment</span>
+                <span>{{ $t('characterSheet.equipment') }}</span>
               </div>
             </template>
             <EquipmentTabContent ref="equipmentTabContent" />
@@ -83,7 +83,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
-                <span>Auto Item Solver</span>
+                <span>{{ $t('characterSheet.autoItemSolver') }}</span>
               </div>
             </template>
             <ItemSolverTabContent />
@@ -92,7 +92,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
-                <span>Runes & Sublimations (WIP)</span>
+                <span>{{ $t('characterSheet.runesAndSubs') }}</span>
               </div>
             </template>
             <RunesSubsTabContent />
@@ -101,7 +101,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
-                <span>Spells & Passives</span>
+                <span>{{ $t('characterSheet.spellsAndPassives') }}</span>
               </div>
             </template>
             <SpellTabContent />
@@ -111,7 +111,7 @@
     </div>
   </div>
 
-  <div v-else> TODO error page. No current character loaded. Or, make a new character page? </div>
+  <div v-else class="px-5 mt-5"> No Character data found for the given ID. </div>
 </template>
 
 <script setup>

@@ -7,7 +7,7 @@
     <p-divider class="mt-3 mb-2" />
 
     <div class="flex align-items-center">
-      <div>Sort by:</div>
+      <div>{{ $t('characterSheet.equipmentContent.sortBy') }}:</div>
       <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" :options="sortByOptions">
         <template v-slot:value="slotProps"> {{ slotProps.value.label }} </template>
         <template v-slot:option="slotProps">
@@ -21,9 +21,12 @@
         </template>
       </p-dropdown>
       <div class="flex-grow-1" />
-      <div class="ml-2">{{ currentItemList.length }} Results out of {{ getNumTotalItems() }} Items Total</div>
+      <div class="ml-2">
+        {{ currentItemList.length }} {{ $t('characterSheet.equipmentContent.resultsOutOf') }} {{ getNumTotalItems() }}
+        {{ $t('characterSheet.equipmentContent.itemsTotal') }}
+      </div>
       <div class="flex-grow-1" />
-      <span class="mr-1">Display Stats</span>
+      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
       <p-checkbox v-model="displayStatsInList" :binary="true" />
     </div>
 
@@ -45,7 +48,7 @@
                     <div class="flex">
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                       <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                      <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                      <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">{{ $t('characterSheet.equipmentContent.itemLevel') }}: 50</div>
                       <div v-else>Lvl: {{ item.level }}</div>
                       <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                         {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
@@ -72,7 +75,7 @@
                       <div class="flex">
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                         <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                        <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                        <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">{{ $t('characterSheet.equipmentContent.itemLevel') }}: 50</div>
                         <div v-else>Lvl: {{ item.level }}</div>
                         <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                           {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
@@ -85,7 +88,11 @@
                       <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
                       <tippy placement="left">
                         <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
-                        <template v-slot:content> <div class="simple-tooltip">Open Encyclopedia Page</div></template>
+                        <template v-slot:content>
+                          <div class="simple-tooltip">
+                            {{ $t('characterSheet.equipmentContent.openEncyclopediaPage') }}
+                          </div>
+                        </template>
                       </tippy>
                     </div>
                   </div>
@@ -100,7 +107,7 @@
                         <div class="flex">
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
                           <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                          <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+                          <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">{{ $t('characterSheet.equipmentContent.itemLevel') }}: 50</div>
                           <div v-else>Lvl: {{ item.level }}</div>
                           <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                             {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
@@ -115,7 +122,7 @@
               </tippy>
             </template>
           </div>
-          <div v-else> No items were found with those filters. Please revise your search. </div>
+          <div v-else> {{ $t('characterSheet.equipmentContent.noItemsFound') }} </div>
         </template>
       </p-virtualScroller>
     </div>
@@ -125,6 +132,7 @@
 <script setup>
 import { ref, inject, nextTick, computed, watch } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
+import { useI18n } from 'vue-i18n';
 
 import { useItems, sortByOptions, sortOrderOptions } from '@/models/useItems';
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
@@ -135,6 +143,7 @@ import ItemFilters from '@/components/characterSheet/ItemFilters.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 
 const confirm = useConfirm();
+const { t } = useI18n();
 
 const currentCharacter = inject('currentCharacter');
 const currentItemList = inject('currentItemList');
@@ -227,35 +236,35 @@ const onEquipItem = (item, event) => {
 
   let confirmMessage = null;
   if (hasRelicConflict) {
-    confirmMessage = 'You already have a Relic item equipped. Doing this will remove it. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.hasRelicWarning');
   }
 
   if (hasEpicConflict) {
-    confirmMessage = 'You already have an Epic item equipped. Doing this will remove it. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.hasEpicWarning');
   }
 
   if (twoHandedWeaponConflict) {
-    confirmMessage = 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.twoHandedWeaponWarning');
   }
 
   if (secondWeaponConflict) {
-    confirmMessage = 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.secondWeaponWarning');
   }
 
   if (hasRelicConflict && twoHandedWeaponConflict) {
-    confirmMessage = 'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.relicAndTwoHandedWarning');
   }
 
   if (hasRelicConflict && secondWeaponConflict) {
-    confirmMessage = 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?';
+    confirmMessage = t('characterSheet.equipmentContent.relicAndSecondWeaponWarning');
   }
 
-  if (hasRelicConflict && twoHandedWeaponConflict) {
-    confirmMessage = 'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?';
+  if (hasEpicConflict && twoHandedWeaponConflict) {
+    confirmMessage = t('characterSheet.equipmentContent.epicAndTwoHandedWarning');
   }
 
-  if (hasRelicConflict && secondWeaponConflict) {
-    confirmMessage = 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?';
+  if (hasEpicConflict && secondWeaponConflict) {
+    confirmMessage = t('characterSheet.equipmentContent.epicAndSecondWeaponWarning');
   }
 
   let hasConflict = twoHandedWeaponConflict || secondWeaponConflict || hasRelicConflict || hasEpicConflict;
