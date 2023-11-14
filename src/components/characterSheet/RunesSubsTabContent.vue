@@ -99,11 +99,13 @@
         <tippy placement="left" duration="0">
           <i class="mdi mdi-information-outline" />
           <template v-slot:content>
-            <div class="simple-tooltip">The maximum possible rune level is tied to your </div>
+            <div class="simple-tooltip">
+              The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.
+            </div>
           </template>
         </tippy>
         <span class="mx-2">Rune Level</span>
-        <p-inputNumber v-model="runeLevel" class="number-input" show-buttons :min="1" :max="11" :allow-empty="false" />
+        <p-inputNumber v-model="runeLevel" class="number-input" show-buttons button-layout="horizontal" :min="1" :max="maxRuneLevel" :allow-empty="false" />
       </div>
 
       <div class="rune-options flex flex-column mt-2">
@@ -129,7 +131,17 @@
       </div>
     </div>
 
-    <p-contextMenu ref="runeContextMenu" :model="runeContextOptions" />
+    <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
+      <template v-slot:item="{ item, props }">
+        <div v-if="item.levelSlider" class="flex flex-column px-4 py-2">
+          <div class="mb-2">Level: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }}</div>
+          <p-slider v-model="currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level" :min="1" :max="11" />
+        </div>
+        <a v-else v-ripple class="flex align-items-center" v-bind="props.action">
+          <span class="ml-2">{{ item.label }}</span>
+        </a>
+      </template>
+    </p-contextMenu>
   </div>
 </template>
 
@@ -138,7 +150,7 @@ import { ref, inject, computed } from 'vue';
 
 import { useItems } from '@/models/useItems';
 import { useStats } from '@/models/useStats';
-import { ITEM_SLOT_DATA } from '@/models/useConstants';
+import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS } from '@/models/useConstants';
 
 const currentCharacter = inject('currentCharacter');
 
@@ -153,6 +165,10 @@ const itemSlotHighlight = ref(null);
 const rightClickedRuneData = ref(null);
 const runeContextMenu = ref(null);
 const runeContextOptions = ref([
+  {
+    label: 'Level',
+    levelSlider: true,
+  },
   {
     label: 'Toggle White',
     command: () => {
@@ -293,6 +309,21 @@ const getFilledRuneImage = (colorId) => {
 const slotNameFromId = (slotRawId) => {
   return Object.keys(ITEM_SLOT_DATA).find((id) => ITEM_SLOT_DATA[id].rawId === slotRawId);
 };
+
+const maxRuneLevel = computed(() => {
+  let level = 1;
+  RUNE_LEVEL_REQUIREMENTS.some((levelBreakpoint, index) => {
+    console.log(levelBreakpoint, index);
+    if (levelBreakpoint <= currentCharacter.value.level) {
+      level = index + 1;
+      return false;
+    } else {
+      return true;
+    }
+  });
+
+  return level;
+});
 </script>
 
 <style lang="scss" scoped>

@@ -45,6 +45,7 @@ export const RUNE_TYPES = {
   healingMastery: 27110,
 };
 
+export const RUNE_LEVEL_REQUIREMENTS = [0, 36, 51, 66, 81, 96, 126, 141, 171, 186, 216];
 export const RUNE_MASTERY_LEVEL_VALUES = [1, 3, 4, 6, 7, 10, 15, 19, 24, 30, 33];
 export const RUNE_RESISTANCE_LEVEL_VALUES = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
 export const RUNE_DODGE_LOCK_LEVEL_VALUES = [3, 6, 9, 12, 15, 21, 30, 39, 48, 60, 66];

@@ -92,7 +92,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="flex align-items-center px-3 py-3">
-                <span>Runes & Sublimations</span>
+                <span>Runes & Sublimations (WIP)</span>
               </div>
             </template>
             <RunesSubsTabContent />
