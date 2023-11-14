@@ -49,6 +49,15 @@
           <span>{{ buildCode }}</span>
         </div>
         <p-button class="py-1 ml-2 px-2" :label="$t('characterSheet.copy')" @click="onCopyBuildCode" />
+        <div class="code-disclaimer">
+          <tippy placement="bottom" duration="0">
+            <i class="mdi mdi-information-outline" />
+            <template v-slot:content>
+              <div class="simple-tooltip">{{ $t('characterSheet.codeInfo') }}</div>
+            </template>
+          </tippy>
+          <div class="ml-1">{{ $t('characterSheet.codeDisclaimer') }}</div>
+        </div>
         <!-- <p-button class="py-1 ml-2" label="Paste" @click="onPasteBuildCode" /> -->
       </div>
     </div>
@@ -297,6 +306,8 @@ const onCopyBuildCode = () => {
 }
 
 .build-code {
+  position: relative;
+
   .code {
     height: 32px;
     border: 1px solid var(--bonta-blue-100);
@@ -304,8 +315,18 @@ const onCopyBuildCode = () => {
     span {
       line-height: 0px;
       word-wrap: break-word;
-      max-width: calc(100vw - 1100px);
+      max-width: calc(100vw - 1000px);
     }
+  }
+
+  .code-disclaimer {
+    position: absolute;
+    display: flex;
+    bottom: -20px;
+    right: 80px;
+    font-size: 14px;
+    color: var(--bonta-blue-100);
+    white-space: nowrap;
   }
 }
 </style>

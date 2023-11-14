@@ -66,6 +66,9 @@ export const es = {
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Engraces y Sublimaciones (WIP)',
     spellsAndPassives: 'Hechizos y Pasivas',
+    codeDisclaimer: 'Yes, this is intentional. Do not be afraid.', // NEEDS TRANSLATION
+    codeInfo:
+      'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.', // NEEDS TRANSLATION
 
     statsDisplay: {
       ar: 'AR',
