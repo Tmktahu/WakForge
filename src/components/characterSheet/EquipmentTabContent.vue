@@ -306,7 +306,7 @@ const onEquipItem = (item, event) => {
         currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id] = item;
       }
     } else if (item.type.validSlots.length > 1) {
-      console.log('there is an item type with 2 valid slots that we are not handling');
+      console.log('There is an item type with 2 valid slots that we are not handling', item.type);
     } else {
       currentCharacter.value.equipment[item.type.validSlots[0]] = item;
     }

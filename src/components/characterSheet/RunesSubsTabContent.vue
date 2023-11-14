@@ -40,7 +40,7 @@
                     onDragStart(
                       $event,
                       currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
-                      currentCharacter.equipment[slotKey][`runeSlot${index}`].level,
+                      currentCharacter.equipment[slotKey][`runeSlot${index}`].level
                     )
                   "
                 >
@@ -313,7 +313,6 @@ const slotNameFromId = (slotRawId) => {
 const maxRuneLevel = computed(() => {
   let level = 1;
   RUNE_LEVEL_REQUIREMENTS.some((levelBreakpoint, index) => {
-    console.log(levelBreakpoint, index);
     if (levelBreakpoint <= currentCharacter.value.level) {
       level = index + 1;
       return false;
