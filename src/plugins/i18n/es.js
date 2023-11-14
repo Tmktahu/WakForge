@@ -49,103 +49,103 @@ export const es = {
     noDataFound: 'No se han encontrado datos',
   },
   characterSheet: {
-    selectAClass: 'Select a Class', // NEEDS TRANSLATION
-    level: 'Level', // NEEDS TRANSLATION
-    buildCopyPaste: 'You can copy-paste this code to people to share this build.', // NEEDS TRANSLATION
-    buildCode: 'Build Code', // NEEDS TRANSLATION
-    copy: 'Copy', // NEEDS TRANSLATION
-    characteristics: 'Characteristics', // NEEDS TRANSLATION
-    equipment: 'Equipment', // NEEDS TRANSLATION
-    autoItemSolver: 'Auto Item Solver', // NEEDS TRANSLATION
-    runesAndSubs: 'Runes & Sublimations (WIP)', // NEEDS TRANSLATION
-    spellsAndPassives: 'Spells & Passives', // NEEDS TRANSLATION
+    selectAClass: 'Selecciona una Clase',
+    level: 'Nivel',
+    buildCopyPaste: 'Puedes copiar y pegar este código para compartir la build con otras personas',
+    buildCode: 'Build Code',
+    copy: 'Copiar',
+    characteristics: 'Características',
+    equipment: 'Equipamiento',
+    autoItemSolver: 'Auto Item Solver',
+    runesAndSubs: 'Engraces y Sublimaciones (WIP)',
+    spellsAndPassives: 'Hechizos y Pasivas',
 
     shared: {
-      meleeMastery: 'Melee Mastery', // NEEDS TRANSLATION
-      distanceMastery: 'Distance Mastery', // NEEDS TRANSLATION
-      lock: 'Lock', // NEEDS TRANSLATION
-      dodge: 'Dodge', // NEEDS TRANSLATION
-      initiative: 'Initiative', // NEEDS TRANSLATION
-      forceOfWill: 'Force of Will', // NEEDS TRANSLATION
-      criticalMastery: 'Critical Mastery', // NEEDS TRANSLATION
-      rearMastery: 'Rear Mastery', // NEEDS TRANSLATION
-      berserkMastery: 'Berserk Mastery', // NEEDS TRANSLATION
-      healingMastery: 'Healing Mastery', // NEEDS TRANSLATION
-      rearResistance: 'Rear Resistance', // NEEDS TRANSLATION
-      criticalResistance: 'Critical Resistance', // NEEDS TRANSLATION
-      actionPoints: 'Action Points', // NEEDS TRANSLATION
-      wakfuPoints: 'Wakfu Points', // NEEDS TRANSLATION
-      elementalResistance: 'Elemental Resistance', // NEEDS TRANSLATION
+      meleeMastery: 'Dominio de melé',
+      distanceMastery: 'Dominio distancia',
+      lock: 'Placaje',
+      dodge: 'Esquiva',
+      initiative: 'Iniciativa',
+      forceOfWill: 'Voluntad',
+      criticalMastery: 'Dominio Crítico',
+      rearMastery: 'Dominio Espalda',
+      berserkMastery: 'Dominio Berserker',
+      healingMastery: 'Dominio Cura',
+      rearResistance: 'Resistencia por la espalda',
+      criticalResistance: 'Resistencia Critica',
+      actionPoints: 'Puntos de Acción',
+      wakfuPoints: 'Puntos Wakfu',
+      elementalResistance: 'Resistencia Elemental',
     },
 
     statsDisplay: {
-      hp: 'HP', // NEEDS TRANSLATION
-      ar: 'AR', // NEEDS TRANSLATION
-      ap: 'AP', // NEEDS TRANSLATION
-      mp: 'MP', // NEEDS TRANSLATION
-      qb: 'QB', // NEEDS TRANSLATION
-      wp: 'WP', // NEEDS TRANSLATION
-      elementalMasteries: 'Elemental Masteries', // NEEDS TRANSLATION
-      water: 'Water', // NEEDS TRANSLATION
-      air: 'Air', // NEEDS TRANSLATION
-      earth: 'Earth', // NEEDS TRANSLATION
-      fire: 'Fire', // NEEDS TRANSLATION
-      elmentalResistances: 'Elemental Resistances', // NEEDS TRANSLATION
-      battle: 'Battle', // NEEDS TRANSLATION
-      damageInflicted: 'Damage Inflicted', // NEEDS TRANSLATION
-      criticalHit: 'Critical Hit', // NEEDS TRANSLATION
-      wisdom: 'Wisdom', // NEEDS TRANSLATION
-      control: 'Control', // NEEDS TRANSLATION
-      healsPerformed: 'Heals Performed', // NEEDS TRANSLATION
-      block: 'Block', // NEEDS TRANSLATION
-      range: 'Range', // NEEDS TRANSLATION
-      prospecting: 'Prospecting', // NEEDS TRANSLATION
-      secondary: 'Secondary', // NEEDS TRANSLATION
-      armorGiven: 'Armor Given', // NEEDS TRANSLATION
-      armorReceived: 'Armor Received', // NEEDS TRANSLATION
-      indirectDamage: 'Indirect Damage', // NEEDS TRANSLATION
+      hp: 'PdV',
+      ar: 'AR',
+      ap: 'PA',
+      mp: 'PM',
+      qb: 'BC',
+      wp: 'PW',
+      elementalMasteries: 'Maestrías Elementales',
+      water: 'Agua',
+      air: 'Aire',
+      earth: 'Tierra',
+      fire: 'Fuego',
+      elmentalResistances: 'Resistencias Elementales',
+      battle: 'Combate',
+      damageInflicted: 'Daños Finales',
+      criticalHit: 'Golpe Crítico',
+      wisdom: 'Sabiduría',
+      control: 'Control',
+      healsPerformed: 'Curas Finales',
+      block: 'AAnticipación',
+      range: 'Alcance',
+      prospecting: 'Prospección',
+      secondary: 'Secundario',
+      armorGiven: 'Armadura Dada',
+      armorReceived: 'Armodura Recibida',
+      indirectDamage: 'Daños Indirectos',
     },
 
     characteristicsContent: {
-      points: 'Points', // NEEDS TRANSLATION
-      intelligence: 'Intelligence', // NEEDS TRANSLATION
-      percentHealth: '% Health Points', // NEEDS TRANSLATION
-      barrier: 'Barrier', // NEEDS TRANSLATION
-      percentHealsReceived: '% Heals Received', // NEEDS TRANSLATION
-      percentArmorHealthPoints: '% Armor Health Points', // NEEDS TRANSLATION
-      strength: 'Strength', // NEEDS TRANSLATION
-      elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
-      healthPoints: 'Health Points', // NEEDS TRANSLATION
-      agility: 'Agility', // NEEDS TRANSLATION
-      lockAndDodge: 'Lock and Dodge', // NEEDS TRANSLATION
-      fortune: 'Fortune', // NEEDS TRANSLATION
-      percentCriticalHit: '% Critical Hit', // NEEDS TRANSLATION
-      percentBlock: '% Block', // NEEDS TRANSLATION
-      major: 'Major', // NEEDS TRANSLATION
-      movementPointsAndDamage: 'Movement Points and Damage', // NEEDS TRANSLATION
-      rangeAndDamage: 'Range and Damage', // NEEDS TRANSLATION
-      controlAndDamage: 'Control and Damage', // NEEDS TRANSLATION
-      percentDamageInflicted: '% Damage Inflicted', // NEEDS TRANSLATION
+      points: 'Puntos',
+      intelligence: 'Inteligencia',
+      percentHealth: '% de Puntos de Vida',
+      barrier: 'Parapeto',
+      percentHealsReceived: '% de curas recibidas',
+      percentArmorHealthPoints: '% de puntos de vida en armadura',
+      strength: 'Fuerza',
+      elementalMastery: 'Dominio Elemental',
+      healthPoints: 'Puntos de vida',
+      agility: 'Agilidad',
+      lockAndDodge: 'Placaje y esquiva',
+      fortune: 'Suerte',
+      percentCriticalHit: '% de golpe crítico',
+      percentBlock: '% de anticipación',
+      major: 'Mayor',
+      movementPointsAndDamage: 'Puntos de movimiento y daños',
+      rangeAndDamage: 'Alcance y daños',
+      controlAndDamage: 'Control y daños',
+      percentDamageInflicted: '% de daños causados',
     },
 
     equipmentContent: {
-      sortBy: 'Sort By', // NEEDS TRANSLATION
-      resultsOutOf: 'Results out of', // NEEDS TRANSLATION
-      itemsTotal: 'Items Total', // NEEDS TRANSLATION
-      displayStats: 'Display Stats', // NEEDS TRANSLATION
-      itemLevel: 'Item Level', // NEEDS TRANSLATION
-      openEncyclopediaPage: 'Open Encyclopedia Page', // NEEDS TRANSLATION
-      noItemsFound: 'No items were found with those filters. Please revise your search.', // NEEDS TRANSLATION
-      hasRelicWarning: 'You already have a Relic item equipped. Doing this will remove it. Are you sure?', // NEEDS TRANSLATION
-      hasEpicWarning: 'You already have an Epic item equipped. Doing this will remove it. Are you sure?', // NEEDS TRANSLATION
-      twoHandedWeaponWarning: 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?', // NEEDS TRANSLATION
-      secondWeaponWarning: 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?', // NEEDS TRANSLATION
+      sortBy: 'Ordenar por',
+      resultsOutOf: 'Resultados de',
+      itemsTotal: 'Objetos en Total',
+      displayStats: 'Mostrar Stats',
+      itemLevel: 'Nivel de Objeto',
+      openEncyclopediaPage: 'Abrir la página de la enciclopedia',
+      noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
+      hasRelicWarning: 'Ya tienes un objeto Reliquia equipado. Al hacer esto, lo quitarás. ¿Estás seguro?',
+      hasEpicWarning: 'Ya tienes un objeto Épico equipado. Al hacer esto, lo quitarás. ¿Estás seguro?',
+      twoHandedWeaponWarning: 'Esta es un arma a dos manos, y tienes un objeto en tu segunda ranura de arma. ¿Estás seguro?',
+      secondWeaponWarning: 'Tienes un arma a dos manos equipada. Al hacer esto, te la quitaras. ¿Estás seguro?',
       relicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?', // NEEDS TRANSLATION
-      relicAndSecondWeaponWarning: 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?', // NEEDS TRANSLATION
+        'Tienes un objeto en tu segunda ranura de arma y un objeto Reliquia ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+      relicAndSecondWeaponWarning: 'Ya tienes un arma a dos manos y un objeto Reliquia equipados. Ambos serán removidos si haces esto. ¿Estás seguro?',
       epicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?', // NEEDS TRANSLATION
-      epicAndSecondWeaponWarning: 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?', // NEEDS TRANSLATION
+        'Tienes un objeto en tu segunda ranura de arma y un objeto Épico ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+      epicAndSecondWeaponWarning: 'Ya tienes equipados un arma a dos manos y un objeto Épico ya equipiado. Ambos serán removidos si haces esto. ¿Estás seguro?',
     },
   },
 };
