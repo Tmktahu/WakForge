@@ -10,14 +10,14 @@ export const es = {
     dataTab: 'Datos',
     discordTab: 'Discord',
     githubTab: 'GitHub',
-    language: 'Language', // NEEDS TRANSLATION
-    english: 'English', // NEEDS TRANSLATION
-    spanish: 'Spanish', // NEEDS TRANSLATION
-    french: 'French', // NEEDS TRANSLATION
+    language: 'Idioma',
+    english: 'Inglés',
+    spanish: 'Español',
+    french: 'Francés',
   },
   charactersPage: {
     title: 'Bienvenido a Wakforge',
-    description: 'Si encuentras cualquier problema, siéntete libre de escribirle a Fryke (fryke) en Discord.',
+    description: 'Si encuentras cualquier problema, siéntete libre de escribirle a Fryke (fryke) en Discord. Traduccion realizada por Krieg (Discord: fl_cl)',
     codeInputLabel: 'Build Code',
     codeInputPlaceholder: 'Ingresa tu Build Code',
     codeInputButton: 'Crear desde Build Code',
@@ -66,9 +66,9 @@ export const es = {
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Engraces y Sublimaciones (WIP)',
     spellsAndPassives: 'Hechizos y Pasivas',
-    codeDisclaimer: 'Yes, this is intentional. Do not be afraid.', // NEEDS TRANSLATION
+    codeDisclaimer: 'Sí, esto es intencional. Hablamos Runico.',
     codeInfo:
-      'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.', // NEEDS TRANSLATION
+      'Estos caracteres son intencionados. Para que el código fuera lo suficientemente pequeño, nos adentramos en las oscuras profundidades de la codificación base2048. Contempla la majestuosidad rúnica del código de construcción.',
 
     statsDisplay: {
       ar: 'AR',
@@ -83,7 +83,7 @@ export const es = {
       damageInflicted: 'Daños Finales',
       criticalHit: 'Golpe Crítico',
       healsPerformed: 'Curas Finales',
-      block: 'AAnticipación',
+      block: 'Anticipación',
       secondary: 'Secundario',
       armorGiven: 'Armadura Dada',
       armorReceived: 'Armodura Recibida',
@@ -94,17 +94,17 @@ export const es = {
       points: 'Puntos',
       intelligence: 'Inteligencia',
       barrier: 'Parapeto',
-      percentArmorHealthPoints: '% de puntos de vida en armadura',
+      percentArmorHealthPoints: '% de Puntos de Vida en Armadura',
       strength: 'Fuerza',
       elementalMastery: 'Dominio Elemental',
       healthPoints: 'Puntos de vida',
       agility: 'Agilidad',
-      lockAndDodge: 'Placaje y esquiva',
+      lockAndDodge: 'Placaje y Esquiva',
       fortune: 'Suerte',
       major: 'Mayor',
-      movementPointsAndDamage: 'Puntos de movimiento y daños',
-      rangeAndDamage: 'Alcance y daños',
-      controlAndDamage: 'Control y daños',
+      movementPointsAndDamage: 'Puntos de Movimiento y Daños',
+      rangeAndDamage: 'Alcance y Daños',
+      controlAndDamage: 'Control y Daños',
     },
 
     equipmentContent: {
@@ -127,91 +127,91 @@ export const es = {
       epicAndSecondWeaponWarning: 'Ya tienes equipados un arma a dos manos y un objeto Épico ya equipiado. Ambos serán removidos si haces esto. ¿Estás seguro?',
 
       itemFilters: {
-        searchItems: 'Search Items', // NEEDS TRANSLATION
-        resetFilters: 'Reset Filters', // NEEDS TRANSLATION
-        rarities: 'Rarities', // NEEDS TRANSLATION
-        all: 'All', // NEEDS TRANSLATION
-        none: 'None', // NEEDS TRANSLATION
-        itemTypes: 'Item Types', // NEEDS TRANSLATION
-        showAllFilters: 'Show All Filters', // NEEDS TRANSLATION
-        newFilter: 'New Filter', // NEEDS TRANSLATION
-        equalTo: 'Equal To', // NEEDS TRANSLATION
-        lessThanOrEqualTo: 'Less Than or Equal To', // NEEDS TRANSLATION
-        greaterThanOrEqualTo: 'Greater Than or Equal To', // NEEDS TRANSLATION
-        smallToBig: 'Small to Big', // NEEDS TRANSLATION
-        bigToSmall: 'Big to Small', // NEEDS TRANSLATION
-        healthPoints: 'Health Points (HP)', // NEEDS TRANSLATION
-        randElemMasteryValue: 'Rand Elem Mastery Value', // NEEDS TRANSLATION
-        criticalHitChance: 'Critical Hit Chance', // NEEDS TRANSLATION
-        blockChance: 'Block Chance', // NEEDS TRANSLATION
-        randElemResistanceValue: 'Rand Elem Resistance Value', // NEEDS TRANSLATION
+        searchItems: 'Buscar Objetos',
+        resetFilters: 'Reiniciar Filtros',
+        rarities: 'Rarezas',
+        all: 'Todos',
+        none: 'Ninguno',
+        itemTypes: 'Tipos de Objetos',
+        showAllFilters: 'Ver todos los filtros',
+        newFilter: 'Nuevo Filtro',
+        equalTo: 'Igual a',
+        lessThanOrEqualTo: 'Menor o igual que',
+        greaterThanOrEqualTo: 'Mayor o igual que',
+        smallToBig: 'De pequeño a grande',
+        bigToSmall: 'De grande a pequeño',
+        healthPoints: 'Puntos de Vida (PdV)',
+        randElemMasteryValue: 'Dominio Elemental Aleatorio',
+        criticalHitChance: 'Probabilidad de Golpe Crítico',
+        blockChance: 'Porcentaje de Ancticipacion',
+        randElemResistanceValue: 'Resistencia Elemental Aleatoria',
       },
     },
   },
   constants: {
-    common: 'Common', // NEEDS TRANSLATION
-    unusual: 'Unusual', // NEEDS TRANSLATION
-    rare: 'Rare', // NEEDS TRANSLATION
-    mythical: 'Mythical', // NEEDS TRANSLATION
-    legendary: 'Legendary', // NEEDS TRANSLATION
-    relic: 'Relic', // NEEDS TRANSLATION
-    souvenir: 'Souvenir', // NEEDS TRANSLATION
-    epic: 'Epic', // NEEDS TRANSLATION
+    common: 'Común',
+    unusual: 'Inusual',
+    rare: 'Raro',
+    mythical: 'Mítico',
+    legendary: 'Legendario',
+    relic: 'Reliquia',
+    souvenir: 'Recuerdo',
+    epic: 'Épico',
 
-    helmet: 'Helmet', // NEEDS TRANSLATION
-    breastplate: 'Breastplate', // NEEDS TRANSLATION
-    epaulettes: 'Epaulettes', // NEEDS TRANSLATION
-    boots: 'Boots', // NEEDS TRANSLATION
-    amulet: 'Amulet', // NEEDS TRANSLATION
-    cloak: 'Cloak', // NEEDS TRANSLATION
-    belt: 'Belt', // NEEDS TRANSLATION
-    primaryWeapon: 'Primary Weapon', // NEEDS TRANSLATION
-    secondaryWeapon: 'Secondary Weapon', // NEEDS TRANSLATION
-    leftRing: 'Left Ring', // NEEDS TRANSLATION
-    rightRing: 'Right Ring', // NEEDS TRANSLATION
-    ring: 'Ring', // NEEDS TRANSLATION
-    emblem: 'Emblem', // NEEDS TRANSLATION
-    pet: 'Pet', // NEEDS TRANSLATION
-    pets: 'Pets', // NEEDS TRANSLATION
-    mount: 'Mount', // NEEDS TRANSLATION
-    mounts: 'Mounts', // NEEDS TRANSLATION
-    tool: 'Tool', // NEEDS TRANSLATION
-    torches: 'Torches', // NEEDS TRANSLATION
-    costumes: 'Costumes', // NEEDS TRANSLATION
-    sublimationScroll: 'Sublimation Scroll', // NEEDS TRANSLATION
-    enchantment: 'Rune', // NEEDS TRANSLATION
+    helmet: 'Casco',
+    breastplate: 'Coraza',
+    epaulettes: 'Hombreras',
+    boots: 'Botas',
+    amulet: 'Amuleto',
+    cloak: 'Capa',
+    belt: 'Cinturón',
+    primaryWeapon: 'Arma Principal',
+    secondaryWeapon: 'Arma Secundaria',
+    leftRing: 'Anillo Izquierdo',
+    rightRing: 'Anillo Derecho',
+    ring: 'Anillo',
+    emblem: 'Emblema',
+    pet: 'Mascota',
+    pets: 'Mascotas',
+    mount: 'Montura',
+    mounts: 'Monturas',
+    tool: 'Herramienta',
+    torches: 'Antorchas',
+    costumes: 'Trajes',
+    sublimationScroll: 'Pergamino de Sublimación',
+    enchantment: 'Runas',
 
-    oneHandedWeapons: 'One Handed Weapons', // NEEDS TRANSLATION
-    twoHandedWeapons: 'Two Handed Weapons', // NEEDS TRANSLATION
-    wandOneHand: 'Wand (One Hand)', // NEEDS TRANSLATION
-    swordOneHand: 'Sword (One Hand)', // NEEDS TRANSLATION
-    staffOneHand: 'Staff (One Hand)', // NEEDS TRANSLATION
-    clockHandOneHand: 'Clock Hand (One Hand)', // NEEDS TRANSLATION
-    cardsOneHand: 'Cards (One Hand)', // NEEDS TRANSLATION
-    swordTwoHanded: 'Sword (Two Handed)', // NEEDS TRANSLATION
-    axeTwoHanded: 'Axe (Two Handed)', // NEEDS TRANSLATION
-    staffTwoHanded: 'Staff (Two Handed)', // NEEDS TRANSLATION
-    hammerTwoHanded: 'Hammer (Two Handed)', // NEEDS TRANSLATION
-    bowTwoHanded: 'Bow (Two Handed)', // NEEDS TRANSLATION
-    shovelTwoHanded: 'Shovel (Two Handed)', // NEEDS TRANSLATION
-    daggerSecondaryWeapon: 'Dagger (Secondary Weapon)', // NEEDS TRANSLATION
-    shieldSecondaryWeapon: 'Shield (Secondary Weapon)', // NEEDS TRANSLATION
+    oneHandedWeapons: 'Armas a una Mano',
+    twoHandedWeapons: 'Armas a dos Manos',
+    wandOneHand: 'Varita (una mano)',
+    swordOneHand: 'Espada (una mano)',
+    staffOneHand: 'Bastón (una mano)',
+    clockHandOneHand: 'Aguja (una mano)',
+    cardsOneHand: 'Cartas (una mano)',
+    swordTwoHanded: 'Espada (dos manos)',
+    axeTwoHanded: 'Hacha (dos manos)',
+    staffTwoHanded: 'Bastón (dos manos)',
+    hammerTwoHanded: 'Martillo (dos manos)',
+    bowTwoHanded: 'Arco (dos manos)',
+    shovelTwoHanded: 'Pala (dos manos)',
+    daggerSecondaryWeapon: 'Daga (arma secundaria)',
+    shieldSecondaryWeapon: 'Escudo (arma secundaria)',
 
-    percentDamageInflicted: '% de daños causados',
-    percentCriticalHit: '% de golpe crítico',
+    percentDamageInflicted: '% de Daños Causados',
+    percentCriticalHit: '% de Golpe Crítico',
     hp: 'PdV',
     ap: 'PA',
     mp: 'PM',
     wp: 'PW',
-    healthSteal: 'Health Steal', // NEEDS TRANSLATION
+    healthSteal: 'Robo de vida',
     range: 'Alcance',
     prospecting: 'Prospección',
     wisdom: 'Sabiduría',
     control: 'Control',
-    percentBlock: '% de anticipación',
+    percentBlock: '% de Anticipación',
 
-    meleeMastery: 'Dominio de melé',
-    distanceMastery: 'Dominio distancia',
+    meleeMastery: 'Dominio de Melé',
+    distanceMastery: 'Dominio Distancia',
     lock: 'Placaje',
     dodge: 'Esquiva',
     initiative: 'Iniciativa',
@@ -220,38 +220,38 @@ export const es = {
     rearMastery: 'Dominio Espalda',
     berserkMastery: 'Dominio Berserker',
     healingMastery: 'Dominio Cura',
-    rearResistance: 'Resistencia por la espalda',
+    rearResistance: 'Resistencia por la Espalda',
     criticalResistance: 'Resistencia Critica',
     actionPoints: 'Puntos de Acción',
     wakfuPoints: 'Puntos Wakfu',
     elementalResistance: 'Resistencia Elemental',
-    waterResistance: 'Water Resistance', // NEEDS TRANSLATION
-    earthResistance: 'Earth Resistance', // NEEDS TRANSLATION
-    airResistance: 'Air Resistance', // NEEDS TRANSLATION
-    fireResistance: 'Fire Resistance', // NEEDS TRANSLATION
-    level: 'Level', // NEEDS TRANSLATION
-    name: 'Name', // NEEDS TRANSLATION
-    elementalMastery: 'Elemental Mastery', // NEEDS TRANSLATION
-    waterMastery: 'Water Mastery', // NEEDS TRANSLATION
-    earthMastery: 'Earth Mastery', // NEEDS TRANSLATION
-    airMastery: 'Air Mastery', // NEEDS TRANSLATION
-    fireMastery: 'Fire Mastery', // NEEDS TRANSLATION
-    randElemMastery: 'Random Elemental Masteries', // NEEDS TRANSLATION
-    randElemResistances: 'Random Elemental Resistances', // NEEDS TRANSLATION
-    harvestingQuantity: 'Harvesting Quantity', // NEEDS TRANSLATION
+    waterResistance: 'Resistencia al Agua',
+    earthResistance: 'Resistencia a la Tierra',
+    airResistance: 'Resistencia al Aire',
+    fireResistance: 'Resistencia al Fuego',
+    level: 'Nivel',
+    name: 'Nombre',
+    elementalMastery: 'Dominio Elemental',
+    waterMastery: 'Dominio de Agua',
+    earthMastery: 'Dominio de Tierra',
+    airMastery: 'Dominio de Aire',
+    fireMastery: 'Dominio de Fuego',
+    randElemMastery: 'Dominio Elemental Aleatorio',
+    randElemResistances: 'Resistencia Elemental Aleatoria',
+    harvestingQuantity: 'Cantidad de recolección',
 
-    percentArmorGiven: '% Armor Given', // NEEDS TRANSLATION
-    percentArmorReceived: '% Armor Received', // NEEDS TRANSLATION
-    percentHealsPerformed: '% Heals Performed', // NEEDS TRANSLATION
-    percentIndirectDamageInflicted: '% Indirect Damage Inflicted', // NEEDS TRANSLATION
-    dodgeOverride: 'Dodge Override', // NEEDS TRANSLATION
-    percentHealsReceived: '% de curas recibidas',
-    healthFromLevel: 'Health Points from Level', // NEEDS TRANSLATION
-    lockOverride: 'Lock Override', // NEEDS TRANSLATION
+    percentArmorGiven: '% Armadura Dada',
+    percentArmorReceived: '% Armadura Recibida',
+    percentHealsPerformed: '% Curas Realizadas',
+    percentIndirectDamageInflicted: '% Daños Indirectos Infligidos',
+    dodgeOverride: 'Ignorar Esquiva',
+    percentHealsReceived: '% de Curas Recibidas',
+    healthFromLevel: 'Puntos de Vida por Nivel',
+    lockOverride: 'Ignorar Placaje',
     percentHealthPoints: '% de Puntos de Vida',
-    lockDoubled: 'Lock Doubled', // NEEDS TRANSLATION
-    dodgeFromLevel: 'Dodge from Level', // NEEDS TRANSLATION
-    lockFromLevel: 'Lock from Level', // NEEDS TRANSLATION
-    percentDodge: '% Dodge', // NEEDS TRANSLATION
+    lockDoubled: 'Placaje Aumentado',
+    dodgeFromLevel: 'Esquiva por Nivel',
+    lockFromLevel: 'Placaje por nivel',
+    percentDodge: '% de Esquiva',
   },
 };
