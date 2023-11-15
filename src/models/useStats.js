@@ -152,7 +152,7 @@ export const useStats = (currentCharacter) => {
       );
 
       currentCharacter.value.stats.initiative =
-        currentCharacter.value.characteristics.agility.initiative * 6 +
+        currentCharacter.value.characteristics.agility.initiative * 4 +
         calcItemContribution(EFFECT_TYPE_DATA.initiative) +
         calcRuneContribution(RUNE_TYPES.initiative);
 

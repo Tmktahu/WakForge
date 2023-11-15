@@ -242,7 +242,7 @@ export const EFFECT_TYPE_DATA = {
   // criticalHitReduction: { id: 'criticalHitReduction', rawId: 168, text: '% Critical Hit', isNegative: true },
   initiative: { id: 'initiative', rawIds: [171, 172], text: 'constants.initiative' },
   // initiativeReduction: { id: 'initiativeReduction', rawId: 172, text: 'Initiative', isNegative: true },
-  lock: { id: 'lock', rawIds: [173, 174], text: 'constants.initiative' },
+  lock: { id: 'lock', rawIds: [173, 174], text: 'constants.lock' },
   // lockReduction: { id: 'lockReduction', rawId: 174, text: 'Lock', isNegative: true },
   dodge: { id: 'dodge', rawIds: [175, 176], text: 'constants.dodge' },
   // dodgeReduction: { id: 'dodgeReduction', rawId: 176, text: 'Dodge', isNegative: true },
