@@ -233,7 +233,7 @@ export const EFFECT_TYPE_DATA = {
   airMastery: { id: 'airMastery', rawIds: [125], text: 'constants.airResistance' },
   // elementalMasteryReduction: { id: 'elementalMasteryReduction', rawId: 130, text: 'Elemental Mastery', isNegative: true },
   // fireMasteryReduction: { id: 'fireMasteryReduction', rawId: 132, text: 'Fire Mastery', isNegative: true },
-  criticalMastery: { id: 'criticalMastery', rawIds: [149, 1056], text: 'constants.criticalResistance' },
+  criticalMastery: { id: 'criticalMastery', rawIds: [149, 1056], text: 'constants.criticalMastery' },
   criticalHit: { id: 'criticalHit', rawIds: [150, 168], text: 'constants.percentCriticalHit' },
   range: { id: 'range', rawIds: [160, 161], text: 'constants.range' },
   // rangeReduction: { id: 'range', rawId: 161, text: 'Range', isNegative: true },
