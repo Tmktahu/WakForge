@@ -45,9 +45,11 @@ export const RUNE_TYPES = {
   healingMastery: 27110,
 };
 
+// for these values, in reality a lot of them have a 0.5 in the game math. but, they are rounded down before being used for anything.
+// so leaving out the 0.5 is equivalent and code-cleaner
 export const RUNE_LEVEL_REQUIREMENTS = [0, 36, 51, 66, 81, 96, 126, 141, 171, 186, 216];
 export const RUNE_MASTERY_LEVEL_VALUES = [1, 3, 4, 6, 7, 10, 15, 19, 24, 30, 33];
-export const RUNE_RESISTANCE_LEVEL_VALUES = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+export const RUNE_RESISTANCE_LEVEL_VALUES = [2, 5, 7, 10, 12, 15, 17, 20, 22, 25, 27, 30];
 export const RUNE_DODGE_LOCK_LEVEL_VALUES = [3, 6, 9, 12, 15, 21, 30, 39, 48, 60, 66];
 export const RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES = [2, 4, 6, 8, 10, 14, 20, 26, 32, 40, 44];
 export const RUNE_HEALTH_LEVEL_VALUES = [4, 8, 12, 16, 20, 28, 40, 52, 64, 80, 88];
