@@ -48,16 +48,31 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
+import { masterData } from '@/models/useStorage';
 import { CHARACTERS_ROUTE, DATA_ROUTE } from '@/router/routes.js';
 
 import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
 const router = useRouter();
 const { t, locale } = useI18n({ useScope: 'global' });
+
+// const masterData = inject('masterData');
+
+watch(
+  masterData,
+  () => {
+    nextTick(() => {
+      if (masterData.uiTheme && currentTheme.value !== masterData.uiTheme) {
+        changeTheme(masterData.uiTheme);
+      }
+    });
+  },
+  { immediate: true }
+);
 
 const languageMenu = ref(null);
 const languageMenuItems = ref([
@@ -120,8 +135,6 @@ const onTheme = () => {
 };
 
 const changeTheme = (type) => {
-  currentTheme.value = type;
-
   let categories = ['primary', 'secondary', 'background', 'highlight'];
 
   for (let categoryIndex in categories) {
@@ -132,6 +145,9 @@ const changeTheme = (type) => {
       );
     }
   }
+
+  currentTheme.value = type;
+  masterData.uiTheme = type;
 };
 </script>
 
