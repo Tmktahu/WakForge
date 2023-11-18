@@ -13,6 +13,7 @@ export let masterData = reactive({
   storageVersion: CURRENT_STORAGE_VERSION,
   characters: [],
   uiTheme: null,
+  language: 'en',
 });
 
 export function useStorage() {
@@ -36,6 +37,7 @@ export function useStorage() {
       }
       masterData.appVersion = data.appVersion;
       masterData.uiTheme = data.uiTheme;
+      masterData.language = data.language;
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
@@ -85,6 +87,7 @@ export function useStorage() {
           storageVersion: CURRENT_STORAGE_VERSION,
           characters: inData.characters,
           uiTheme: inData.uiTheme,
+          language: inData.language,
         };
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);

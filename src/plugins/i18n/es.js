@@ -152,40 +152,40 @@ export const es = {
         blockChance: 'Porcentaje de Ancticipacion',
         randElemResistanceValue: 'Resistencia Elemental Aleatoria',
       },
+    },
 
-      itemSolverContent: {
-        numElements: 'Num Elements', // NEEDS TRANSLATION
-        apTooltip: 'How many total Action Points you want.', // NEEDS TRANSLATION
-        mpTooltip: 'How many total Movement Points you want.', // NEEDS TRANSLATION
-        rangeTooltip: 'How much total Range you want.', // NEEDS TRANSLATION
-        wakfuTooltip: 'How many total Wakfu Points you want.', // NEEDS TRANSLATION
-        numElementsTooltip: 'How many elemental types you want on each item.', // NEEDS TRANSLATION
-        meleeMasteryTooltip: 'Should Melee Mastery be included if possible?', // NEEDS TRANSLATION
-        distanceMasteryTooltip: 'Should Distance Mastery be included if possible?', // NEEDS TRANSLATION
-        healingMasteryTooltip: 'Should Healing Mastery be included if possible?', // NEEDS TRANSLATION
-        rearMasteryTooltip: 'Should Rear Mastery be included if possible?', // NEEDS TRANSLATION
-        berserkMasteryTooltip: 'Should Berserk Mastery be included if possible?', // NEEDS TRANSLATION
-        poweredBy: 'Powered by', // NEEDS TRANSLATION
-        code: 'code', // NEEDS TRANSLATION
-        problemMessage: 'There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord.', // NEEDS TRANSLATION
-        instructions: 'Enter your parameters above and click "Generate Item Set".', // NEEDS TRANSLATION
-        ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.', // NEEDS TRANSLATION
-        loadingMessage: 'Jimmy is doing the math and stuff... Please wait...', // NEEDS TRANSLATION
-        loadingDisclaimer: 'Note that depending on your above options, this can take some time.', // NEEDS TRANSLATION
-      },
+    itemSolverContent: {
+      numElements: 'Num Elements', // NEEDS TRANSLATION
+      apTooltip: 'How many total Action Points you want.', // NEEDS TRANSLATION
+      mpTooltip: 'How many total Movement Points you want.', // NEEDS TRANSLATION
+      rangeTooltip: 'How much total Range you want.', // NEEDS TRANSLATION
+      wakfuTooltip: 'How many total Wakfu Points you want.', // NEEDS TRANSLATION
+      numElementsTooltip: 'How many elemental types you want on each item.', // NEEDS TRANSLATION
+      meleeMasteryTooltip: 'Should Melee Mastery be included if possible?', // NEEDS TRANSLATION
+      distanceMasteryTooltip: 'Should Distance Mastery be included if possible?', // NEEDS TRANSLATION
+      healingMasteryTooltip: 'Should Healing Mastery be included if possible?', // NEEDS TRANSLATION
+      rearMasteryTooltip: 'Should Rear Mastery be included if possible?', // NEEDS TRANSLATION
+      berserkMasteryTooltip: 'Should Berserk Mastery be included if possible?', // NEEDS TRANSLATION
+      poweredBy: 'Powered by', // NEEDS TRANSLATION
+      code: 'code', // NEEDS TRANSLATION
+      problemMessage: 'There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord.', // NEEDS TRANSLATION
+      instructions: 'Enter your parameters above and click "Generate Item Set".', // NEEDS TRANSLATION
+      ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.', // NEEDS TRANSLATION
+      loadingMessage: 'Jimmy is doing the math and stuff... Please wait...', // NEEDS TRANSLATION
+      loadingDisclaimer: 'Note that depending on your above options, this can take some time.', // NEEDS TRANSLATION
+    },
 
-      runesAndSubsContent: {
-        hotkeysAndShortcuts: 'Hotkeys and Shortcuts', // NEEDS TRANSLATION
-        dragAndDrop: 'Drag and drop runes around to assign.', // NEEDS TRANSLATION
-        dragReplace: 'Drag a rune onto another rune to replace it.', // NEEDS TRANSLATION
-        ctrlClick: 'CTRL-Click a rune to delete it.', // NEEDS TRANSLATION
-        shiftClick: 'SHIFT-Click a rune to toggle it white.', // NEEDS TRANSLATION
-        rightClick: 'Right-Click a rune for more options.', // NEEDS TRANSLATION
-        statsSummary: 'Stats Summary', // NEEDS TRANSLATION
-        runeLevelTooltip: `The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.`, // NEEDS TRANSLATION
-        runeLevel: 'Rune Level', // NEEDS TRANSLATION
-        toggleWhite: 'Toggle White', // NEEDS TRANSLATION
-      },
+    runesAndSubsContent: {
+      hotkeysAndShortcuts: 'Hotkeys and Shortcuts', // NEEDS TRANSLATION
+      dragAndDrop: 'Drag and drop runes around to assign.', // NEEDS TRANSLATION
+      dragReplace: 'Drag a rune onto another rune to replace it.', // NEEDS TRANSLATION
+      ctrlClick: 'CTRL-Click a rune to delete it.', // NEEDS TRANSLATION
+      shiftClick: 'SHIFT-Click a rune to toggle it white.', // NEEDS TRANSLATION
+      rightClick: 'Right-Click a rune for more options.', // NEEDS TRANSLATION
+      statsSummary: 'Stats Summary', // NEEDS TRANSLATION
+      runeLevelTooltip: `The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.`, // NEEDS TRANSLATION
+      runeLevel: 'Rune Level', // NEEDS TRANSLATION
+      toggleWhite: 'Toggle White', // NEEDS TRANSLATION
     },
   },
   constants: {

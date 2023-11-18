@@ -69,6 +69,10 @@ watch(
       if (masterData.uiTheme && currentTheme.value !== masterData.uiTheme) {
         changeTheme(masterData.uiTheme);
       }
+
+      if (masterData.language && locale.value !== masterData.language) {
+        locale.value = masterData.language;
+      }
     });
   },
   { immediate: true }
@@ -79,9 +83,30 @@ const languageMenuItems = ref([
   {
     label: t('sidebar.language'),
     items: [
-      { label: t('sidebar.english'), locale: 'en', command: () => (locale.value = 'en') },
-      { label: t('sidebar.spanish'), locale: 'es', command: () => (locale.value = 'es') },
-      { label: t('sidebar.french'), locale: 'fr', command: () => (locale.value = 'fr') },
+      {
+        label: t('sidebar.english'),
+        locale: 'en',
+        command: () => {
+          locale.value = 'en';
+          masterData.language = 'en';
+        },
+      },
+      {
+        label: t('sidebar.spanish'),
+        locale: 'es',
+        command: () => {
+          locale.value = 'es';
+          masterData.language = 'es';
+        },
+      },
+      {
+        label: t('sidebar.french'),
+        locale: 'fr',
+        command: () => {
+          locale.value = 'fr';
+          masterData.language = 'fr';
+        },
+      },
     ],
   },
 ]);
