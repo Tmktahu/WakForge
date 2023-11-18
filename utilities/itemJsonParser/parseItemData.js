@@ -1,4 +1,5 @@
-// https://wakfu.cdn.ankama.com/gamedata/1.81.1.13/(type).json
+// https://wakfu.cdn.ankama.com/gamedata/(version)/(type).json
+// CURRENT VERSION SAVED HERE = 1.81.1.15
 
 const fs = require('fs');
 
