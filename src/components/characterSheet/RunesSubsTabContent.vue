@@ -4,16 +4,16 @@
       <div class="mb-2">
         <tippy placement="top" duration="0">
           <div class="flex">
-            <div class="mr-2">Hotkeys and Shortcuts</div>
+            <div class="mr-2">{{ $t('characterSheet.runesAndSubsContent.hotkeysAndShortcuts') }}</div>
             <i class="mdi mdi-information-outline" />
           </div>
           <template v-slot:content>
             <div class="simple-tooltip flex flex-column">
-              <div class="mb-1">Drag and drop runes around to assign.</div>
-              <div class="mb-1">Drag a rune onto another rune to replace it.</div>
-              <div class="mb-1">CTRL-Click a rune to delete it.</div>
-              <div class="mb-1">SHIFT-Click a rune to toggle it white.</div>
-              <div class="mb-1">Right-Click a rune for more options.</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.dragAndDrop') }}</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.dragReplace') }}</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.ctrlClick') }}</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.shiftClick') }}</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.rightClick') }}</div>
             </div>
           </template>
         </tippy>
@@ -88,7 +88,7 @@
       </template>
 
       <div class="stats-summary">
-        <div class="text-lg my-1 pl-2">Stats Summary</div>
+        <div class="text-lg my-1 pl-2">{{ $t('characterSheet.runesAndSubsContent.statsSummary') }}</div>
         <div class="stats-summary-list flex flex-column">
           <template v-for="runeId in Object.keys(summaryEntries)" :key="runeId">
             <div class="summary-entry px-2 py-1">
@@ -106,11 +106,11 @@
           <i class="mdi mdi-information-outline" />
           <template v-slot:content>
             <div class="simple-tooltip">
-              The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.
+              {{ $t('characterSheet.runesAndSubsContent.runeLevelTooltip') }}
             </div>
           </template>
         </tippy>
-        <span class="mx-2">Rune Level</span>
+        <span class="mx-2">{{ $t('characterSheet.runesAndSubsContent.runeLevel') }}</span>
         <p-inputNumber v-model="runeLevel" class="number-input" show-buttons button-layout="horizontal" :min="1" :max="maxRuneLevel" :allow-empty="false" />
       </div>
 
@@ -140,7 +140,9 @@
     <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
       <template v-slot:item="{ item, props }">
         <div v-if="item.levelSlider" class="flex flex-column px-4 py-2">
-          <div class="mb-2">Level: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }}</div>
+          <div class="mb-2"
+            >{{ $t('constants.level') }}: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }}</div
+          >
           <p-slider v-model="currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level" :min="1" :max="11" />
         </div>
         <a v-else v-ripple class="flex align-items-center" v-bind="props.action">
@@ -153,10 +155,13 @@
 
 <script setup>
 import { ref, inject, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 import { useItems } from '@/models/useItems';
 import { useStats } from '@/models/useStats';
 import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS } from '@/models/useConstants';
+
+const { t } = useI18n();
 
 const currentCharacter = inject('currentCharacter');
 
@@ -172,11 +177,11 @@ const rightClickedRuneData = ref(null);
 const runeContextMenu = ref(null);
 const runeContextOptions = ref([
   {
-    label: 'Level',
+    label: t('constants.level'),
     levelSlider: true,
   },
   {
-    label: 'Toggle White',
+    label: t('characterSheet.runesAndSubsContent.toggleWhite'),
     command: () => {
       if (rightClickedRuneData.value) {
         if (currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey].color === 0) {
@@ -189,7 +194,7 @@ const runeContextOptions = ref([
     },
   },
   {
-    label: 'Remove',
+    label: t('constants.remove'),
     command: () => {
       currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey] = null;
     },
@@ -333,10 +338,11 @@ const maxRuneLevel = computed(() => {
 
 <style lang="scss" scoped>
 .item-runes-section {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--highlight-50);
   width: fit-content;
   border-radius: 8px;
   height: 42px;
+  overflow: hidden;
 
   &.disabled {
     pointer-events: none;
@@ -346,16 +352,15 @@ const maxRuneLevel = computed(() => {
   .slot-image {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
-    background-color: var(--bonta-blue-100);
+    background-color: var(--highlight-50);
     cursor: pointer;
 
     &.highlighted {
-      background-color: var(--highlight-orange-100);
+      background-color: var(--secondary-30);
     }
 
     &:hover {
-      background-color: var(--highlight-orange-90);
+      background-color: var(--secondary-40);
     }
   }
 }
@@ -366,14 +371,14 @@ const maxRuneLevel = computed(() => {
   align-items: center;
   width: 32px;
   height: 32px;
-  background-color: var(--bonta-blue-40);
+  background-color: var(--primary-30);
   border-radius: 4px;
 
   &.equipped {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--bonta-blue-70);
+      background-color: var(--primary-70);
     }
   }
 
@@ -410,14 +415,14 @@ const maxRuneLevel = computed(() => {
   display: flex;
   align-items: center;
   height: 100%;
-  border-left: 1px solid var(--bonta-blue-100);
+  border-left: 1px solid var(--primary-50);
 }
 
 :deep(.rune-draggable) {
   display: flex;
   align-items: center;
   height: 30px;
-  background-color: var(--bonta-blue-40);
+  background-color: var(--background-20);
   cursor: pointer;
   font-size: 0.9rem;
 
@@ -431,27 +436,27 @@ const maxRuneLevel = computed(() => {
   }
 
   &.highlighted {
-    background-color: var(--highlight-orange-60);
+    background-color: var(--secondary-30);
   }
 
   &:hover {
-    background-color: var(--bonta-blue-60);
+    background-color: var(--primary-30);
   }
 
   .item-slot-image {
     width: 27px;
     height: 27px;
-    background: var(--bonta-blue-100);
+    background: var(--primary-50);
     border-radius: 8px;
 
     &:hover {
-      background-color: var(--highlight-orange-90);
+      background-color: var(--secondary-60);
     }
   }
 }
 
 .stats-summary {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -469,16 +474,16 @@ const maxRuneLevel = computed(() => {
   }
 
   .summary-entry:nth-child(2n-1) {
-    background: var(--bonta-blue-20);
+    background: var(--background-20);
   }
 
   .summary-entry:nth-child(2n) {
-    background: var(--bonta-blue-30);
+    background: var(--primary-20);
   }
 }
 
 .rune-options-wrapper {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--primary-50);
   height: fit-content;
   border-radius: 8px;
   overflow: hidden;

@@ -1,6 +1,7 @@
 import { ref, computed, reactive, watch } from 'vue';
 import itemData from './item_data.json';
 import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA, ITEM_TYPE_FILTERS, ITEM_SLOT_DATA } from '@/models/useConstants';
+import { useI18n } from 'vue-i18n';
 
 let sortedItemData = ref([]);
 let currentSortBy = { id: 'none' };
@@ -86,6 +87,8 @@ const itemFilters = reactive({
 
 export const useItems = (character = ref(null)) => {
   const currentCharacter = character;
+
+  const { t } = useI18n();
 
   const setup = () => {
     const currentItemList = computed(() => {
@@ -328,35 +331,35 @@ export const useItems = (character = ref(null)) => {
 
     let confirmMessage = null;
     if (hasRelicConflict) {
-      confirmMessage = 'You already have a Relic item equipped. Doing this will remove it. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.hasRelicWarning');
     }
 
     if (hasEpicConflict) {
-      confirmMessage = 'You already have an Epic item equipped. Doing this will remove it. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.hasEpicWarning');
     }
 
     if (twoHandedWeaponConflict) {
-      confirmMessage = 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.twoHandedWeaponWarning');
     }
 
     if (secondWeaponConflict) {
-      confirmMessage = 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.secondWeaponWarning');
     }
 
     if (hasRelicConflict && twoHandedWeaponConflict) {
-      confirmMessage = 'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.relicAndTwoHandedWarning');
     }
 
     if (hasRelicConflict && secondWeaponConflict) {
-      confirmMessage = 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.relicAndSecondWeaponWarning');
     }
 
     if (hasRelicConflict && twoHandedWeaponConflict) {
-      confirmMessage = 'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.epicAndTwoHandedWarning');
     }
 
     if (hasRelicConflict && secondWeaponConflict) {
-      confirmMessage = 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?';
+      confirmMessage = t('characterSheet.equipmentContent.epicAndSecondWeaponWarning');
     }
 
     let hasConflict = twoHandedWeaponConflict || secondWeaponConflict || hasRelicConflict || hasEpicConflict;

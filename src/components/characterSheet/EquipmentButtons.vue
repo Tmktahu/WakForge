@@ -93,12 +93,15 @@
 <script setup>
 import { ref, watch, inject, computed, nextTick } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
+import { useI18n } from 'vue-i18n';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 import EditEquipmentModal from '@/components/characterSheet/EditEquipmentModal.vue';
+
+const { t } = useI18n();
 
 let props = defineProps({
   character: {
@@ -164,7 +167,7 @@ const onRemove = (slotKey, event) => {
   confirm.require({
     group: 'popup',
     target: event.currentTarget,
-    message: 'Are you sure?',
+    message: t('confirms.areYouSure'),
     accept: () => {
       currentCharacter.value.equipment[slotKey] = null;
     },
@@ -213,13 +216,13 @@ const onGotoEncyclopedia = (item) => {
   height: 60px;
   padding: 0px;
 
-  background: var(--bonta-blue-80);
+  background: var(--background-50);
 
   cursor: pointer;
 
   &.has-item {
     .equipment-image {
-      background-color: var(--bonta-blue-20);
+      background-color: var(--primary-30);
       border-radius: 4px;
       padding: 5px;
       height: 50px;
@@ -229,7 +232,7 @@ const onGotoEncyclopedia = (item) => {
   &.disabled {
     pointer-events: none;
     .equipment-image {
-      background-color: var(--bonta-blue-20);
+      background-color: var(--primary-30);
       border-radius: 4px;
       padding: 5px;
       height: 50px;
@@ -243,11 +246,10 @@ const onGotoEncyclopedia = (item) => {
     position: absolute;
     inset: 0;
     display: none;
-    color: white;
 
     &.remove {
       left: 50%;
-      background-color: rgba(red, 0.3);
+      background-color: rgba(red, 0.5);
 
       i {
         font-size: 20px;
@@ -255,7 +257,7 @@ const onGotoEncyclopedia = (item) => {
     }
     &.edit {
       right: 50%;
-      background-color: rgba(yellow, 0.3);
+      background-color: rgba(yellow, 0.4);
 
       i {
         font-size: 20px;
@@ -263,7 +265,8 @@ const onGotoEncyclopedia = (item) => {
     }
 
     &.search {
-      background-color: rgba(var(--bonta-blue-50), 0.3);
+      color: black;
+      background-color: var(--highlight-50);
     }
 
     i {
@@ -290,11 +293,11 @@ const onGotoEncyclopedia = (item) => {
   padding: 0px;
   border-radius: 4px;
 
-  background: var(--bonta-blue-80);
+  background-color: var(--background-40);
 
   &.has-item {
+    background-color: var(--primary-30);
     .equipment-image {
-      background-color: var(--bonta-blue-20);
       border-radius: 4px;
       padding: 5px;
       height: 50px;
@@ -306,10 +309,10 @@ const onGotoEncyclopedia = (item) => {
   display: flex;
   position: absolute;
   bottom: -12px;
-  background-color: var(--bonta-blue);
+  background-color: var(--background-10);
   border-radius: 12px;
   padding: 2px 4px;
-  border: 1px solid var(--bonta-blue-80);
+  border: 1px solid var(--highlight-50);
   .p-image {
     height: 16px;
   }

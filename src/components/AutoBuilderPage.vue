@@ -246,7 +246,7 @@
             Enter your parameters above and hit the Generate Item Set button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results
             will be shown here.
           </span>
-          <div class="mt-2 py-1 px-2" style="background: var(--bonta-blue-40); border-radius: 8px; width: fit-content">
+          <div class="mt-2 py-1 px-2" style="background: var(--primary-40-40); border-radius: 8px; width: fit-content">
             Remember that your settings above should reflect what the items should give, not what the entire character should have.
           </div>
         </div>
@@ -393,8 +393,8 @@ const onCreateCharacter = () => {
 
 <style lang="scss" scoped>
 .info-area {
-  border-right: 1px solid var(--bonta-blue-100);
-  border-bottom: 1px solid var(--bonta-blue-100);
+  border-right: 1px solid var(--primary-50);
+  border-bottom: 1px solid var(--primary-50);
   border-bottom-right-radius: 8px;
 }
 
@@ -432,7 +432,7 @@ const onCreateCharacter = () => {
 }
 
 .results-display {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--primary-50);
   border-radius: 8px;
 }
 
@@ -449,13 +449,13 @@ const onCreateCharacter = () => {
 }
 
 .item-card {
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--primary-60);
   width: 230px;
   height: 80px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 8px;
-  background: var(--bonta-blue);
+  background: var(--primary-40);
   overflow: hidden;
 
   &.with-stats {
@@ -464,7 +464,7 @@ const onCreateCharacter = () => {
   }
 
   .slot-label {
-    background-color: var(--bonta-blue-40);
+    background-color: var(--primary-40-40);
   }
 }
 

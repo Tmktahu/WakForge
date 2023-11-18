@@ -13,20 +13,44 @@
 
       <div class="flex mt-3">
         <div class="flex flex-column mr-3">
-          <OptionNumInput v-model="targetApAmount" label="Action Points" tooltip-text="How many total Action Points you want." />
-          <OptionNumInput v-model="targetMpAmount" label="Movement Points" tooltip-text="How many total Movement Points you want." />
-          <OptionNumInput v-model="targetRangeAmount" label="Range" tooltip-text="How many total Range you want." />
-          <OptionNumInput v-model="targetWpAmount" label="Wakfu Points" tooltip-text="How many total Wakfu Points you want." />
-          <OptionNumInput v-model="targetNumElements" label="Num Elements" tooltip-text="How many elemental bonuses you want on each item." />
+          <OptionNumInput v-model="targetApAmount" :label="$t('constants.actionPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.apTooltip')" />
+          <OptionNumInput v-model="targetMpAmount" :label="$t('constants.movementPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.mpTooltip')" />
+          <OptionNumInput v-model="targetRangeAmount" :label="$t('constants.range')" :tooltip-text="$t('characterSheet.itemSolverContent.rangeTooltip')" />
+          <OptionNumInput v-model="targetWpAmount" :label="$t('constants.wakfuPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.wakfuTooltip')" />
+          <OptionNumInput
+            v-model="targetNumElements"
+            :label="$t('characterSheet.itemSolverContent.numElements')"
+            :tooltip-text="$t('characterSheet.itemSolverContent.numElementsTooltip')"
+          />
         </div>
 
         <div class="flex flex-column">
           <div class="flex flex-column gap-2 mt-2">
-            <OptionCheckbox v-model="meleeMastery" label="Melee Mastery" tooltip-text="Should Melee Mastery be included if possible?" />
-            <OptionCheckbox v-model="distanceMastery" label="Distance Mastery" tooltip-text="Should Distance Mastery be included if possible?" />
-            <OptionCheckbox v-model="healingMastery" label="Healing Mastery" tooltip-text="Should Healing Mastery be included if possible?" />
-            <OptionCheckbox v-model="rearMastery" label="Rear Mastery" tooltip-text="Should Rear Mastery be included if possible?" />
-            <OptionCheckbox v-model="berserkMastery" label="Berserk Mastery" tooltip-text="Should Berserk Mastery be included if possible?" />
+            <OptionCheckbox
+              v-model="meleeMastery"
+              :label="$t('constants.meleeMastery')"
+              :tooltip-text="$t('characterSheet.itemSolverContent.meleeMasteryTooltip')"
+            />
+            <OptionCheckbox
+              v-model="distanceMastery"
+              :label="$t('constants.distanceMastery')"
+              :tooltip-text="$t('characterSheet.itemSolverContent.distanceMasteryTooltip')"
+            />
+            <OptionCheckbox
+              v-model="healingMastery"
+              :label="$t('constants.healingMastery')"
+              :tooltip-text="$t('characterSheet.itemSolverContent.healingMasteryTooltip')"
+            />
+            <OptionCheckbox
+              v-model="rearMastery"
+              :label="$t('constants.rearMastery')"
+              :tooltip-text="$t('characterSheet.itemSolverContent.rearMasteryTooltip')"
+            />
+            <OptionCheckbox
+              v-model="berserkMastery"
+              :label="$t('constants.berserkMastery')"
+              :tooltip-text="$t('characterSheet.itemSolverContent.berserkMasteryTooltip')"
+            />
           </div>
         </div>
       </div>
@@ -35,9 +59,9 @@
     <div>
       <div class="rarity-container">
         <div class="flex align-items-center mb-1">
-          <p-button class="filter-button item-filter-action" label="All" @click="onSelectAllRarities" />
-          <div class="mx-2">Rarities</div>
-          <p-button class="filter-button item-filter-action" label="None" @click="onClearAllRarities" />
+          <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
+          <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
+          <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
         </div>
         <div class="rarity-button-wrapper">
           <template v-for="rarity in allowedRarities" :key="rarity.id">
@@ -56,7 +80,7 @@
 
               <template v-slot:content>
                 <div class="simple-tooltip">
-                  {{ rarity.name }}
+                  {{ $t(rarity.name) }}
                 </div>
               </template>
             </tippy>
@@ -75,12 +99,16 @@
       <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
       <OptionCheckbox v-model="showAllItems" label="Show All Items" />
       <div class="flex-grow-1" />
-      <div>Powered by <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>'s code.</div>
+      <div
+        >{{ $t('characterSheet.itemSolverContent.poweredBy') }}
+        <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>'s
+        {{ $t('characterSheet.itemSolverContent.code') }}.</div
+      >
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
       <div v-if="builderError" class="error-state px-3 py-3">
-        <div> There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord. </div>
+        <div> {{ $t('characterSheet.itemSolverContent.problemMessage') }} </div>
         <div v-if="builderError" class="mt-3">
           <span>Code: {{ builderError.type }}</span>
           <div v-for="message in builderError.messages" :key="message" class="mt-1">
@@ -98,14 +126,14 @@
       </div>
 
       <div v-else class="loading-state px-3 py-3">
-        <div> Enter your parameters above and click "Generate Item Set". </div>
-        <div class="mt-2">If you need any guidance, feel free to poke us on Discord with questions.</div>
+        <div> {{ $t('characterSheet.itemSolverContent.instructions') }} </div>
+        <div class="mt-2"> {{ $t('characterSheet.itemSolverContent.ifYouNeedHelp') }} </div>
       </div>
     </div>
 
     <div v-else class="loading-state flex flex-column flex-grow-1 w-full mt-3">
-      <div class="text-center mt-2">Jimmy is doing the math and stuff... Please wait...</div>
-      <div class="text-center mb-5 mt-2">Note that depending on your above options, this can take some time.</div>
+      <div class="text-center mt-2">{{ $t('characterSheet.itemSolverContent.loadingMessage') }}</div>
+      <div class="text-center mb-5 mt-2">{{ $t('characterSheet.itemSolverContent.loadingDisclaimer') }}</div>
       <div class="flex justify-content-center">
         <div style="position: relative; width: 100px; height: 100px">
           <p-progressSpinner class="first-spinner" stroke-width="4" style="width: 50px; height: 50px" />
@@ -119,6 +147,7 @@
 <script setup>
 import { ref, watch, computed, inject } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
+import { useI18n } from 'vue-i18n';
 
 import { ITEM_RARITY_DATA } from '@/models/useConstants';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
@@ -129,6 +158,7 @@ import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
 import OptionNumInput from '@/components/itemSolver/OptionNumInput.vue';
 import ItemListCard from '@/components/characterSheet/ItemListCard.vue';
 
+const { t } = useI18n();
 const confirm = useConfirm();
 
 const currentCharacter = inject('currentCharacter');
@@ -249,7 +279,7 @@ const onEquipAll = (event) => {
   confirm.require({
     group: 'popup',
     target: event.currentTarget,
-    message: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.',
+    message: t('confirms.willReplaceItems'),
     accept: () => {
       itemSet.value.forEach((item) => {
         equipItem(item);
@@ -261,7 +291,7 @@ const onEquipAll = (event) => {
 
 <style lang="scss" scoped>
 .loading-state {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--primary-50);
   border-radius: 8px;
   .first-spinner {
     position: absolute;
@@ -284,7 +314,7 @@ const onEquipAll = (event) => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   padding: 4px 6px;
   width: fit-content;
@@ -305,18 +335,18 @@ const onEquipAll = (event) => {
 
   &:hover {
     .p-checkbox-box {
-      background-color: var(--bonta-blue-30);
+      background-color: var(--primary-40);
     }
   }
 
   .p-checkbox-box {
     width: 26px;
     height: 26px;
-    border-color: var(--bonta-blue-70);
-    background-color: var(--bonta-blue);
+    border-color: var(--highlight-50);
+    background-color: var(--primary-20);
 
     &:has(.disabled) {
-      background-color: var(--charcoal);
+      background-color: var(--background-10);
     }
   }
 
@@ -334,7 +364,6 @@ const onEquipAll = (event) => {
 :deep(.filter-button) {
   padding: 4px 6px;
   background-color: #1e1e1e;
-  color: white;
   font-weight: 400;
   border: 1px solid rgba(255, 255, 255, 0.3);
 
@@ -343,7 +372,7 @@ const onEquipAll = (event) => {
   }
 
   &.item-filter-action {
-    background-color: var(--bonta-blue-30);
+    background-color: var(--primary-40-30);
   }
 }
 </style>

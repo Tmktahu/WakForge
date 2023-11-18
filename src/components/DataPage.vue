@@ -79,12 +79,12 @@
           <div class="mb-2">
             {{ $t('dataPage.operatesOffLocalstorage') }}<br />
             {{ $t('dataPage.currentLocalstorageKey') }}
-            <span style="color: var(--bonta-blue-100); font-weight: bold"> {{ LOCALSTORAGE_KEY }}</span>
+            <span style="color: var(--primary-50); font-weight: bold"> {{ LOCALSTORAGE_KEY }}</span>
           </div>
           <div class="mb-2">
             {{ $t('dataPage.storageLimit') }}<br />
             {{ $t('dataPage.currentStorageSize') }}
-            <span style="color: var(--bonta-blue-100); font-weight: bold">{{ getLocalStorageSize() }}</span>
+            <span style="color: var(--primary-50); font-weight: bold">{{ getLocalStorageSize() }}</span>
             <br />{{ $t('dataPage.contactForHelp') }}
           </div>
           <div class="mb-2">
@@ -270,10 +270,10 @@ const toggleCharacterSelection = (targetId) => {
   .select-file-button {
     width: 100%;
     border-radius: 0;
-    background-color: var(--bonta-blue-90);
+    background-color: var(--primary-80);
 
     &:hover {
-      background-color: var(--bonta-blue-70);
+      background-color: var(--primary-70);
     }
   }
 
@@ -287,7 +287,7 @@ const toggleCharacterSelection = (targetId) => {
 
 .imported-data-status {
   width: fit-content;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--primary-60);
   border-radius: 8px;
   border-bottom-right-radius: 0;
 
@@ -302,9 +302,8 @@ const toggleCharacterSelection = (targetId) => {
 
 :deep(.local-storage-button) {
   padding: 4px 6px;
-  background-color: var(--bonta-blue-70);
+  background-color: var(--primary-70);
   border: 1px solid transparent;
-  color: white;
   font-weight: 400;
 
   &:hover {
@@ -321,7 +320,7 @@ const toggleCharacterSelection = (targetId) => {
 }
 
 :deep(.json-editor) {
-  // background-color: var(--bonta-blue);
+  // background-color: var(--primary-40);
 
   .ͼe {
     color: orangered !important;
@@ -341,12 +340,12 @@ const toggleCharacterSelection = (targetId) => {
 
   .ͼ2 .cm-gutters {
     color: white !important;
-    background-color: var(--bonta-blue-50);
+    background-color: var(--primary-70);
     border: none !important;
   }
 
   .ͼ2 .cm-activeLineGutter {
-    background-color: var(--bonta-blue-80);
+    background-color: var(--primary-40-80);
   }
 }
 
@@ -358,17 +357,17 @@ const toggleCharacterSelection = (targetId) => {
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: var(--bonta-blue);
+  background-color: var(--primary-40);
   border-radius: 8px;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--primary-60);
 
   &:hover {
-    background-color: var(--bonta-blue-20);
-    border: 1px solid var(--bonta-blue-100);
+    background-color: var(--primary-40-20);
+    border: 1px solid var(--primary-50);
   }
 
   &.selected {
-    background-color: var(--bonta-blue-70);
+    background-color: var(--primary-70);
   }
 
   .class-image {

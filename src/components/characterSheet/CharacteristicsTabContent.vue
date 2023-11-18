@@ -528,7 +528,7 @@ defineExpose({
   }
 
   .category-wrapper {
-    border: 1px solid var(--bonta-blue-60);
+    border: 1px solid var(--highlight-50);
     border-radius: 8px;
     overflow: hidden;
 
@@ -551,15 +551,14 @@ defineExpose({
     span {
       font-size: 12px;
       font-weight: 800;
-      color: white;
     }
 
     &:hover {
-      background: var(--bonta-blue-30);
+      background: var(--primary-40-30);
 
       span {
         font-size: 14px;
-        color: var(--bonta-blue-100);
+        color: var(--primary-50);
       }
     }
   }
@@ -567,14 +566,14 @@ defineExpose({
 .characteristics-category-header {
   display: flex;
   font-size: 1rem;
-  background-color: var(--bonta-blue-20);
-  border-bottom: 1px solid var(--bonta-blue-50);
+  background-color: var(--background-20);
+  border-bottom: 1px solid var(--highlight-50);
 }
 
 .characteristic-summary {
   display: flex;
   flex-grow: 1;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
 }
 </style>

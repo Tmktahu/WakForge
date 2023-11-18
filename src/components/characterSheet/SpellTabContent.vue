@@ -195,7 +195,6 @@ const hasSpellEquipped = (spell) => {
     position: absolute;
     inset: 0;
     display: none;
-    color: white;
 
     &.remove {
       background-color: rgba(red, 0.3);
@@ -206,7 +205,6 @@ const hasSpellEquipped = (spell) => {
     }
 
     &.add {
-      color: white;
       background-color: rgba(black, 0.3);
 
       i {

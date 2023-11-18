@@ -372,8 +372,7 @@ const onClearAllItemTypes = () => {
 
 :deep(.filter-button) {
   padding: 4px 6px;
-  background-color: #1e1e1e;
-  color: white;
+  background-color: var(--background-20);
   font-weight: 400;
   border: 1px solid rgba(255, 255, 255, 0.3);
 
@@ -382,13 +381,13 @@ const onClearAllItemTypes = () => {
   }
 
   &.item-filter-action {
-    background-color: var(--bonta-blue-30);
+    background-color: var(--background-20);
   }
 }
 
 :deep(.filter-entry) {
   height: fit-content;
-  // border: 1px solid var(--bonta-blue-60);
+  // border: 1px solid var(--primary-60);
   .filter-type-dropdown {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -416,7 +415,6 @@ const onClearAllItemTypes = () => {
     width: 30px;
     padding: 4px 6px;
     background-color: #1e1e1e;
-    color: white;
     border: 1px solid rgba(255, 255, 255, 0.3);
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
@@ -432,7 +430,7 @@ const onClearAllItemTypes = () => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   padding: 4px 6px;
   width: fit-content;
@@ -453,18 +451,18 @@ const onClearAllItemTypes = () => {
 
   &:hover {
     .p-checkbox-box {
-      background-color: var(--bonta-blue-30);
+      background-color: var(--primary-40);
     }
   }
 
   .p-checkbox-box {
     width: 26px;
     height: 26px;
-    border-color: var(--bonta-blue-70);
-    background-color: var(--bonta-blue);
+    border-color: var(--highlight-50);
+    background-color: var(--primary-30);
 
     &:has(.disabled) {
-      background-color: var(--charcoal);
+      background-color: var(--background-10);
     }
   }
 
@@ -484,7 +482,7 @@ const onClearAllItemTypes = () => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   padding: 4px 6px;
   width: fit-content;
@@ -498,7 +496,7 @@ const onClearAllItemTypes = () => {
     display: flex;
     gap: 0.5rem;
     flex-wrap: wrap;
-    border: 1px solid var(--bonta-blue-40);
+    border: 1px solid var(--primary-50);
     border-radius: 8px;
     padding: 6px 6px;
   }
@@ -511,18 +509,18 @@ const onClearAllItemTypes = () => {
 
   &:hover {
     .p-checkbox-box {
-      background-color: var(--bonta-blue-30);
+      background-color: var(--primary-40);
     }
   }
 
   .p-checkbox-box {
     width: 26px;
     height: 26px;
-    border-color: var(--bonta-blue-70);
-    background-color: var(--bonta-blue);
+    border-color: var(--highlight-50);
+    background-color: var(--primary-40);
 
     &:has(.disabled) {
-      background-color: var(--charcoal);
+      background-color: var(--background-10);
     }
   }
 

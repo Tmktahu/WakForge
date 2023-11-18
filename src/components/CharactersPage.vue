@@ -67,6 +67,7 @@
 <script setup>
 import { ref, computed, inject } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
 import { useBuildCodes } from '@/models/useBuildCodes.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
@@ -74,6 +75,8 @@ import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
+
+const { t } = useI18n();
 
 import { useConfirm } from 'primevue/useconfirm';
 const confirm = useConfirm();
@@ -116,7 +119,7 @@ const onDeleteCharacter = (event, targetCharacterId) => {
   confirm.require({
     group: 'popup',
     target: event.currentTarget,
-    message: 'Are you sure? This is irreversible.',
+    message: t('confirms.irreversable'),
     accept: () => {
       deleteCharacter(targetCharacterId);
     },
@@ -141,12 +144,12 @@ const gotoBuild = (event, id) => {
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: var(--bonta-blue);
+  background-color: var(--background-20);
   border-radius: 8px;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
 
   &:hover {
-    background-color: var(--bonta-blue-20);
+    background-color: var(--primary-40);
   }
 
   .class-image {

@@ -1,23 +1,31 @@
 body {
     margin: 0 !important;
-    background-color: var(--bonta-charcoal);
+    background-color: var(--background-10);
     overflow-y: hidden;
 }
 
+.p-component,
+.p-tabview .p-tabview-panels,
+.p-tabview .p-tabview-nav li .p-tabview-nav-link,
+.p-inputtext,
+body {
+    color: var(--text-white);
+}
+
 .p-button {
-    background-color: var(--bonta-blue-100);
+    background-color: var(--primary-30);
 
     &:hover {
-        background-color: var(--bonta-blue-80);
+        background-color: var(--primary-40);
     }
 }
 
 .p-slider-handle {
-    background-color: var(--bonta-blue-100);
+    background-color: var(--primary-50);
 }
 
 .p-slider-range {
-    background-color: var(--bonta-blue-100);
+    background-color: var(--primary-50);
 }
 
 .truncate {
@@ -28,21 +36,20 @@ body {
 }
 
 .simple-tooltip {
-    background-color: var(--bonta-blue);
-    color: white;
+    background-color: var(--background-20);
     border-radius: 8px;
     padding: 4px 6px;
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--highlight-90);
 }
 
 .item-card-tooltip {
-    background-color: var(--bonta-blue);
+    background-color: var(--background-10);
     border-radius: 4px;
-    border: 1px solid var(--bonta-blue-70);
+    border: 1px solid var(--highlight-90);
     overflow: hidden;
   
     .effect-header {
-      background: var(--bonta-blue-30);
+      background: var(--primary-20);
     }
 }
 
@@ -58,7 +65,7 @@ body {
 
     .drag-bar {
         width: 100%;
-        background-color: var(--bonta-blue-100);
+        background-color: var(--highlight-50);
         height: 16px;
     }
 
@@ -70,15 +77,15 @@ body {
 }
 
 .p-confirm-popup {
-    background-color: var(--bonta-blue-40);
-    border: 1px solid var(--bonta-blue-100);
+    background-color: var(--primary-40);
+    border: 1px solid var(--primary-50);
 
     &:before {
-        border-bottom-color: var(--bonta-blue-100);
+        border-bottom-color: var(--primary-50);
     }
 
     &:after {
-        border-bottom-color: var(--bonta-blue-100);
+        border-bottom-color: var(--primary-50);
     }
 
     .p-confirm-popup-content {
@@ -125,7 +132,7 @@ body {
                 flex-direction: column;
 
                 .ak-content {
-                    background: var(--bonta-blue-50);
+                    background: var(--primary-70);
 
                     &:not(:has(.ak-title)) {
                         height: 6px;
@@ -135,7 +142,7 @@ body {
                         display: flex;
                         align-items: center;
                         padding: 4px 6px;
-                        background: var(--bonta-blue-20);
+                        background: var(--primary-40);
                         white-space: nowrap;
 
                         .picto:has(img) {
@@ -158,17 +165,17 @@ body {
 
 .spell-tooltip {
     border-radius: 8px;
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--primary-50);
     overflow: hidden;
     width: fit-content;
 
     .spell-name {
-        background-color: var(--bonta-blue);
+        background-color: var(--primary-40);
     }
 
     .spell-description {
-        background-color: var(--bonta-blue);
-        border-bottom: 1px solid var(--bonta-blue-100);
+        background-color: var(--primary-40);
+        border-bottom: 1px solid var(--primary-50);
     }
 
     .spell-details {
@@ -180,7 +187,7 @@ body {
             padding-right: 8px;
             padding-top: 4px;
             padding-bottom: 4px;
-            background-color: var(--bonta-blue-30);
+            background-color: var(--primary-40);
         }
     
         ul {
@@ -188,7 +195,7 @@ body {
             padding-top: 4px;
             padding-bottom: 4px;
             padding-left: 30px;
-            background-color: var(--bonta-blue-50);
+            background-color: var(--primary-70);
 
             li {
                 padding-top: 1px;
@@ -210,19 +217,23 @@ body {
 }
 
 .p-contextmenu {
-    background-color: var(--bonta-blue-20);
+    background-color: var(--background-10);
     border-radius: 8px;
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--highlight-50);
 
     .p-menuitem-link {
         padding: 12px 16px;
+
+        &:hover {
+            background-color: var(--primary-30);
+        }
     }
 }
 
 .p-menu {
-    background-color: var(--bonta-blue-20);
+    background-color: var(--background-10);
     border-radius: 8px;
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--highlight-50);
 
     .p-submenu-header {
         padding: 8px 16px;
@@ -236,7 +247,7 @@ body {
         background-color: transparent;
 
         &:hover {
-            background-color: var(--bonta-blue-70);
+            background-color: var(--primary-30);
         }
     }
 }

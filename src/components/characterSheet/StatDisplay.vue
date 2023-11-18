@@ -318,19 +318,19 @@ const { calcElemResistancePercentage } = useStats();
 
   width: 70px;
 
-  background-color: var(--bonta-blue-30);
+  background-color: var(--background-30);
   border-radius: 8px;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
 
   .stat-value {
-    border-top: 1px solid var(--bonta-blue-20);
+    border-top: 1px solid var(--highlight-50);
     width: 100%;
     text-align: center;
   }
 }
 
 .main-stat-area {
-  background-color: var(--bonta-blue);
+  background-color: var(--background-10);
 }
 
 .section-header {
@@ -338,7 +338,7 @@ const { calcElemResistancePercentage } = useStats();
   justify-content: center;
   align-items: center;
   width: 100%;
-  background-color: var(--bonta-blue-20);
+  background-color: var(--background-20);
 }
 
 .stat-block {
@@ -347,8 +347,6 @@ const { calcElemResistancePercentage } = useStats();
   padding-left: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
-
-  border-bottom: 1px solid var(--bonta-blue);
 
   .p-image {
     display: flex;

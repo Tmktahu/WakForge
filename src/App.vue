@@ -160,6 +160,6 @@ nav a:first-of-type {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  background-color: var(--bonta-blue);
+  background-color: var(--secondary-10);
 }
 </style>
