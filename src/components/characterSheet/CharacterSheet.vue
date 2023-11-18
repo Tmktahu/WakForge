@@ -45,7 +45,7 @@
           </template>
         </tippy>
         <div class="ml-2">{{ $t('characterSheet.buildCode') }}:</div>
-        <div class="code flex align-items-center px-2 py-1 ml-2">
+        <div class="code flex align-items-center px-2 py-1 ml-2" @click="onCopyBuildCode">
           <span>{{ buildCode }}</span>
         </div>
         <p-button class="py-1 ml-2 px-2" :label="$t('characterSheet.copy')" @click="onCopyBuildCode" />
@@ -136,6 +136,9 @@ import SpellTabContent from '@/components/characterSheet/SpellTabContent.vue';
 import ItemSolverTabContent from '@/components/characterSheet/ItemSolverTabContent.vue';
 import RunesSubsTabContent from '@/components/characterSheet/RunesSubsTabContent.vue';
 
+import { useToast } from 'primevue/usetoast';
+const toast = useToast();
+
 const masterData = inject('masterData');
 const currentCharacter = inject('currentCharacter');
 
@@ -212,6 +215,8 @@ const hasCharacteristicsError = computed(() => {
 
 const onCopyBuildCode = () => {
   navigator.clipboard.writeText(buildCode.value);
+
+  toast.add({ severity: 'info', summary: 'Build Code copied to clipboard', life: 3000 });
 };
 
 // const onPasteBuildCode = async () => {
@@ -309,6 +314,8 @@ const onCopyBuildCode = () => {
   position: relative;
 
   .code {
+    user-select: none;
+    cursor: pointer;
     height: 32px;
     border: 1px solid var(--bonta-blue-100);
     border-radius: 8px;
@@ -316,6 +323,10 @@ const onCopyBuildCode = () => {
       line-height: 0px;
       word-wrap: break-word;
       max-width: calc(100vw - 1000px);
+    }
+
+    &:hover {
+      background-color: var(--bonta-blue-30);
     }
   }
 

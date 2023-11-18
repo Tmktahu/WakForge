@@ -9,6 +9,7 @@
 
   <p-confirmPopup group="popup" />
   <p-confirmDialog group="dialog" />
+  <p-toast position="top-left" />
   <OldDataDialog ref="oldDataDialog" />
 </template>
 
