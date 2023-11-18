@@ -135,6 +135,7 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.lock =
         (currentCharacter.value.characteristics.agility.lock * 6 +
           currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
+          calcRuneContribution(RUNE_TYPES.lock) +
           calcItemContribution(EFFECT_TYPE_DATA.lock) +
           calcPassivesContribution(EFFECT_TYPE_DATA.lockFromLevel) * 0.01 * currentCharacter.value.level) *
         calcPassivesContribution(EFFECT_TYPE_DATA.lockOverride) *
@@ -171,7 +172,6 @@ export const useStats = (currentCharacter) => {
         Math.floor(
           (currentCharacter.value.characteristics.fortune.percentBlock * 0.01 +
             calcItemContribution(EFFECT_TYPE_DATA.percentBlock) * 0.01 +
-            calcRuneContribution(RUNE_TYPES.lock) +
             calcPassivesContribution(EFFECT_TYPE_DATA.percentBlock) * 0.01) *
             100
         )
