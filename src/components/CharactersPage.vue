@@ -141,12 +141,12 @@ const gotoBuild = (event, id) => {
   display: flex;
   align-items: center;
   cursor: pointer;
-  background-color: var(--bonta-blue);
+  background-color: var(--background-20);
   border-radius: 8px;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
 
   &:hover {
-    background-color: var(--bonta-blue-20);
+    background-color: var(--primary-40);
   }
 
   .class-image {

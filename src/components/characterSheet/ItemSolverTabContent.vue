@@ -261,7 +261,7 @@ const onEquipAll = (event) => {
 
 <style lang="scss" scoped>
 .loading-state {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--primary-50);
   border-radius: 8px;
   .first-spinner {
     position: absolute;
@@ -284,7 +284,7 @@ const onEquipAll = (event) => {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   padding: 4px 6px;
   width: fit-content;
@@ -305,18 +305,18 @@ const onEquipAll = (event) => {
 
   &:hover {
     .p-checkbox-box {
-      background-color: var(--bonta-blue-30);
+      background-color: var(--primary-40);
     }
   }
 
   .p-checkbox-box {
     width: 26px;
     height: 26px;
-    border-color: var(--bonta-blue-70);
-    background-color: var(--bonta-blue);
+    border-color: var(--highlight-50);
+    background-color: var(--primary-20);
 
     &:has(.disabled) {
-      background-color: var(--charcoal);
+      background-color: var(--background-10);
     }
   }
 
@@ -334,7 +334,6 @@ const onEquipAll = (event) => {
 :deep(.filter-button) {
   padding: 4px 6px;
   background-color: #1e1e1e;
-  color: white;
   font-weight: 400;
   border: 1px solid rgba(255, 255, 255, 0.3);
 
@@ -343,7 +342,7 @@ const onEquipAll = (event) => {
   }
 
   &.item-filter-action {
-    background-color: var(--bonta-blue-30);
+    background-color: var(--primary-40-30);
   }
 }
 </style>

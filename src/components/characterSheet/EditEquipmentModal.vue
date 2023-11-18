@@ -296,14 +296,14 @@ defineExpose({
 
 <style lang="scss" scoped>
 .edit-item-modal-content {
-  background-color: var(--bonta-blue-30);
-  border: 1px solid var(--bonta-blue-100);
+  background-color: var(--background-10);
+  border: 1px solid var(--highlight-50);
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .header-area {
-  background-color: var(--bonta-blue-50);
+  background-color: var(--primary-30);
 }
 
 .close-button {
@@ -327,6 +327,6 @@ defineExpose({
 }
 
 .random-mastery-section {
-  border-top: 1px solid var(--bonta-blue-100);
+  border-top: 1px solid var(--primary-50);
 }
 </style>

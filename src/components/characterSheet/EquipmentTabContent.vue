@@ -336,13 +336,13 @@ defineExpose({
 :deep(.item-results-wrapper) {
   min-height: 300px;
   .item-card {
-    border: 1px solid var(--bonta-blue-60);
+    border: 1px solid var(--highlight-50);
     width: 230px;
     height: 60px;
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 8px;
-    background: var(--bonta-blue);
+    background: var(--background-20);
     overflow: hidden;
 
     &.with-stats {
@@ -360,7 +360,6 @@ defineExpose({
 
     .p-button-icon {
       font-size: 14px;
-      font-weight: 800;
     }
   }
 }

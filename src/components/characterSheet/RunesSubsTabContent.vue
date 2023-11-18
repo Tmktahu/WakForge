@@ -333,10 +333,11 @@ const maxRuneLevel = computed(() => {
 
 <style lang="scss" scoped>
 .item-runes-section {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--highlight-50);
   width: fit-content;
   border-radius: 8px;
   height: 42px;
+  overflow: hidden;
 
   &.disabled {
     pointer-events: none;
@@ -346,16 +347,15 @@ const maxRuneLevel = computed(() => {
   .slot-image {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
-    background-color: var(--bonta-blue-100);
+    background-color: var(--highlight-50);
     cursor: pointer;
 
     &.highlighted {
-      background-color: var(--highlight-orange-100);
+      background-color: var(--secondary-30);
     }
 
     &:hover {
-      background-color: var(--highlight-orange-90);
+      background-color: var(--secondary-40);
     }
   }
 }
@@ -366,14 +366,14 @@ const maxRuneLevel = computed(() => {
   align-items: center;
   width: 32px;
   height: 32px;
-  background-color: var(--bonta-blue-40);
+  background-color: var(--primary-30);
   border-radius: 4px;
 
   &.equipped {
     cursor: pointer;
 
     &:hover {
-      background-color: var(--bonta-blue-70);
+      background-color: var(--primary-70);
     }
   }
 
@@ -410,14 +410,14 @@ const maxRuneLevel = computed(() => {
   display: flex;
   align-items: center;
   height: 100%;
-  border-left: 1px solid var(--bonta-blue-100);
+  border-left: 1px solid var(--primary-50);
 }
 
 :deep(.rune-draggable) {
   display: flex;
   align-items: center;
   height: 30px;
-  background-color: var(--bonta-blue-40);
+  background-color: var(--background-20);
   cursor: pointer;
   font-size: 0.9rem;
 
@@ -431,27 +431,27 @@ const maxRuneLevel = computed(() => {
   }
 
   &.highlighted {
-    background-color: var(--highlight-orange-60);
+    background-color: var(--secondary-30);
   }
 
   &:hover {
-    background-color: var(--bonta-blue-60);
+    background-color: var(--primary-30);
   }
 
   .item-slot-image {
     width: 27px;
     height: 27px;
-    background: var(--bonta-blue-100);
+    background: var(--primary-50);
     border-radius: 8px;
 
     &:hover {
-      background-color: var(--highlight-orange-90);
+      background-color: var(--secondary-60);
     }
   }
 }
 
 .stats-summary {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--highlight-50);
   border-radius: 8px;
   overflow: hidden;
 }
@@ -469,16 +469,16 @@ const maxRuneLevel = computed(() => {
   }
 
   .summary-entry:nth-child(2n-1) {
-    background: var(--bonta-blue-20);
+    background: var(--background-20);
   }
 
   .summary-entry:nth-child(2n) {
-    background: var(--bonta-blue-30);
+    background: var(--primary-20);
   }
 }
 
 .rune-options-wrapper {
-  border: 1px solid var(--bonta-blue-100);
+  border: 1px solid var(--primary-50);
   height: fit-content;
   border-radius: 8px;
   overflow: hidden;

@@ -92,13 +92,13 @@ const onGotoEncyclopedia = (item) => {
 
 <style lang="scss" scoped>
 .item-card {
-  border: 1px solid var(--bonta-blue-60);
+  border: 1px solid var(--highlight-50);
   width: 230px;
   height: 85px;
   margin-right: 5px;
   margin-bottom: 5px;
   border-radius: 8px;
-  background: var(--bonta-blue);
+  background: var(--background-20);
   overflow: hidden;
 
   &.with-stats {
@@ -107,7 +107,7 @@ const onGotoEncyclopedia = (item) => {
   }
 
   .slot-label {
-    background-color: var(--bonta-blue-40);
+    background-color: var(--primary-30);
   }
 }
 

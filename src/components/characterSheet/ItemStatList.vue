@@ -80,9 +80,9 @@ const getEffectValue = (effect) => {
 <style lang="scss" scoped>
 .effect-line {
   font-size: 12px;
-  background: var(--bonta-blue);
-  // border-right: 2px solid var(--bonta-blue);
-  // border-left: 2px solid var(--bonta-blue);
+  background: var(--primary-30);
+  // border-right: 2px solid var(--primary-40);
+  // border-left: 2px solid var(--primary-40);
 }
 
 .effects-wrapper {
@@ -91,7 +91,7 @@ const getEffectValue = (effect) => {
 
 .tooltip-effect-list {
   .effect-line:nth-child(2n-1) {
-    background: var(--bonta-blue-20);
+    background: var(--primary-10);
   }
 }
 </style>

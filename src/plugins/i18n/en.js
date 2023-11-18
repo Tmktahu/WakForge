@@ -14,6 +14,12 @@ export const en = {
     english: 'English',
     spanish: 'Spanish',
     french: 'French',
+    theme: 'Theme',
+    colorTheme: 'Color Theme',
+    amakna: 'Amakna',
+    bonta: 'Bonta',
+    brakmar: 'Brakmar',
+    sufokia: 'Sufokia',
   },
   charactersPage: {
     title: 'Welcome to Wakforge',

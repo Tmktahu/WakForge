@@ -242,8 +242,8 @@ const onCopyBuildCode = () => {
 .top-bar {
   display: flex;
   align-items: center;
-  background-color: var(--bonta-blue-20);
-  border-bottom: 1px solid var(--bonta-blue-60);
+  background-color: var(--primary-10);
+  border-bottom: 1px solid var(--highlight-50);
 }
 
 .stats-area {
@@ -251,7 +251,7 @@ const onCopyBuildCode = () => {
   flex-direction: column;
   max-width: 430px;
   min-width: 430px;
-  border-right: 1px solid var(--bonta-blue-60);
+  border-right: 1px solid var(--highlight-50);
 }
 
 :deep(.main-tab-view) {
@@ -317,7 +317,7 @@ const onCopyBuildCode = () => {
     user-select: none;
     cursor: pointer;
     height: 32px;
-    border: 1px solid var(--bonta-blue-100);
+    border: 1px solid var(--highlight-50);
     border-radius: 8px;
     span {
       line-height: 0px;
@@ -326,7 +326,7 @@ const onCopyBuildCode = () => {
     }
 
     &:hover {
-      background-color: var(--bonta-blue-30);
+      background-color: var(--primary-40-30);
     }
   }
 
@@ -336,7 +336,7 @@ const onCopyBuildCode = () => {
     bottom: -20px;
     right: 80px;
     font-size: 14px;
-    color: var(--bonta-blue-100);
+    color: var(--primary-50);
     white-space: nowrap;
   }
 }
