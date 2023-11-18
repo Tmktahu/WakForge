@@ -93,12 +93,15 @@
 <script setup>
 import { ref, watch, inject, computed, nextTick } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
+import { useI18n } from 'vue-i18n';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 import EditEquipmentModal from '@/components/characterSheet/EditEquipmentModal.vue';
+
+const { t } = useI18n();
 
 let props = defineProps({
   character: {
@@ -164,7 +167,7 @@ const onRemove = (slotKey, event) => {
   confirm.require({
     group: 'popup',
     target: event.currentTarget,
-    message: 'Are you sure?',
+    message: t('confirms.areYouSure'),
     accept: () => {
       currentCharacter.value.equipment[slotKey] = null;
     },
