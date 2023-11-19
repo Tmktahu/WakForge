@@ -23,42 +23,111 @@
     <p-divider />
 
     <div class="character-area">
-      <div class="flex justify-content-between w-full">
+      <div class="flex w-full">
         <div class="text-xl">{{ $t('charactersPage.savedCharactersTitle') }}</div>
+        <div class="flex-grow-1" />
+        <p-button
+          icon="mdi mdi-folder"
+          :label="$t('charactersPage.createNewGroupButton')"
+          class="create-character-button py-1 pr-3 pl-2"
+          @click="onCreateGroup"
+        />
         <p-button
           icon="mdi mdi-plus-thick"
           :label="$t('charactersPage.createNewCharacterButton')"
-          class="create-character-button py-1 pr-3 pl-2"
+          class="create-character-button py-1 pr-3 pl-2 ml-3"
           @click="onCreateCharacter"
         />
       </div>
 
-      <div class="character-enties-wrapper flex flex-column mt-2 pr-2 pb-3">
-        <template v-for="character in masterData.characters" :key="character.id">
-          <div class="character-entry py-2 mt-2" @click="gotoBuild($event, character.id)">
-            <div class="character-info flex align-items-center justify-content-left flex-grow-1">
-              <div class="ml-3">
-                <p-image
-                  v-if="character.class"
-                  class="class-image"
-                  :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
-                  image-style="width: 40px"
-                />
-                <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+      <div class="character-enties-wrapper flex flex-column mt-2 pb-3">
+        <p-accordion multiple :active-index="[...masterData.groups.keys(), masterData.groups.length]">
+          <template v-for="group in masterData.groups" :key="group.id">
+            <p-accordionTab>
+              <template v-slot:header>
+                <div class="flex align-items-center w-full pl-3 py-2" @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
+                  <i class="mdi mdi-folder" />
+                  <p-inplace :closable="true" :pt="{ content: { class: 'flex align-items-center' }, button: { class: 'py-1' } }" @click.stop>
+                    <template v-slot:display>
+                      <div class="flex">
+                        <div class="mx-2">{{ group.name }}</div>
+                        <i class="mdi mdi-pencil" />
+                      </div>
+                    </template>
+                    <template v-slot:content>
+                      <div class="px-3">
+                        <p-inputText v-model="group.name" class="py-1" autofocus />
+                      </div>
+                    </template>
+                  </p-inplace>
+                </div>
+              </template>
+              <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
+                <template v-for="buildId in group.buildIds" :key="buildId">
+                  <div class="character-entry py-2 mt-2" draggable="true" @click="gotoBuild($event, buildId)" @dragstart="onBuildDragStart($event, buildId)">
+                    <div class="character-info flex align-items-center justify-content-left flex-grow-1">
+                      <div class="ml-3">
+                        <p-image
+                          v-if="getBuildById(buildId).class"
+                          class="class-image"
+                          :src="`https://tmktahu.github.io/WakfuAssets/classes/${getBuildById(buildId).class}.png`"
+                          image-style="width: 40px"
+                        />
+                        <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+                      </div>
+                      <p-divider class="mx-2" layout="vertical" />
+                      <div class="class-name flex-grow-1 truncate">{{ getBuildById(buildId).name }}</div>
+                      <p-divider class="mx-2" layout="vertical" />
+                      <div class="class-level">Lvl {{ getBuildById(buildId).level }}</div>
+                      <p-divider class="mx-2" layout="vertical" />
+                      <p-button class="by-level-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, buildId)" />
+                    </div>
+                    <div class="character-items flex-grow-1">
+                      <EquipmentButtons :character="getBuildById(buildId)" read-only />
+                    </div>
+                    <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, buildId)" />
+                  </div>
+                </template>
               </div>
-              <p-divider class="mx-2" layout="vertical" />
-              <div class="class-name flex-grow-1 truncate">{{ character.name }}</div>
-              <p-divider class="mx-2" layout="vertical" />
-              <div class="class-level">Lvl {{ character.level }}</div>
-              <p-divider class="mx-2" layout="vertical" />
-              <p-button class="by-level-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, character.id)" />
+            </p-accordionTab>
+          </template>
+
+          <p-accordionTab>
+            <template v-slot:header>
+              <div class="flex align-items-center w-full pl-3 py-2" draggable="true" @drop="onBuildDrop($event, 'none')" @dragover.prevent @dragenter.prevent>
+                <i class="mdi mdi-folder" />
+                <div class="mx-2">Ungrouped</div>
+              </div>
+            </template>
+            <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
+              <template v-for="build in ungroupedBuilds" :key="build.id">
+                <div class="character-entry py-2 mt-2" draggable="true" @click="gotoBuild($event, build.id)" @dragstart="onBuildDragStart($event, build.id)">
+                  <div class="character-info flex align-items-center justify-content-left flex-grow-1">
+                    <div class="ml-3">
+                      <p-image
+                        v-if="build.class"
+                        class="class-image"
+                        :src="`https://tmktahu.github.io/WakfuAssets/classes/${build.class}.png`"
+                        image-style="width: 40px"
+                      />
+                      <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+                    </div>
+                    <p-divider class="mx-2" layout="vertical" />
+                    <div class="class-name flex-grow-1 truncate">{{ build.name }}</div>
+                    <p-divider class="mx-2" layout="vertical" />
+                    <div class="class-level">Lvl {{ build.level }}</div>
+                    <p-divider class="mx-2" layout="vertical" />
+                    <p-button class="by-level-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, build.id)" />
+                  </div>
+                  <div class="character-items flex-grow-1">
+                    <EquipmentButtons :character="build" read-only />
+                  </div>
+                  <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, build.id)" />
+                </div>
+              </template>
             </div>
-            <div class="character-items flex-grow-1">
-              <EquipmentButtons :character="character" read-only />
-            </div>
-            <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, character.id)" />
-          </div>
-        </template>
+          </p-accordionTab>
+        </p-accordion>
       </div>
     </div>
   </div>
@@ -68,6 +137,7 @@
 import { ref, computed, inject } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
+import { v4 as uuidv4 } from 'uuid';
 
 import { useBuildCodes } from '@/models/useBuildCodes.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
@@ -93,6 +163,19 @@ const isValidBuildCode = computed(() => {
   return decodeBuildCode(buildCode.value) !== null;
 });
 
+const ungroupedBuilds = computed(() => {
+  let groupedBuildIds = [];
+  masterData.groups.forEach((group) => {
+    groupedBuildIds.push(...group.buildIds);
+  });
+
+  let characters = masterData.characters.filter((character) => {
+    return !groupedBuildIds.includes(character.id);
+  });
+
+  return characters;
+});
+
 const onCreateCharacter = () => {
   let newCharacterData = createNewCharacter();
 
@@ -112,6 +195,14 @@ const onCreateCharacterFromCode = () => {
     params: {
       characterId: newCharacterData.id,
     },
+  });
+};
+
+const onCreateGroup = () => {
+  masterData.groups.push({
+    id: uuidv4(),
+    name: t('charactersPage.newGroup'),
+    buildIds: [],
   });
 };
 
@@ -135,6 +226,35 @@ const gotoBuild = (event, id) => {
         characterId: id,
       },
     });
+  }
+};
+
+const getBuildById = (buildId) => {
+  return masterData.characters.find((character) => character.id === buildId);
+};
+
+const onBuildDragStart = (event, buildId) => {
+  event.dataTransfer.dropEffect = 'move';
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('buildId', buildId);
+};
+
+const onBuildDrop = (event, group) => {
+  try {
+    let buildId = event.dataTransfer.getData('buildId');
+
+    masterData.groups.forEach((group) => {
+      if (group.buildIds.includes(buildId)) {
+        let index = group.buildIds.indexOf(buildId);
+        group.buildIds.splice(index, 1);
+      }
+    });
+
+    if (group !== 'none') {
+      group.buildIds.push(buildId);
+    }
+  } catch (error) {
+    // console.error(error)
   }
 };
 </script>

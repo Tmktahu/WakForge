@@ -30,6 +30,8 @@ export const es = {
     invalidBuildCode: 'Build code es inválido.',
     savedCharactersTitle: 'Personajes Guardados',
     createNewCharacterButton: 'Crea un nuevo Personaje',
+    createNewGroupButton: 'Create New Group', // NEEDS TRANSLATION
+    newGroup: 'New Group', // NEEDS TRANSLATION
   },
   dataPage: {
     title: 'Gestión de datos de la aplicación',

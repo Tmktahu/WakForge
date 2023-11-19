@@ -30,6 +30,8 @@ export const en = {
     invalidBuildCode: 'That is an invalid build code.',
     savedCharactersTitle: 'Saved Characters',
     createNewCharacterButton: 'Create New Character',
+    createNewGroupButton: 'Create New Group',
+    newGroup: 'New Group',
   },
   dataPage: {
     title: 'Application Data Management',

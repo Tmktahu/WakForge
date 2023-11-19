@@ -251,3 +251,22 @@ body {
         }
     }
 }
+
+.p-accordion-header-link {
+    padding: 0;
+    background-color: var(--background-20);
+
+    &:hover {
+        background-color: var(--background-30);
+    }
+}
+
+.p-inplace-display {
+    padding: 0;
+}
+
+.p-inplace-content {
+    .p-button {
+        padding: 4px 0;
+    }
+}
