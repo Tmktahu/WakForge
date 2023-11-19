@@ -10,6 +10,8 @@ import { useSpells } from '@/models/spells/useSpells';
 const BUILD_CODE_VERSION = 1;
 
 export const useBuildCodes = () => {
+  const { getItemById } = useItems();
+
   const createBuildCode = (character) => {
     if (character === null) {
       return '';
@@ -281,7 +283,6 @@ export const useBuildCodes = () => {
       return null;
     }
 
-    const { getItemById, getRuneById } = useItems();
     let item = getItemById(itemData[0]);
 
     if (!item) {
