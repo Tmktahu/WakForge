@@ -94,6 +94,7 @@
 import { ref, watch, inject, computed, nextTick } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 import { useI18n } from 'vue-i18n';
+import { debounce } from 'lodash';
 
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
@@ -139,12 +140,12 @@ const currentCharacter = ref(props.character);
 const items = ref({});
 watch(
   masterData,
-  () => {
+  debounce(() => {
     nextTick(() => {
       currentCharacter.value = props.character;
       items.value = currentCharacter.value?.equipment;
     });
-  },
+  }, 100),
   { immediate: true }
 );
 

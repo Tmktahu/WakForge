@@ -98,8 +98,9 @@
 <script setup>
 import { ref, nextTick, inject, computed, watch } from 'vue';
 import { v4 as uuidv4 } from 'uuid';
+import { EventBus, Events } from '@/eventBus';
+
 import { LEVELABLE_ITEMS } from '@/models/useConstants';
-import { masterData } from '@/models/useStorage.js';
 
 let uuid = uuidv4();
 const currentCharacter = inject('currentCharacter');
@@ -122,54 +123,46 @@ const randomMasteryEffect = computed(() => {
   });
 });
 
-watch(randomMasteryEffect, () => {
-  nextTick(() => {
-    updateMasterySelectors();
-  });
-});
-
 const randomResistanceEffect = computed(() => {
   return item.value?.equipEffects?.find((effect) => {
     return effect.id === 1069;
   });
 });
 
-watch(randomResistanceEffect, () => {
-  nextTick(() => {
-    updateResistanceSelectors();
-  });
-});
-
-watch(masterData, () => {
+EventBus.on(Events.UPDATE_RAND_ELEM_SELECTORS, () => {
   updateMasterySelectors();
   updateResistanceSelectors();
 });
 
 const updateMasterySelectors = () => {
-  if (randomMasteryEffect.value !== undefined) {
-    inputModels.value['masterySlot1'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot1']?.type;
-    });
-    inputModels.value['masterySlot2'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot2']?.type;
-    });
-    inputModels.value['masterySlot3'] = elementOptions.find((option) => {
-      return option.value === randomMasteryEffect.value['masterySlot3']?.type;
-    });
+  if (visible.value) {
+    if (randomMasteryEffect.value !== undefined) {
+      inputModels.value['masterySlot1'] = elementOptions.find((option) => {
+        return option.value === randomMasteryEffect.value['masterySlot1']?.type;
+      });
+      inputModels.value['masterySlot2'] = elementOptions.find((option) => {
+        return option.value === randomMasteryEffect.value['masterySlot2']?.type;
+      });
+      inputModels.value['masterySlot3'] = elementOptions.find((option) => {
+        return option.value === randomMasteryEffect.value['masterySlot3']?.type;
+      });
+    }
   }
 };
 
 const updateResistanceSelectors = () => {
-  if (randomResistanceEffect.value !== undefined) {
-    inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value?.['resistanceSlot1']?.type;
-    });
-    inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value?.['resistanceSlot2']?.type;
-    });
-    inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
-      return option.value === randomResistanceEffect.value?.['resistanceSlot3']?.type;
-    });
+  if (visible.value) {
+    if (randomResistanceEffect.value !== undefined) {
+      inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
+        return option.value === randomResistanceEffect.value?.['resistanceSlot1']?.type;
+      });
+      inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
+        return option.value === randomResistanceEffect.value?.['resistanceSlot2']?.type;
+      });
+      inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
+        return option.value === randomResistanceEffect.value?.['resistanceSlot3']?.type;
+      });
+    }
   }
 };
 
@@ -267,6 +260,8 @@ const onApplyToAll = () => {
       });
     }
   });
+
+  EventBus.emit(Events.UPDATE_RAND_ELEM_SELECTORS);
 };
 
 const open = (slotKey, left, top) => {

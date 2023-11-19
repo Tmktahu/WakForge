@@ -139,25 +139,7 @@ import RunesSubsTabContent from '@/components/characterSheet/RunesSubsTabContent
 import { useToast } from 'primevue/usetoast';
 const toast = useToast();
 
-const masterData = inject('masterData');
 const currentCharacter = inject('currentCharacter');
-
-const needsReload = ref(false);
-const pageKey = ref(null);
-watch(
-  [needsReload, masterData],
-  () => {
-    if (needsReload.value) {
-      pageKey.value = null;
-      nextTick(() => {
-        needsReload.value = false;
-      });
-    } else {
-      pageKey.value = currentCharacter.id;
-    }
-  },
-  { immediate: true }
-);
 
 const equipmentTabContent = ref(null);
 const characteristicsTabContent = ref(null);
