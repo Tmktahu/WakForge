@@ -32,12 +32,6 @@
           class="create-character-button py-1 pr-3 pl-2"
           @click="onCreateGroup"
         />
-        <p-button
-          icon="mdi mdi-plus-thick"
-          :label="$t('charactersPage.createNewCharacterButton')"
-          class="create-character-button py-1 pr-3 pl-2 ml-3"
-          @click="onCreateCharacter"
-        />
       </div>
 
       <div class="character-enties-wrapper flex flex-column mt-2 pb-3">
@@ -45,7 +39,7 @@
           <template v-for="group in masterData.groups" :key="group.id">
             <p-accordionTab>
               <template v-slot:header>
-                <div class="flex align-items-center w-full pl-3 py-2" @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
+                <div class="flex align-items-center w-full px-3 py-2" @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
                   <i class="mdi mdi-folder" />
                   <p-inplace :closable="true" :pt="{ content: { class: 'flex align-items-center' }, button: { class: 'py-1' } }" @click.stop>
                     <template v-slot:display>
@@ -60,6 +54,14 @@
                       </div>
                     </template>
                   </p-inplace>
+                  <div class="flex-grow-1" />
+                  <p-button
+                    icon="mdi mdi-plus-thick"
+                    :label="$t('charactersPage.createNewCharacterButton')"
+                    class="create-character-button py-1 pr-3 pl-2 ml-3"
+                    @click.stop="onCreateCharacter(group)"
+                  />
+                  <p-button icon="pi pi-trash" class="ml-3 py-1" @click.stop="onDeleteGroup(group)" />
                 </div>
               </template>
               <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
@@ -94,9 +96,16 @@
 
           <p-accordionTab>
             <template v-slot:header>
-              <div class="flex align-items-center w-full pl-3 py-2" draggable="true" @drop="onBuildDrop($event, 'none')" @dragover.prevent @dragenter.prevent>
+              <div class="flex align-items-center w-full px-3 py-2" draggable="true" @drop="onBuildDrop($event, 'none')" @dragover.prevent @dragenter.prevent>
                 <i class="mdi mdi-folder" />
                 <div class="mx-2">Ungrouped</div>
+                <div class="flex-grow-1" />
+                <p-button
+                  icon="mdi mdi-plus-thick"
+                  :label="$t('charactersPage.createNewCharacterButton')"
+                  class="create-character-button py-1 pr-3 pl-2 ml-3"
+                  @click.stop="onCreateCharacter"
+                />
               </div>
             </template>
             <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
@@ -146,10 +155,13 @@ import { CHARACTER_BUILDER_ROUTE } from '@/router/routes.js';
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
 
-const { t } = useI18n();
+import { useToast } from 'primevue/usetoast';
+const toast = useToast();
 
 import { useConfirm } from 'primevue/useconfirm';
 const confirm = useConfirm();
+
+const { t } = useI18n();
 
 const router = useRouter();
 const masterData = inject('masterData');
@@ -176,8 +188,9 @@ const ungroupedBuilds = computed(() => {
   return characters;
 });
 
-const onCreateCharacter = () => {
+const onCreateCharacter = (group) => {
   let newCharacterData = createNewCharacter();
+  group.buildIds.push(newCharacterData.id);
 
   router.push({
     name: CHARACTER_BUILDER_ROUTE,
@@ -206,13 +219,29 @@ const onCreateGroup = () => {
   });
 };
 
-const onDeleteCharacter = (event, targetCharacterId) => {
+const onDeleteGroup = (group) => {
+  if (group.buildIds.length === 0) {
+    let targetIndex = masterData.groups.indexOf(group);
+    masterData.groups.splice(targetIndex, 1);
+  } else {
+    toast.add({ severity: 'error', summary: 'You cannot delete a group that has characters in it.', life: 3000 });
+  }
+};
+
+const onDeleteCharacter = (event, buildId) => {
   confirm.require({
     group: 'popup',
     target: event.currentTarget,
     message: t('confirms.irreversable'),
     accept: () => {
-      deleteCharacter(targetCharacterId);
+      masterData.groups.forEach((group) => {
+        if (group.buildIds.includes(buildId)) {
+          let index = group.buildIds.indexOf(buildId);
+          group.buildIds.splice(index, 1);
+        }
+      });
+
+      deleteCharacter(buildId);
     },
   });
 };
