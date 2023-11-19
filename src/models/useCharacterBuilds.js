@@ -12,6 +12,8 @@ export function useCharacterBuilds(masterData) {
   const currentCharacter = ref(null);
   let route = null;
 
+  const { decodeBuildCode, parseBuildData } = useBuildCodes();
+
   // TODO load in builds from local storage
 
   const setup = () => {
@@ -49,7 +51,6 @@ export function useCharacterBuilds(masterData) {
   };
 
   const createNewCharacterFromCode = (buildCode) => {
-    const { decodeBuildCode, parseBuildData } = useBuildCodes();
     let decodedData = decodeBuildCode(buildCode);
     let parsedData = parseBuildData(decodedData);
 
