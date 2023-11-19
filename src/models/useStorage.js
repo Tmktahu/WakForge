@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { debounce } from 'lodash';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
-export const CURRENT_STORAGE_VERSION = '0.0.4';
+export const CURRENT_STORAGE_VERSION = '0.0.5';
 
 export let masterData = reactive({
   appVersion: '',
@@ -15,6 +15,7 @@ export let masterData = reactive({
   characters: [],
   uiTheme: null,
   language: 'en',
+  groups: [],
 });
 
 export function useStorage() {
@@ -39,6 +40,7 @@ export function useStorage() {
       masterData.appVersion = data.appVersion;
       masterData.uiTheme = data.uiTheme;
       masterData.language = data.language;
+      masterData.groups = data.groups;
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
@@ -92,6 +94,7 @@ export function useStorage() {
           characters: inData.characters,
           uiTheme: inData.uiTheme,
           language: inData.language,
+          groups: inData.groups,
         };
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
@@ -208,6 +211,10 @@ export function useStorage() {
         };
       }
     });
+
+    if (newData.groups === undefined) {
+      newData.groups = [];
+    }
 
     newData.appVersion = import.meta.env.VITE_APP_VERSION;
     newData.storageVersion = CURRENT_STORAGE_VERSION;
