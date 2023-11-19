@@ -35,7 +35,7 @@
       </div>
 
       <div class="character-enties-wrapper flex flex-column mt-2 pb-3">
-        <p-accordion multiple :active-index="[...masterData.groups.keys(), masterData.groups.length]">
+        <p-accordion multiple :active-index="[...masterData.groups?.keys(), masterData.groups?.length]">
           <template v-for="group in masterData.groups" :key="group.id">
             <p-accordionTab>
               <template v-slot:header>
@@ -177,7 +177,7 @@ const isValidBuildCode = computed(() => {
 
 const ungroupedBuilds = computed(() => {
   let groupedBuildIds = [];
-  masterData.groups.forEach((group) => {
+  masterData.groups?.forEach((group) => {
     groupedBuildIds.push(...group.buildIds);
   });
 
