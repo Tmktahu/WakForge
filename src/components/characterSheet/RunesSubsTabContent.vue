@@ -2,7 +2,7 @@
   <div class="flex">
     <div class="flex flex-column">
       <div class="mb-2">
-        <tippy placement="top" duration="0">
+        <tippy placement="left" duration="0">
           <div class="flex">
             <div class="mr-2">{{ $t('characterSheet.runesAndSubsContent.hotkeysAndShortcuts') }}</div>
             <i class="mdi mdi-information-outline" />
@@ -14,6 +14,7 @@
               <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.ctrlClick') }}</div>
               <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.shiftClick') }}</div>
               <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.rightClick') }}</div>
+              <div class="mb-1">{{ $t('characterSheet.runesAndSubsContent.hightlightClick') }}</div>
             </div>
           </template>
         </tippy>
@@ -100,40 +101,47 @@
       </div>
     </div>
 
-    <div class="rune-options-wrapper flex flex-column ml-3 pt-2">
-      <div class="flex align-items-center justify-content-center">
-        <tippy placement="left" duration="0">
-          <i class="mdi mdi-information-outline" />
-          <template v-slot:content>
-            <div class="simple-tooltip">
-              {{ $t('characterSheet.runesAndSubsContent.runeLevelTooltip') }}
+    <div class="flex flex-column">
+      <div class="rune-options-wrapper flex flex-column ml-3 pt-2">
+        <div class="flex align-items-center justify-content-center">
+          <tippy placement="left" duration="0">
+            <i class="mdi mdi-information-outline" />
+            <template v-slot:content>
+              <div class="simple-tooltip">
+                {{ $t('characterSheet.runesAndSubsContent.runeLevelTooltip') }}
+              </div>
+            </template>
+          </tippy>
+          <span class="mx-2">{{ $t('characterSheet.runesAndSubsContent.runeLevel') }}</span>
+          <p-inputNumber v-model="runeLevel" class="number-input" show-buttons button-layout="horizontal" :min="1" :max="maxRuneLevel" :allow-empty="false" />
+        </div>
+
+        <div class="rune-options flex flex-column mt-2">
+          <template v-for="rune in runeOptions" :key="rune.id">
+            <div
+              class="rune-draggable mb-1 px-2"
+              :class="{ highlighted: itemSlotHighlight && rune.shardsParameters.doubleBonusPosition.includes(ITEM_SLOT_DATA[itemSlotHighlight].rawId) }"
+              draggable="true"
+              @dragstart="onDragStart($event, rune)"
+              @click="onRuneOptionClick($event, rune)"
+            >
+              <p-image class="rune-image" :src="getEmptyRuneImage(rune.shardsParameters.color)" image-style="width: 20px" />
+              <div class="ml-2">+{{ getRuneValue(rune, runeLevel) }} {{ rune.name }}</div>
+              <div class="flex-grow-1 mr-2" />
+              <div v-for="slotId in rune.shardsParameters.doubleBonusPosition" :key="slotId" class="ml-1">
+                <p-image
+                  image-class="item-slot-image"
+                  :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotNameFromId(slotId)}.png`"
+                  @click="onItemSlotClick($event, slotNameFromId(slotId))"
+                />
+              </div>
             </div>
           </template>
-        </tippy>
-        <span class="mx-2">{{ $t('characterSheet.runesAndSubsContent.runeLevel') }}</span>
-        <p-inputNumber v-model="runeLevel" class="number-input" show-buttons button-layout="horizontal" :min="1" :max="maxRuneLevel" :allow-empty="false" />
+        </div>
       </div>
 
-      <div class="rune-options flex flex-column mt-2">
-        <template v-for="rune in runeOptions" :key="rune.id">
-          <div
-            class="rune-draggable mb-1 px-2"
-            :class="{ highlighted: itemSlotHighlight && rune.shardsParameters.doubleBonusPosition.includes(ITEM_SLOT_DATA[itemSlotHighlight].rawId) }"
-            draggable="true"
-            @dragstart="onDragStart($event, rune)"
-          >
-            <p-image class="rune-image" :src="getEmptyRuneImage(rune.shardsParameters.color)" image-style="width: 20px" />
-            <div class="ml-2">+{{ getRuneValue(rune, runeLevel) }} {{ rune.name }}</div>
-            <div class="flex-grow-1 mr-2" />
-            <div v-for="slotId in rune.shardsParameters.doubleBonusPosition" :key="slotId" class="ml-1">
-              <p-image
-                image-class="item-slot-image"
-                :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotNameFromId(slotId)}.png`"
-                @click="onItemSlotClick($event, slotNameFromId(slotId))"
-              />
-            </div>
-          </div>
-        </template>
+      <div class="ml-3 mt-2">
+        <p-button :label="$t('characterSheet.runesAndSubsContent.removeAllRunes')" @click="onRemoveAll" />
       </div>
     </div>
 
@@ -154,7 +162,7 @@
 </template>
 
 <script setup>
-import { ref, inject, computed } from 'vue';
+import { ref, inject, computed, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { useItems } from '@/models/useItems';
@@ -230,6 +238,7 @@ const summaryEntries = computed(() => {
 });
 
 const onItemSlotClick = (event, slotKey) => {
+  event.stopPropagation();
   if (itemSlotHighlight.value === slotKey) {
     itemSlotHighlight.value = null;
   } else {
@@ -260,6 +269,26 @@ const onRightClick = (event, itemSlotKey, runeSlotKey) => {
   }
 };
 
+const onRuneOptionClick = (event, rune) => {
+  if (itemSlotHighlight.value) {
+    let runeSlotKeys = ['runeSlot1', 'runeSlot2', 'runeSlot3', 'runeSlot4'];
+
+    for (let keyIndex in runeSlotKeys) {
+      if (
+        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] === null ||
+        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] === undefined
+      ) {
+        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] = {
+          rune,
+          color: rune.shardsParameters.color,
+          level: runeLevel.value,
+        };
+        break;
+      }
+    }
+  }
+};
+
 const onDragStart = (event, rune, level) => {
   event.dataTransfer.dropEffect = 'move';
   event.dataTransfer.effectAllowed = 'move';
@@ -281,6 +310,17 @@ const onDrop = (event, itemSlotKey, runeSlotKey) => {
   } catch (error) {
     // console.error(error)
   }
+};
+
+const onRemoveAll = () => {
+  let runeSlotKeys = ['runeSlot1', 'runeSlot2', 'runeSlot3', 'runeSlot4'];
+  Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
+    if (currentCharacter.value.equipment[slotKey]) {
+      runeSlotKeys.forEach((runeSlotKey) => {
+        currentCharacter.value.equipment[slotKey][runeSlotKey] = undefined;
+      });
+    }
+  });
 };
 
 const getEmptyRuneImage = (colorId) => {
@@ -334,6 +374,14 @@ const maxRuneLevel = computed(() => {
 
   return level;
 });
+
+watch(
+  () => currentCharacter.value.level,
+  () => {
+    runeLevel.value = maxRuneLevel.value;
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>
