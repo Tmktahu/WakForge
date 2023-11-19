@@ -4,6 +4,7 @@ import { EventBus, Events } from '@/eventBus';
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
 import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
+import { debounce } from 'lodash';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
 export const CURRENT_STORAGE_VERSION = '0.0.4';
@@ -44,10 +45,13 @@ export function useStorage() {
       saveToLocalStorage(data);
     });
 
-    watch(masterData, () => {
-      // this watch handles live saving to local storage
-      saveToLocalStorage(masterData);
-    });
+    watch(
+      masterData,
+      debounce(() => {
+        // this watch handles live saving to local storage
+        saveToLocalStorage(masterData);
+      }, 100)
+    );
 
     return { storageData: data, errors };
   };

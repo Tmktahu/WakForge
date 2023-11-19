@@ -184,10 +184,12 @@ export const fr = {
       ctrlClick: 'CTRL-Click a rune to delete it.', // NEEDS TRANSLATION
       shiftClick: 'SHIFT-Click a rune to toggle it white.', // NEEDS TRANSLATION
       rightClick: 'Right-Click a rune for more options.', // NEEDS TRANSLATION
+      hightlightClick: 'Highlight a slot and click a rune on the right to assign it.', // NEEDS TRANSLATION
       statsSummary: 'Stats Summary', // NEEDS TRANSLATION
       runeLevelTooltip: `The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.`, // NEEDS TRANSLATION
       runeLevel: 'Rune Level', // NEEDS TRANSLATION
       toggleWhite: 'Toggle White', // NEEDS TRANSLATION
+      removeAllRunes: 'Remove All Runes/Subs', // NEEDS TRANSLATION
     },
   },
   constants: {

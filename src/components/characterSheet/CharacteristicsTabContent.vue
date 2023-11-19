@@ -333,7 +333,7 @@
 
 <script setup>
 import { ref, inject, computed, onMounted, watch } from 'vue';
-
+import { debounce } from 'lodash';
 import CharacteristicInput from '@/components/characterSheet/CharacteristicInput.vue';
 
 const masterData = inject('masterData');
@@ -470,41 +470,44 @@ const updateCharacteristics = () => {
   currentCharacter.value.characteristics.major.elementalResistance = majorElementalResistance.value;
 };
 
-watch(masterData, () => {
-  percentHealthPoints.value = currentCharacter.value.characteristics.intelligence.percentHealthPoints;
-  intelligenceElementalResistance.value = currentCharacter.value.characteristics.intelligence.elementalResistance;
-  barrier.value = currentCharacter.value.characteristics.intelligence.barrier;
-  percentHealsReceived.value = currentCharacter.value.characteristics.intelligence.percentHealsReceived;
-  percentArmorHeathPoints.value = currentCharacter.value.characteristics.intelligence.percentArmorHeathPoints;
+watch(
+  masterData,
+  debounce(() => {
+    percentHealthPoints.value = currentCharacter.value.characteristics.intelligence.percentHealthPoints;
+    intelligenceElementalResistance.value = currentCharacter.value.characteristics.intelligence.elementalResistance;
+    barrier.value = currentCharacter.value.characteristics.intelligence.barrier;
+    percentHealsReceived.value = currentCharacter.value.characteristics.intelligence.percentHealsReceived;
+    percentArmorHeathPoints.value = currentCharacter.value.characteristics.intelligence.percentArmorHeathPoints;
 
-  elementalMastery.value = currentCharacter.value.characteristics.strength.elementalMastery;
-  meleeMastery.value = currentCharacter.value.characteristics.strength.meleeMastery;
-  distanceMastery.value = currentCharacter.value.characteristics.strength.distanceMastery;
-  healthPoints.value = currentCharacter.value.characteristics.strength.healthPoints;
+    elementalMastery.value = currentCharacter.value.characteristics.strength.elementalMastery;
+    meleeMastery.value = currentCharacter.value.characteristics.strength.meleeMastery;
+    distanceMastery.value = currentCharacter.value.characteristics.strength.distanceMastery;
+    healthPoints.value = currentCharacter.value.characteristics.strength.healthPoints;
 
-  lock.value = currentCharacter.value.characteristics.agility.lock;
-  dodge.value = currentCharacter.value.characteristics.agility.dodge;
-  initiative.value = currentCharacter.value.characteristics.agility.initiative;
-  lockAndDodge.value = currentCharacter.value.characteristics.agility.lockAndDodge;
-  forceOfWill.value = currentCharacter.value.characteristics.agility.forceOfWill;
+    lock.value = currentCharacter.value.characteristics.agility.lock;
+    dodge.value = currentCharacter.value.characteristics.agility.dodge;
+    initiative.value = currentCharacter.value.characteristics.agility.initiative;
+    lockAndDodge.value = currentCharacter.value.characteristics.agility.lockAndDodge;
+    forceOfWill.value = currentCharacter.value.characteristics.agility.forceOfWill;
 
-  percentCriticalHit.value = currentCharacter.value.characteristics.fortune.percentCriticalHit;
-  percentBlock.value = currentCharacter.value.characteristics.fortune.percentBlock;
-  criticalMastery.value = currentCharacter.value.characteristics.fortune.criticalMastery;
-  rearMastery.value = currentCharacter.value.characteristics.fortune.rearMastery;
-  berserkMastery.value = currentCharacter.value.characteristics.fortune.berserkMastery;
-  healingMastery.value = currentCharacter.value.characteristics.fortune.healingMastery;
-  rearResistance.value = currentCharacter.value.characteristics.fortune.rearResistance;
-  criticalResistance.value = currentCharacter.value.characteristics.fortune.criticalResistance;
+    percentCriticalHit.value = currentCharacter.value.characteristics.fortune.percentCriticalHit;
+    percentBlock.value = currentCharacter.value.characteristics.fortune.percentBlock;
+    criticalMastery.value = currentCharacter.value.characteristics.fortune.criticalMastery;
+    rearMastery.value = currentCharacter.value.characteristics.fortune.rearMastery;
+    berserkMastery.value = currentCharacter.value.characteristics.fortune.berserkMastery;
+    healingMastery.value = currentCharacter.value.characteristics.fortune.healingMastery;
+    rearResistance.value = currentCharacter.value.characteristics.fortune.rearResistance;
+    criticalResistance.value = currentCharacter.value.characteristics.fortune.criticalResistance;
 
-  actionPoints.value = currentCharacter.value.characteristics.major.actionPoints;
-  movementPointsAndDamage.value = currentCharacter.value.characteristics.major.movementPointsAndDamage;
-  rangeAndDamage.value = currentCharacter.value.characteristics.major.rangeAndDamage;
-  wakfuPoints.value = currentCharacter.value.characteristics.major.wakfuPoints;
-  controlAndDamage.value = currentCharacter.value.characteristics.major.controlAndDamage;
-  percentDamageInflicted.value = currentCharacter.value.characteristics.major.percentDamageInflicted;
-  majorElementalResistance.value = currentCharacter.value.characteristics.major.elementalResistance;
-});
+    actionPoints.value = currentCharacter.value.characteristics.major.actionPoints;
+    movementPointsAndDamage.value = currentCharacter.value.characteristics.major.movementPointsAndDamage;
+    rangeAndDamage.value = currentCharacter.value.characteristics.major.rangeAndDamage;
+    wakfuPoints.value = currentCharacter.value.characteristics.major.wakfuPoints;
+    controlAndDamage.value = currentCharacter.value.characteristics.major.controlAndDamage;
+    percentDamageInflicted.value = currentCharacter.value.characteristics.major.percentDamageInflicted;
+    majorElementalResistance.value = currentCharacter.value.characteristics.major.elementalResistance;
+  }, 100)
+);
 
 const hasCharacteristicsError = computed(() => {
   return (

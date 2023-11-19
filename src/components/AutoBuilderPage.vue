@@ -326,37 +326,37 @@ const hasValidValues = computed(() => {
   return autoBuilderIsReady.value && selectedClass.value !== null;
 });
 
-watch(autoBuilderIsReady, () => {
-  initLoading.value = false;
-});
+// watch(autoBuilderIsReady, () => {
+//   initLoading.value = false;
+// });
 
-watch(resultData, () => {
-  if (resultData.value !== null) {
-    builderLoading.value = false;
-  } else {
-    builderLoading.value = true;
-  }
-});
+// watch(resultData, () => {
+//   if (resultData.value !== null) {
+//     builderLoading.value = false;
+//   } else {
+//     builderLoading.value = true;
+//   }
+// });
 
-watch(
-  selectedLevel,
-  () => {
-    if (selectedLevel.value <= 35) {
-      targetApAmount.value = 2;
-      targetMpAmount.value = 1;
-      targetRangeAmount.value = 0;
-      targetWpAmount.value = 0;
-      targetNumElements.value = 2;
-    } else {
-      targetApAmount.value = 5;
-      targetMpAmount.value = 2;
-      targetRangeAmount.value = 0;
-      targetWpAmount.value = 0;
-      targetNumElements.value = 2;
-    }
-  },
-  { immediate: true }
-);
+// watch(
+//   selectedLevel,
+//   () => {
+//     if (selectedLevel.value <= 35) {
+//       targetApAmount.value = 2;
+//       targetMpAmount.value = 1;
+//       targetRangeAmount.value = 0;
+//       targetWpAmount.value = 0;
+//       targetNumElements.value = 2;
+//     } else {
+//       targetApAmount.value = 5;
+//       targetMpAmount.value = 2;
+//       targetRangeAmount.value = 0;
+//       targetWpAmount.value = 0;
+//       targetNumElements.value = 2;
+//     }
+//   },
+//   { immediate: true }
+// );
 
 const onCalculate = async () => {
   let params = {
