@@ -164,13 +164,21 @@
 
     <template v-for="filter in effectFilters" :key="filter.id">
       <div class="filter-entry">
-        <p-dropdown v-model="filter.type" class="filter-type-dropdown" :options="filterTypeOptions" @change="updateFilters">
+        <p-dropdown
+          v-model="filter.type"
+          class="filter-type-dropdown"
+          :options="filterTypeOptions"
+          filter
+          auto-filter-focus
+          option-label="text"
+          @change="updateFilters"
+        >
           <template v-slot:value="slotProps"> {{ $t(slotProps.value.text) }} </template>
           <template v-slot:option="slotProps">
             <div class="px-2 py-1">{{ $t(slotProps.option.text) }}</div>
           </template>
         </p-dropdown>
-        <p-dropdown v-model="filter.comparator" class="filter-comparator-dropdown" :options="COMPARATORS" @change="updateFilters">
+        <p-dropdown v-model="filter.comparator" class="filter-comparator-dropdown" :options="COMPARATORS" option-label="text" @change="updateFilters">
           <template v-slot:value="slotProps"> {{ slotProps.value.symbol }} </template>
           <template v-slot:option="slotProps">
             <div class="px-2 py-1">{{ $t(slotProps.option.text) }}</div>

@@ -26,6 +26,7 @@
             <p-dropdown
               v-model="inputModels['masterySlot' + index]"
               class="mastery-dropdown"
+              option-label="label"
               :options="elementOptions"
               @change="onMasteryStatChange($event, 'masterySlot' + index)"
             >
@@ -60,7 +61,13 @@
         <div class="text-center w-full text-lg mb-2 pt-2">+{{ randomResistanceEffect.values[0] }} Resistance Assignment</div>
         <div class="flex justify-content-center gap-2 px-3">
           <template v-for="index in randomResistanceEffect.values[2]" :key="index">
-            <p-dropdown v-model="inputModels['resistanceSlot' + index]" class="mastery-dropdown" :options="elementOptions" @change="onResistanceStatChange">
+            <p-dropdown
+              v-model="inputModels['resistanceSlot' + index]"
+              class="mastery-dropdown"
+              :options="elementOptions"
+              option-label="label"
+              @change="onResistanceStatChange"
+            >
               <template v-slot:value="slotProps">
                 <div v-if="slotProps.value" class="flex align-items-center">
                   <p-image

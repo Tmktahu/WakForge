@@ -8,6 +8,7 @@
         :options="classOptions"
         :placeholder="$t('characterSheet.selectAClass')"
         option-value="value"
+        option-label="label"
         class="mr-2"
         @change="saveData($event, 'class')"
       >
