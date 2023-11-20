@@ -66,10 +66,14 @@ const processItemTranslationData = () => {
   itemData.forEach((itemObject) => {
     let itemId = itemObject.definition.item.id;
 
-    englishTranslationData[itemId] = itemObject.title.en;
-    spanishTranslationData[itemId] = itemObject.title.es;
-    frenchTranslationData[itemId] = itemObject.title.fr;
-    portugueseTranslationData[itemId] = itemObject.title.pt;
+    // eslint-disable-next-line quotes
+    englishTranslationData[itemId] = `{'${itemObject.title.en.replaceAll(`'`, "'}{'\\''}{'")}'}`;
+    // eslint-disable-next-line quotes
+    spanishTranslationData[itemId] = `{'${itemObject.title.es.replaceAll(`'`, "'}{'\\''}{'")}'}`;
+    // eslint-disable-next-line quotes
+    frenchTranslationData[itemId] = `{'${itemObject.title.fr.replaceAll(`'`, "'}{'\\''}{'")}'}`;
+    // eslint-disable-next-line quotes
+    portugueseTranslationData[itemId] = `{'${itemObject.title.pt.replaceAll(`'`, "'}{'\\''}{'")}'}`;
   });
 };
 
