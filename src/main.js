@@ -14,7 +14,7 @@ let globalError = ref(null);
 app.provide('globalError', globalError);
 
 app.config.errorHandler = (error, instance, info) => {
-  console.log('IT WORKED', error, info);
+  console.error(error);
   globalError.value = error;
 };
 
