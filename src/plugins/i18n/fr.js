@@ -6,8 +6,8 @@ export const fr = {
   items: frItemTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
-    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.', // NEEDS TRANSLATION
-    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.', // NEEDS TRANSLATION
+    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.',
+    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.',
   },
   sidebar: {
     charactersTab: 'Personnages',
@@ -18,12 +18,12 @@ export const fr = {
     english: 'Anglais',
     spanish: 'Espagnol',
     french: 'Français',
-    theme: 'Theme', // NEEDS TRANSLATION
-    colorTheme: 'Color Theme', // NEEDS TRANSLATION
-    amakna: 'Amakna', // NEEDS TRANSLATION
-    bonta: 'Bonta', // NEEDS TRANSLATION
-    brakmar: 'Brakmar', // NEEDS TRANSLATION
-    sufokia: 'Sufokia', // NEEDS TRANSLATION
+    theme: 'Thème',
+    colorTheme: 'Couleur Thème',
+    amakna: 'Amakna',
+    bonta: 'Bonta',
+    brakmar: 'Brâkmar',
+    sufokia: 'Sufokia',
   },
   charactersPage: {
     title: 'Bienvenue sur Wakforge',
@@ -34,8 +34,8 @@ export const fr = {
     invalidBuildCode: 'Build Code invalide.',
     savedCharactersTitle: 'Personnages Sauvegardés',
     createNewCharacterButton: 'Créer un nouveau Personnage',
-    createNewGroupButton: 'Create New Group', // NEEDS TRANSLATION
-    newGroup: 'New Group', // NEEDS TRANSLATION
+    createNewGroupButton: 'Créer nouveau groupe',
+    newGroup: 'Nouveau groupe',
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -161,39 +161,39 @@ export const fr = {
     },
 
     itemSolverContent: {
-      numElements: 'Num Elements', // NEEDS TRANSLATION
-      apTooltip: 'How many total Action Points you want.', // NEEDS TRANSLATION
-      mpTooltip: 'How many total Movement Points you want.', // NEEDS TRANSLATION
-      rangeTooltip: 'How much total Range you want.', // NEEDS TRANSLATION
-      wakfuTooltip: 'How many total Wakfu Points you want.', // NEEDS TRANSLATION
-      numElementsTooltip: 'How many elemental types you want on each item.', // NEEDS TRANSLATION
-      meleeMasteryTooltip: 'Should Melee Mastery be included if possible?', // NEEDS TRANSLATION
-      distanceMasteryTooltip: 'Should Distance Mastery be included if possible?', // NEEDS TRANSLATION
-      healingMasteryTooltip: 'Should Healing Mastery be included if possible?', // NEEDS TRANSLATION
-      rearMasteryTooltip: 'Should Rear Mastery be included if possible?', // NEEDS TRANSLATION
-      berserkMasteryTooltip: 'Should Berserk Mastery be included if possible?', // NEEDS TRANSLATION
-      poweredBy: 'Powered by', // NEEDS TRANSLATION
-      code: 'code', // NEEDS TRANSLATION
-      problemMessage: 'There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord.', // NEEDS TRANSLATION
-      instructions: 'Enter your parameters above and click "Generate Item Set".', // NEEDS TRANSLATION
-      ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.', // NEEDS TRANSLATION
-      loadingMessage: 'Jimmy is doing the math and stuff... Please wait...', // NEEDS TRANSLATION
-      loadingDisclaimer: 'Note that depending on your above options, this can take some time.', // NEEDS TRANSLATION
+      numElements: 'Nombre d\'éléments',
+      apTooltip: 'Combien de PA au total vous souhaitez.',
+      mpTooltip: 'Combien de PM au total vous souhaitez.',
+      rangeTooltip: 'Combien de PO au total vous souhaitez.',
+      wakfuTooltip: 'Combien de PW au total vous souhaitez.',
+      numElementsTooltip: 'Combien d\'éléments vous souhaitez sur chaque item.',
+      meleeMasteryTooltip: 'La Maîtrise Mêlée doit-elle être inclue si possible ?',
+      distanceMasteryTooltip: 'La Maîtrise Distance doit-elle être inclue si possible ?',
+      healingMasteryTooltip: 'La Maîtrise Soin doit-elle être inclue si possible ?',
+      rearMasteryTooltip: 'La Maîtrise Dos doit-elle être inclue si possible ?',
+      berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
+      poweredBy: 'Powered by',
+      code: 'code',
+      problemMessage: 'Il y a eu un souci avec l\'auto-solver. Si vous pensez qu\'il s\'agit d\'un bug, merci de contacter Fryke sur Discord.',
+      instructions: 'Entrer vos paramètres au-dessus et cliquer sur "Générer un set d\'items".',
+      ifYouNeedHelp: 'Si vous avez besoin d\'assistance, n\'hésitez pas à nous contacter sur Discord avec vos questions.',
+      loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
+      loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
     },
 
     runesAndSubsContent: {
-      hotkeysAndShortcuts: 'Hotkeys and Shortcuts', // NEEDS TRANSLATION
-      dragAndDrop: 'Drag and drop runes around to assign.', // NEEDS TRANSLATION
-      dragReplace: 'Drag a rune onto another rune to replace it.', // NEEDS TRANSLATION
-      ctrlClick: 'CTRL-Click a rune to delete it.', // NEEDS TRANSLATION
-      shiftClick: 'SHIFT-Click a rune to toggle it white.', // NEEDS TRANSLATION
-      rightClick: 'Right-Click a rune for more options.', // NEEDS TRANSLATION
-      hightlightClick: 'Highlight a slot and click a rune on the right to assign it.', // NEEDS TRANSLATION
-      statsSummary: 'Stats Summary', // NEEDS TRANSLATION
-      runeLevelTooltip: `The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.`, // NEEDS TRANSLATION
-      runeLevel: 'Rune Level', // NEEDS TRANSLATION
-      toggleWhite: 'Toggle White', // NEEDS TRANSLATION
-      removeAllRunes: 'Remove All Runes/Subs', // NEEDS TRANSLATION
+      hotkeysAndShortcuts: 'Raccourcis',
+      dragAndDrop: 'Glisser-Déposer une rune pour l\'affecter.',
+      dragReplace: 'Déposer une rune sur une autre pour la remplacer.',
+      ctrlClick: 'CTRL-Clic sur une rune pour la remplacer.',
+      shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
+      rightClick: 'Clic-Droit sur une rune pour plus d\'options.',
+      hightlightClick: 'Sélectionner un slot et cliquer sur une rune à droite pour l\'assigner.',
+      statsSummary: 'Résumé Stats',
+      runeLevelTooltip: `Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.`,
+      runeLevel: 'Niveau Rune',
+      toggleWhite: 'Rendre Blanche',
+      removeAllRunes: 'Enlever toutes les runes/subl.',
     },
   },
   constants: {
@@ -257,7 +257,7 @@ export const fr = {
     wisdom: 'Sagesse',
     control: 'Contrôle',
     percentBlock: '% Parade',
-    movementPoints: 'Movement Points', // NEEDS TRANSLATION
+    movementPoints: 'Points de Mouvement',
 
     meleeMastery: 'Maîtrise Mêlée',
     distanceMastery: 'Maîtrise Distance',
@@ -300,11 +300,11 @@ export const fr = {
     lockFromLevel: 'Tacle par niveau',
     percentDodge: '% Esquive',
 
-    remove: 'Remove', // NEEDS TRANSLATION
+    remove: 'Remove',
   },
   confirms: {
-    irreversable: 'Are you sure? This is irreversible.', // NEEDS TRANSLATION
-    areYouSure: 'Are you sure?', // NEEDS TRANSLATION
-    willReplaceItems: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.', // NEEDS TRANSLATION
+    irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
+    areYouSure: 'Êtes-vous sûr ?',
+    willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les items équipés qui sont dans les slots en conflit.',
   },
 };
