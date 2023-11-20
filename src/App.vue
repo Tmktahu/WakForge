@@ -1,5 +1,12 @@
 <template>
-  <div class="flex">
+  <div v-if="globalError" class="severe-error-state">
+    <p-image :src="wakforgeLogoURL" image-style="width: 140px" />
+    <div class="text-lg mt-3">{{ $t('app.globalErrorMessage') }}</div>
+    <div class="text-lg mt-1">{{ $t('app.globalErrorContact') }}</div>
+    <p-button icon="mdi mdi-discord" class="mt-3" label="Discord Server" @click="onDiscord" />
+    <div class="error-message px-3 py-3 mt-4" v-html="globalError?.stack?.replaceAll('at', '<br \>- at')" />
+  </div>
+  <div v-else class="flex">
     <AppSidebar />
     <div class="flex flex-column" style="height: 100vh; width: calc(100vw - 130px)">
       <router-view />
@@ -14,7 +21,7 @@
 </template>
 
 <script setup>
-import { ref, watch, provide, nextTick, onMounted } from 'vue';
+import { ref, watch, provide, nextTick, onMounted, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { EventBus, Events } from '@/eventBus';
 
@@ -27,12 +34,13 @@ import { useLevels } from '@/models/useLevels';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 
 import OldDataDialog from '@/components/OldDataDialog.vue';
-
 import AppSidebar from '@/components/AppSidebar.vue';
 
-const route = useRoute();
+import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
+const route = useRoute();
 const oldDataDialog = ref(null);
+const globalError = inject('globalError');
 
 // const showSidebar = ref(true);
 
@@ -90,6 +98,10 @@ EventBus.on(Events.OPEN_OLD_DATA_DIALOG, (data) => {
     oldDataDialog.value.open(data);
   }, 100);
 });
+
+const onDiscord = () => {
+  window.open('https://discord.gg/k3v2fXQWJp', '_blank').focus();
+};
 </script>
 
 <style lang="scss" scoped>
@@ -161,5 +173,23 @@ nav a:first-of-type {
   text-align: center;
   font-size: 14px;
   background-color: var(--secondary-10);
+}
+
+.severe-error-state {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .error-message {
+    border: 1px solid var(--error);
+    border-radius: 8px;
+
+    :first-child {
+      margin-left: 20px;
+    }
+  }
 }
 </style>

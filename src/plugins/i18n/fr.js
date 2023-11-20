@@ -6,6 +6,8 @@ export const fr = {
   items: frItemTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
+    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.', // NEEDS TRANSLATION
+    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.', // NEEDS TRANSLATION
   },
   sidebar: {
     charactersTab: 'Personnages',
