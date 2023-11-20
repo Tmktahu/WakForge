@@ -192,7 +192,9 @@ const ungroupedBuilds = computed(() => {
 
 const onCreateCharacter = (group) => {
   let newCharacterData = createNewCharacter();
-  group.buildIds.push(newCharacterData.id);
+  if (group) {
+    group.buildIds.push(newCharacterData.id);
+  }
 
   router.push({
     name: CHARACTER_BUILDER_ROUTE,
