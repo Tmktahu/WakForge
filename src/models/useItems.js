@@ -202,7 +202,7 @@ export const useItems = (character = ref(null)) => {
   };
 
   const hasSearchTerm = (item) => {
-    return item.name.toLowerCase().includes(itemFilters.searchTerm.toLowerCase());
+    return t(`items.${item.id}`).toLowerCase().includes(itemFilters.searchTerm.toLowerCase());
   };
 
   const isWithinLevelRange = (item) => {
