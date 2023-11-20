@@ -84,6 +84,8 @@
             <template v-for="index in 4" :key="index">
               <div class="rune-drop-zone ml-2" @dragover.prevent @dragenter.prevent @drop="onDrop($event, slotKey, `runeSlot${index}`)" />
             </template>
+
+            <div class="info-text">An item must be equipped</div>
           </div>
         </template>
       </template>
@@ -132,6 +134,7 @@
                 <p-image
                   image-class="item-slot-image"
                   :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotNameFromId(slotId)}.png`"
+                  :class="{ disabled: !currentCharacter.equipment[slotNameFromId(slotId)] }"
                   @click="onItemSlotClick($event, slotNameFromId(slotId))"
                 />
               </div>
@@ -270,7 +273,7 @@ const onRightClick = (event, itemSlotKey, runeSlotKey) => {
 };
 
 const onRuneOptionClick = (event, rune) => {
-  if (itemSlotHighlight.value) {
+  if (itemSlotHighlight.value && currentCharacter.value.equipment[itemSlotHighlight.value] !== null) {
     let runeSlotKeys = ['runeSlot1', 'runeSlot2', 'runeSlot3', 'runeSlot4'];
 
     for (let keyIndex in runeSlotKeys) {
@@ -393,8 +396,25 @@ watch(
   overflow: hidden;
 
   &.disabled {
+    position: relative;
     pointer-events: none;
-    opacity: 0.3;
+
+    .slot-image {
+      opacity: 0.3;
+    }
+
+    .rune-drop-zone {
+      opacity: 0.3;
+    }
+
+    .info-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inset: 0;
+      position: absolute;
+      font-weight: 500;
+    }
   }
 
   .slot-image {
@@ -489,6 +509,11 @@ watch(
 
   &:hover {
     background-color: var(--primary-30);
+  }
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.3;
   }
 
   .item-slot-image {
