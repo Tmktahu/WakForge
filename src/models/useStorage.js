@@ -37,10 +37,10 @@ export function useStorage() {
       if (data?.characters?.length) {
         masterData.characters = data.characters;
       }
-      masterData.appVersion = data.appVersion;
-      masterData.uiTheme = data.uiTheme;
-      masterData.language = data.language;
-      masterData.groups = data.groups;
+      masterData.appVersion = data.appVersion || import.meta.env.VUE_APP_VERSION;
+      masterData.uiTheme = data.uiTheme || 'bonta';
+      masterData.language = data.language || 'en';
+      masterData.groups = data.groups || [];
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
