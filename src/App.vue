@@ -4,7 +4,7 @@
     <div class="text-lg mt-3">{{ $t('app.globalErrorMessage') }}</div>
     <div class="text-lg mt-1">{{ $t('app.globalErrorContact') }}</div>
     <p-button icon="mdi mdi-discord" class="mt-3" label="Discord Server" @click="onDiscord" />
-    <div class="error-message px-3 py-3 mt-4" v-html="globalError?.stack?.replaceAll('at', '<br \>- at')" />
+    <div class="error-message px-3 py-3 mt-4" v-html="globalError?.stack?.replaceAll(' at', '<br \>- at')" />
   </div>
   <div v-else class="flex">
     <AppSidebar />

@@ -104,7 +104,7 @@
                   icon="mdi mdi-plus-thick"
                   :label="$t('charactersPage.createNewCharacterButton')"
                   class="create-character-button py-1 pr-3 pl-2 ml-3"
-                  @click.stop="onCreateCharacter"
+                  @click.stop="onCreateCharacter('none')"
                 />
               </div>
             </template>
@@ -192,7 +192,9 @@ const ungroupedBuilds = computed(() => {
 
 const onCreateCharacter = (group) => {
   let newCharacterData = createNewCharacter();
-  group.buildIds.push(newCharacterData.id);
+  if (group !== 'none') {
+    group.buildIds.push(newCharacterData.id);
+  }
 
   router.push({
     name: CHARACTER_BUILDER_ROUTE,
