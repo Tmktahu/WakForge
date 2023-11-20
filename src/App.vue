@@ -1,9 +1,10 @@
 <template>
   <div v-if="globalError" class="severe-error-state">
     <p-image :src="wakforgeLogoURL" image-style="width: 140px" />
-    <div class="text-lg mt-3">There was a severe error that stopped the app from working correctly.</div>
-    <div class="text-lg mt-1">Please contact Fryke on Discord ASAP with the below information:</div>
-    <div class="error-message px-3 py-3 mt-4" v-html="globalError.stack.replaceAll('at', '<br \>- at')" />
+    <div class="text-lg mt-3">{{ $t('app.globalErrorMessage') }}</div>
+    <div class="text-lg mt-1">{{ $t('app.globalErrorContact') }}</div>
+    <p-button icon="mdi mdi-discord" class="mt-3" label="Discord Server" @click="onDiscord" />
+    <div class="error-message px-3 py-3 mt-4" v-html="globalError?.stack?.replaceAll('at', '<br \>- at')" />
   </div>
   <div v-else class="flex">
     <AppSidebar />
@@ -97,6 +98,10 @@ EventBus.on(Events.OPEN_OLD_DATA_DIALOG, (data) => {
     oldDataDialog.value.open(data);
   }, 100);
 });
+
+const onDiscord = () => {
+  window.open('https://discord.gg/k3v2fXQWJp', '_blank').focus();
+};
 </script>
 
 <style lang="scss" scoped>
