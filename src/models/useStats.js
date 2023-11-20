@@ -327,7 +327,7 @@ export const useStats = (currentCharacter) => {
 
         if (targetEffects) {
           targetEffects.equipEffects.forEach((equipEffect) => {
-            if (targetEffect.includes(equipEffect.rawId)) {
+            if (targetEffect.rawIds.includes(equipEffect.rawId)) {
               if (isOverride || isDouble) {
                 contribution = equipEffect.value;
               } else {
