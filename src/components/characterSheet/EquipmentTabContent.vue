@@ -8,13 +8,13 @@
 
     <div class="flex align-items-center">
       <div>{{ $t('characterSheet.equipmentContent.sortBy') }}:</div>
-      <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" :options="sortByOptions">
+      <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" option-label="label" filter auto-filter-focus :options="sortByOptions">
         <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
           <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
         </template>
       </p-dropdown>
-      <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" :options="sortOrderOptions">
+      <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" option-label="label" :options="sortOrderOptions">
         <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
         <template v-slot:option="slotProps">
           <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
