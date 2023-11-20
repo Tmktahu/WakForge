@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import { createApp, ref } from 'vue';
 import App from './App.vue';
 import router from './router/routes.js';
 
@@ -9,6 +9,14 @@ import { usePrimeVue } from '@/plugins/usePrimeVue';
 import VueTippy from 'vue-tippy';
 
 const app = createApp(App);
+
+let globalError = ref(null);
+app.provide('globalError', globalError);
+
+app.config.errorHandler = (error, instance, info) => {
+  console.log('IT WORKED', error, info);
+  globalError.value = error;
+};
 
 app.use(router);
 
