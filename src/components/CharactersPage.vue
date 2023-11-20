@@ -35,7 +35,7 @@
       </div>
 
       <div class="character-enties-wrapper flex flex-column mt-2 pb-3">
-        <p-accordion multiple :active-index="[...masterData.groups?.keys(), masterData.groups?.length]">
+        <p-accordion multiple :active-index="activeTabs">
           <template v-for="group in masterData.groups" :key="group.id">
             <p-accordionTab>
               <template v-slot:header>
@@ -170,6 +170,8 @@ const buildCode = ref('');
 
 const { decodeBuildCode } = useBuildCodes();
 const { createNewCharacter, createNewCharacterFromCode, deleteCharacter } = useCharacterBuilds(masterData);
+
+const activeTabs = ref([...(masterData.groups?.keys() || [0]), masterData.groups?.length]);
 
 const isValidBuildCode = computed(() => {
   return decodeBuildCode(buildCode.value) !== null;
