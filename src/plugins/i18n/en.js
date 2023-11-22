@@ -83,7 +83,6 @@ export const en = {
     statsDisplay: {
       ar: 'AR',
       qb: 'QB',
-      elementalMasteries: 'Elemental Masteries',
       water: 'Water',
       air: 'Air',
       earth: 'Earth',
@@ -177,6 +176,20 @@ export const en = {
       ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.',
       loadingMessage: 'Jimmy is doing the math and stuff... Please wait...',
       loadingDisclaimer: 'Note that depending on your above options, this can take some time.',
+      normal: 'Normal',
+      prioratized: 'Prioratized',
+      preferNoNegatives: 'Prefer no negatives',
+      heavilyPreferNoNegatives: 'Heavily prefer no negatives',
+      targetStatsInfo: 'These are the total target stats you want for the whole build.',
+      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.',
+      elementaryMasteryInfo: 'What elemental masteries should be prioratized? This will also affect the number of random element slots the solver goes for.',
+      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.',
+      priorities: 'Priorities',
+      totalTargetStats: 'Total Target Stats',
+      apWarning: 'You are asking for at least 6 AP from items, which may be impossible.',
+      rangeForLevelWarning: 'You may be asking for more range than is possible at your level.',
+      rangeImpossibleWarning: 'You may be asking for more range than is possible.',
+      combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.',
     },
 
     runesAndSubsContent: {
@@ -257,6 +270,7 @@ export const en = {
     percentBlock: '% Block',
     movementPoints: 'Movement Points',
 
+    elementalMasteries: 'Elemental Masteries',
     meleeMastery: 'Melee Mastery',
     distanceMastery: 'Distance Mastery',
     lock: 'Lock',

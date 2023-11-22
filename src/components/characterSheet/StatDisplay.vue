@@ -46,7 +46,7 @@
     </div>
 
     <div class="main-stat-area flex flex-column mt-2 pb-2">
-      <div class="section-header py-1 mb-1">{{ $t('characterSheet.statsDisplay.elementalMasteries') }}</div>
+      <div class="section-header py-1 mb-1">{{ $t('constants.elementalMasteries') }}</div>
       <div class="flex pl-1">
         <div class="flex flex-column flex-grow-1" style="max-width: 50%">
           <div class="stat-block pr-2">

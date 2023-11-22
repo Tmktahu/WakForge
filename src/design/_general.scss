@@ -121,7 +121,11 @@ body {
 .p-dropdown-items {
     .p-dropdown-item {
         padding: 0;
+        &:is(li) {
+            padding: 4px 6px;
+        }
     }
+    
 }
 
 .ak-container {
@@ -277,4 +281,10 @@ body {
 
 .p-dropdown-header {
     padding: 6px 8px;
+}
+
+.condensed-dropdown {
+    .p-dropdown-label {
+        padding: 4px 6px;
+    }
 }

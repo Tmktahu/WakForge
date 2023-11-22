@@ -60,41 +60,58 @@ const setup = async () => {
 const calculateBuild = async () => {
   await performCalculations(params);
 
-  if (calculationResults?.[0]?.length) {
-    collectItems();
+  if (calculationResults?.error_code || calculationResults?.item_ids?.length === 0) {
+    console.log('An error occured', calculationResults.error_code);
+    postMessage({ items: null, error: calculationResults.error_code, debugInfo: calculationResults.debug_info });
   } else {
-    console.log('We had no calculation results, which means an error occured', calculationResults[1]);
-    postMessage(calculationResults[1]);
+    collectItems();
   }
 };
 
 const performCalculations = async (params) => {
   console.log('Python Params (useful for debugging if you need them)', params);
 
-  let currentStats = pythonPackage.Stats.callKwargs(params.currentStatParams);
   let targetStats = pythonPackage.SetMinimums.callKwargs(params.targetStatParams);
 
-  let pythonParams = {
-    lv: params.targetLevel,
+  // Priority is an enum
+  // 0 = unvalued
+  // 1 = prioratized
+  // 2 = full_negative_only
+  // 4 = half_negative_only
 
-    stats: currentStats,
-    target_stats: targetStats,
+  // Elements Enum is
+  // 0 = empty
+  // fire = 1
+  // earth = 2
+  // water = 3
+  // air = 4
+  // but we pass the summation of all provided element values. we calc that in useBuildCodes
 
-    equipped_items: params.currentItemIds,
-    num_mastery: params.targetNumElements,
+  let statPriorities = pythonPackage.StatPriority.callKwargs({
+    distance_mastery: params.distanceMastery ? 1 : 0, // Priority
+    melee_mastery: params.meleeMastery ? 1 : 0, // Priority
+    heal_mastery: params.healingMastery ? 1 : 0, // Priority
+    rear_mastery: params.rearMastery ? 1 : 0, // Priority
+    berserk_mastery: params.berserkMastery ? 1 : 0, // Priority
+    elements: params.elementPriorities, // ElementsEnum
+  });
+
+  let config = pythonPackage.v2Config.callKwargs({
     allowed_rarities: params.selectedRarityIds !== undefined ? params.selectedRarityIds : [0, 1, 2, 3, 4, 5, 6, 7],
-
-    dist: params.distanceMastery,
-    melee: params.meleeMastery,
-    heal: params.healingMastery,
-    zerk: params.berserkMastery,
-    rear: params.rearMastery,
-
+    target_stats: targetStats,
     dry_run: false,
+    objectives: statPriorities,
+    forbidden_items: [],
+    ignore_existing_items: params.ignoreEquippedItems || false,
+  });
+
+  let pythonParams = {
+    build_code: params.buildCode,
+    config,
   };
 
   console.log('Calling the Python solver method now.');
-  let result = pythonPackage.partial_solve_v1.callKwargs(pythonParams);
+  let result = pythonPackage.partial_solve_v2.callKwargs(pythonParams);
 
   console.log('Assigning results.');
   calculationResults = result;
@@ -102,7 +119,7 @@ const performCalculations = async (params) => {
 
 const collectItems = () => {
   console.log('Collecting the item data for the FE display.');
-  let itemIds = calculationResults[0];
+  let itemIds = calculationResults.item_ids;
   let items = [];
   itemData.forEach((item) => {
     if (itemIds.includes(item.id)) {
@@ -116,7 +133,7 @@ const collectItems = () => {
 
   console.log('Item data is', items);
 
-  postMessage({ items });
+  postMessage({ items, error: null });
 };
 
 setup();

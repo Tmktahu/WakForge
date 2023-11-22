@@ -5,8 +5,7 @@ import itemData from './item_data.json';
 // eslint-disable-next-line import/no-unresolved
 import workerThing from '@/models/autoBuilderWorker?worker&url';
 
-import { ITEM_SLOT_SORT_ORDER, EFFECT_TYPE_DATA } from '@/models/useConstants';
-import { useStats } from '@/models/useStats';
+import { ITEM_SLOT_SORT_ORDER, ELEMENT_TYPE_ENUM } from '@/models/useConstants';
 
 const itemSet = ref(null);
 const autoBuilderIsReady = ref(false);
@@ -26,13 +25,11 @@ export const useAutoBuilder = () => {
         autoBuilderIsReady.value = true;
       }
 
-      if (message.data.items) {
+      if (message.data.items !== null) {
         itemSet.value = message.data.items;
         builderLoading.value = false;
-      }
-
-      if (message.data === 'No possible solution found') {
-        builderError.value = { type: 'noSolution', messages: ['No possible solution found.'] };
+      } else if (message.data.error) {
+        builderError.value = { message: message.data.error, debug: message.data.debugInfo };
         builderLoading.value = false;
       }
     };
@@ -66,20 +63,36 @@ export const useAutoBuilder = () => {
   };
 
   const prepareInputParams = (paramData) => {
-    const { calcItemContribution } = useStats(ref(paramData.currentCharacter));
+    let elementPriorities = 0;
+
+    if (paramData.fireMastery) {
+      elementPriorities += ELEMENT_TYPE_ENUM['fire'];
+    }
+
+    if (paramData.earthMastery) {
+      elementPriorities += ELEMENT_TYPE_ENUM['earth'];
+    }
+
+    if (paramData.waterMastery) {
+      elementPriorities += ELEMENT_TYPE_ENUM['water'];
+    }
+
+    if (paramData.airMastery) {
+      elementPriorities += ELEMENT_TYPE_ENUM['air'];
+    }
 
     let params = {
-      targetLevel: paramData.targetLevel,
+      buildCode: paramData.buildCode,
 
-      meleeMastery: paramData.meleeMastery,
-      distanceMastery: paramData.distanceMastery,
-      healingMastery: paramData.healingMastery,
-      rearMastery: paramData.rearMastery,
-      berserkMastery: paramData.berserkMastery,
+      meleeMastery: paramData.meleeMasteryPriority.value,
+      distanceMastery: paramData.distanceMasteryPriority.value,
+      healingMastery: paramData.healingMasteryPriority.value,
+      rearMastery: paramData.rearMasteryPriority.value,
+      berserkMastery: paramData.berserkMasteryPriority.value,
 
-      targetNumElements: paramData.targetNumElements,
+      selectedRarityIds: paramData.selectedRarityIds,
 
-      currentStatParams: {},
+      elementPriorities,
 
       targetStatParams: {
         ap: paramData.targetApAmount,
@@ -88,31 +101,8 @@ export const useAutoBuilder = () => {
         wp: paramData.targetWpAmount,
       },
 
-      selectedRarityIds: paramData.selectedRarityIds,
-
-      currentItemIds: paramData.currentItemIds,
+      ignoreEquippedItems: paramData.ignoreEquippedItems,
     };
-
-    if (paramData.currentCharacter) {
-      params.currentStatParams = {
-        ap: paramData.currentCharacter.actionPoints - calcItemContribution(EFFECT_TYPE_DATA.actionPoints),
-        mp: paramData.currentCharacter.movementPoints - calcItemContribution(EFFECT_TYPE_DATA.movementPoints),
-        wp: paramData.currentCharacter.wakfuPoints - calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints),
-        ra: paramData.currentCharacter.stats.range - calcItemContribution(EFFECT_TYPE_DATA.range),
-        crit: paramData.currentCharacter.stats.criticalHit - calcItemContribution(EFFECT_TYPE_DATA.criticalHit),
-        crit_mastery: paramData.currentCharacter.masteries.critical - calcItemContribution(EFFECT_TYPE_DATA.criticalMastery),
-        distance_mastery: paramData.currentCharacter.masteries.distance - calcItemContribution(EFFECT_TYPE_DATA.distanceMastery),
-        rear_mastery: paramData.currentCharacter.masteries.rear - calcItemContribution(EFFECT_TYPE_DATA.rearMastery),
-        heal_mastery: paramData.currentCharacter.masteries.healing - calcItemContribution(EFFECT_TYPE_DATA.healingMastery),
-        beserk_mastery: paramData.currentCharacter.masteries.berserk - calcItemContribution(EFFECT_TYPE_DATA.berserkMastery),
-        melee_mastery: paramData.currentCharacter.masteries.melee - calcItemContribution(EFFECT_TYPE_DATA.meleeMastery),
-        control: paramData.currentCharacter.stats.control - calcItemContribution(EFFECT_TYPE_DATA.control),
-        block: paramData.currentCharacter.stats.block - calcItemContribution(EFFECT_TYPE_DATA.percentBlock),
-        heals_performed: paramData.currentCharacter.stats.healsPerformed - calcItemContribution(EFFECT_TYPE_DATA.healsPerformed),
-        lock: paramData.currentCharacter.stats.lock - calcItemContribution(EFFECT_TYPE_DATA.lock),
-        dodge: paramData.currentCharacter.stats.dodge - calcItemContribution(EFFECT_TYPE_DATA.dodge),
-      };
-    }
 
     return params;
   };
