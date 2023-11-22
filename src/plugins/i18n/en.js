@@ -186,6 +186,10 @@ export const en = {
       sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.',
       priorities: 'Priorities',
       totalTargetStats: 'Total Target Stats',
+      apWarning: 'You are asking for at least 6 AP from items, which may be impossible.',
+      rangeForLevelWarning: 'You may be asking for more range than is possible at your level.',
+      rangeImpossibleWarning: 'You may be asking for more range than is possible.',
+      combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.',
     },
 
     runesAndSubsContent: {

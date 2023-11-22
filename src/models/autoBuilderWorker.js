@@ -102,6 +102,7 @@ const performCalculations = async (params) => {
     dry_run: false,
     objectives: statPriorities,
     forbidden_items: [],
+    ignore_existing_items: params.ignoreEquippedItems || false,
   });
 
   let pythonParams = {

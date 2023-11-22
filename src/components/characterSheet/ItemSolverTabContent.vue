@@ -195,7 +195,7 @@
       <div class="text-center mt-2">{{ $t('characterSheet.itemSolverContent.loadingMessage') }}</div>
       <div class="text-center mb-5 mt-2">{{ $t('characterSheet.itemSolverContent.loadingDisclaimer') }}</div>
       <div class="flex justify-content-center">
-        <div style="position: relative; width: 100px; height: 100px">
+        <div style="position: relative; width: 100px; height: 100px; margin-bottom: 20px">
           <p-progressSpinner class="first-spinner" stroke-width="4" style="width: 50px; height: 50px" />
           <p-progressSpinner class="second-spinner" animation-duration="1s" stroke-width="2" style="width: 100px; height: 100px" />
         </div>
@@ -331,25 +331,29 @@ const buildCode = computed(() => {
 const warningMessage = ref(null);
 
 watch([targetApAmount, targetMpAmount, targetRangeAmount, targetWpAmount], () => {
+  warningMessage.value = null;
   if (targetApAmount.value - currentCharacter.value.actionPoints >= 6) {
-    warningMessage.value = 'You are asking for at least 6 AP from items, which may be impossible. Did you assign your Characteristics?';
-  } else {
-    warningMessage.value = null;
+    warningMessage.value = t('characterSheet.itemSolverContent.apWarning');
+  } else if (targetRangeAmount.value - currentCharacter.value.stats.range > 5) {
+    warningMessage.value = t('characterSheet.itemSolverContent.rangeImpossibleWarning');
+  } else if (currentCharacter.value.level < 35) {
+    if (targetRangeAmount.value - currentCharacter.value.stats.range > 0) {
+      warningMessage.value = t('characterSheet.itemSolverContent.rangeForLevelWarning');
+    }
+  } else if (currentCharacter.value.level < 50) {
+    if (targetRangeAmount.value - currentCharacter.value.stats.range > 1) {
+      warningMessage.value = t('characterSheet.itemSolverContent.rangeForLevelWarning');
+    } else if (targetApAmount.value - currentCharacter.value.actionPoints + targetMpAmount.value - currentCharacter.value.movementPoints > 4) {
+      warningMessage.value = t('characterSheet.itemSolverContent.combinedApMpWarning');
+    }
+  } else if (currentCharacter.value.level < 80) {
+    if (targetRangeAmount.value - currentCharacter.value.stats.range > 3) {
+      warningMessage.value = t('characterSheet.itemSolverContent.rangeForLevelWarning');
+    }
   }
 });
 
 const onCalculate = async () => {
-  let currentItemIds = null;
-  if (considerCurrentItems.value) {
-    currentItemIds = Object.keys(currentCharacter.value.equipment)
-      .map((key) => {
-        if (currentCharacter.value.equipment[key]) {
-          return currentCharacter.value.equipment[key].id;
-        }
-      })
-      .filter((id) => id !== undefined);
-  }
-
   let rarityIds = allowedRarities.value.filter((rarity) => rarity.checked).map((rarity) => rarity.id);
 
   let params = {
@@ -372,6 +376,8 @@ const onCalculate = async () => {
     targetWpAmount: targetWpAmount.value || 0,
 
     selectedRarityIds: rarityIds,
+
+    ignoreEquippedItems: !considerCurrentItems.value,
   };
 
   runCalculations(params);

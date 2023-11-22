@@ -100,6 +100,8 @@ export const useAutoBuilder = () => {
         ra: paramData.targetRangeAmount,
         wp: paramData.targetWpAmount,
       },
+
+      ignoreEquippedItems: paramData.ignoreEquippedItems,
     };
 
     return params;
