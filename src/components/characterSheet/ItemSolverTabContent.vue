@@ -20,7 +20,7 @@
                 <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.targetStatsInfo') }}</div>
               </template>
             </tippy>
-            Target Total Stats
+            {{ $t('characterSheet.itemSolverContent.totalTargetStats') }}
           </div>
           <OptionNumInput v-model="targetApAmount" :label="$t('constants.actionPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.apTooltip')" />
           <OptionNumInput v-model="targetMpAmount" :label="$t('constants.movementPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.mpTooltip')" />
@@ -37,7 +37,7 @@
                   <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.prioritiesInfo') }}</div>
                 </template>
               </tippy>
-              Priorities
+              {{ $t('characterSheet.itemSolverContent.priorities') }}
             </div>
 
             <div class="flex align-items-center">
@@ -132,7 +132,7 @@
                   <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.elementaryMasteryInfo') }}</div>
                 </template>
               </tippy>
-              Elemental Masteries
+              {{ $t('constants.elementalMasteries') }}
             </div>
 
             <OptionCheckbox v-model="fireMastery" :label="$t('constants.fireMastery')" />
@@ -165,12 +165,12 @@
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
       <div v-if="builderError" class="error-state px-3 py-3">
         <div v-if="builderError.debug" class="mt-1">
-          If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.
+          {{ $t('characterSheet.itemSolverContent.sinbadErrorInfo') }}
         </div>
         <div v-else> {{ $t('characterSheet.itemSolverContent.problemMessage') }} </div>
 
         <div class="mt-3">
-          <div>Code: {{ builderError.message }}</div>
+          <div>Error Code: {{ builderError.message }}</div>
           <div v-if="builderError.debug" class="mt-2">
             <div style="word-wrap: break-word; max-width: calc(200px)">Debug Code: {{ builderError.debug }}</div>
           </div>

@@ -6,8 +6,8 @@ export const fr = {
   items: frItemTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
-    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.',
-    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.',
+    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.', // NEEDS TRANSLATION
+    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.', // NEEDS TRANSLATION
   },
   sidebar: {
     charactersTab: 'Personnages',
@@ -85,7 +85,6 @@ export const fr = {
     statsDisplay: {
       ar: 'AR',
       qb: 'BQ',
-      elementalMasteries: 'Maîtrises Elémentaires',
       water: 'Eau',
       air: 'Air',
       earth: 'Terre',
@@ -179,6 +178,16 @@ export const fr = {
       ifYouNeedHelp: 'Si vous avez besoin d\'assistance, n\'hésitez pas à nous contacter sur Discord avec vos questions.',
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
+      normal: 'Normal', // NEEDS TRANSLATION
+      prioratized: 'Prioratized', // NEEDS TRANSLATION
+      preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
+      heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
+      targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
+      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
+      elementaryMasteryInfo: 'What elemental masteries should be prioratized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
+      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
+      priorities: 'Priorities', // NEEDS TRANSLATION
+      totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {
@@ -259,6 +268,7 @@ export const fr = {
     percentBlock: '% Parade',
     movementPoints: 'Points de Mouvement',
 
+    elementalMasteries: 'Maîtrises Elémentaires',
     meleeMastery: 'Maîtrise Mêlée',
     distanceMastery: 'Maîtrise Distance',
     lock: 'Tacle',

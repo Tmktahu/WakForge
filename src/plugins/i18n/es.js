@@ -83,7 +83,6 @@ export const es = {
     statsDisplay: {
       ar: 'AR',
       qb: 'BC',
-      elementalMasteries: 'Maestrías Elementales',
       water: 'Agua',
       air: 'Aire',
       earth: 'Tierra',
@@ -177,6 +176,16 @@ export const es = {
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
       loadingMessage: 'Jimmy está haciendo los cálculos y todo eso... Por favor, espera...',
       loadingDisclaimer: 'Tenga en cuenta que, dependiendo de las preferencias anteriores, esto puede llevar algún tiempo.',
+      normal: 'Normal', // NEEDS TRANSLATION
+      prioratized: 'Prioratized', // NEEDS TRANSLATION
+      preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
+      heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
+      targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
+      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
+      elementaryMasteryInfo: 'What elemental masteries should be prioratized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
+      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
+      priorities: 'Priorities', // NEEDS TRANSLATION
+      totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {
@@ -257,6 +266,7 @@ export const es = {
     percentBlock: '% de Anticipación',
     movementPoints: 'Puntos de Movimiento',
 
+    elementalMasteries: 'Maestrías Elementales',
     meleeMastery: 'Dominio de Melé',
     distanceMastery: 'Dominio Distancia',
     lock: 'Placaje',
