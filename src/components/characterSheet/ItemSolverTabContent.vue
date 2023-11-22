@@ -12,81 +12,137 @@
       </div>
 
       <div class="flex mt-3">
-        <div class="flex flex-column mr-3">
+        <div class="setting-group flex flex-column mr-3 gap-2">
+          <div class="mb-2">
+            <tippy placement="top" duration="0">
+              <i class="mdi mdi-information-outline" />
+              <template v-slot:content>
+                <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.targetStatsInfo') }}</div>
+              </template>
+            </tippy>
+            Target Total Stats
+          </div>
           <OptionNumInput v-model="targetApAmount" :label="$t('constants.actionPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.apTooltip')" />
           <OptionNumInput v-model="targetMpAmount" :label="$t('constants.movementPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.mpTooltip')" />
           <OptionNumInput v-model="targetRangeAmount" :label="$t('constants.range')" :tooltip-text="$t('characterSheet.itemSolverContent.rangeTooltip')" />
           <OptionNumInput v-model="targetWpAmount" :label="$t('constants.wakfuPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.wakfuTooltip')" />
-          <OptionNumInput
-            v-model="targetNumElements"
-            :label="$t('characterSheet.itemSolverContent.numElements')"
-            :tooltip-text="$t('characterSheet.itemSolverContent.numElementsTooltip')"
-          />
+        </div>
+
+        <div class="setting-group flex flex-column mr-3">
+          <div class="flex flex-column gap-2">
+            <div class="mb-2">
+              <tippy placement="top" duration="0">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.prioritiesInfo') }}</div>
+                </template>
+              </tippy>
+              Priorities
+            </div>
+
+            <div class="flex align-items-center">
+              <div class="mr-2">{{ $t('constants.meleeMastery') }}</div>
+              <p-dropdown v-model="meleeMasteryPriority" class="condensed-dropdown" option-label="label" :options="priorityOptions">
+                <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+                <template v-slot:option="slotProps">
+                  <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+                </template>
+              </p-dropdown>
+            </div>
+
+            <div class="flex align-items-center">
+              <div class="mr-2">{{ $t('constants.distanceMastery') }}</div>
+              <p-dropdown v-model="distanceMasteryPriority" class="condensed-dropdown" option-label="label" :options="priorityOptions">
+                <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+                <template v-slot:option="slotProps">
+                  <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+                </template>
+              </p-dropdown>
+            </div>
+
+            <div class="flex align-items-center">
+              <div class="mr-2">{{ $t('constants.healingMastery') }}</div>
+              <p-dropdown v-model="healingMasteryPriority" class="condensed-dropdown" option-label="label" :options="priorityOptions">
+                <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+                <template v-slot:option="slotProps">
+                  <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+                </template>
+              </p-dropdown>
+            </div>
+
+            <div class="flex align-items-center">
+              <div class="mr-2">{{ $t('constants.rearMastery') }}</div>
+              <p-dropdown v-model="rearMasteryPriority" class="condensed-dropdown" option-label="label" :options="priorityOptionsWithNegatives">
+                <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+                <template v-slot:option="slotProps">
+                  <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+                </template>
+              </p-dropdown>
+            </div>
+
+            <div class="flex align-items-center">
+              <div class="mr-2">{{ $t('constants.berserkMastery') }}</div>
+              <p-dropdown v-model="berserkMasteryPriority" class="condensed-dropdown" option-label="label" :options="priorityOptionsWithNegatives">
+                <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+                <template v-slot:option="slotProps">
+                  <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+                </template>
+              </p-dropdown>
+            </div>
+          </div>
         </div>
 
         <div class="flex flex-column">
-          <div class="flex flex-column gap-2 mt-2">
-            <OptionCheckbox
-              v-model="meleeMastery"
-              :label="$t('constants.meleeMastery')"
-              :tooltip-text="$t('characterSheet.itemSolverContent.meleeMasteryTooltip')"
-            />
-            <OptionCheckbox
-              v-model="distanceMastery"
-              :label="$t('constants.distanceMastery')"
-              :tooltip-text="$t('characterSheet.itemSolverContent.distanceMasteryTooltip')"
-            />
-            <OptionCheckbox
-              v-model="healingMastery"
-              :label="$t('constants.healingMastery')"
-              :tooltip-text="$t('characterSheet.itemSolverContent.healingMasteryTooltip')"
-            />
-            <OptionCheckbox
-              v-model="rearMastery"
-              :label="$t('constants.rearMastery')"
-              :tooltip-text="$t('characterSheet.itemSolverContent.rearMasteryTooltip')"
-            />
-            <OptionCheckbox
-              v-model="berserkMastery"
-              :label="$t('constants.berserkMastery')"
-              :tooltip-text="$t('characterSheet.itemSolverContent.berserkMasteryTooltip')"
-            />
+          <div class="rarity-container">
+            <div class="flex align-items-center mb-1">
+              <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
+              <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
+              <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
+            </div>
+            <div class="rarity-button-wrapper">
+              <template v-for="rarity in allowedRarities" :key="rarity.id">
+                <tippy duration="0">
+                  <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox">
+                    <template v-slot:icon="slotProps">
+                      <div class="flex justify-content-center align-items-center">
+                        <p-image
+                          :class="{ disabled: !slotProps.checked }"
+                          :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`"
+                          image-style="width: 14px;"
+                        />
+                      </div>
+                    </template>
+                  </p-checkbox>
+
+                  <template v-slot:content>
+                    <div class="simple-tooltip">
+                      {{ $t(rarity.name) }}
+                    </div>
+                  </template>
+                </tippy>
+              </template>
+            </div>
+          </div>
+
+          <div class="setting-group flex flex-column gap-2 mt-2">
+            <div class="mb-2">
+              <tippy placement="top" duration="0">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.elementaryMasteryInfo') }}</div>
+                </template>
+              </tippy>
+              Elemental Masteries
+            </div>
+
+            <OptionCheckbox v-model="fireMastery" :label="$t('constants.fireMastery')" />
+            <OptionCheckbox v-model="earthMastery" :label="$t('constants.earthMastery')" />
+            <OptionCheckbox v-model="waterMastery" :label="$t('constants.waterMastery')" />
+            <OptionCheckbox v-model="airMastery" :label="$t('constants.airMastery')" />
           </div>
         </div>
       </div>
-    </div>
-
-    <div>
-      <div class="rarity-container">
-        <div class="flex align-items-center mb-1">
-          <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
-          <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
-          <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
-        </div>
-        <div class="rarity-button-wrapper">
-          <template v-for="rarity in allowedRarities" :key="rarity.id">
-            <tippy duration="0">
-              <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox">
-                <template v-slot:icon="slotProps">
-                  <div class="flex justify-content-center align-items-center">
-                    <p-image
-                      :class="{ disabled: !slotProps.checked }"
-                      :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`"
-                      image-style="width: 14px;"
-                    />
-                  </div>
-                </template>
-              </p-checkbox>
-
-              <template v-slot:content>
-                <div class="simple-tooltip">
-                  {{ $t(rarity.name) }}
-                </div>
-              </template>
-            </tippy>
-          </template>
-        </div>
-      </div>
+      <div v-if="warningMessage !== null" class="warning-message mt-2 py-1 px-2">{{ warningMessage }}</div>
     </div>
 
     <div class="flex align-items-center mt-3">
@@ -108,11 +164,15 @@
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
       <div v-if="builderError" class="error-state px-3 py-3">
-        <div> {{ $t('characterSheet.itemSolverContent.problemMessage') }} </div>
-        <div v-if="builderError" class="mt-3">
-          <span>Code: {{ builderError.type }}</span>
-          <div v-for="message in builderError.messages" :key="message" class="mt-1">
-            {{ message }}
+        <div v-if="builderError.debug" class="mt-1">
+          If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.
+        </div>
+        <div v-else> {{ $t('characterSheet.itemSolverContent.problemMessage') }} </div>
+
+        <div class="mt-3">
+          <div>Code: {{ builderError.message }}</div>
+          <div v-if="builderError.debug" class="mt-2">
+            <div style="word-wrap: break-word; max-width: calc(200px)">Debug Code: {{ builderError.debug }}</div>
           </div>
         </div>
       </div>
@@ -152,6 +212,7 @@ import { useI18n } from 'vue-i18n';
 import { ITEM_RARITY_DATA } from '@/models/useConstants';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 import { useItems } from '@/models/useItems';
+import { useBuildCodes } from '@/models/useBuildCodes';
 
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
@@ -165,6 +226,7 @@ const currentCharacter = inject('currentCharacter');
 
 const { equipItem } = useItems(currentCharacter);
 const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderError } = useAutoBuilder();
+const { createBuildCode } = useBuildCodes();
 
 const showAllItems = ref(false);
 
@@ -194,13 +256,40 @@ const targetApAmount = ref(currentCharacter.value.actionPoints);
 const targetMpAmount = ref(currentCharacter.value.movementPoints);
 const targetRangeAmount = ref(currentCharacter.value.stats.range);
 const targetWpAmount = ref(currentCharacter.value.wakfuPoints);
-const targetNumElements = ref(2);
 
-const meleeMastery = ref(false);
-const distanceMastery = ref(false);
-const healingMastery = ref(false);
-const rearMastery = ref(false);
-const berserkMastery = ref(false);
+const fireMastery = ref(false);
+const earthMastery = ref(false);
+const waterMastery = ref(false);
+const airMastery = ref(false);
+
+const priorityOptions = [
+  {
+    value: 0,
+    label: 'characterSheet.itemSolverContent.normal',
+  },
+  {
+    value: 1,
+    label: 'characterSheet.itemSolverContent.prioratized',
+  },
+];
+
+const priorityOptionsWithNegatives = [
+  ...priorityOptions,
+  {
+    value: 2,
+    label: 'characterSheet.itemSolverContent.preferNoNegatives',
+  },
+  {
+    value: 4,
+    label: 'characterSheet.itemSolverContent.heavilyPreferNoNegatives',
+  },
+];
+
+const meleeMasteryPriority = ref(priorityOptions[0]);
+const distanceMasteryPriority = ref(priorityOptions[0]);
+const healingMasteryPriority = ref(priorityOptions[0]);
+const rearMasteryPriority = ref(priorityOptions[0]);
+const berserkMasteryPriority = ref(priorityOptions[0]);
 
 const considerCurrentItems = ref(true);
 
@@ -235,6 +324,20 @@ const hasValidValues = computed(() => {
   return autoBuilderIsReady.value;
 });
 
+const buildCode = computed(() => {
+  return createBuildCode(currentCharacter.value);
+});
+
+const warningMessage = ref(null);
+
+watch([targetApAmount, targetMpAmount, targetRangeAmount, targetWpAmount], () => {
+  if (targetApAmount.value - currentCharacter.value.actionPoints >= 6) {
+    warningMessage.value = 'You are asking for at least 6 AP from items, which may be impossible. Did you assign your Characteristics?';
+  } else {
+    warningMessage.value = null;
+  }
+});
+
 const onCalculate = async () => {
   let currentItemIds = null;
   if (considerCurrentItems.value) {
@@ -250,17 +353,18 @@ const onCalculate = async () => {
   let rarityIds = allowedRarities.value.filter((rarity) => rarity.checked).map((rarity) => rarity.id);
 
   let params = {
-    targetLevel: currentCharacter.value.level,
+    buildCode: buildCode.value,
 
-    meleeMastery: meleeMastery.value,
-    distanceMastery: distanceMastery.value,
-    healingMastery: healingMastery.value,
-    rearMastery: rearMastery.value,
-    berserkMastery: berserkMastery.value,
+    meleeMasteryPriority: meleeMasteryPriority.value,
+    distanceMasteryPriority: distanceMasteryPriority.value,
+    healingMasteryPriority: healingMasteryPriority.value,
+    rearMasteryPriority: rearMasteryPriority.value,
+    berserkMasteryPriority: berserkMasteryPriority.value,
 
-    targetNumElements: targetNumElements.value || 0,
-
-    currentCharacter: currentCharacter.value,
+    fireMastery: fireMastery.value,
+    earthMastery: earthMastery.value,
+    waterMastery: waterMastery.value,
+    airMastery: airMastery.value,
 
     targetApAmount: targetApAmount.value || 0,
     targetMpAmount: targetMpAmount.value || 0,
@@ -268,8 +372,6 @@ const onCalculate = async () => {
     targetWpAmount: targetWpAmount.value || 0,
 
     selectedRarityIds: rarityIds,
-
-    currentItemIds,
   };
 
   runCalculations(params);
@@ -374,5 +476,17 @@ const onEquipAll = (event) => {
   &.item-filter-action {
     background-color: var(--primary-40-30);
   }
+}
+
+.setting-group {
+  padding: 12px 12px;
+  border: 1px solid var(--highlight-50);
+  border-radius: 8px;
+}
+
+.warning-message {
+  width: fit-content;
+  border: 1px solid var(--error);
+  border-radius: 8px;
 }
 </style>
