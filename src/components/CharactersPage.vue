@@ -276,15 +276,17 @@ const onBuildDrop = (event, group) => {
   try {
     let buildId = event.dataTransfer.getData('buildId');
 
-    masterData.groups.forEach((group) => {
-      if (group.buildIds.includes(buildId)) {
-        let index = group.buildIds.indexOf(buildId);
-        group.buildIds.splice(index, 1);
-      }
-    });
+    if (buildId && buildId !== '') {
+      masterData.groups.forEach((group) => {
+        if (group.buildIds.includes(buildId)) {
+          let index = group.buildIds.indexOf(buildId);
+          group.buildIds.splice(index, 1);
+        }
+      });
 
-    if (group !== 'none') {
-      group.buildIds.push(buildId);
+      if (group !== 'none') {
+        group.buildIds.push(buildId);
+      }
     }
   } catch (error) {
     // console.error(error)
