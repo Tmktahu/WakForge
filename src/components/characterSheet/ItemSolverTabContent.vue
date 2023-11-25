@@ -95,14 +95,24 @@
         <div class="flex flex-column">
           <div class="rarity-container">
             <div class="flex align-items-center mb-1">
-              <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
-              <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
+              <p-button
+                class="filter-button item-filter-action mr-2"
+                :label="$t('characterSheet.equipmentContent.itemFilters.all')"
+                @click="onSelectAllRarities"
+              />
+              <tippy placement="top">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.itemFilters.ctrlClickToSelectOne') }}</div>
+                </template>
+              </tippy>
+              <div class="mr-2 ml-1">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
               <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
             </div>
             <div class="rarity-button-wrapper">
               <template v-for="rarity in allowedRarities" :key="rarity.id">
                 <tippy duration="0">
-                  <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox">
+                  <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox" @change="onRarityClick($event, rarity.id)">
                     <template v-slot:icon="slotProps">
                       <div class="flex justify-content-center align-items-center">
                         <p-image
@@ -394,6 +404,19 @@ const onEquipAll = (event) => {
       });
     },
   });
+};
+
+const onRarityClick = (event, rarityId) => {
+  if (event.ctrlKey) {
+    // we want to remove all rarity filters and have just the clicked one
+    allowedRarities.value.forEach((filter) => {
+      if (filter.id !== rarityId) {
+        filter.checked = false;
+      } else {
+        filter.checked = true;
+      }
+    });
+  }
 };
 </script>
 

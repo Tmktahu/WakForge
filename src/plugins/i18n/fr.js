@@ -156,6 +156,7 @@ export const fr = {
         criticalHitChance: 'Chance Coup Critique',
         blockChance: 'Parade',
         randElemResistanceValue: 'Résis. élem. aléatoire',
+        ctrlClickToSelectOne: 'CTRL-Click to select one and remove all others.',
       },
     },
 

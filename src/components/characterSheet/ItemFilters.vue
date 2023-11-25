@@ -21,7 +21,7 @@
         <tippy placement="top">
           <i class="mdi mdi-information-outline" />
           <template v-slot:content>
-            <div class="simple-tooltip">CTRL-Click to select one and remove all others.</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.itemFilters.ctrlClickToSelectOne') }}</div>
           </template>
         </tippy>
         <div class="mr-2 ml-1">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
@@ -58,7 +58,7 @@
         <tippy placement="top">
           <i class="mdi mdi-information-outline" />
           <template v-slot:content>
-            <div class="simple-tooltip">CTRL-Click to select one and remove all others.</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.itemFilters.ctrlClickToSelectOne') }}</div>
           </template>
         </tippy>
         <div class="mr-2 ml-1">{{ $t('characterSheet.equipmentContent.itemFilters.itemTypes') }}</div>

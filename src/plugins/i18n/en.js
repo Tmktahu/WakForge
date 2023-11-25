@@ -154,6 +154,7 @@ export const en = {
         criticalHitChance: 'Critical Hit Chance',
         blockChance: 'Block Chance',
         randElemResistanceValue: 'Rand Elem Resistance Value',
+        ctrlClickToSelectOne: 'CTRL-Click to select one and remove all others.',
       },
     },
 

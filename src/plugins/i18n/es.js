@@ -154,6 +154,7 @@ export const es = {
         criticalHitChance: 'Probabilidad de Golpe Crítico',
         blockChance: 'Porcentaje de Ancticipacion',
         randElemResistanceValue: 'Resistencia Elemental Aleatoria',
+        ctrlClickToSelectOne: 'CTRL-Click to select one and remove all others.',
       },
     },
 
