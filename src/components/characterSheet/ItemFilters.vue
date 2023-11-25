@@ -17,14 +17,20 @@
   <div class="checkmarks-container flex gap-2">
     <div class="rarity-container mt-2">
       <div class="flex align-items-center mb-1">
-        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
-        <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
+        <p-button class="filter-button item-filter-action mr-2" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
+        <tippy placement="top">
+          <i class="mdi mdi-information-outline" />
+          <template v-slot:content>
+            <div class="simple-tooltip">CTRL-Click to select one and remove all others.</div>
+          </template>
+        </tippy>
+        <div class="mr-2 ml-1">{{ $t('characterSheet.equipmentContent.itemFilters.rarities') }}</div>
         <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.none')" @click="onClearAllRarities" />
       </div>
       <div class="rarity-button-wrapper">
         <template v-for="rarity in rarityFilters" :key="rarity.id">
           <tippy duration="0">
-            <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox" @change="updateFilters">
+            <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox" @change="onRarityClick($event, rarity.id)">
               <template v-slot:icon="slotProps">
                 <div class="flex justify-content-center align-items-center">
                   <p-image
@@ -48,8 +54,14 @@
 
     <div class="item-types-container mt-2">
       <div class="flex align-items-center justify-content-center mb-1 w-full">
-        <p-button class="filter-button item-filter-action" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllItemTypes" />
-        <div class="mx-2">{{ $t('characterSheet.equipmentContent.itemFilters.itemTypes') }}</div>
+        <p-button class="filter-button item-filter-action mr-2" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllItemTypes" />
+        <tippy placement="top">
+          <i class="mdi mdi-information-outline" />
+          <template v-slot:content>
+            <div class="simple-tooltip">CTRL-Click to select one and remove all others.</div>
+          </template>
+        </tippy>
+        <div class="mr-2 ml-1">{{ $t('characterSheet.equipmentContent.itemFilters.itemTypes') }}</div>
         <tippy>
           <p-checkbox v-model="showAdvancedFilters" class="mr-2" :binary="true" />
 
@@ -63,7 +75,7 @@
         <div class="filter-category-wrapper">
           <template v-for="itemType in itemTypeFilters.filter((entry) => entry.category === 'armor')" :key="itemType.id">
             <tippy v-if="!itemType.advanced || showAdvancedFilters" duration="0">
-              <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="updateFilters">
+              <p-checkbox v-model="itemType.checked" :binary="true" class="item-type-checkbox" @change="onItemTypeClick($event, itemType.id)">
                 <template v-slot:icon="slotProps">
                   <div class="flex justify-content-center align-items-center">
                     <p-image
@@ -287,6 +299,34 @@ const onLevelRangeTextInput = (event, type) => {
 };
 
 const onLevelRangeChange = () => {
+  updateFilters();
+};
+
+const onItemTypeClick = (event, itemTypeId) => {
+  if (event.ctrlKey) {
+    // we want to remove all rarity filters and have just the clicked one
+    itemFilters.itemTypeFilters.forEach((filter) => {
+      if (filter.id !== itemTypeId) {
+        filter.checked = false;
+      } else {
+        filter.checked = true;
+      }
+    });
+  }
+  updateFilters();
+};
+
+const onRarityClick = (event, rarityId) => {
+  if (event.ctrlKey) {
+    // we want to remove all rarity filters and have just the clicked one
+    itemFilters.rarityFilters.forEach((filter) => {
+      if (filter.id !== rarityId) {
+        filter.checked = false;
+      } else {
+        filter.checked = true;
+      }
+    });
+  }
   updateFilters();
 };
 
