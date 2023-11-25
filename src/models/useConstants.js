@@ -51,7 +51,8 @@ export const RUNE_LEVEL_REQUIREMENTS = [0, 36, 51, 66, 81, 96, 126, 141, 171, 18
 export const RUNE_MASTERY_LEVEL_VALUES = [1, 3, 4, 6, 7, 10, 15, 19, 24, 30, 33];
 export const RUNE_RESISTANCE_LEVEL_VALUES = [2, 5, 7, 10, 12, 15, 17, 20, 22, 25, 27, 30];
 export const RUNE_DODGE_LOCK_LEVEL_VALUES = [3, 6, 9, 12, 15, 21, 30, 39, 48, 60, 66];
-export const RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES = [1, 2, 3, 4, 5, 7, 10, 13, 16, 20, 22];
+export const RUNE_ELEMENTAL_MASTERY_LEVEL_VALUES = [1, 2, 3, 4, 5, 7, 10, 13, 16, 20, 22];
+export const RUNE_INITIATIVE_LEVEL_VALUES = [2, 4, 6, 8, 10, 14, 20, 26, 32, 40, 44];
 export const RUNE_HEALTH_LEVEL_VALUES = [4, 8, 12, 16, 20, 28, 40, 52, 64, 80, 88];
 
 export const ITEM_SLOT_DATA = {

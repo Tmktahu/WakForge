@@ -9,7 +9,8 @@ import {
   RUNE_MASTERY_LEVEL_VALUES,
   RUNE_RESISTANCE_LEVEL_VALUES,
   RUNE_DODGE_LOCK_LEVEL_VALUES,
-  RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES,
+  RUNE_ELEMENTAL_MASTERY_LEVEL_VALUES,
+  RUNE_INITIATIVE_LEVEL_VALUES,
   RUNE_HEALTH_LEVEL_VALUES,
   RUNE_TYPES,
   ITEM_SLOT_DATA,
@@ -392,8 +393,10 @@ export const useStats = (currentCharacter) => {
       baseValue = RUNE_RESISTANCE_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.lock || rune.id === RUNE_TYPES.dodge) {
       baseValue = RUNE_DODGE_LOCK_LEVEL_VALUES[level - 1];
-    } else if (rune.id === RUNE_TYPES.initiative || rune.id === RUNE_TYPES.elementalMastery) {
-      baseValue = RUNE_INITIATIVE_ELEMENTAL_MASTERY_LEVEL_VALUES[level - 1];
+    } else if (rune.id === RUNE_TYPES.initiative) {
+      baseValue = RUNE_INITIATIVE_LEVEL_VALUES[level - 1];
+    } else if (rune.id === RUNE_TYPES.elementalMastery) {
+      baseValue = RUNE_ELEMENTAL_MASTERY_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.healthPoints) {
       baseValue = RUNE_HEALTH_LEVEL_VALUES[level - 1];
     }
