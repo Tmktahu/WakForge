@@ -67,9 +67,29 @@
       </div>
 
       <div class="flex flex-wrap gap-1">
-        <template v-for="spell in passiveSpells" :key="spell.id">
+        <template v-for="spell in passiveClassSpells" :key="spell.id">
           <tippy duration="0">
-            <div class="spell-button" :class="{ disabled: hasSpellEquipped(spell) }" @click="onEquipSpell(spell)">
+            <div class="spell-button" :class="{ disabled: hasSpellEquipped(spell) || !isUnlocked(spell) }" @click="onEquipSpell(spell)">
+              <div class="hover-icon add"> <i class="mdi mdi-plus-thick" /> </div>
+              <div class="disabled-mask" />
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.iconId}.png`" image-style="width: 40px" />
+            </div>
+
+            <template v-slot:content>
+              <div class="spell-tooltip">
+                <div class="spell-name px-2 py-1">{{ spell.name }} (Level {{ getSpellLevel(spell) }})</div>
+                <div class="spell-description px-2 py-1">{{ spell.description }}</div>
+                <div class="spell-details" v-html="getSpellHtml(spell)" />
+              </div>
+            </template>
+          </tippy>
+        </template>
+      </div>
+
+      <div class="flex flex-wrap gap-1">
+        <template v-for="spell in passiveSharedSpells" :key="spell.id">
+          <tippy duration="0">
+            <div class="spell-button" :class="{ disabled: hasSpellEquipped(spell) || !isUnlocked(spell) }" @click="onEquipSpell(spell)">
               <div class="hover-icon add"> <i class="mdi mdi-plus-thick" /> </div>
               <div class="disabled-mask" />
               <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.iconId}.png`" image-style="width: 40px" />
@@ -115,12 +135,33 @@
 import { inject, computed } from 'vue';
 
 import { useSpells, SPELL_CATEGORIES } from '@/models/spells/useSpells';
+import { PASSIVE_SPELL_UNLOCK_MAP } from '@/models/useConstants';
 
 const currentCharacter = inject('currentCharacter');
 
 const { getClassPassiveSpells, getSpellHtml, getSpellLevel } = useSpells(currentCharacter);
-const passiveSpells = computed(() => {
-  return getClassPassiveSpells(currentCharacter.value.class);
+const passiveClassSpells = computed(() => {
+  let spells = getClassPassiveSpells(currentCharacter.value.class);
+
+  let sortedSpells = spells.sort((spell1, spell2) => {
+    let requiredLevel1 = PASSIVE_SPELL_UNLOCK_MAP[spell1.id];
+    let requiredLevel2 = PASSIVE_SPELL_UNLOCK_MAP[spell2.id];
+
+    return requiredLevel1 - requiredLevel2;
+  });
+  return sortedSpells;
+});
+
+const passiveSharedSpells = computed(() => {
+  let spells = getClassPassiveSpells('all');
+
+  let sortedSpells = spells.sort((spell1, spell2) => {
+    let requiredLevel1 = PASSIVE_SPELL_UNLOCK_MAP[spell1.id];
+    let requiredLevel2 = PASSIVE_SPELL_UNLOCK_MAP[spell2.id];
+
+    return requiredLevel1 - requiredLevel2;
+  });
+  return sortedSpells;
 });
 
 const onEquipSpell = (spell) => {
@@ -157,6 +198,11 @@ const hasSpellEquipped = (spell) => {
   });
 
   return isEquipped;
+};
+
+const isUnlocked = (spell) => {
+  let requiredLevel = PASSIVE_SPELL_UNLOCK_MAP[spell.id];
+  return currentCharacter.value.level >= requiredLevel;
 };
 </script>
 

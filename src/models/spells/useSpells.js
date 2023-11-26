@@ -54,7 +54,9 @@ export const useSpells = (currentCharacter) => {
   };
 
   const getClassPassiveSpells = (targetClass) => {
-    if (targetClass) {
+    if (targetClass === 'all') {
+      return SHARED_PASSIVE_SPELLS;
+    } else if (targetClass) {
       let targetClassEntry = spellData.find((classEntry) => {
         return classEntry.className.toLowerCase() === targetClass;
       });
@@ -63,7 +65,7 @@ export const useSpells = (currentCharacter) => {
         return spellEntry.category === SPELL_CATEGORIES.passive;
       });
 
-      return [...spells, ...SHARED_PASSIVE_SPELLS];
+      return spells;
     } else {
       return [];
     }

@@ -156,6 +156,7 @@ export const fr = {
         criticalHitChance: 'Chance Coup Critique',
         blockChance: 'Parade',
         randElemResistanceValue: 'Résis. élem. aléatoire',
+        ctrlClickToSelectOne: 'CTRL-Click to select one and remove all others.',
       },
     },
 
@@ -179,7 +180,7 @@ export const fr = {
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
       normal: 'Normal',
-      prioratized: 'Priorisée',
+      prioritized: 'Priorisée',
       preferNoNegatives: 'Préférée non négative',
       heavilyPreferNoNegatives: 'Priorisée non négative',
       targetStatsInfo: 'Ce sont les stats totales visées pour l\'ensemble du build.',

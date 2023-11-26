@@ -75,7 +75,7 @@ const performCalculations = async (params) => {
 
   // Priority is an enum
   // 0 = unvalued
-  // 1 = prioratized
+  // 1 = prioritized
   // 2 = full_negative_only
   // 4 = half_negative_only
 
