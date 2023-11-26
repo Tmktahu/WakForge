@@ -99,7 +99,7 @@
             />
             <CharacteristicInput
               v-model="healthPoints"
-              :label="$t('characterSheet.characteristicsContent.healthPoints')"
+              :label="$t('constants.healthPoints')"
               image-path="https://tmktahu.github.io/WakfuAssets/characteristics/231.png"
               :remaining-points="calcRemainingPoints('strength')"
               :update-function="updateCharacteristics"

@@ -70,8 +70,9 @@ watch(
         changeTheme(masterData.uiTheme);
       }
 
-      if (masterData.language && locale.value !== masterData.language) {
-        locale.value = masterData.language;
+      if (!!masterData.language && locale.value !== masterData.language) {
+        console.log('trying to set locale from master data', masterData.language);
+        // locale.value = masterData.language;
       }
     });
   },

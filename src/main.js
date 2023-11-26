@@ -29,8 +29,18 @@ app.use(VueTippy, {
   }, // => Global default options * see all props
 });
 
+const supportedLocales = ['en', 'es', 'fr'];
+let startingLocale = 'en';
+navigator.languages.some((preferedLocale) => {
+  if (supportedLocales.includes(preferedLocale)) {
+    startingLocale = preferedLocale;
+    return true;
+  }
+  return false;
+});
+
 const i18n = createI18n({
-  locale: 'en',
+  locale: startingLocale,
   messages: i18nMessages,
   legacy: false,
   // something vue-i18n options here ...

@@ -14,7 +14,7 @@ export let masterData = reactive({
   storageVersion: CURRENT_STORAGE_VERSION,
   characters: [],
   uiTheme: null,
-  language: 'en',
+  language: null,
   groups: [],
 });
 
@@ -39,7 +39,7 @@ export function useStorage() {
       }
       masterData.appVersion = data.appVersion || import.meta.env.VUE_APP_VERSION;
       masterData.uiTheme = data.uiTheme || 'bonta';
-      masterData.language = data.language || 'en';
+      masterData.language = data.language || null;
       masterData.groups = data.groups || [];
     }
 

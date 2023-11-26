@@ -89,12 +89,9 @@ export const en = {
       fire: 'Fire',
       elmentalResistances: 'Elemental Resistances',
       battle: 'Battle',
-      damageInflicted: 'Damage Inflicted',
       criticalHit: 'Critical Hit',
-      healsPerformed: 'Heals Performed',
       block: 'Block',
       secondary: 'Secondary',
-      armorGiven: 'Armor Given',
       armorReceived: 'Armor Received',
       indirectDamage: 'Indirect Damage',
     },
@@ -106,7 +103,6 @@ export const en = {
       percentArmorHealthPoints: '% Armor Health Points',
       strength: 'Strength',
       elementalMastery: 'Elemental Mastery',
-      healthPoints: 'Health Points',
       agility: 'Agility',
       lockAndDodge: 'Lock and Dodge',
       fortune: 'Fortune',
@@ -206,6 +202,14 @@ export const en = {
       runeLevel: 'Rune Level',
       toggleWhite: 'Toggle White',
       removeAllRunes: 'Remove All Runes/Subs',
+    },
+
+    spellsAndPassivesContent: {
+      activeSpells: 'Active Spells (WIP)',
+      activesNote:
+        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.',
+      passives: 'Passives',
+      passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.',
     },
   },
   constants: {
@@ -315,6 +319,11 @@ export const en = {
     dodgeFromLevel: 'Dodge from Level',
     lockFromLevel: 'Lock from Level',
     percentDodge: '% Dodge',
+    damageInflicted: 'Damage Inflicted',
+    healsPerformed: 'Heals Performed',
+    healsReceived: 'Heals Received',
+    armorGiven: 'Armor Given',
+    healthPoints: 'Health Points',
 
     remove: 'Remove',
   },
