@@ -1,11 +1,12 @@
 import { watch } from 'vue';
 import { marked } from 'marked';
+import { useI18n } from 'vue-i18n';
 
-import { masterData } from '@/models/useStorage.js';
 import { SHARED_PASSIVE_SPELLS, PASSIVE_SPELL_LEVEL_MAP } from '@/models/useConstants';
 
 import spellData from './spell_data.json';
-import { SPELL_TOOLTIP_DATA } from './spellTooltipDefs';
+import { assembleSpellTooltipData } from './spellTooltipDefs';
+let localT = null;
 
 export const SPELL_CATEGORIES = {
   passive: 'passive',
@@ -13,30 +14,11 @@ export const SPELL_CATEGORIES = {
   elemental: 'elemental',
 };
 
-export const SPELL_SLOT_DEFS = {
-  activeSlot1: 0,
-  activeSlot2: 0,
-  activeSlot3: 0,
-  activeSlot4: 0,
-  activeSlot5: 0,
-  activeSlot6: 0,
-  activeSlot7: 10,
-  activeSlot8: 20,
-  activeSlot9: 30,
-  activeSlot10: 40,
-  activeSlot11: 60,
-  activeSlot12: 80,
-
-  passiveSlot1: 10,
-  passiveSlot2: 30,
-  passiveSlot3: 50,
-  passiveSlot4: 100,
-  passiveSlot5: 150,
-  passiveSlot6: 200,
-};
-
 export const useSpells = (currentCharacter) => {
   const setup = () => {
+    const { t } = useI18n();
+    localT = t;
+
     watch(
       () => currentCharacter.value?.class,
       () => {
@@ -107,7 +89,9 @@ export const useSpells = (currentCharacter) => {
   };
 
   const getSpellHtml = (spell) => {
-    let tooltipDataEntry = SPELL_TOOLTIP_DATA[spell.id];
+    let tooltipData = assembleSpellTooltipData(localT);
+
+    let tooltipDataEntry = tooltipData[spell.id];
 
     if (tooltipDataEntry) {
       let markdown = tooltipDataEntry.markdown;

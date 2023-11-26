@@ -91,12 +91,9 @@ export const fr = {
       fire: 'Feu',
       elmentalResistances: 'Résistances Elémentaires',
       battle: 'Combat',
-      damageInflicted: 'Dommages Infligés',
       criticalHit: 'Coup Critique',
-      healsPerformed: 'Soins réalisés',
       block: 'Parade',
       secondary: 'Secondaire',
-      armorGiven: 'Armure donnée',
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
     },
@@ -108,7 +105,6 @@ export const fr = {
       percentArmorHealthPoints: '% Points de Vie en Armure',
       strength: 'Force',
       elementalMastery: 'Maîtrise élémentaire',
-      healthPoints: 'Points de Vie',
       agility: 'Agilité',
       lockAndDodge: 'Tacle et Esquive',
       fortune: 'Chance',
@@ -208,6 +204,14 @@ export const fr = {
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
       removeAllRunes: 'Enlever toutes les runes/subl.',
+    },
+
+    spellsAndPassivesContent: {
+      activeSpells: 'Active Spells (WIP)', // NEEDS TRANSLATION
+      activesNote:
+        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
+      passives: 'Passives', // NEEDS TRANSLATION
+      passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.', // NEEDS TRANSLATION
     },
   },
   constants: {
@@ -314,6 +318,11 @@ export const fr = {
     dodgeFromLevel: 'Esquive par niveau',
     lockFromLevel: 'Tacle par niveau',
     percentDodge: '% Esquive',
+    damageInflicted: 'Dommages Infligés',
+    healsPerformed: 'Soins réalisés',
+    healsReceived: 'Soins reçus',
+    armorGiven: 'Armure donnée',
+    healthPoints: 'Points de Vie',
 
     remove: 'Remove',
   },

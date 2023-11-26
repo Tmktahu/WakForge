@@ -89,12 +89,9 @@ export const es = {
       fire: 'Fuego',
       elmentalResistances: 'Resistencias Elementales',
       battle: 'Combate',
-      damageInflicted: 'Daños Finales',
       criticalHit: 'Golpe Crítico',
-      healsPerformed: 'Curas Finales',
       block: 'Anticipación',
       secondary: 'Secundario',
-      armorGiven: 'Armadura Dada',
       armorReceived: 'Armodura Recibida',
       indirectDamage: 'Daños Indirectos',
     },
@@ -106,7 +103,6 @@ export const es = {
       percentArmorHealthPoints: '% de Puntos de Vida en Armadura',
       strength: 'Fuerza',
       elementalMastery: 'Dominio Elemental',
-      healthPoints: 'Puntos de vida',
       agility: 'Agilidad',
       lockAndDodge: 'Placaje y Esquiva',
       fortune: 'Suerte',
@@ -206,6 +202,14 @@ export const es = {
       runeLevel: 'Nivel de Runa',
       toggleWhite: 'Cambiar a blanco',
       removeAllRunes: 'Remover todas las Runas/Sublis',
+    },
+
+    spellsAndPassivesContent: {
+      activeSpells: 'Active Spells (WIP)', // NEEDS TRANSLATION
+      activesNote:
+        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
+      passives: 'Passives', // NEEDS TRANSLATION
+      passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.', // NEEDS TRANSLATION
     },
   },
   constants: {
@@ -315,6 +319,11 @@ export const es = {
     dodgeFromLevel: 'Esquiva por Nivel',
     lockFromLevel: 'Placaje por nivel',
     percentDodge: '% de Esquiva',
+    damageInflicted: 'Daños Finales',
+    healsPerformed: 'Curas Finales',
+    healsReceived: 'Curas Recibidas', // NEEDS TRANSLATION
+    armorGiven: 'Armadura Dada',
+    healthPoints: 'Puntos de vida',
 
     remove: 'Remover',
   },

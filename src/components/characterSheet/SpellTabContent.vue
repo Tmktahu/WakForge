@@ -1,7 +1,15 @@
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="w-full h-full">
-    <div>Active Spells (WIP)</div>
+    <div>
+      <tippy placement="left">
+        <i class="mdi mdi-information-outline" />
+        <template v-slot:content>
+          <div class="simple-tooltip">{{ $t('characterSheet.spellsAndPassivesContent.activesNote') }}</div>
+        </template>
+      </tippy>
+      {{ $t('characterSheet.spellsAndPassivesContent.activeSpells') }}
+    </div>
     <div class="flex mt-2">
       <div class="flex flex-wrap gap-1 mr-3" style="max-width: 260px">
         <template v-for="index in 12" :key="index">
@@ -35,7 +43,15 @@
       </div> -->
     </div>
 
-    <div class="mt-3">Passives (WIP)</div>
+    <div class="mt-3">
+      <tippy placement="left">
+        <i class="mdi mdi-information-outline" />
+        <template v-slot:content>
+          <div class="simple-tooltip">{{ $t('characterSheet.spellsAndPassivesContent.passivesNote') }}</div>
+        </template>
+      </tippy>
+      {{ $t('characterSheet.spellsAndPassivesContent.passives') }}
+    </div>
     <div class="flex mt-2">
       <div class="flex gap-1 mr-3" style="max-width: 260px">
         <template v-for="index in 6" :key="index">
@@ -60,8 +76,9 @@
             </tippy>
           </div>
 
-          <div v-else>
+          <div v-else class="spell-slot" :class="{ disabled: !isPassiveSpellSlotUnlocked(index) }">
             <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/empty_slot.png`" image-style="width: 40px" />
+            <div v-if="!isPassiveSpellSlotUnlocked(index)" class="spell-unlock-number">{{ PASSIVE_SPELL_SLOT_UNLOCK_LEVELS[index - 1] }}</div>
           </div>
         </template>
       </div>
@@ -73,6 +90,7 @@
               <div class="hover-icon add"> <i class="mdi mdi-plus-thick" /> </div>
               <div class="disabled-mask" />
               <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.iconId}.png`" image-style="width: 40px" />
+              <div v-if="!isUnlocked(spell)" class="spell-unlock-number">{{ PASSIVE_SPELL_UNLOCK_MAP[spell.id] }}</div>
             </div>
 
             <template v-slot:content>
@@ -93,6 +111,7 @@
               <div class="hover-icon add"> <i class="mdi mdi-plus-thick" /> </div>
               <div class="disabled-mask" />
               <p-image :src="`https://tmktahu.github.io/WakfuAssets/spells/${spell.iconId}.png`" image-style="width: 40px" />
+              <div v-if="!isUnlocked(spell)" class="spell-unlock-number">{{ PASSIVE_SPELL_UNLOCK_MAP[spell.id] }}</div>
             </div>
 
             <template v-slot:content>
@@ -135,7 +154,7 @@
 import { inject, computed } from 'vue';
 
 import { useSpells, SPELL_CATEGORIES } from '@/models/spells/useSpells';
-import { PASSIVE_SPELL_UNLOCK_MAP } from '@/models/useConstants';
+import { PASSIVE_SPELL_UNLOCK_MAP, PASSIVE_SPELL_SLOT_UNLOCK_LEVELS } from '@/models/useConstants';
 
 const currentCharacter = inject('currentCharacter');
 
@@ -176,9 +195,11 @@ const onEquipSpell = (spell) => {
 
     Object.keys(currentCharacter.value.spells).some((slotKey) => {
       if (slotKey.includes(SPELL_CATEGORIES.passive)) {
-        if (currentCharacter.value.spells[slotKey] === null) {
-          currentCharacter.value.spells[slotKey] = spell;
-          return true;
+        if (isPassiveSpellSlotUnlocked(parseInt(slotKey.replace('passiveSlot', '')))) {
+          if (currentCharacter.value.spells[slotKey] === null) {
+            currentCharacter.value.spells[slotKey] = spell;
+            return true;
+          }
         }
       }
     });
@@ -202,6 +223,11 @@ const hasSpellEquipped = (spell) => {
 
 const isUnlocked = (spell) => {
   let requiredLevel = PASSIVE_SPELL_UNLOCK_MAP[spell.id];
+  return currentCharacter.value.level >= requiredLevel;
+};
+
+const isPassiveSpellSlotUnlocked = (slotNumber) => {
+  let requiredLevel = PASSIVE_SPELL_SLOT_UNLOCK_LEVELS[slotNumber - 1];
   return currentCharacter.value.level >= requiredLevel;
 };
 </script>
@@ -268,6 +294,38 @@ const isUnlocked = (spell) => {
     .hover-icon {
       display: flex;
     }
+  }
+
+  .spell-unlock-number {
+    position: absolute;
+    inset: 0;
+    color: var(--primary-90);
+    text-shadow: 0px -1px 6px rgba(0, 0, 0, 1);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.spell-slot {
+  position: relative;
+  height: fit-content;
+  &.disabled {
+    .p-image {
+      opacity: 0.3;
+    }
+  }
+
+  .spell-unlock-number {
+    position: absolute;
+    inset: 0;
+    color: var(--primary-90);
+    text-shadow: 0px -1px 6px rgba(0, 0, 0, 1);
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>

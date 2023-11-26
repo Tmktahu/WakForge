@@ -120,7 +120,7 @@
           <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/damage_inflicted.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.damageInflicted') }}</span>
+              <span class="ml-1">{{ $t('constants.damageInflicted') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.damageInflicted }}%</span>
             </div>
@@ -163,7 +163,7 @@
           <div class="flex flex-column flex-grow-1" style="max-width: 50%">
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/heals_performed.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.healsPerformed') }}</span>
+              <span class="ml-1">{{ $t('constants.healsPerformed') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.healsPerformed }}%</span>
             </div>
@@ -269,7 +269,7 @@
 
             <div class="stat-block pr-2">
               <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/armor_given.png" />
-              <span class="ml-1">{{ $t('characterSheet.statsDisplay.armorGiven') }}</span>
+              <span class="ml-1">{{ $t('constants.armorGiven') }}</span>
               <div class="flex-grow-1" />
               <span>{{ currentCharacter.stats.armorGiven }}%</span>
             </div>

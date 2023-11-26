@@ -651,6 +651,9 @@ export const SHARED_PASSIVE_SPELLS = [
   },
 ];
 
+export const ACTIVE_SPELL_SLOT_UNLOCK_LEVELS = [0, 0, 0, 0, 0, 10, 20, 30, 40, 50, 60, 80];
+export const PASSIVE_SPELL_SLOT_UNLOCK_LEVELS = [10, 30, 50, 100, 150, 200];
+
 export const PASSIVE_SPELL_LEVEL_MAP = {
   20000: 105, // Evasion
   20001: 115, // Interception
