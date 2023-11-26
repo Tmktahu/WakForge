@@ -31,7 +31,6 @@ app.use(VueTippy, {
 
 const supportedLocales = ['en', 'es', 'fr'];
 let startingLocale = 'en';
-console.log(navigator.languages);
 navigator.languages.some((preferedLocale) => {
   if (supportedLocales.includes(preferedLocale)) {
     startingLocale = preferedLocale;
