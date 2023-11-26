@@ -6,8 +6,8 @@ export const fr = {
   items: frItemTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
-    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.', // NEEDS TRANSLATION
-    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.', // NEEDS TRANSLATION
+    globalErrorMessage: 'Il y a eu une erreur critique qui a empêché l\'application de fonctionner correctement.',
+    globalErrorContact: 'Merci de contacter Fryke sur Discord le plus tôt possible avec les informations ci-dessous.',
   },
   sidebar: {
     charactersTab: 'Personnages',
@@ -179,20 +179,20 @@ export const fr = {
       ifYouNeedHelp: 'Si vous avez besoin d\'assistance, n\'hésitez pas à nous contacter sur Discord avec vos questions.',
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
-      normal: 'Normal', // NEEDS TRANSLATION
-      prioritized: 'Prioritized', // NEEDS TRANSLATION
-      preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
-      heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
-      targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
-      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
-      elementaryMasteryInfo: 'What elemental masteries should be prioritized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
-      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
-      priorities: 'Priorities', // NEEDS TRANSLATION
-      totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
-      apWarning: 'You are asking for at least 6 AP from items, which may be impossible.', // NEEDS TRANSLATION
-      rangeForLevelWarning: 'You may be asking for more range than is possible at your level.', // NEEDS TRANSLATION
-      rangeImpossibleWarning: 'You may be asking for more range than is possible.', // NEEDS TRANSLATION
-      combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.', // NEEDS TRANSLATION
+      normal: 'Normal',
+      prioritized: 'Priorisée',
+      preferNoNegatives: 'Préférée non négative',
+      heavilyPreferNoNegatives: 'Priorisée non négative',
+      targetStatsInfo: 'Ce sont les stats totales visées pour l\'ensemble du build.',
+      prioritiesInfo: 'C\'est la priorité avec laquelle vous souhaitez que les maîtrises soient prises en CompositionEvent.',
+      elementaryMasteryInfo: 'Quelles maîtrises élémentaires doivent être privilégier ? Celle affectera également le nombre de slot d\'éléments aléatoires recherchés par le solver.',
+      sinbadErrorInfo: 'Si vous voyez ceci, merci de contacter Keeper of Time (sinbad) sur Discord avec les informations suivantes.',
+      priorities: 'Priorités',
+      totalTargetStats: 'Stats totales ciblées',
+      apWarning: 'Vous demandez au moins 6 PA par les items, ce qui peut être impossible.',
+      rangeForLevelWarning: 'Vous demandez plus de PO qu\'il n\'est possible pour votre niveau.',
+      rangeImpossibleWarning: 'Vous demandez un nombre en PO qui peut être impossible.',
+      combinedApMpWarning: 'Vous demandez une somme AP+MP qui n\'est pas possible à votre niveau.',
     },
 
     runesAndSubsContent: {
