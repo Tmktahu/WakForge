@@ -279,7 +279,7 @@ const priorityOptions = [
   },
   {
     value: 1,
-    label: 'characterSheet.itemSolverContent.prioratized',
+    label: 'characterSheet.itemSolverContent.prioritized',
   },
 ];
 

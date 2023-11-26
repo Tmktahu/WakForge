@@ -180,12 +180,12 @@ export const fr = {
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
       normal: 'Normal', // NEEDS TRANSLATION
-      prioratized: 'Prioratized', // NEEDS TRANSLATION
+      prioritized: 'Prioritized', // NEEDS TRANSLATION
       preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
       heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
       targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
       prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
-      elementaryMasteryInfo: 'What elemental masteries should be prioratized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
+      elementaryMasteryInfo: 'What elemental masteries should be prioritized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
       sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
       priorities: 'Priorities', // NEEDS TRANSLATION
       totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
