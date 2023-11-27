@@ -178,11 +178,10 @@ export const useStats = (currentCharacter) => {
         )
       );
 
-      // crit has a cap of 100% and a base of 3%
+      // crit has a cap of 100%, a base of 3%, and a min of -10%
       currentCharacter.value.stats.criticalHit = Math.min(
-        Math.floor(
-          (0.03 + currentCharacter.value.characteristics.fortune.percentCriticalHit * 0.01 + calcItemContribution(EFFECT_TYPE_DATA.criticalHit) * 0.01) * 100
-        )
+        Math.max(3 + currentCharacter.value.characteristics.fortune.percentCriticalHit + calcItemContribution(EFFECT_TYPE_DATA.criticalHit), -10),
+        100
       );
       currentCharacter.value.stats.damageInflicted = Math.floor(
         currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100 + calcPassivesContribution(EFFECT_TYPE_DATA.damageInflicted)
