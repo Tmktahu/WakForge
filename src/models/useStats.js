@@ -234,7 +234,7 @@ export const useStats = (currentCharacter) => {
         let item = currentCharacter.value.equipment[slotKey];
 
         // now we have to go over each of the item's effects and look for the one we want
-        item.equipEffects.forEach((effect) => {
+        item.equipEffects?.forEach((effect) => {
           // we specifically compare the raw IDs here because that's what we get from the JSON
           if (targetEffect.rawIds.includes(effect.id)) {
             // if we have a match

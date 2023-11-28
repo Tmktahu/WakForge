@@ -75,7 +75,7 @@ export const useBuildCodes = () => {
           // index 0 is the item ID
           itemDataArray.push(character.equipment[key].id);
 
-          character.equipment[key].equipEffects.forEach((effect) => {
+          character.equipment[key].equipEffects?.forEach((effect) => {
             if (effect.id === 1068 || effect.id === 1069) {
               assignableEffect = effect;
             }
