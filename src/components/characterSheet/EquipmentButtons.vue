@@ -13,7 +13,7 @@
       </template>
       <template v-else>
         <p-button
-          v-if="items[data.id] === null"
+          v-if="items[data.id] === null || items[data.id] === undefined"
           class="equipment-button"
           :class="{ 'has-item': items[data.id] !== null, disabled: data.id === ITEM_SLOT_DATA.SECOND_WEAPON.id && secondWeaponDisabled }"
           @click="onSearch(data.id)"
@@ -34,7 +34,8 @@
             <div class="flex align-items-center justify-content-center w-full" style="position: relative">
               <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
               <div class="hover-icon remove" @click="onRemove(data.id, $event)"> <i class="pi pi-trash" /> </div>
-              <p-image class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
+
+              <p-image class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id].imageId}.png`" image-style="width: 40px" />
 
               <div v-if="getRandomMasteryEffect(data.id) !== null" class="random-stat-icons-wrapper">
                 <p-image
@@ -177,7 +178,7 @@ const onRemove = (slotKey, event) => {
 
 const getRandomMasteryEffect = (slotKey) => {
   return (
-    currentCharacter.value.equipment[slotKey]?.equipEffects.find((effect) => {
+    currentCharacter.value.equipment[slotKey]?.equipEffects?.find((effect) => {
       return effect.id === 1068;
     }) || null
   );
@@ -185,7 +186,7 @@ const getRandomMasteryEffect = (slotKey) => {
 
 const getRandomResistanceEffect = (slotKey) => {
   return (
-    currentCharacter.value.equipment[slotKey]?.equipEffects.find((effect) => {
+    currentCharacter.value.equipment[slotKey]?.equipEffects?.find((effect) => {
       return effect.id === 1069;
     }) || null
   );
