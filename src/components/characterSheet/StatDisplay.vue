@@ -29,7 +29,7 @@
         </div>
         <div class="stat-value py-1">{{ currentCharacter.movementPoints }}</div>
       </div>
-      <div v-if="currentCharacter.class === CLASS_CONSTANTS.huppermage" class="main-stat-box">
+      <div v-if="currentCharacter.class === CLASS_CONSTANTS.huppermage.id" class="main-stat-box">
         <div class="flex align-items-center my-1">
           <p-image class="stat-icon" src="https://tmktahu.github.io/WakfuAssets/statistics/quadrumental_breeze.png" />
           <span class="ml-1">{{ $t('characterSheet.statsDisplay.qb') }}</span>

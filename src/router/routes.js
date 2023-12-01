@@ -24,11 +24,11 @@ const router = createRouter({
       name: CHARACTER_BUILDER_ROUTE,
       component: () => import('@/components/characterSheet/CharacterSheet.vue'),
     },
-    {
-      path: '/auto-builder',
-      name: AUTO_BUILDER_ROUTE,
-      component: () => import('@/components/AutoBuilderPage.vue'),
-    },
+    // {
+    //   path: '/auto-builder',
+    //   name: AUTO_BUILDER_ROUTE,
+    //   component: () => import('@/components/AutoBuilderPage.vue'),
+    // },
     {
       path: '/data',
       name: DATA_ROUTE,

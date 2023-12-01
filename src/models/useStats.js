@@ -64,13 +64,13 @@ export const useStats = (currentCharacter) => {
       // wakfu points are capped at 20
       currentCharacter.value.wakfuPoints = Math.min(
         20,
-        (currentCharacter.value.class === CLASS_CONSTANTS.xelor ? 12 : 6) +
+        (currentCharacter.value.class === CLASS_CONSTANTS.xelor.id ? 12 : 6) +
           currentCharacter.value.characteristics.major.wakfuPoints * 2 +
           calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints) +
           calcPassivesContribution(EFFECT_TYPE_DATA.wakfuPoints)
       );
       currentCharacter.value.quadrumentalBreeze =
-        (currentCharacter.value.class === CLASS_CONSTANTS.huppermage ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
+        (currentCharacter.value.class === CLASS_CONSTANTS.huppermage.id ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
 
       // Elemental masteries
       currentCharacter.value.masteries.water = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.waterMastery);
