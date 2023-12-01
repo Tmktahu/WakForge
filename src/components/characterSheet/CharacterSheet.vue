@@ -162,7 +162,6 @@ const characterClass = ref(CLASS_CONSTANTS[currentCharacter.value?.class]);
 const classOptions = Object.entries(CLASS_CONSTANTS).map(([key, value]) => {
   return value;
 });
-console.log(classOptions);
 
 const { createBuildCode } = useBuildCodes();
 
