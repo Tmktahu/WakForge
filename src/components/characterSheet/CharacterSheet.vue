@@ -1,20 +1,28 @@
 <template>
   <div v-if="currentCharacter" :key="currentCharacter.id" class="flex flex-column w-full" style="height: 100%">
     <div class="top-bar py-3 px-3">
-      <p-inputText v-model="characterName" class="mr-2" @input="saveData($event, 'name')" />
+      <p-inputText v-model="characterName" style="height: 48px" class="mr-2" @input="saveData($event, 'name')" />
 
       <p-dropdown
         v-model="characterClass"
         :options="classOptions"
         :placeholder="$t('characterSheet.selectAClass')"
-        option-value="value"
-        option-label="label"
-        class="mr-2"
+        option-label="id"
+        class="class-selector mr-2"
         @change="saveData($event, 'class')"
       >
         <template v-slot:value="slotProps">
-          <div v-if="slotProps.value" class="flex align-items-center">
-            <div class="capitalize">{{ slotProps.value }}</div>
+          <div v-if="slotProps.value" class="flex align-items-center pl-2" style="height: 48px">
+            <div class="mr-2">
+              <p-image
+                v-if="slotProps.value.id"
+                class="class-image"
+                :src="`https://tmktahu.github.io/WakfuAssets/classes/${slotProps.value.id}.png`"
+                image-style="width: 30px"
+              />
+              <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
+            </div>
+            <div>{{ $t(slotProps.value.name) }}</div>
           </div>
           <span v-else>
             {{ slotProps.placeholder }}
@@ -23,7 +31,7 @@
 
         <template v-slot:option="slotProps">
           <div class="flex align-items-center">
-            <div class="capitalize">{{ slotProps.option.label }}</div>
+            <div class="capitalize">{{ $t(slotProps.option.name) }}</div>
           </div>
         </template>
       </p-dropdown>
@@ -137,6 +145,8 @@ import SpellTabContent from '@/components/characterSheet/SpellTabContent.vue';
 import ItemSolverTabContent from '@/components/characterSheet/ItemSolverTabContent.vue';
 import RunesSubsTabContent from '@/components/characterSheet/RunesSubsTabContent.vue';
 
+import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
+
 import { useToast } from 'primevue/usetoast';
 const toast = useToast();
 
@@ -147,14 +157,12 @@ const characteristicsTabContent = ref(null);
 
 const characterName = ref(currentCharacter.value?.name);
 const characterLevel = ref(currentCharacter.value?.level);
-const characterClass = ref(currentCharacter.value?.class);
+const characterClass = ref(CLASS_CONSTANTS[currentCharacter.value?.class]);
 
 const classOptions = Object.entries(CLASS_CONSTANTS).map(([key, value]) => {
-  return {
-    label: value,
-    value: value,
-  };
+  return value;
 });
+console.log(classOptions);
 
 const { createBuildCode } = useBuildCodes();
 
@@ -169,7 +177,7 @@ watch(currentCharacter, () => {
 const updateUI = () => {
   characterName.value = currentCharacter.value?.name;
   characterLevel.value = currentCharacter.value?.level;
-  characterClass.value = currentCharacter.value?.class;
+  characterClass.value = CLASS_CONSTANTS[currentCharacter.value?.class];
 };
 
 const saveData = (event, inputName) => {
@@ -181,7 +189,7 @@ const saveData = (event, inputName) => {
     currentCharacter.value.level = event;
     // currentCharacter.value.level = event.value;
   } else if (inputName === 'class') {
-    currentCharacter.value.class = event.value;
+    currentCharacter.value.class = event.value.id;
   }
   updateUI();
 };
@@ -321,6 +329,21 @@ const onCopyBuildCode = () => {
     font-size: 14px;
     color: var(--primary-50);
     white-space: nowrap;
+  }
+}
+
+:deep(.class-selector) {
+  .p-dropdown-label {
+    padding: 0;
+  }
+
+  .class-image {
+    display: flex;
+    height: 30px;
+
+    img {
+      border-radius: 4px;
+    }
   }
 }
 </style>
