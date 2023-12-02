@@ -1,31 +1,24 @@
 <template>
   <div v-if="currentCharacter" :key="currentCharacter.id" class="flex flex-column w-full" style="height: 100%">
     <div class="top-bar py-3 px-3">
-      <p-inputText v-model="characterName" style="height: 48px" class="mr-2" @input="saveData($event, 'name')" />
+      <p-inputText v-model="characterName" class="mr-2 py-2 px-2" @input="saveData($event, 'name')" />
 
       <p-dropdown
         v-model="characterClass"
         :options="classOptions"
         :placeholder="$t('characterSheet.selectAClass')"
         option-label="id"
-        class="class-selector mr-2"
+        class="class-selector mr-2 pr-2"
         @change="saveData($event, 'class')"
       >
         <template v-slot:value="slotProps">
-          <div v-if="slotProps.value" class="flex align-items-center pl-2" style="height: 48px">
-            <div class="mr-2">
-              <p-image
-                v-if="slotProps.value.id"
-                class="class-image"
-                :src="`https://tmktahu.github.io/WakfuAssets/classes/${slotProps.value.id}.png`"
-                image-style="width: 30px"
-              />
-              <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
-            </div>
-            <div>{{ $t(slotProps.value.name) }}</div>
+          <div v-if="slotProps.value" class="flex align-items-center pl-2">
+            <p-image class="class-image mr-2" :src="`https://tmktahu.github.io/WakfuAssets/classes/${slotProps.value.id}.png`" image-style="width: 28px" />
+            <div class="py-2">{{ $t(slotProps.value.name) }}</div>
           </div>
-          <span v-else>
-            {{ slotProps.placeholder }}
+          <span v-else class="flex align-items-center">
+            <p-image class="class-image mx-2" :src="addCompanionIconURL" image-style="width: 28px" />
+            <div class="py-2"> {{ slotProps.placeholder }}</div>
           </span>
         </template>
 
@@ -338,7 +331,7 @@ const onCopyBuildCode = () => {
 
   .class-image {
     display: flex;
-    height: 30px;
+    height: 28px;
 
     img {
       border-radius: 4px;

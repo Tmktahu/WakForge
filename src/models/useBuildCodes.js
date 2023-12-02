@@ -128,7 +128,7 @@ export const useBuildCodes = () => {
           ]); // each will include ID, color, level
 
           // index 3 will be for sublimations
-          itemDataArray.push([]);
+          itemDataArray.push(character.equipment[key]?.subSlot?.id || -1);
 
           dataArray.push(itemDataArray);
         } else {
@@ -341,6 +341,12 @@ export const useBuildCodes = () => {
         }
       }
     });
+
+    let sublimationId = itemData[3];
+    let sublimation = getItemById(sublimationId);
+    if (sublimation) {
+      item.subSlot = sublimation;
+    }
 
     return item;
   };

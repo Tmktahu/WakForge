@@ -40,6 +40,7 @@
                   @dragstart="
                     onDragStart(
                       $event,
+                      'rune',
                       currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
                       // eslint-disable-next-line vue/comma-dangle
                       currentCharacter.equipment[slotKey][`runeSlot${index}`].level
@@ -62,7 +63,7 @@
                         slotKey
                       )
                     }}
-                    {{ currentCharacter.equipment[slotKey][`runeSlot${index}`].rune.name }}
+                    {{ $t(`items.${currentCharacter.equipment[slotKey][`runeSlot${index}`].rune.id}`) }}
                   </div>
                 </template>
               </tippy>
@@ -74,8 +75,59 @@
               </div>
             </template>
 
-            <div class="sublimation-drop-zone ml-2 pl-2 pr-2">sub</div>
+            <tippy duration="0" class="flex h-full">
+              <div
+                class="sublimation-drop-zone ml-2"
+                :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+                @dragover.prevent
+                @dragenter.prevent
+                @drop="onDrop($event, slotKey, 'subSlot')"
+                @click="onRemoveSublimation(slotKey)"
+              >
+                <template v-if="currentCharacter.equipment[slotKey].subSlot">
+                  <div class="sublimation-entry flex align-items-center px-2">
+                    <p-image
+                      :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
+                      image-style="width: 24px"
+                      class="flex"
+                    />
+                    <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                  </div>
+                </template>
+
+                <div v-else class="px-2" style="opacity: 0.5">
+                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
+                </div>
+                <i class="pi pi-trash" />
+              </div>
+
+              <template v-slot:content>
+                <div v-if="currentCharacter.equipment[slotKey].subSlot" class="item-card-tooltip">
+                  <div class="effect-header flex pt-2 px-1">
+                    <p-image
+                      :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
+                      image-style="width: 40px"
+                    />
+                    <div class="flex flex-column ml-1">
+                      <div class="item-name mr-2">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                      <div class="rune-requirements flex justify-content-left gap-1 py-1">
+                        <div
+                          v-for="(colorId, index) in currentCharacter.equipment[slotKey].subSlot.sublimationParameters.slotColorPattern"
+                          :key="index"
+                          class="flex align-items-center"
+                        >
+                          <p-image :src="getFilledRuneImage(colorId)" image-style="width: 18px" class="flex" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ItemStatList :item="currentCharacter.equipment[slotKey].subSlot" />
+                </div>
+              </template>
+            </tippy>
           </div>
+
           <div v-else-if="slotKey !== 'undefined'" class="item-runes-section disabled flex align-items-center mb-2 pr-1">
             <div class="slot-image">
               <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotKey}.png`" image-style="width: 40px; height: 40px" />
@@ -96,14 +148,14 @@
           <template v-for="runeId in Object.keys(summaryEntries)" :key="runeId">
             <div class="summary-entry px-2 py-1">
               <p-image :src="getFilledRuneImage(summaryEntries[runeId].rune.rune.shardsParameters.color)" image-style="width: 18px" />
-              <div class="ml-2">+{{ summaryEntries[runeId].totalValue }} {{ summaryEntries[runeId].rune.rune.name }}</div>
+              <div class="ml-2">+{{ summaryEntries[runeId].totalValue }} {{ $t(`items.${summaryEntries[runeId].rune.rune.id}`) }}</div>
             </div>
           </template>
         </div>
       </div>
     </div>
 
-    <div class="flex flex-column">
+    <div class="flex flex-column mr-3">
       <div class="rune-options-wrapper flex flex-column ml-3 pt-2">
         <div class="flex align-items-center justify-content-center">
           <tippy placement="left" duration="0">
@@ -124,11 +176,11 @@
               class="rune-draggable mb-1 px-2"
               :class="{ highlighted: itemSlotHighlight && rune.shardsParameters.doubleBonusPosition.includes(ITEM_SLOT_DATA[itemSlotHighlight].rawId) }"
               draggable="true"
-              @dragstart="onDragStart($event, rune)"
+              @dragstart="onDragStart($event, 'rune', rune)"
               @click="onRuneOptionClick($event, rune)"
             >
               <p-image class="rune-image" :src="getEmptyRuneImage(rune.shardsParameters.color)" image-style="width: 20px" />
-              <div class="ml-2">+{{ getRuneValue(rune, runeLevel) }} {{ rune.name }}</div>
+              <div class="ml-2">+{{ getRuneValue(rune, runeLevel) }} {{ $t(`items.${rune.id}`) }}</div>
               <div class="flex-grow-1 mr-2" />
               <div v-for="slotId in rune.shardsParameters.doubleBonusPosition" :key="slotId" class="ml-1">
                 <p-image
@@ -148,12 +200,67 @@
       </div>
     </div>
 
+    <div class="flex flex-column">
+      <p-inputText v-model="subSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
+      <div class="flex mt-2">
+        <p-checkbox v-model="sortByMatching" :binary="true" />
+        <div class="mx-2">{{ $t('characterSheet.runesAndSubsContent.sortByMatching') }}</div>
+        <tippy placement="top">
+          <i class="mdi mdi-information-outline" />
+          <template v-slot:content>
+            <div class="simple-tooltip">
+              {{ $t('characterSheet.runesAndSubsContent.sortByMatchingNote') }}
+            </div>
+          </template>
+        </tippy>
+      </div>
+
+      <div class="sublimation-options-wrapper flex flex-column mt-2 py-1">
+        <template v-for="sublimation in normalSublimationOptions" :key="sublimation.id">
+          <tippy duration="0">
+            <div
+              class="sublimation-option py-1 px-2 mb-1"
+              :class="{ highlighted: canSublimationFit(currentCharacter.equipment[itemSlotHighlight], sublimation) }"
+              draggable="true"
+              @dragstart="onDragStart($event, 'sublimation', sublimation)"
+            >
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 20px" class="flex" />
+              <div v-if="sublimation.sublimationParameters?.slotColorPattern?.length" class="rune-requirements flex gap-1 mx-1 px-1 py-1">
+                <div v-for="(colorId, index) in sublimation.sublimationParameters.slotColorPattern" :key="index" class="flex align-items-center">
+                  <p-image :src="getFilledRuneImage(colorId)" image-style="width: 18px" class="flex" />
+                </div>
+              </div>
+              <div> {{ $t(`items.${sublimation.id}`) }} </div>
+            </div>
+
+            <template v-slot:content>
+              <div class="item-card-tooltip">
+                <div class="effect-header flex pt-2 px-1">
+                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 40px" />
+                  <div class="flex flex-column ml-1">
+                    <div class="item-name">{{ $t(`items.${sublimation.id}`) }}</div>
+                    <div v-if="sublimation.sublimationParameters?.slotColorPattern?.length" class="rune-requirements flex justify-content-left gap-1 py-1">
+                      <div v-for="(colorId, index) in sublimation.sublimationParameters.slotColorPattern" :key="index" class="flex align-items-center">
+                        <p-image :src="getFilledRuneImage(colorId)" image-style="width: 18px" class="flex" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <ItemStatList :item="sublimation" />
+              </div>
+            </template>
+          </tippy>
+        </template>
+      </div>
+    </div>
+
     <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
       <template v-slot:item="{ item, props }">
         <div v-if="item.levelSlider" class="flex flex-column px-4 py-2">
-          <div class="mb-2"
-            >{{ $t('constants.level') }}: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }}</div
-          >
+          <div class="mb-2">
+            {{ $t('constants.level') }}: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }}
+          </div>
           <p-slider v-model="currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level" :min="1" :max="11" />
         </div>
         <a v-else v-ripple class="flex align-items-center" v-bind="props.action">
@@ -172,14 +279,33 @@ import { useItems } from '@/models/useItems';
 import { useStats } from '@/models/useStats';
 import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS } from '@/models/useConstants';
 
+import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
+
 const { t } = useI18n();
 
 const currentCharacter = inject('currentCharacter');
 
 const { getRuneValue } = useStats();
-const { getRunes, getSublimations } = useItems();
+const { getRunes, getSublimations, canSublimationFit } = useItems();
 const runeOptions = computed(() => getRunes().sort((rune1, rune2) => rune1.shardsParameters.color - rune2.shardsParameters.color));
-const sublimationOptions = ref(getSublimations());
+const normalSublimationOptions = computed(() =>
+  getSublimations()
+    .filter((sub) => sub.sublimationParameters.slotColorPattern.length > 0)
+    .filter((sub) => t(`items.${sub.id}`).toLowerCase().includes(subSearchTerm.value?.toLowerCase()))
+    .sort((sub1, sub2) => t(`items.${sub1.id}`).localeCompare(t(`items.${sub2.id}`)))
+    .sort((sub1, sub2) => {
+      if (itemSlotHighlight.value && sortByMatching.value) {
+        let match1 = canSublimationFit(currentCharacter.value.equipment[itemSlotHighlight.value], sub1) ? 1 : 0;
+        let match2 = canSublimationFit(currentCharacter.value.equipment[itemSlotHighlight.value], sub2) ? 1 : 0;
+        return match2 - match1;
+      } else {
+        return 0;
+      }
+    })
+);
+const specialSublimationOptions = computed(() => getSublimations().filter((sub) => sub.sublimationParameters.slotColorPattern.length === 0));
+const subSearchTerm = ref('');
+const sortByMatching = ref(true);
 
 const runeLevel = ref(1);
 const itemSlotHighlight = ref(null);
@@ -292,26 +418,42 @@ const onRuneOptionClick = (event, rune) => {
   }
 };
 
-const onDragStart = (event, rune, level) => {
+const onDragStart = (event, type, object, level) => {
   event.dataTransfer.dropEffect = 'move';
   event.dataTransfer.effectAllowed = 'move';
-  event.dataTransfer.setData('rune', JSON.stringify(rune));
-  if (level) {
-    event.dataTransfer.setData('level', level);
+
+  event.dataTransfer.setData('type', type);
+  if (type === 'rune') {
+    event.dataTransfer.setData('rune', JSON.stringify(object));
+    if (level) {
+      event.dataTransfer.setData('level', level);
+    }
+  }
+
+  if (type === 'sublimation') {
+    event.dataTransfer.setData('sublimation', JSON.stringify(object));
   }
 };
 
-const onDrop = (event, itemSlotKey, runeSlotKey) => {
+const onDrop = (event, itemSlotKey, targetSlotKey) => {
   try {
-    let rune = JSON.parse(event.dataTransfer.getData('rune'));
-    let level = event.dataTransfer.getData('level');
-    currentCharacter.value.equipment[itemSlotKey][runeSlotKey] = {
-      rune,
-      color: rune.shardsParameters.color,
-      level: level || runeLevel.value,
-    };
+    let type = event.dataTransfer.getData('type');
+    if (type === 'rune' && targetSlotKey.includes('rune')) {
+      let rune = JSON.parse(event.dataTransfer.getData('rune'));
+      let level = event.dataTransfer.getData('level');
+      currentCharacter.value.equipment[itemSlotKey][targetSlotKey] = {
+        rune,
+        color: rune.shardsParameters.color,
+        level: level || runeLevel.value,
+      };
+    }
+
+    if (type === 'sublimation') {
+      let sublimation = JSON.parse(event.dataTransfer.getData('sublimation'));
+      currentCharacter.value.equipment[itemSlotKey].subSlot = sublimation;
+    }
   } catch (error) {
-    // console.error(error)
+    console.error(error);
   }
 };
 
@@ -322,8 +464,13 @@ const onRemoveAll = () => {
       runeSlotKeys.forEach((runeSlotKey) => {
         currentCharacter.value.equipment[slotKey][runeSlotKey] = undefined;
       });
+      currentCharacter.value.equipment[slotKey].subSlot = null;
     }
   });
+};
+
+const onRemoveSublimation = (itemSlotKey) => {
+  currentCharacter.value.equipment[itemSlotKey].subSlot = null;
 };
 
 const getEmptyRuneImage = (colorId) => {
@@ -443,7 +590,7 @@ watch(
   border-radius: 4px;
 
   &.equipped {
-    cursor: pointer;
+    cursor: grab;
 
     &:hover {
       background-color: var(--primary-70);
@@ -480,10 +627,40 @@ watch(
 }
 
 .sublimation-drop-zone {
+  position: relative;
   display: flex;
   align-items: center;
   height: 100%;
   border-left: 1px solid var(--primary-50);
+  background-color: var(--primary-10);
+
+  &.invalid {
+    background-color: var(--error-40);
+  }
+
+  &:has(.sublimation-entry):hover {
+    cursor: pointer;
+
+    i {
+      display: flex;
+    }
+  }
+
+  i {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    color: white;
+    background-color: rgba(red, 0.5);
+    font-size: 22px;
+    font-weight: bold;
+    pointer-events: none;
+  }
+
+  .sublimation-entry {
+  }
 }
 
 :deep(.rune-draggable) {
@@ -491,7 +668,7 @@ watch(
   align-items: center;
   height: 30px;
   background-color: var(--background-20);
-  cursor: pointer;
+  cursor: grab;
   font-size: 0.9rem;
 
   .rune-image {
@@ -558,7 +735,34 @@ watch(
 .rune-options-wrapper {
   border: 1px solid var(--primary-50);
   height: fit-content;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
+}
+
+.sublimation-options-wrapper {
+  overflow-y: auto;
+  max-height: 550px;
+  border: 1px solid var(--primary-50);
+  border-radius: 4px;
+
+  .sublimation-option {
+    display: flex;
+    align-items: center;
+    background-color: var(--background-20);
+    cursor: grab;
+
+    &:hover {
+      background-color: var(--primary-30);
+    }
+
+    &.highlighted {
+      background-color: var(--secondary-30);
+    }
+  }
+
+  .rune-requirements {
+    background-color: var(--background-40);
+    border-radius: 8px;
+  }
 }
 </style>

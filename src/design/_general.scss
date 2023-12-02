@@ -166,7 +166,6 @@ body {
     }
 }
 
-
 .spell-tooltip {
     border-radius: 8px;
     border: 1px solid var(--highlight-50);
@@ -288,4 +287,26 @@ body {
     .p-dropdown-label {
         padding: 4px 6px;
     }
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--background-30);
+    border-radius: 8px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-50);
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-80);
 }

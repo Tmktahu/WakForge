@@ -471,6 +471,51 @@ export const useItems = (character = ref(null)) => {
     return potentialitem || null;
   };
 
+  const canSublimationFit = (item, sublimation) => {
+    if (!item) {
+      return false;
+    }
+
+    let runeSlotColors = [];
+    runeSlotColors.push(item.runeSlot1?.color);
+    runeSlotColors.push(item.runeSlot2?.color);
+    runeSlotColors.push(item.runeSlot3?.color);
+    runeSlotColors.push(item.runeSlot4?.color);
+
+    let sublimationColorRequirements = sublimation?.sublimationParameters?.slotColorPattern || [];
+
+    // there are two 'sub arrays' we need to check
+    let firstRuneSubArray = runeSlotColors.filter((_, i) => i !== 3); // just the first three elements
+    let secondRuneSubArray = runeSlotColors.filter((_, i) => i !== 0); // just the last three elements
+
+    // we assume it is valid from the start
+    let isValid = true;
+
+    // check the first sub array
+    sublimationColorRequirements.forEach((colorId, index) => {
+      if (firstRuneSubArray[index] !== colorId && firstRuneSubArray[index] !== 0) {
+        // if it does not match or it is not a white
+        isValid = false;
+      }
+    });
+
+    if (isValid) {
+      // if we are still valid after the first check, we're good to return
+      return isValid;
+    }
+
+    // next we check the second sub array, reseting our isValid beforehand
+    isValid = true;
+    sublimationColorRequirements.forEach((colorId, index) => {
+      if (secondRuneSubArray[index] !== colorId && secondRuneSubArray[index] !== 0) {
+        // if it does not match or it is not a white
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  };
+
   return {
     setup,
     itemFilters,
@@ -480,5 +525,6 @@ export const useItems = (character = ref(null)) => {
     getItemById,
     getRunes,
     getSublimations,
+    canSublimationFit,
   };
 };
