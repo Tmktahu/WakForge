@@ -81,6 +81,10 @@ const processItemData = () => {
       newItem.shardsParameters = itemObject.definition.item.shardsParameters;
     }
 
+    if (newItem.type.id === 812) {
+      newItem.sublimationParameters = itemObject.definition.item.sublimationParameters;
+    }
+
     formattedItemData.push(newItem);
   });
 };
@@ -172,12 +176,14 @@ const getItemEffects = (equipEffects) => {
           newEffect.description = effectObject.effect.definition.description.en; // we use this description
         }
 
+        // random mastery
         if (action.definition.id === 1068) {
           newEffect.masterySlot1 = { type: 'empty', value: 0 };
           newEffect.masterySlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;
           newEffect.masterySlot3 = effectObject.effect.definition?.params[2] > 2 ? { type: 'empty', value: 0 } : undefined;
         }
 
+        // random resistance
         if (action.definition.id === 1069) {
           newEffect.resistanceSlot1 = { type: 'empty', value: 0 };
           newEffect.resistanceSlot2 = effectObject.effect.definition?.params[2] > 1 ? { type: 'empty', value: 0 } : undefined;

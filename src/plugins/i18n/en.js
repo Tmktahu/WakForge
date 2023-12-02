@@ -1,7 +1,9 @@
 import enItemTranslations from './itemTranslations/en_items.json';
+import enStatesTranslations from './itemTranslations/en_states.json';
 
 export const en = {
   items: enItemTranslations,
+  states: enStatesTranslations,
   app: {
     disclaimer: 'WAKFU is an MMORPG published by Ankama. "WakForge" is an unofficial website with no link to Ankama.',
     globalErrorMessage: 'There was a severe error that stopped the app from working correctly.',
@@ -202,6 +204,11 @@ export const en = {
       runeLevel: 'Rune Level',
       toggleWhite: 'Toggle White',
       removeAllRunes: 'Remove All Runes/Subs',
+      sortByMatching: 'Sort by Matching',
+      sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.',
+      searchSublimations: 'Search Sublimations...',
+      addsThe: 'Adds the', // context = 'Adds the Apples state'
+      state: 'state', // context = 'Adds the Apples state'
     },
 
     spellsAndPassivesContent: {

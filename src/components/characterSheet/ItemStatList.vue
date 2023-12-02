@@ -1,22 +1,14 @@
 <template>
-  <div v-if="!cardMode" class="tooltip-effect-list">
+  <div :class="`${cardMode ? 'effects-wrapper flex flex-wrap' : 'tooltip-effect-list'}`">
     <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
-      <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line px-2 py-1">
+      <div
+        v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)"
+        class="effect-line px-2 py-1"
+        :style="{ width: cardMode && !effect.longEntry ? '50%' : '100%' }"
+      >
         <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
-        <div v-else>
-          <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
-          <span>{{ $t(getEffectData(effect.id).text).charAt(0) === '%' ? $t(getEffectData(effect.id).text) : ' ' + $t(getEffectData(effect.id).text) }}</span>
-        </div>
-      </div>
-    </template>
-  </div>
-
-  <div v-else class="effects-wrapper flex flex-wrap">
-    <template v-for="effect in item.equipEffects" :key="effect.id">
-      <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line pl-2 py-1" :style="{ width: effect.longEntry ? '100%' : '50%' }">
-        <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
-        <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
+        <div v-else-if="effect.id === 304">Adds the {{ $t(`states.${effect.values[0]}`) }} state</div>
         <div v-else>
           <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
           <span>{{ $t(getEffectData(effect.id).text).charAt(0) === '%' ? $t(getEffectData(effect.id).text) : ' ' + $t(getEffectData(effect.id).text) }}</span>
@@ -87,6 +79,11 @@ const getEffectValue = (effect) => {
 
 .effects-wrapper {
   overflow: hidden;
+
+  .effect-line:nth-child(4n-2),
+  .effect-line:nth-child(4n-1) {
+    background: var(--primary-10);
+  }
 }
 
 .tooltip-effect-list {
