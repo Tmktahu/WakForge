@@ -68,7 +68,7 @@
                   <div class="flex">
                     <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${items[data.id]?.rarity}.png`" image-style="width: 12px;" />
                     <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${items[data.id]?.type?.id}.png`" image-style="width: 18px;" />
-                    <div v-if="LEVELABLE_ITEMS.includes(items[data.id]?.type?.id)">Item Level: 50</div>
+                    <div v-if="LEVELABLE_ITEMS.includes(items[data.id]?.type?.id)">Item Level: {{ items[data.id].id === 12237 ? '25' : '50' }}</div>
                     <div v-else>Level: {{ items[data.id]?.level }}</div>
                   </div>
                 </div>

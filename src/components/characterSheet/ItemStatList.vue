@@ -60,7 +60,12 @@ const getEffectValue = (effect) => {
   let startingValue = effect.values[0];
   let finalValue = 0;
   if (LEVELABLE_ITEMS.includes(props.item.type.id)) {
-    finalValue = startingValue + 50 * effect.values[1];
+    if (props.item.id === 12237) {
+      // Dot is special and requires specific handling because screw the normal pattern right?
+      finalValue = startingValue + 25 * effect.values[1];
+    } else {
+      finalValue = startingValue + 50 * effect.values[1];
+    }
   } else {
     finalValue = startingValue;
   }
