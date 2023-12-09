@@ -240,7 +240,12 @@ export const useStats = (currentCharacter) => {
             // if we have a match
             if (LEVELABLE_ITEMS.includes(item.type.id)) {
               // for items that level, we currently assume they are maxed at level 50
-              contribution += effect.values[0] + effect.values[1] * 50; // TODO make this dynamic?
+              if (item.id === 12237) {
+                // this is for the pet Dot specifically because they are 'special' and only max out at level 25
+                contribution += effect.values[0] + effect.values[1] * 25; // TODO make this dynamic?
+              } else {
+                contribution += effect.values[0] + effect.values[1] * 50; // TODO make this dynamic?
+              }
             } else {
               // for normal items we just use the first value
               contribution += effect.values[0];

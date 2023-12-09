@@ -10,7 +10,7 @@
           <div class="flex">
             <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
             <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-            <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: 50</div>
+            <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: {{ item.id === 12237 ? '25' : '50' }}</div>
             <div v-else>Level: {{ item.level }}</div>
           </div>
         </div>
@@ -214,7 +214,7 @@ const onResistanceStatChange = () => {
 
 const onApplyToAll = () => {
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-    if (currentCharacter.value.equipment[slotKey] !== null) {
+    if (currentCharacter.value.equipment[slotKey] !== null && currentCharacter.value.equipment[slotKey].equipEffects) {
       currentCharacter.value.equipment[slotKey].equipEffects.forEach((equipEffect) => {
         if (equipEffect.id === 1068 && randomMasteryEffect.value) {
           // mastery handling
