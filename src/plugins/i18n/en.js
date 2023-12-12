@@ -1,5 +1,5 @@
 import enItemTranslations from './itemTranslations/en_items.json';
-import enStatesTranslations from './itemTranslations/en_states.json';
+import enStatesTranslations from './statesTranslations/en_states.json';
 
 export const en = {
   items: enItemTranslations,
@@ -44,8 +44,7 @@ export const en = {
     dragOrDrop: 'Or drag and drop a JSON file here.',
     dataNotRecognized: 'The current data is not recognized as WakForge data.',
     beforeImport: 'Before you can import characters, the version of your imported data will be checked here.',
-    needsMigration:
-      'Your data seems to be from an old storage version, and thus needs to be updated before it can be used. This is a safe operation and will make no permanent changes to your existing data.',
+    needsMigration: 'Your data seems to be from an old storage version, and thus needs to be updated before it can be used. This is a safe operation and will make no permanent changes to your existing data.',
     goodToGo: 'Your data is good to go.',
     dataSize: 'Data Size',
     numberOfCharacters: 'Number of Characters',
@@ -56,8 +55,7 @@ export const en = {
     currentStorageSize: 'Your storage has a current size of',
     contactForHelp: 'If you ever approach this limit, please contact Fryke (fryke) on Discord.',
     warning: 'WARNING',
-    warningMessage:
-      'Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have made a backup and understand what you are doing.',
+    warningMessage: 'Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have made a backup and understand what you are doing.',
     mustDownloadFirst: 'You must download a backup of your data first.',
     invalidJSON: 'That is invalid JSON',
     saveToLocalstorage: 'Save to LocalStorage',
@@ -79,8 +77,7 @@ export const en = {
     runesAndSubs: 'Runes & Sublimations (WIP)',
     spellsAndPassives: 'Spells & Passives',
     codeDisclaimer: 'Yes, this is intentional. Do not be afraid.',
-    codeInfo:
-      'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.',
+    codeInfo: 'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.',
 
     statsDisplay: {
       ar: 'AR',
@@ -126,11 +123,9 @@ export const en = {
       hasEpicWarning: 'You already have an Epic item equipped. Doing this will remove it. Are you sure?',
       twoHandedWeaponWarning: 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?',
       secondWeaponWarning: 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?',
-      relicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
+      relicAndTwoHandedWarning: 'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
       relicAndSecondWeaponWarning: 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
-      epicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
+      epicAndTwoHandedWarning: 'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
       epicAndSecondWeaponWarning: 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
 
       itemFilters: {
@@ -213,8 +208,7 @@ export const en = {
 
     spellsAndPassivesContent: {
       activeSpells: 'Active Spells (WIP)',
-      activesNote:
-        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.',
+      activesNote: 'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.',
       passives: 'Passives',
       passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.',
     },

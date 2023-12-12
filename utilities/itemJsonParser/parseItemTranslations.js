@@ -76,7 +76,7 @@ const writeTranslationDataToFile = (jsonData, locale) => {
   });
 };
 
-mode = 'states';
+mode = 'items';
 processItemTranslationData();
 
 writeTranslationDataToFile(englishTranslationData, 'en');
