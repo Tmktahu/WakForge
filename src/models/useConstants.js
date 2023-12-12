@@ -642,8 +642,7 @@ export const SHARED_PASSIVE_SPELLS = [
   {
     class: 'all',
     name: 'Fluctuation',
-    description:
-      'Fluctuation increases the damages of the next spell cast on this target by whoever placed this state. Fluctuation is consumed in the process.',
+    description: 'Fluctuation increases the damages of the next spell cast on this target by whoever placed this state. Fluctuation is consumed in the process.',
     iconId: 5621,
     normalEffects: {},
     id: 20007,

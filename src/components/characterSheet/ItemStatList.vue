@@ -1,14 +1,14 @@
 <template>
   <div :class="`${cardMode ? 'effects-wrapper flex flex-wrap' : 'tooltip-effect-list'}`">
     <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
-      <div
-        v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)"
-        class="effect-line px-2 py-1"
-        :style="{ width: cardMode && !effect.longEntry ? '50%' : '100%' }"
-      >
+      <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line px-2 py-1" :style="{ width: cardMode && !effect.longEntry ? '50%' : '100%' }">
         <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
-        <div v-else-if="effect.id === 304">Adds the {{ $t(`states.${effect.values[0]}`) }} state</div>
+        <div v-else-if="effect.id === 304" class="flex align-items-center">
+          <span>Adds the </span>
+          <MultiTooltip :state-id="`${effect.values[0]}`" />
+          <span>state</span>
+        </div>
         <div v-else>
           <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
           <span>{{ $t(getEffectData(effect.id).text).charAt(0) === '%' ? $t(getEffectData(effect.id).text) : ' ' + $t(getEffectData(effect.id).text) }}</span>
@@ -20,6 +20,7 @@
 
 <script setup>
 import { EFFECT_TYPE_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
+import MultiTooltip from '@/components/MultiTooltip.vue';
 
 let props = defineProps({
   item: {

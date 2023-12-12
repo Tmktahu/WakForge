@@ -1,5 +1,5 @@
 import esItemTranslations from './itemTranslations/es_items.json';
-import esStatesTranslations from './itemTranslations/es_states.json';
+import esStatesTranslations from './statesTranslations/es_states.json';
 
 export const es = {
   items: esItemTranslations,
@@ -44,8 +44,7 @@ export const es = {
     dragOrDrop: 'O arrastra y suelta un archivo JSON aquí.',
     dataNotRecognized: 'Los datos actuales no se reconocen como datos de WakForge.',
     beforeImport: 'Antes de que puedas importar personajes, se comprobará aquí la versión de los datos importados.',
-    needsMigration:
-      'Parece que tus datos proceden de una versión antigua, por lo que es necesario actualizarlos antes de poder utilizarlos. Se trata de una operación segura que no modificará de forma permanente los datos existentes.',
+    needsMigration: 'Parece que tus datos proceden de una versión antigua, por lo que es necesario actualizarlos antes de poder utilizarlos. Se trata de una operación segura que no modificará de forma permanente los datos existentes.',
     goodToGo: 'Tus datos están listos.',
     dataSize: 'Tamaño de los datos',
     numberOfCharacters: 'Número de personajes',
@@ -56,8 +55,7 @@ export const es = {
     currentStorageSize: 'Su almacenamiento tiene un tamaño actual de',
     contactForHelp: 'Si alguna vez te acercas a este límite, ponte en contacto con Fryke (fryke) en Discord.',
     warning: 'ADVERTENCIA',
-    warningMessage:
-      'Editar sus datos directamente en LocalStorage es peligroso y podría causar daños irreparables a sus datos. Hazlo únicamente después de haber hecho una copia de seguridad y comprender qué estás haciendo.',
+    warningMessage: 'Editar sus datos directamente en LocalStorage es peligroso y podría causar daños irreparables a sus datos. Hazlo únicamente después de haber hecho una copia de seguridad y comprender qué estás haciendo.',
     mustDownloadFirst: 'Debes descargar primero una copia de seguridad de tus datos.',
     invalidJSON: 'Esto es JSON inválido',
     saveToLocalstorage: 'Guardar en LocalStorage',
@@ -79,8 +77,7 @@ export const es = {
     runesAndSubs: 'Engraces y Sublimaciones (WIP)',
     spellsAndPassives: 'Hechizos y Pasivas',
     codeDisclaimer: 'Sí, esto es intencional. Hablamos Runico.',
-    codeInfo:
-      'Estos caracteres son intencionados. Para que el código fuera lo suficientemente pequeño, nos adentramos en las oscuras profundidades de la codificación base2048. Contempla la majestuosidad rúnica del código de construcción.',
+    codeInfo: 'Estos caracteres son intencionados. Para que el código fuera lo suficientemente pequeño, nos adentramos en las oscuras profundidades de la codificación base2048. Contempla la majestuosidad rúnica del código de construcción.',
 
     statsDisplay: {
       ar: 'AR',
@@ -126,11 +123,9 @@ export const es = {
       hasEpicWarning: 'Ya tienes un objeto Épico equipado. Al hacer esto, lo quitarás. ¿Estás seguro?',
       twoHandedWeaponWarning: 'Esta es un arma a dos manos, y tienes un objeto en tu segunda ranura de arma. ¿Estás seguro?',
       secondWeaponWarning: 'Tienes un arma a dos manos equipada. Al hacer esto, te la quitaras. ¿Estás seguro?',
-      relicAndTwoHandedWarning:
-        'Tienes un objeto en tu segunda ranura de arma y un objeto Reliquia ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+      relicAndTwoHandedWarning: 'Tienes un objeto en tu segunda ranura de arma y un objeto Reliquia ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
       relicAndSecondWeaponWarning: 'Ya tienes un arma a dos manos y un objeto Reliquia equipados. Ambos serán removidos si haces esto. ¿Estás seguro?',
-      epicAndTwoHandedWarning:
-        'Tienes un objeto en tu segunda ranura de arma y un objeto Épico ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+      epicAndTwoHandedWarning: 'Tienes un objeto en tu segunda ranura de arma y un objeto Épico ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
       epicAndSecondWeaponWarning: 'Ya tienes equipados un arma a dos manos y un objeto Épico ya equipiado. Ambos serán removidos si haces esto. ¿Estás seguro?',
 
       itemFilters: {
@@ -213,8 +208,7 @@ export const es = {
 
     spellsAndPassivesContent: {
       activeSpells: 'Active Spells (WIP)', // NEEDS TRANSLATION
-      activesNote:
-        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
+      activesNote: 'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
       passives: 'Passives', // NEEDS TRANSLATION
       passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.', // NEEDS TRANSLATION
     },

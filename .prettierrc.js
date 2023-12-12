@@ -1,5 +1,5 @@
 module.exports = {
-  printWidth: 160,
+  printWidth: 180,
   tabWidth: 2,
   useTabs: false,
   semi: true,
@@ -22,6 +22,12 @@ module.exports = {
       files: "*.vue",
       options: {
         parser:"vue"
+      }
+    },
+    {
+      files: "*.json",
+      options: {
+        printWidth: 300,
       }
     }
   ]

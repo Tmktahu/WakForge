@@ -9,13 +9,7 @@
       <div class="flex align-items-center w-full">
         <div class="text-xl mr-3">{{ $t('charactersPage.codeInputLabel') }}:</div>
         <p-inputText v-model="buildCode" :placeholder="$t('charactersPage.codeInputPlaceholder')" class="flex-grow-1 py-2" />
-        <p-button
-          icon="mdi mdi-plus-thick"
-          :disabled="!isValidBuildCode"
-          :label="$t('charactersPage.codeInputButton')"
-          class="create-character-button py-1 pr-3 pl-2 ml-3"
-          @click="onCreateCharacterFromCode"
-        />
+        <p-button icon="mdi mdi-plus-thick" :disabled="!isValidBuildCode" :label="$t('charactersPage.codeInputButton')" class="create-character-button py-1 pr-3 pl-2 ml-3" @click="onCreateCharacterFromCode" />
       </div>
       <div v-if="!isValidBuildCode && buildCode !== ''" class="mt-2" style="color: var(--error)">{{ $t('charactersPage.invalidBuildCode') }}</div>
     </div>
@@ -26,12 +20,7 @@
       <div class="flex w-full">
         <div class="text-xl">{{ $t('charactersPage.savedCharactersTitle') }}</div>
         <div class="flex-grow-1" />
-        <p-button
-          icon="mdi mdi-folder"
-          :label="$t('charactersPage.createNewGroupButton')"
-          class="create-character-button py-1 pr-3 pl-2"
-          @click="onCreateGroup"
-        />
+        <p-button icon="mdi mdi-folder" :label="$t('charactersPage.createNewGroupButton')" class="create-character-button py-1 pr-3 pl-2" @click="onCreateGroup" />
       </div>
 
       <div class="character-enties-wrapper flex flex-column mt-2 pb-3">
@@ -55,12 +44,7 @@
                     </template>
                   </p-inplace>
                   <div class="flex-grow-1" />
-                  <p-button
-                    icon="mdi mdi-plus-thick"
-                    :label="$t('charactersPage.createNewCharacterButton')"
-                    class="create-character-button py-1 pr-3 pl-2 ml-3"
-                    @click.stop="onCreateCharacter(group)"
-                  />
+                  <p-button icon="mdi mdi-plus-thick" :label="$t('charactersPage.createNewCharacterButton')" class="create-character-button py-1 pr-3 pl-2 ml-3" @click.stop="onCreateCharacter(group)" />
                   <p-button icon="pi pi-trash" class="ml-3 py-1" @click.stop="onDeleteGroup(group)" />
                 </div>
               </template>
@@ -69,12 +53,7 @@
                   <div class="character-entry py-2 mt-2" draggable="true" @click="gotoBuild($event, buildId)" @dragstart="onBuildDragStart($event, buildId)">
                     <div class="character-info flex align-items-center justify-content-left flex-grow-1">
                       <div class="ml-3">
-                        <p-image
-                          v-if="getBuildById(buildId).class"
-                          class="class-image"
-                          :src="`https://tmktahu.github.io/WakfuAssets/classes/${getBuildById(buildId).class}.png`"
-                          image-style="width: 40px"
-                        />
+                        <p-image v-if="getBuildById(buildId).class" class="class-image" :src="`https://tmktahu.github.io/WakfuAssets/classes/${getBuildById(buildId).class}.png`" image-style="width: 40px" />
                         <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
                       </div>
                       <p-divider class="mx-2" layout="vertical" />
@@ -100,12 +79,7 @@
                 <i class="mdi mdi-folder" />
                 <div class="mx-2">Ungrouped</div>
                 <div class="flex-grow-1" />
-                <p-button
-                  icon="mdi mdi-plus-thick"
-                  :label="$t('charactersPage.createNewCharacterButton')"
-                  class="create-character-button py-1 pr-3 pl-2 ml-3"
-                  @click.stop="onCreateCharacter('none')"
-                />
+                <p-button icon="mdi mdi-plus-thick" :label="$t('charactersPage.createNewCharacterButton')" class="create-character-button py-1 pr-3 pl-2 ml-3" @click.stop="onCreateCharacter('none')" />
               </div>
             </template>
             <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
@@ -113,12 +87,7 @@
                 <div class="character-entry py-2 mt-2" draggable="true" @click="gotoBuild($event, build.id)" @dragstart="onBuildDragStart($event, build.id)">
                   <div class="character-info flex align-items-center justify-content-left flex-grow-1">
                     <div class="ml-3">
-                      <p-image
-                        v-if="build.class"
-                        class="class-image"
-                        :src="`https://tmktahu.github.io/WakfuAssets/classes/${build.class}.png`"
-                        image-style="width: 40px"
-                      />
+                      <p-image v-if="build.class" class="class-image" :src="`https://tmktahu.github.io/WakfuAssets/classes/${build.class}.png`" image-style="width: 40px" />
                       <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
                     </div>
                     <p-divider class="mx-2" layout="vertical" />

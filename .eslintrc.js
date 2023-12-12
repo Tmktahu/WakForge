@@ -15,14 +15,7 @@ module.exports = {
     browser: true,
   },
   plugins: ['import', 'lodash', 'prettier', 'vue'],
-  extends: [
-    'eslint:recommended',
-    'plugin:vue/vue3-recommended',
-    'plugin:prettier/recommended',
-    '@vue/prettier',
-    'plugin:import/errors',
-    'plugin:import/warnings',
-  ],
+  extends: ['eslint:recommended', 'plugin:vue/vue3-recommended', 'plugin:prettier/recommended', '@vue/prettier', 'plugin:import/errors', 'plugin:import/warnings'],
   settings: {
     'import/resolver': {
       alias: {
@@ -170,6 +163,24 @@ module.exports = {
         'vue/comment-directive': 'off',
       },
     },
+    {
+      files: ['*.json'],
+      rules: {
+        'max-len': [
+          'warn',
+          {
+            code: 300,
+            comments: 300,
+            tabWidth: 2,
+            ignoreUrls: true,
+            ignoreStrings: true,
+            ignoreTemplateLiterals: true,
+            ignoreRegExpLiterals: true,
+          },
+        ], // enforce a maximum line length
+      },
+    },
+
     {
       files: ['**/__tests__/*.{j,t}s?(x)', '**/tests/unit/**/*.spec.{j,t}s?(x)'],
       env: {

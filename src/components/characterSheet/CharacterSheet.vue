@@ -3,14 +3,7 @@
     <div class="top-bar py-3 px-3">
       <p-inputText v-model="characterName" class="mr-2 py-2 px-2" @input="saveData($event, 'name')" />
 
-      <p-dropdown
-        v-model="characterClass"
-        :options="classOptions"
-        :placeholder="$t('characterSheet.selectAClass')"
-        option-label="id"
-        class="class-selector mr-2 pr-2"
-        @change="saveData($event, 'class')"
-      >
+      <p-dropdown v-model="characterClass" :options="classOptions" :placeholder="$t('characterSheet.selectAClass')" option-label="id" class="class-selector mr-2 pr-2" @change="saveData($event, 'class')">
         <template v-slot:value="slotProps">
           <div v-if="slotProps.value" class="flex align-items-center pl-2">
             <p-image class="class-image mr-2" :src="`https://tmktahu.github.io/WakfuAssets/classes/${slotProps.value.id}.png`" image-style="width: 28px" />
@@ -316,7 +309,7 @@ const onCopyBuildCode = () => {
   .code-disclaimer {
     position: absolute;
     display: flex;
-    bottom: -20px;
+    bottom: -18px;
     right: 80px;
     font-size: 14px;
     color: var(--primary-50);

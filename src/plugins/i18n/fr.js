@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable quotes */
 import frItemTranslations from './itemTranslations/fr_items.json';
-import frStatesTranslations from './itemTranslations/fr_states.json';
+import frStatesTranslations from './statesTranslations/fr_states.json';
 
 export const fr = {
   items: frItemTranslations,
