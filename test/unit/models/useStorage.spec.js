@@ -35,8 +35,17 @@ describe('useStorage Tests', () => {
 
   // handles live saving to local storage using watch and debounce
   test('should handle live saving to local storage using watch and debounce', async () => {
+    const localStorageData = {
+      appVersion: '1.0.0',
+      storageVersion: '0.0.5',
+      characters: [{ id: '1', name: 'Character 1' }],
+      uiTheme: 'dark',
+      language: 'en',
+      groups: ['group1', 'group2'],
+    };
     // Arrange
     const localStorageMock = {
+      getItem: vi.fn().mockReturnValue(JSON.stringify(localStorageData)),
       setItem: vi.fn(),
     };
     global.window = {
