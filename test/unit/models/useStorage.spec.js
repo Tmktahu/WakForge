@@ -34,31 +34,31 @@ describe('useStorage Tests', () => {
   });
 
   // handles live saving to local storage using watch and debounce
-//   test('should handle live saving to local storage using watch and debounce', async () => {
-//     const localStorageData = {
-//       appVersion: '1.0.0',
-//       storageVersion: '0.0.5',
-//       characters: [{ id: '1', name: 'Character 1' }],
-//       uiTheme: 'dark',
-//       language: 'en',
-//       groups: ['group1', 'group2'],
-//     };
-//     // Arrange
-//     const localStorageMock = {
-//       getItem: vi.fn().mockReturnValue(JSON.stringify(localStorageData)),
-//       setItem: vi.fn(),
-//     };
-//     global.window = {
-//       localStorage: localStorageMock,
-//     };
-//     const { setup } = useStorage();
-//     await setup();
+  //   test('should handle live saving to local storage using watch and debounce', async () => {
+  //     const localStorageData = {
+  //       appVersion: '1.0.0',
+  //       storageVersion: '0.0.5',
+  //       characters: [{ id: '1', name: 'Character 1' }],
+  //       uiTheme: 'dark',
+  //       language: 'en',
+  //       groups: ['group1', 'group2'],
+  //     };
+  //     // Arrange
+  //     const localStorageMock = {
+  //       getItem: vi.fn().mockReturnValue(JSON.stringify(localStorageData)),
+  //       setItem: vi.fn(),
+  //     };
+  //     global.window = {
+  //       localStorage: localStorageMock,
+  //     };
+  //     const { setup } = useStorage();
+  //     await setup();
 
-//     // Act
-//     masterData.appVersion = '1.0.0';
-//     await new Promise((resolve) => setTimeout(resolve, 200));
+  //     // Act
+  //     masterData.appVersion = '1.0.0';
+  //     await new Promise((resolve) => setTimeout(resolve, 200));
 
-//     // Assert
-//     expect(localStorageMock.setItem).toHaveBeenCalledWith(LOCALSTORAGE_KEY, JSON.stringify(masterData, null, 2));
-//   });
-// });
+  //     // Assert
+  //     expect(localStorageMock.setItem).toHaveBeenCalledWith(LOCALSTORAGE_KEY, JSON.stringify(masterData, null, 2));
+  //   });
+});
