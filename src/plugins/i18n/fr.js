@@ -8,8 +8,8 @@ export const fr = {
   states: frStatesTranslations,
   app: {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
-    globalErrorMessage: 'There was a severe error that stopped the app from working correctly.', // NEEDS TRANSLATION
-    globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.', // NEEDS TRANSLATION
+    globalErrorMessage: "Il y a eu une erreur critique qui a empêché l'application de fonctionner correctement.",
+    globalErrorContact: 'Merci de contacter Fryke sur Discord le plus tôt possible avec les informations ci-dessous.',
   },
   sidebar: {
     charactersTab: 'Personnages',
@@ -31,7 +31,7 @@ export const fr = {
     title: 'Bienvenue sur Wakforge',
     description: "Si vous rencontrez le moindre problème, n'hésitez pas à contacter Fryke (fryke) sur Discord.",
     codeInputLabel: 'Code Build',
-    codeInputPlaceholder: "Entrer le Build Code",
+    codeInputPlaceholder: 'Entrer le Build Code',
     codeInputButton: "Créer à partir d'un code",
     invalidBuildCode: 'Build Code invalide.',
     savedCharactersTitle: 'Personnages Sauvegardés',
@@ -80,9 +80,9 @@ export const fr = {
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Runes & Sublimations (WIP)',
     spellsAndPassives: 'Sorts & Passifs',
-    codeDisclaimer: 'Oui, c\'est normal. Ne soyez pas inquiet.',
+    codeDisclaimer: "Oui, c'est normal. Ne soyez pas inquiet.",
     codeInfo:
-      'Ces caractères sont intentionnels. Pour que le code reste court, nous sommes allés vers les profondeurs obscures de l\'encodage en base2048. Contemplez la majesté de ces runes du code du Build. Puisse-t-il vous apporter l\'illumination.',
+      "Ces caractères sont intentionnels. Pour que le code reste court, nous sommes allés vers les profondeurs obscures de l'encodage en base2048. Contemplez la majesté de ces runes du code du Build. Puisse-t-il vous apporter l'illumination.",
 
     statsDisplay: {
       ar: 'AR',
@@ -159,12 +159,12 @@ export const fr = {
     },
 
     itemSolverContent: {
-      numElements: 'Nombre d\'éléments',
+      numElements: "Nombre d'éléments",
       apTooltip: 'Combien de PA au total vous souhaitez.',
       mpTooltip: 'Combien de PM au total vous souhaitez.',
       rangeTooltip: 'Combien de PO au total vous souhaitez.',
       wakfuTooltip: 'Combien de PW au total vous souhaitez.',
-      numElementsTooltip: 'Combien d\'éléments vous souhaitez sur chaque item.',
+      numElementsTooltip: "Combien d'éléments vous souhaitez sur chaque item.",
       meleeMasteryTooltip: 'La Maîtrise Mêlée doit-elle être inclue si possible ?',
       distanceMasteryTooltip: 'La Maîtrise Distance doit-elle être inclue si possible ?',
       healingMasteryTooltip: 'La Maîtrise Soin doit-elle être inclue si possible ?',
@@ -172,35 +172,36 @@ export const fr = {
       berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
       poweredBy: 'Powered by',
       code: 'code',
-      problemMessage: 'Il y a eu un souci avec l\'auto-solver. Si vous pensez qu\'il s\'agit d\'un bug, merci de contacter Fryke sur Discord.',
+      problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
       instructions: 'Entrer vos paramètres au-dessus et cliquer sur "Générer un set d\'items".',
-      ifYouNeedHelp: 'Si vous avez besoin d\'assistance, n\'hésitez pas à nous contacter sur Discord avec vos questions.',
+      ifYouNeedHelp: "Si vous avez besoin d'assistance, n'hésitez pas à nous contacter sur Discord avec vos questions.",
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
-      loadingDisclaimer: 'N\'oubliez pas qu\'en fonction des options, celà peut prendre du temps.',
-      normal: 'Normal', // NEEDS TRANSLATION
-      prioritized: 'Prioritized', // NEEDS TRANSLATION
-      preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
-      heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
-      targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
-      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
-      elementaryMasteryInfo: 'What elemental masteries should be prioritized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
-      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
-      priorities: 'Priorities', // NEEDS TRANSLATION
-      totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
-      apWarning: 'You are asking for at least 6 AP from items, which may be impossible.', // NEEDS TRANSLATION
-      rangeForLevelWarning: 'You may be asking for more range than is possible at your level.', // NEEDS TRANSLATION
-      rangeImpossibleWarning: 'You may be asking for more range than is possible.', // NEEDS TRANSLATION
-      combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.', // NEEDS TRANSLATION
+      loadingDisclaimer: "N'oubliez pas qu'en fonction des options, celà peut prendre du temps.",
+      normal: 'Normal',
+      prioritized: 'Priorisée',
+      preferNoNegatives: 'Préférée non négative',
+      heavilyPreferNoNegatives: 'Priorisée non négative',
+      targetStatsInfo: "Ce sont les stats totales visées pour l'ensemble du build.",
+      prioritiesInfo: "C'est la priorité avec laquelle vous souhaitez que les maîtrises soient prises en CompositionEvent.",
+      elementaryMasteryInfo:
+        "Quelles maîtrises élémentaires doivent être privilégier ? Celle affectera également le nombre de slot d'éléments aléatoires recherchés par le solver.",
+      sinbadErrorInfo: 'Si vous voyez ceci, merci de contacter Keeper of Time (sinbad) sur Discord avec les informations suivantes.',
+      priorities: 'Priorités',
+      totalTargetStats: 'Stats totales ciblées',
+      apWarning: 'Vous demandez au moins 6 PA par les items, ce qui peut être impossible.',
+      rangeForLevelWarning: "Vous demandez plus de PO qu'il n'est possible pour votre niveau.",
+      rangeImpossibleWarning: 'Vous demandez un nombre en PO qui peut être impossible.',
+      combinedApMpWarning: "Vous demandez une somme AP+MP qui n'est pas possible à votre niveau.",
     },
 
     runesAndSubsContent: {
       hotkeysAndShortcuts: 'Raccourcis',
-      dragAndDrop: 'Glisser-Déposer une rune pour l\'affecter.',
+      dragAndDrop: "Glisser-Déposer une rune pour l'affecter.",
       dragReplace: 'Déposer une rune sur une autre pour la remplacer.',
       ctrlClick: 'CTRL-Clic sur une rune pour la remplacer.',
       shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
-      rightClick: 'Clic-Droit sur une rune pour plus d\'options.',
-      hightlightClick: 'Sélectionner un slot et cliquer sur une rune à droite pour l\'assigner.',
+      rightClick: "Clic-Droit sur une rune pour plus d'options.",
+      hightlightClick: "Sélectionner un slot et cliquer sur une rune à droite pour l'assigner.",
       statsSummary: 'Résumé Stats',
       runeLevelTooltip: `Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.`,
       runeLevel: 'Niveau Rune',
@@ -214,11 +215,11 @@ export const fr = {
     },
 
     spellsAndPassivesContent: {
-      activeSpells: 'Active Spells (WIP)', // NEEDS TRANSLATION
+      activeSpells: 'Sorts actifs (WIP)',
       activesNote:
-        'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
-      passives: 'Passives', // NEEDS TRANSLATION
-      passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.', // NEEDS TRANSLATION
+        "Les sorts actifs n'ont aucune influence directe sur les stats d'un build et sont extrêmement difficiles à parser. C'est pourquoi ils ne seront pas disponibles pour le moment.",
+      passives: 'Passifs',
+      passivesNote: "Si vous trouvez un passif qui n'applique pas correctement les bonnes valeurs, merci de nous informer sur Discord.",
     },
   },
   classes: {
@@ -336,7 +337,7 @@ export const fr = {
     percentArmorReceived: '% Armure reçue',
     percentHealsPerformed: '% Soins réalisés',
     percentIndirectDamageInflicted: '% Dommages indirects infligés',
-    dodgeOverride: 'Ignorer l\'esquive',
+    dodgeOverride: "Ignorer l'esquive",
     percentHealsReceived: '% Soins reçus',
     healthFromLevel: 'Points de vie par niveau',
     lockOverride: 'Ignorer le tacle',

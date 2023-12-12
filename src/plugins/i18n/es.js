@@ -170,20 +170,21 @@ export const es = {
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
       loadingMessage: 'Jimmy está haciendo los cálculos y todo eso... Por favor, espera...',
       loadingDisclaimer: 'Tenga en cuenta que, dependiendo de las preferencias anteriores, esto puede llevar algún tiempo.',
-      normal: 'Normal', // NEEDS TRANSLATION
-      prioritized: 'Prioritized', // NEEDS TRANSLATION
-      preferNoNegatives: 'Prefer no negatives', // NEEDS TRANSLATION
-      heavilyPreferNoNegatives: 'Heavily prefer no negatives', // NEEDS TRANSLATION
-      targetStatsInfo: 'These are the total target stats you want for the whole build.', // NEEDS TRANSLATION
-      prioritiesInfo: 'These are what priority you want the various masteries to be considered at.', // NEEDS TRANSLATION
-      elementaryMasteryInfo: 'What elemental masteries should be prioritized? This will also affect the number of random element slots the solver goes for.', // NEEDS TRANSLATION
-      sinbadErrorInfo: 'If you are seeing this, then please contact Keeper of Time (sinbad) on Discord with the following information.', // NEEDS TRANSLATION
-      priorities: 'Priorities', // NEEDS TRANSLATION
-      totalTargetStats: 'Total Target Stats', // NEEDS TRANSLATION
-      apWarning: 'You are asking for at least 6 AP from items, which may be impossible.', // NEEDS TRANSLATION
-      rangeForLevelWarning: 'You may be asking for more range than is possible at your level.', // NEEDS TRANSLATION
-      rangeImpossibleWarning: 'You may be asking for more range than is possible.', // NEEDS TRANSLATION
-      combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.', // NEEDS TRANSLATION
+      normal: 'Normal',
+      prioritized: 'Priorizar',
+      preferNoNegatives: 'Prefiero no negativos',
+      heavilyPreferNoNegatives: 'Priorizar no negativos',
+      targetStatsInfo: 'Estas son las estadísticas objetivo totales que quieres para toda la build.',
+      prioritiesInfo: 'Estas son las prioridades en las que quieres que se consideren los distintos dominios.',
+      elementaryMasteryInfo:
+        '¿Qué dominios elementales deben priorizarse? Esto también afectará al número de ranuras de elementos aleatorios que elige el solucionador.',
+      sinbadErrorInfo: ' Si ves esto, ponte en contacto con Keeper of Time (sinbad) en Discord con la siguiente información.',
+      priorities: 'Prioridades',
+      totalTargetStats: 'Estadísticas totales objetivo',
+      apWarning: 'Estás pidiendo al menos 6 PA procedentes de los objetos, lo que puede ser imposible.',
+      rangeForLevelWarning: 'Puede que estés pidiendo más alcance del que es posible a tu nivel.',
+      rangeImpossibleWarning: 'Puede que estés pidiendo más alcance del que es posible.',
+      combinedApMpWarning: 'Puede que estés pidiendo una cantidad combinada de PA+PM que no sea posible en tu nivel.',
     },
 
     runesAndSubsContent: {
@@ -207,10 +208,11 @@ export const es = {
     },
 
     spellsAndPassivesContent: {
-      activeSpells: 'Active Spells (WIP)', // NEEDS TRANSLATION
-      activesNote: 'Active Spells do not have any direct influence on the stats of a build, and they are very difficult to parse. We will not have them for some time.', // NEEDS TRANSLATION
-      passives: 'Passives', // NEEDS TRANSLATION
-      passivesNote: 'If you find any passives that do not apply their values correctly, please lets us know in the Discord.', // NEEDS TRANSLATION
+      activeSpells: 'Hechizos Activos (WIP)',
+      activesNote:
+        'Los Hechizos Activos no tienen ninguna influencia directa en las estadísticas de una build, y son muy difíciles de analizar. No dispondremos de ellos durante algún tiempo.',
+      passives: 'Pasivas',
+      passivesNote: 'Si encuentras alguna pasiva que no aplique sus valores correctamente, por favor háznoslo saber en el Discord.',
     },
   },
   classes: {
@@ -342,7 +344,7 @@ export const es = {
     percentDodge: '% de Esquiva',
     damageInflicted: 'Daños Finales',
     healsPerformed: 'Curas Finales',
-    healsReceived: 'Curas Recibidas', // NEEDS TRANSLATION
+    healsReceived: 'Curas Recibidas',
     armorGiven: 'Armadura Dada',
     healthPoints: 'Puntos de vida',
 
