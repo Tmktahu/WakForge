@@ -7,10 +7,15 @@
     <template v-slot:content>
       <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 }">
         <slot name="content">
+          <div class="state-title py-2 px-2">
+            <span>{{ $t(`states.${stateData.name}`) }}</span>
+            <span class="mx-1">State at level</span>
+            <span>{{ currentLevel }}</span>
+          </div>
           <div class="state-description">
             <div class="flex flex-column">
               <template v-for="line in stateData?.descriptionData" :key="line.text">
-                <div :class="{ 'pl-3': line.indented }" class="description-line pb-1" v-html="getLineText(line)" />
+                <div :class="{ 'pl-3': line.indented, 'px-2': !line.indented, indented: line.indented }" class="description-line py-1" v-html="getLineText(line)" />
               </template>
             </div>
 
@@ -46,6 +51,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
+  currentLevel: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const { t } = useI18n();
@@ -74,7 +83,7 @@ const timer = () => {
 };
 
 const getLineText = (line) => {
-  return t(`states.${line.text}`, {
+  return `${line.indented ? '<i class="mdi mdi-arrow-right-bottom" style="margin-top: -2px; margin-right: 4px;"></i>' : ''}${t(`states.${line.text}`, {
     img_fire: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/FIRE.png" /></div>',
     img_earth: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/EARTH.png" /></div>',
     img_water: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/WATER.png" /></div>',
@@ -86,7 +95,12 @@ const getLineText = (line) => {
     img_ally: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/ally.png" /></div>',
     img_enemy: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/enemy.png" /></div>',
     img_circling: '<div class="inline-img"><img src="https://tmktahu.github.io/WakfuAssets/misc/CIRCLERING.png" /></div>',
-  });
+    num_0: `${line.num_0?.[`level_${props.currentLevel}`]}`,
+    num_1: `${line.num_1?.[`level_${props.currentLevel}`]}`,
+    num_2: `${line.num_2?.[`level_${props.currentLevel}`]}`,
+    num_3: `${line.num_3?.[`level_${props.currentLevel}`]}`,
+    num_4: `${line.num_4?.[`level_${props.currentLevel}`]}`, // there is no num_4 ever used from what I can tell, but we do it just in case
+  })}`;
 };
 </script>
 
@@ -98,8 +112,9 @@ const getLineText = (line) => {
   overflow: hidden;
 }
 
-.state-description {
-  padding: 4px 6px;
+.state-title {
+  display: flex;
+  background-color: var(--primary-30);
 }
 
 .inline-tooltip-trigger {
@@ -117,6 +132,12 @@ const getLineText = (line) => {
 :deep(.description-line) {
   white-space: pre;
   display: flex;
+  border-bottom: 2px solid var(--background-10);
+
+  &.indented {
+    background-color: var(--background-10);
+    border-bottom: 1px solid var(--highlight-20);
+  }
 
   .inline-img {
     display: flex;
