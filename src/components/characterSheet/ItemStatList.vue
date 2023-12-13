@@ -5,9 +5,8 @@
         <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
         <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
         <div v-else-if="effect.id === 304" class="flex align-items-center">
-          <span>Adds the </span>
-          <MultiTooltip :state-id="`${effect.values[0]}`" />
-          <span>state</span>
+          <span>Adds +{{ effect.values[2] }} levels of </span>
+          <MultiTooltip :state-id="`${effect.values[0]}`" :current-level="effect.values[2]" />
         </div>
         <div v-else>
           <span>{{ getEffectValue(effect) > 0 ? '+' : '' }}{{ getEffectValue(effect) }}</span>
