@@ -75,31 +75,30 @@
               </div>
             </template>
 
-            <tippy duration="0" class="flex h-full">
-              <div
-                class="sublimation-drop-zone ml-2"
-                :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
-                @dragover.prevent
-                @dragenter.prevent
-                @drop="onDrop($event, slotKey, 'subSlot')"
-                @click="onRemoveSublimation(slotKey)"
-              >
-                <template v-if="currentCharacter.equipment[slotKey].subSlot">
-                  <div class="sublimation-entry flex align-items-center px-2">
-                    <p-image
-                      :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
-                      image-style="width: 24px"
-                      class="flex"
-                    />
-                    <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
-                  </div>
-                </template>
+            <MultiTooltip v-if="currentCharacter.equipment[slotKey].subSlot" style="height: 100%">
+              <template v-slot:trigger>
+                <div
+                  class="sublimation-drop-zone ml-2"
+                  :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+                  @dragover.prevent
+                  @dragenter.prevent
+                  @drop="onDrop($event, slotKey, 'subSlot')"
+                  @click="onRemoveSublimation(slotKey)"
+                >
+                  <template v-if="currentCharacter.equipment[slotKey].subSlot">
+                    <div class="sublimation-entry flex align-items-center px-2">
+                      <p-image
+                        :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
+                        image-style="width: 24px"
+                        class="flex"
+                      />
+                      <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                    </div>
+                  </template>
 
-                <div v-else class="px-2" style="opacity: 0.5">
-                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
+                  <i class="pi pi-trash" />
                 </div>
-                <i class="pi pi-trash" />
-              </div>
+              </template>
 
               <template v-slot:content>
                 <div v-if="currentCharacter.equipment[slotKey].subSlot" class="item-card-tooltip">
@@ -122,7 +121,21 @@
                   <ItemStatList :item="currentCharacter.equipment[slotKey].subSlot" />
                 </div>
               </template>
-            </tippy>
+            </MultiTooltip>
+
+            <div
+              v-else
+              class="sublimation-drop-zone ml-2"
+              :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+              @dragover.prevent
+              @dragenter.prevent
+              @drop="onDrop($event, slotKey, 'subSlot')"
+              @click="onRemoveSublimation(slotKey)"
+            >
+              <div class="px-2" style="opacity: 0.5">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
+              </div>
+            </div>
           </div>
 
           <div v-else-if="slotKey !== 'undefined'" class="item-runes-section disabled flex align-items-center mb-2 pr-1">
@@ -134,24 +147,31 @@
               <div class="rune-drop-zone ml-2" @dragover.prevent @dragenter.prevent @drop="onDrop($event, slotKey, `runeSlot${index}`)" />
             </template>
 
-            <div class="info-text">An item must be equipped</div>
+            <div class="info-text">{{ $t('characterSheet.runesAndSubsContent.itemMustBeEquipped') }}</div>
           </div>
         </template>
       </template>
 
       <div class="flex mb-2">
         <tippy duration="0" class="flex h-full">
-          <div class="special-sublimation-drop-zone" @dragover.prevent @dragenter.prevent @drop="onDrop($event, null, 'epicSubSlot')" @click="onRemoveSublimation('epicSubSlot')">
+          <div
+            class="special-sublimation-drop-zone"
+            style="background: #67135b"
+            @dragover.prevent
+            @dragenter.prevent
+            @drop="onDrop($event, null, 'epicSubSlot')"
+            @click="onRemoveSublimation('epicSubSlot')"
+          >
             <template v-if="currentCharacter.epicSubSlot">
-              <div class="sublimation-entry flex align-items-center px-2 py-1">
+              <div class="sublimation-entry flex align-items-center px-2 py-2">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.epicSubSlot.imageId}.png`" image-style="width: 24px" class="flex" />
                 <div class="ml-1">{{ $t(`items.${currentCharacter.epicSubSlot.id}`) }}</div>
               </div>
             </template>
 
-            <div v-else class="flex align-items-center px-2" style="opacity: 0.7">
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
-              Epic Sub
+            <div v-else class="flex align-items-center px-2 py-2">
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/misc/shardPinkEmpty.png`" image-style="width: 24px" class="flex" />
+              <span class="ml-1">{{ $t('characterSheet.runesAndSubsContent.epicSub') }}</span>
             </div>
             <i class="pi pi-trash" />
           </div>
@@ -177,21 +197,22 @@
         <tippy duration="0" class="flex h-full">
           <div
             class="special-sublimation-drop-zone ml-2"
+            style="background: #411468"
             @dragover.prevent
             @dragenter.prevent
             @drop="onDrop($event, null, 'relicSubSlot')"
             @click="onRemoveSublimation('relicSubSlot')"
           >
             <template v-if="currentCharacter.relicSubSlot">
-              <div class="sublimation-entry flex align-items-center px-2 py-1">
+              <div class="sublimation-entry flex align-items-center px-2 py-2">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.relicSubSlot.imageId}.png`" image-style="width: 24px" class="flex" />
                 <div class="ml-1">{{ $t(`items.${currentCharacter.relicSubSlot.id}`) }}</div>
               </div>
             </template>
 
-            <div v-else class="flex align-items-center px-2" style="opacity: 0.7">
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
-              Relic Sub
+            <div v-else class="flex align-items-center px-2 py-2">
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/misc/shardPurpleEmpty.png`" image-style="width: 24px" class="flex" />
+              <span class="ml-1">{{ $t('characterSheet.runesAndSubsContent.relicSub') }}</span>
             </div>
             <i class="pi pi-trash" />
           </div>
@@ -232,7 +253,7 @@
               <div class="flex px-2 py-1">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 18px" class="flex" />
                 <div class="flex ml-2">
-                  <span>+{{ summaryEntries[runeOrSubId].totalValue }} levels of</span>
+                  <span>{{ $t('characterSheet.runesAndSubsContent.addsStateLevelsShort', { num_0: summaryEntries[runeOrSubId].totalValue }) }}</span>
                   <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
                 </div>
               </div>
@@ -241,7 +262,11 @@
                 class="warning-message flex pr-2 pl-3 py-1 w-full"
               >
                 <i class="mdi mdi-arrow-up-left" style="margin-top: -2px; margin-right: 4px" />
-                <span>This state only stacks up to level {{ STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] }}</span>
+                <span>
+                  {{
+                    $t('characterSheet.runesAndSubsContent.stateStackingWarning', { num_0: STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] })
+                  }}
+                </span>
               </div>
             </div>
           </template>
@@ -294,8 +319,8 @@
       </div>
     </div>
 
-    <div v-if="showOptionLists" class="flex flex-column" style="min-width: 270px">
-      <p-inputText v-model="subSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
+    <div v-if="showOptionLists" class="flex flex-column" style="min-width: 300px">
+      <p-inputText v-model="subSearchTerm" class="py-2 px-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
       <div class="flex mt-2">
         <p-checkbox v-model="sortByMatching" :binary="true" />
         <div class="mx-2">{{ $t('characterSheet.runesAndSubsContent.sortByMatching') }}</div>
@@ -313,7 +338,7 @@
         v-if="normalSublimationOptions"
         :items="normalSublimationOptions"
         class="sublimation-options-wrapper my-2 py-1"
-        :item-size="34"
+        :item-size="32"
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
@@ -356,7 +381,7 @@
         </template>
       </p-virtualScroller>
 
-      <p-inputText v-model="specialSubSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
+      <p-inputText v-model="specialSubSearchTerm" class="py-2 px-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchEpicAndRelicSubs')" />
       <div class="flex mt-2">
         <p-checkbox v-model="showEpicSubs" :binary="true" />
         <div class="mx-2">{{ $t('constants.epic') }}</div>
@@ -368,7 +393,7 @@
         v-if="specialSublimationOptions"
         :items="specialSublimationOptions"
         class="sublimation-options-wrapper my-2 py-1"
-        :item-size="34"
+        :item-size="32"
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
@@ -376,8 +401,9 @@
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
-                :class="{ highlighted: canSublimationFit(currentCharacter.equipment[itemSlotHighlight], sublimation) }"
+                :class="{ 'epic-highlighted': currentCharacter.epicSubSlot?.id === sublimation.id, 'relic-highlighted': currentCharacter.relicSubSlot?.id === sublimation.id }"
                 draggable="true"
+                @click="onSpecialSubClick($event, sublimation, sublimation.sublimationParameters.isEpic ? 'epicSubSlot' : 'relicSubSlot')"
                 @dragstart="onDragStart($event, 'sublimation', sublimation)"
               >
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 20px" class="flex" />
@@ -669,6 +695,10 @@ const onRemoveAll = () => {
       currentCharacter.value.equipment[slotKey].subSlot = null;
     }
   });
+};
+
+const onSpecialSubClick = (event, sublimation, targetSlotKey) => {
+  currentCharacter.value[targetSlotKey] = sublimation;
 };
 
 const onRemoveSublimation = (itemSlotKey) => {
@@ -1019,6 +1049,14 @@ defineExpose({
 
     &.highlighted {
       background-color: var(--secondary-30);
+    }
+
+    &.epic-highlighted {
+      background-color: #67135b;
+    }
+
+    &.relic-highlighted {
+      background-color: #411468;
     }
   }
 

@@ -6,10 +6,10 @@
           <div class="characteristics-category-header px-2 py-2">
             <span>{{ $t('characterSheet.characteristicsContent.intelligence') }}</span>
             <div class="flex-grow-1" />
-            <span
-              >{{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }}
-              {{ $t('characterSheet.characteristicsContent.points') }}</span
-            >
+            <span>
+              {{ calcRemainingPoints('intelligence') }}/{{ currentCharacter?.characteristics?.limits?.intelligence }}
+              {{ $t('characterSheet.characteristicsContent.points') }}
+            </span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -64,10 +64,7 @@
           <div class="characteristics-category-header px-2 py-2">
             <span>{{ $t('characterSheet.characteristicsContent.strength') }}</span>
             <div class="flex-grow-1" />
-            <span
-              >{{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }}
-              {{ $t('characterSheet.characteristicsContent.points') }}</span
-            >
+            <span>{{ calcRemainingPoints('strength') }}/{{ currentCharacter?.characteristics?.limits?.strength }} {{ $t('characterSheet.characteristicsContent.points') }}</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -112,10 +109,7 @@
           <div class="characteristics-category-header px-2 py-2">
             <span>{{ $t('characterSheet.characteristicsContent.agility') }}</span>
             <div class="flex-grow-1" />
-            <span
-              >{{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }}
-              {{ $t('characterSheet.characteristicsContent.points') }}</span
-            >
+            <span>{{ calcRemainingPoints('agility') }}/{{ currentCharacter?.characteristics?.limits?.agility }} {{ $t('characterSheet.characteristicsContent.points') }}</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -170,10 +164,7 @@
           <div class="characteristics-category-header px-2 py-2">
             <span>{{ $t('characterSheet.characteristicsContent.fortune') }}</span>
             <div class="flex-grow-1" />
-            <span
-              >{{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }}
-              {{ $t('characterSheet.characteristicsContent.points') }}</span
-            >
+            <span>{{ calcRemainingPoints('fortune') }}/{{ currentCharacter?.characteristics?.limits?.fortune }} {{ $t('characterSheet.characteristicsContent.points') }}</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -252,10 +243,7 @@
           <div class="characteristics-category-header px-2 py-2">
             <span>{{ $t('characterSheet.characteristicsContent.major') }}</span>
             <div class="flex-grow-1" />
-            <span
-              >{{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }}
-              {{ $t('characterSheet.characteristicsContent.points') }}</span
-            >
+            <span>{{ calcRemainingPoints('major') }}/{{ currentCharacter?.characteristics?.limits?.major }} {{ $t('characterSheet.characteristicsContent.points') }}</span>
           </div>
 
           <div class="flex flex-column px-2 py-1">
@@ -404,8 +392,7 @@ const majorElementalResistance = ref(currentCharacter.value.characteristics.majo
 const calcRemainingPoints = (type) => {
   let currentTotal = 0;
   if (type === 'intelligence') {
-    currentTotal =
-      percentHealthPoints.value + intelligenceElementalResistance.value + barrier.value + percentHealsReceived.value + percentArmorHeathPoints.value;
+    currentTotal = percentHealthPoints.value + intelligenceElementalResistance.value + barrier.value + percentHealsReceived.value + percentArmorHeathPoints.value;
   } else if (type === 'strength') {
     currentTotal = elementalMastery.value + meleeMastery.value + distanceMastery.value + healthPoints.value;
   } else if (type === 'agility') {

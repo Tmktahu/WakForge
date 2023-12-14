@@ -8,14 +8,16 @@
       <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 }">
         <slot name="content">
           <div class="state-title py-2 px-2">
-            <span>{{ $t(`states.${stateData.name}`) }}</span>
-            <span class="mx-1">State at level</span>
-            <span>
-              {{ Math.min(STATE_LEVEL_LIMITS[stateId], currentLevel) || currentLevel }} (Max {{ STATE_LEVEL_LIMITS[stateId] === undefined ? '??' : STATE_LEVEL_LIMITS[stateId] }})
-            </span>
+            <span>{{ $t(`states.${stateData?.name}`) }}</span>
+            <span class="mx-1">{{
+              $t('tooltips.stateAtLevel', {
+                num_0: Math.min(STATE_LEVEL_LIMITS[stateId], currentLevel) || currentLevel,
+                num_1: STATE_LEVEL_LIMITS[stateId] === undefined ? '??' : STATE_LEVEL_LIMITS[stateId],
+              })
+            }}</span>
           </div>
-          <div v-if="stateId && STATE_LEVEL_LIMITS[stateId] === undefined" class="px-2 py-1" style="background: var(--error-50)">
-            We are missing information about this state. <br />If you have any, please let us know in the Discord server.
+          <div v-if="stateId && STATE_LEVEL_LIMITS[stateId] === undefined" class="px-2 py-1" style="background: var(--error-50); white-space: break-line; max-width: 45ch">
+            {{ $t('tooltips.missingInfoAboutState') }}
           </div>
           <div class="state-description">
             <div class="flex flex-column">

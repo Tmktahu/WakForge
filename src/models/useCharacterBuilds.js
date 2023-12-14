@@ -6,6 +6,7 @@ import deepUnref from '@/plugins/deepUnref.js';
 
 import { useBuildCodes } from '@/models/useBuildCodes';
 import { ITEM_SLOT_DATA } from '@/models/useConstants';
+import { useLevels } from '@/models/useLevels';
 
 export function useCharacterBuilds(masterData) {
   const currentCharacterId = ref(null);
@@ -13,6 +14,7 @@ export function useCharacterBuilds(masterData) {
   let route = null;
 
   const { decodeBuildCode, parseBuildData } = useBuildCodes();
+  const { setCharacteristicLimits } = useLevels();
 
   // TODO load in builds from local storage
 
@@ -58,6 +60,7 @@ export function useCharacterBuilds(masterData) {
     newCharacterData.id = uuidv4(); // add a UUID
 
     let newObject = mergeDeep(newCharacterData, parsedData);
+    setCharacteristicLimits(newObject);
 
     // then add it to our list of builds
     masterData.characters.push(newObject);

@@ -105,26 +105,10 @@ export const useBuildCodes = () => {
 
           // index 2, will be arrays for rune information
           itemDataArray.push([
-            [
-              character.equipment[key]?.runeSlot1?.rune?.id || -1,
-              character.equipment[key]?.runeSlot1?.level || -1,
-              character.equipment[key]?.runeSlot1?.color || -1,
-            ],
-            [
-              character.equipment[key]?.runeSlot2?.rune?.id || -1,
-              character.equipment[key]?.runeSlot2?.level || -1,
-              character.equipment[key]?.runeSlot2?.color || -1,
-            ],
-            [
-              character.equipment[key]?.runeSlot3?.rune?.id || -1,
-              character.equipment[key]?.runeSlot3?.level || -1,
-              character.equipment[key]?.runeSlot3?.color || -1,
-            ],
-            [
-              character.equipment[key]?.runeSlot4?.rune?.id || -1,
-              character.equipment[key]?.runeSlot4?.level || -1,
-              character.equipment[key]?.runeSlot4?.color || -1,
-            ],
+            [character.equipment[key]?.runeSlot1?.rune?.id || -1, character.equipment[key]?.runeSlot1?.level || -1, character.equipment[key]?.runeSlot1?.color || -1],
+            [character.equipment[key]?.runeSlot2?.rune?.id || -1, character.equipment[key]?.runeSlot2?.level || -1, character.equipment[key]?.runeSlot2?.color || -1],
+            [character.equipment[key]?.runeSlot3?.rune?.id || -1, character.equipment[key]?.runeSlot3?.level || -1, character.equipment[key]?.runeSlot3?.color || -1],
+            [character.equipment[key]?.runeSlot4?.rune?.id || -1, character.equipment[key]?.runeSlot4?.level || -1, character.equipment[key]?.runeSlot4?.color || -1],
           ]); // each will include ID, color, level
 
           // index 3 will be for sublimations
@@ -156,6 +140,9 @@ export const useBuildCodes = () => {
     dataArray.push(character.spells.passiveSlot4?.id || -1);
     dataArray.push(character.spells.passiveSlot5?.id || -1);
     dataArray.push(character.spells.passiveSlot6?.id || -1);
+
+    dataArray.push(character.epicSubSlot?.id || -1);
+    dataArray.push(character.relicSubSlot?.id || -1);
 
     let msgpackBinary = msgpackEncode(dataArray);
     let intermediatyBuffer = Buffer(msgpackBinary.buffer, msgpackBinary.byteOffset, msgpackBinary.byteLength);
@@ -274,6 +261,9 @@ export const useBuildCodes = () => {
     for (let activeSpellIndex = 1; activeSpellIndex <= 6; activeSpellIndex++) {
       characterData.spells[`passiveSlot${activeSpellIndex}`] = getSpellById(buildData.shift());
     }
+
+    characterData.epicSubSlot = getItemById(buildData.shift());
+    characterData.relicSubSlot = getItemById(buildData.shift());
 
     return characterData;
   };

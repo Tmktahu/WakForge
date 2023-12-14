@@ -44,7 +44,8 @@ export const en = {
     dragOrDrop: 'Or drag and drop a JSON file here.',
     dataNotRecognized: 'The current data is not recognized as WakForge data.',
     beforeImport: 'Before you can import characters, the version of your imported data will be checked here.',
-    needsMigration: 'Your data seems to be from an old storage version, and thus needs to be updated before it can be used. This is a safe operation and will make no permanent changes to your existing data.',
+    needsMigration:
+      'Your data seems to be from an old storage version, and thus needs to be updated before it can be used. This is a safe operation and will make no permanent changes to your existing data.',
     goodToGo: 'Your data is good to go.',
     dataSize: 'Data Size',
     numberOfCharacters: 'Number of Characters',
@@ -55,7 +56,8 @@ export const en = {
     currentStorageSize: 'Your storage has a current size of',
     contactForHelp: 'If you ever approach this limit, please contact Fryke (fryke) on Discord.',
     warning: 'WARNING',
-    warningMessage: 'Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have made a backup and understand what you are doing.',
+    warningMessage:
+      'Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have made a backup and understand what you are doing.',
     mustDownloadFirst: 'You must download a backup of your data first.',
     invalidJSON: 'That is invalid JSON',
     saveToLocalstorage: 'Save to LocalStorage',
@@ -77,7 +79,8 @@ export const en = {
     runesAndSubs: 'Runes & Sublimations (WIP)',
     spellsAndPassives: 'Spells & Passives',
     codeDisclaimer: 'Yes, this is intentional. Do not be afraid.',
-    codeInfo: 'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.',
+    codeInfo:
+      'These characters are intentional. To make the code small enough, we delved into the dark depths of base2048 encoding. Behold the runic majesty of the Build Code. May it bring you enlightenment.',
 
     statsDisplay: {
       ar: 'AR',
@@ -202,8 +205,12 @@ export const en = {
       sortByMatching: 'Sort by Matching',
       sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.',
       searchSublimations: 'Search Sublimations...',
-      addsThe: 'Adds the', // context = 'Adds the Apples state'
-      state: 'state', // context = 'Adds the Apples state'
+      searchEpicAndRelicSubs: 'Search Epic/Relic Sublimations...',
+      addsStateLevelsShort: '+{num_0} levels of', // context = "+1 levels of Abandon"
+      stateStackingWarning: 'This state only stacks up to level {num_0}',
+      relicSub: 'Relic Sub', // context = shorthand for "Relic Sublimation"
+      epicSub: 'Epic Sub', // context = shorthand for "Epic Sublimation"
+      itemMustBeEquipped: 'An item must be equipped',
     },
 
     spellsAndPassivesContent: {
@@ -265,6 +272,9 @@ export const en = {
     costumes: 'Costumes',
     sublimationScroll: 'Sublimation Scroll',
     enchantment: 'Rune',
+
+    epicSublimation: 'Epic Sublimation', // NEEDS TRANSLATION
+    relicSublimation: 'Relic Sublimation', // NEEDS TRANSLATION
 
     oneHandedWeapons: 'One Handed Weapons',
     twoHandedWeapons: 'Two Handed Weapons',
@@ -352,5 +362,12 @@ export const en = {
     irreversable: 'Are you sure? This is irreversible.',
     areYouSure: 'Are you sure?',
     willReplaceItems: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.',
+  },
+  tooltips: {
+    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements',
+    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements',
+    addsStateLevels: 'Adds +{num_0} levels of', // context = "Adds +1 level of Abandon"
+    stateAtLevel: 'State at level {num_0} (Max {num_1})', // context = "Abandon State at level 1 (Max 6)"
+    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.',
   },
 };
