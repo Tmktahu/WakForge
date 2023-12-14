@@ -106,7 +106,7 @@
                 <span>{{ $t('characterSheet.runesAndSubs') }}</span>
               </div>
             </template>
-            <RunesSubsTabContent />
+            <RunesSubsTabContent ref="runesAndSubsTabContent" />
           </p-tabPanel>
 
           <p-tabPanel>
@@ -147,6 +147,7 @@ const currentCharacter = inject('currentCharacter');
 
 const equipmentTabContent = ref(null);
 const characteristicsTabContent = ref(null);
+const runesAndSubsTabContent = ref(null);
 
 const characterName = ref(currentCharacter.value?.name);
 const characterLevel = ref(currentCharacter.value?.level);
@@ -189,6 +190,7 @@ const saveData = (event, inputName) => {
 const onTabChange = () => {
   nextTick(() => {
     equipmentTabContent.value.showList();
+    runesAndSubsTabContent.value.showLists();
   });
 };
 

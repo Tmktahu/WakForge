@@ -294,7 +294,7 @@
       </div>
     </div>
 
-    <div class="flex flex-column">
+    <div v-if="showOptionLists" class="flex flex-column" style="min-width: 270px">
       <p-inputText v-model="subSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
       <div class="flex mt-2">
         <p-checkbox v-model="sortByMatching" :binary="true" />
@@ -309,8 +309,14 @@
         </tippy>
       </div>
 
-      <div class="sublimation-options-wrapper flex flex-column my-2 py-1">
-        <template v-for="sublimation in normalSublimationOptions" :key="sublimation.id">
+      <p-virtualScroller
+        v-if="normalSublimationOptions"
+        :items="normalSublimationOptions"
+        class="sublimation-options-wrapper my-2 py-1"
+        :item-size="34"
+        style="width: 100%; height: 100%"
+      >
+        <template v-slot:item="{ item: sublimation }">
           <MultiTooltip>
             <template v-slot:trigger>
               <div
@@ -348,7 +354,7 @@
             </template>
           </MultiTooltip>
         </template>
-      </div>
+      </p-virtualScroller>
 
       <p-inputText v-model="specialSubSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
       <div class="flex mt-2">
@@ -358,8 +364,14 @@
         <div class="mx-2">{{ $t('constants.relic') }}</div>
       </div>
 
-      <div class="sublimation-options-wrapper flex flex-column mt-2 py-1">
-        <template v-for="sublimation in specialSublimationOptions" :key="sublimation.id">
+      <p-virtualScroller
+        v-if="specialSublimationOptions"
+        :items="specialSublimationOptions"
+        class="sublimation-options-wrapper my-2 py-1"
+        :item-size="34"
+        style="width: 100%; height: 100%"
+      >
+        <template v-slot:item="{ item: sublimation }">
           <MultiTooltip>
             <template v-slot:trigger>
               <div
@@ -393,7 +405,7 @@
             </template>
           </MultiTooltip>
         </template>
-      </div>
+      </p-virtualScroller>
     </div>
 
     <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
@@ -488,6 +500,12 @@ const runeContextOptions = ref([
     },
   },
 ]);
+
+const showOptionLists = ref(false);
+
+const showLists = () => {
+  showOptionLists.value = true;
+};
 
 const summaryEntries = computed(() => {
   let entries = {};
@@ -726,6 +744,10 @@ watch(
   },
   { immediate: true }
 );
+
+defineExpose({
+  showLists,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -989,6 +1011,7 @@ watch(
     align-items: center;
     background-color: var(--background-20);
     cursor: grab;
+    white-space: nowrap;
 
     &:hover {
       background-color: var(--primary-30);
