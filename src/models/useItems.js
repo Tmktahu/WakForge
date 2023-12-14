@@ -304,8 +304,7 @@ export const useItems = (character = ref(null)) => {
   const equipItem = (item, event, confirm) => {
     let isRing = item.type.validSlots.includes(ITEM_SLOT_DATA.LEFT_HAND.id) || item.type.validSlots.includes(ITEM_SLOT_DATA.RIGHT_HAND.id);
     // this one handles equipping a 2H weaon while a second weapon is equipped
-    let twoHandedWeaponConflict =
-      item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) && currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] !== null;
+    let twoHandedWeaponConflict = item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) && currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] !== null;
     // this one handles equipping a second weapon while a 2H one is equipped
     let secondWeaponConflict =
       item.type.validSlots[0] === ITEM_SLOT_DATA.SECOND_WEAPON.id &&
@@ -460,7 +459,7 @@ export const useItems = (character = ref(null)) => {
 
   const getSublimations = () => {
     return itemData.filter((item) => {
-      return item.type.id === 812;
+      return item.type.id === 812 && item.id !== 27282; // we filter out an unused "Healing" sub scroll here
     });
   };
 

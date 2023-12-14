@@ -10,7 +10,12 @@
           <div class="state-title py-2 px-2">
             <span>{{ $t(`states.${stateData.name}`) }}</span>
             <span class="mx-1">State at level</span>
-            <span>{{ currentLevel }}</span>
+            <span>
+              {{ Math.min(STATE_LEVEL_LIMITS[stateId], currentLevel) || currentLevel }} (Max {{ STATE_LEVEL_LIMITS[stateId] === undefined ? '??' : STATE_LEVEL_LIMITS[stateId] }})
+            </span>
+          </div>
+          <div v-if="stateId && STATE_LEVEL_LIMITS[stateId] === undefined" class="px-2 py-1" style="background: var(--error-50)">
+            We are missing information about this state. <br />If you have any, please let us know in the Discord server.
           </div>
           <div class="state-description">
             <div class="flex flex-column">
@@ -43,6 +48,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { STATE_LEVEL_LIMITS } from '@/models/useConstants';
 
 import stateDate from '@/models/state_data.json';
 

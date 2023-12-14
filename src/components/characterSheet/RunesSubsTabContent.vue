@@ -148,12 +148,24 @@
               <div class="ml-2">+{{ summaryEntries[runeOrSubId].totalValue }} {{ $t(`items.${summaryEntries[runeOrSubId].rune.rune.id}`) }}</div>
             </div>
 
-            <div v-else-if="summaryEntries[runeOrSubId].sublimation" class="summary-entry px-2 py-1">
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 24px" class="flex" />
-              <div class="flex ml-2">
-                <span>+{{ summaryEntries[runeOrSubId].totalValue }} levels of</span>
-                <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
-                <span>State</span>
+            <div
+              v-else-if="summaryEntries[runeOrSubId].sublimation"
+              class="summary-entry flex-column align-items-start"
+              :class="{ warning: summaryEntries[runeOrSubId].totalValue > STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] }"
+            >
+              <div class="flex px-2 py-1">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 18px" class="flex" />
+                <div class="flex ml-2">
+                  <span>+{{ summaryEntries[runeOrSubId].totalValue }} levels of</span>
+                  <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
+                </div>
+              </div>
+              <div
+                v-if="summaryEntries[runeOrSubId].totalValue > STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]]"
+                class="warning-message flex pr-2 pl-3 py-1 w-full"
+              >
+                <i class="mdi mdi-arrow-up-left" style="margin-top: -2px; margin-right: 4px" />
+                <span>This state only stacks up to level {{ STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] }}</span>
               </div>
             </div>
           </template>
@@ -281,7 +293,7 @@ import { useI18n } from 'vue-i18n';
 
 import { useItems } from '@/models/useItems';
 import { useStats } from '@/models/useStats';
-import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS } from '@/models/useConstants';
+import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS, STATE_LEVEL_LIMITS } from '@/models/useConstants';
 
 import MultiTooltip from '@/components/MultiTooltip.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
@@ -736,6 +748,14 @@ watch(
     span {
       display: flex;
       height: fit-content;
+    }
+
+    &.warning {
+      background: var(--error-50) !important;
+    }
+
+    .warning-message {
+      background-color: var(--error-40);
     }
   }
 
