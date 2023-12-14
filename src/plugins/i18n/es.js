@@ -76,7 +76,7 @@ export const es = {
     characteristics: 'Características',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
-    runesAndSubs: 'Engraces y Sublimaciones (WIP)',
+    runesAndSubs: 'Engraces y Sublimaciones',
     spellsAndPassives: 'Hechizos y Pasivas',
     codeDisclaimer: 'Sí, esto es intencional. Hablamos Runico.',
     codeInfo:

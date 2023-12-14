@@ -78,7 +78,7 @@ export const fr = {
     characteristics: 'Caractéristiques',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
-    runesAndSubs: 'Runes & Sublimations (WIP)',
+    runesAndSubs: 'Runes & Sublimations',
     spellsAndPassives: 'Sorts & Passifs',
     codeDisclaimer: "Oui, c'est normal. Ne soyez pas inquiet.",
     codeInfo:
