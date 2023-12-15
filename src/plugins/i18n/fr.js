@@ -78,7 +78,7 @@ export const fr = {
     characteristics: 'Caractéristiques',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
-    runesAndSubs: 'Runes & Sublimations (WIP)',
+    runesAndSubs: 'Runes & Sublimations',
     spellsAndPassives: 'Sorts & Passifs',
     codeDisclaimer: "Oui, c'est normal. Ne soyez pas inquiet.",
     codeInfo:
@@ -210,8 +210,12 @@ export const fr = {
       sortByMatching: 'Sort by Matching', // NEEDS TRANSLATION
       sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.', // NEEDS TRANSLATION
       searchSublimations: 'Search Sublimations...', // NEEDS TRANSLATION
-      addsThe: 'Adds the', // NEEDS TRANSLATION, context = 'Adds the Apples state'
-      state: 'state', // NEEDS TRANSLATION, context = 'Adds the Apples state'
+      searchEpicAndRelicSubs: 'Search Epic/Relic Sublimations...', // NEEDS TRANSLATION
+      addsStateLevelsShort: '+{num_0} levels of', // NEEDS TRANSLATION, context = "+1 levels of Abandon"
+      stateStackingWarning: 'This state only stacks up to level {num_0}', // NEEDS TRANSLATION
+      relicSub: 'Relic Sub', // NEEDS TRANSLATION, context = shorthand for "Relic Sublimation"
+      epicSub: 'Epic Sub', // NEEDS TRANSLATION, context = shorthand for "Epic Sublimation"
+      itemMustBeEquipped: 'An item must be equipped', // NEEDS TRANSLATION
     },
 
     spellsAndPassivesContent: {
@@ -274,6 +278,9 @@ export const fr = {
     costumes: 'Costumes',
     sublimationScroll: 'Parchemin de Sublimation',
     enchantment: 'Rune',
+
+    epicSublimation: 'Epic Sublimation', // NEEDS TRANSLATION
+    relicSublimation: 'Relic Sublimation', // NEEDS TRANSLATION
 
     oneHandedWeapons: 'Armes à 1 main',
     twoHandedWeapons: 'Armes à 2 mains',
@@ -358,5 +365,12 @@ export const fr = {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
     areYouSure: 'Êtes-vous sûr ?',
     willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les items équipés qui sont dans les slots en conflit.',
+  },
+  tooltips: {
+    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
+    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
+    addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
+    stateAtLevel: 'State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
+    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
   },
 };

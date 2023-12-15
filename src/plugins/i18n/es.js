@@ -44,7 +44,8 @@ export const es = {
     dragOrDrop: 'O arrastra y suelta un archivo JSON aquí.',
     dataNotRecognized: 'Los datos actuales no se reconocen como datos de WakForge.',
     beforeImport: 'Antes de que puedas importar personajes, se comprobará aquí la versión de los datos importados.',
-    needsMigration: 'Parece que tus datos proceden de una versión antigua, por lo que es necesario actualizarlos antes de poder utilizarlos. Se trata de una operación segura que no modificará de forma permanente los datos existentes.',
+    needsMigration:
+      'Parece que tus datos proceden de una versión antigua, por lo que es necesario actualizarlos antes de poder utilizarlos. Se trata de una operación segura que no modificará de forma permanente los datos existentes.',
     goodToGo: 'Tus datos están listos.',
     dataSize: 'Tamaño de los datos',
     numberOfCharacters: 'Número de personajes',
@@ -55,7 +56,8 @@ export const es = {
     currentStorageSize: 'Su almacenamiento tiene un tamaño actual de',
     contactForHelp: 'Si alguna vez te acercas a este límite, ponte en contacto con Fryke (fryke) en Discord.',
     warning: 'ADVERTENCIA',
-    warningMessage: 'Editar sus datos directamente en LocalStorage es peligroso y podría causar daños irreparables a sus datos. Hazlo únicamente después de haber hecho una copia de seguridad y comprender qué estás haciendo.',
+    warningMessage:
+      'Editar sus datos directamente en LocalStorage es peligroso y podría causar daños irreparables a sus datos. Hazlo únicamente después de haber hecho una copia de seguridad y comprender qué estás haciendo.',
     mustDownloadFirst: 'Debes descargar primero una copia de seguridad de tus datos.',
     invalidJSON: 'Esto es JSON inválido',
     saveToLocalstorage: 'Guardar en LocalStorage',
@@ -74,10 +76,11 @@ export const es = {
     characteristics: 'Características',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
-    runesAndSubs: 'Engraces y Sublimaciones (WIP)',
+    runesAndSubs: 'Engraces y Sublimaciones',
     spellsAndPassives: 'Hechizos y Pasivas',
     codeDisclaimer: 'Sí, esto es intencional. Hablamos Runico.',
-    codeInfo: 'Estos caracteres son intencionados. Para que el código fuera lo suficientemente pequeño, nos adentramos en las oscuras profundidades de la codificación base2048. Contempla la majestuosidad rúnica del código de construcción.',
+    codeInfo:
+      'Estos caracteres son intencionados. Para que el código fuera lo suficientemente pequeño, nos adentramos en las oscuras profundidades de la codificación base2048. Contempla la majestuosidad rúnica del código de construcción.',
 
     statsDisplay: {
       ar: 'AR',
@@ -176,8 +179,7 @@ export const es = {
       heavilyPreferNoNegatives: 'Priorizar no negativos',
       targetStatsInfo: 'Estas son las estadísticas objetivo totales que quieres para toda la build.',
       prioritiesInfo: 'Estas son las prioridades en las que quieres que se consideren los distintos dominios.',
-      elementaryMasteryInfo:
-        '¿Qué dominios elementales deben priorizarse? Esto también afectará al número de ranuras de elementos aleatorios que elige el solucionador.',
+      elementaryMasteryInfo: '¿Qué dominios elementales deben priorizarse? Esto también afectará al número de ranuras de elementos aleatorios que elige el solucionador.',
       sinbadErrorInfo: ' Si ves esto, ponte en contacto con Keeper of Time (sinbad) en Discord con la siguiente información.',
       priorities: 'Prioridades',
       totalTargetStats: 'Estadísticas totales objetivo',
@@ -203,8 +205,12 @@ export const es = {
       sortByMatching: 'Sort by Matching', // NEEDS TRANSLATION
       sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.', // NEEDS TRANSLATION
       searchSublimations: 'Search Sublimations...', // NEEDS TRANSLATION
-      addsThe: 'Adds the', // NEEDS TRANSLATION, context = 'Adds the Apples state'
-      state: 'state', // NEEDS TRANSLATION, context = 'Adds the Apples state'
+      searchEpicAndRelicSubs: 'Search Epic/Relic Sublimations...', // NEEDS TRANSLATION
+      addsStateLevelsShort: '+{num_0} levels of', // NEEDS TRANSLATION, context = "+1 levels of Abandon"
+      stateStackingWarning: 'This state only stacks up to level {num_0}', // NEEDS TRANSLATION
+      relicSub: 'Relic Sub', // NEEDS TRANSLATION, context = shorthand for "Relic Sublimation"
+      epicSub: 'Epic Sub', // NEEDS TRANSLATION, context = shorthand for "Epic Sublimation"
+      itemMustBeEquipped: 'An item must be equipped', // NEEDS TRANSLATION
     },
 
     spellsAndPassivesContent: {
@@ -267,6 +273,9 @@ export const es = {
     costumes: 'Trajes',
     sublimationScroll: 'Pergamino de Sublimación',
     enchantment: 'Runas',
+
+    epicSublimation: 'Epic Sublimation', // NEEDS TRANSLATION
+    relicSublimation: 'Relic Sublimation', // NEEDS TRANSLATION
 
     oneHandedWeapons: 'Armas a una Mano',
     twoHandedWeapons: 'Armas a dos Manos',
@@ -354,5 +363,12 @@ export const es = {
     irreversable: '¿Estás seguro? Esto es irreversible.',
     areYouSure: '¿Estás seguro?',
     willReplaceItems: '¿Estás seguro? Esto reemplazará cualquier otro objeto que tengas equipado ahora mismo en ranuras en conflicto.',
+  },
+  tooltips: {
+    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
+    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
+    addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
+    stateAtLevel: 'State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
+    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
   },
 };

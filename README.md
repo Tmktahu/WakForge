@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/TsVnKyB.jpeg)
 
-[![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=1.35.0&color=blue)]() [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/k3v2fXQWJp)
+[![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=2.0.0&color=blue)]() [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/k3v2fXQWJp)
 
 This is the repository for WakForge, coded by Fryke (fryke) on Discord.
 <br>
@@ -13,11 +13,12 @@ You can find the site at <https://wakforge.org>.<br>
 
 ## Features
 
-- Character builder including characteristics and items.
+- Complete character build planner including characteristics, items, runes, and sublimations.
 - Powerful, dynamic live item filtering and sorting capabilities.
-- And automatic item set generator using [brilliant work by Keeper of Time (sinbad)](https://github.com/mikeshardmind/wakfu-utils)
+- Easily sharable Build Codes that can be copy/pasted across nearly any social media platform.
+- A configurable automatic item set generator using [brilliant work by Keeper of Time (sinbad)](https://github.com/mikeshardmind/wakfu-utils)
 - Locally stored information with no backend server. Leverages JSON files and LocalStorage for persistance.
-- Import, export, and share character builds via JSON files.
+- Granular control over the application's data through JSON files and LocalStorage editing in case of issues.
 
 ## Locally Stored Information?
 
@@ -40,7 +41,9 @@ If you are interested in contributing to this project, feel free to look through
 ## Special Thanks
 
 - Keeper of Time (sinbad) for allowing us to use his [auto-item-set](https://github.com/mikeshardmind/wakfu-utils) library on the site.
-- \<Krieg\> (fl_cl) for icon hunting.
+- \<Krieg\> (fl_cl) for icon hunting and Spanish translation work.
+- Isp (_is) for bug hunting and French translation work.
 - Slendy (slendycandy) for pulling together the default equipment slot icons.
-- ALS Guy (scour.) for collecting data and doing the busy work no one likes.
+- Scour (scour.) and Liz (morgouse) for collecting data and doing the busy work no one likes.
 - Hooks (hooks0), Ruchi (ruchi), \<Krieg\> (fl_cl), Owlite (owlite), Hate (hatespawn), Soza (sozalord), Kimas (kimasage) for feature ideas and feedback.
+- Repm (repm), Soweli (soweli), fiji (f.ji), and Bot402 (bot402) for bug reporting.

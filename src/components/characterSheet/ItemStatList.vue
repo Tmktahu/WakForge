@@ -2,10 +2,10 @@
   <div :class="`${cardMode ? 'effects-wrapper flex flex-wrap' : 'tooltip-effect-list'}`">
     <template v-for="(effect, index) in item.equipEffects" :key="`${item.id}-${effect.id}-${index}`">
       <div v-if="getEffectData(effect.id) && !shouldSkipEffect(effect)" class="effect-line px-2 py-1" :style="{ width: cardMode && !effect.longEntry ? '50%' : '100%' }">
-        <div v-if="effect.id === 1068">+{{ effect.values[0] }} Mastery of {{ effect.values[2] }} random elements</div>
-        <div v-else-if="effect.id === 1069"> +{{ effect.values[0] }} Resistance of {{ effect.values[2] }} random elements </div>
+        <div v-if="effect.id === 1068"> {{ $t('tooltips.randomMasteryValue', { num_0: effect.values[0], num_1: effect.values[2] }) }}</div>
+        <div v-else-if="effect.id === 1069"> {{ $t('tooltips.randomResistanceValue', { num_0: effect.values[0], num_1: effect.values[2] }) }} </div>
         <div v-else-if="effect.id === 304" class="flex align-items-center">
-          <span>Adds +{{ effect.values[2] }} levels of </span>
+          <span>{{ $t('tooltips.addsStateLevels', { num_0: effect.values[2] }) }}</span>
           <MultiTooltip :state-id="`${effect.values[0]}`" :current-level="effect.values[2]" />
         </div>
         <div v-else>

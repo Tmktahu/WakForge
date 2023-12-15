@@ -71,7 +71,7 @@ export const pt = {
     characteristics: 'Characteristics',
     equipment: 'Equipment',
     autoItemSolver: 'Auto Item Solver',
-    runesAndSubs: 'Runes & Sublimations (WIP)',
+    runesAndSubs: 'Runes & Sublimations',
     spellsAndPassives: 'Spells & Passives',
     codeDisclaimer: 'Yes, this is intentional. Do not be afraid.',
     codeInfo:
@@ -126,11 +126,9 @@ export const pt = {
       hasEpicWarning: 'You already have an Epic item equipped. Doing this will remove it. Are you sure?',
       twoHandedWeaponWarning: 'That is a two-handed weapon, and you have an item in your second weapon slot. Are you sure?',
       secondWeaponWarning: 'You have a two-handed weapon equipped. Doing this will remove it. Are you sure?',
-      relicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
+      relicAndTwoHandedWarning: 'You have an item in your second weapon slot and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
       relicAndSecondWeaponWarning: 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
-      epicAndTwoHandedWarning:
-        'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
+      epicAndTwoHandedWarning: 'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
       epicAndSecondWeaponWarning: 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
 
       itemFilters: {

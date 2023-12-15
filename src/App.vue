@@ -55,7 +55,7 @@ const { setup: setupLevels } = useLevels(currentCharacter);
 setupLevels();
 
 const { itemFilters, setup: setupItems } = useItems();
-const { currentItemList } = setupItems();
+const { currentItemList, itemListLoading } = setupItems();
 
 const { setup: setupSpells } = useSpells(currentCharacter);
 setupSpells();
@@ -84,6 +84,7 @@ provide('masterData', masterData);
 provide('currentCharacter', currentCharacter);
 provide('itemFilters', itemFilters);
 provide('currentItemList', currentItemList);
+provide('itemListLoading', itemListLoading);
 
 onMounted(() => {
   console.log(

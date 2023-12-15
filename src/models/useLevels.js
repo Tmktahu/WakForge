@@ -1,4 +1,4 @@
-import { ref, inject, watch } from 'vue';
+import { watch } from 'vue';
 import { debounce } from 'lodash';
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 
@@ -8,15 +8,19 @@ export const useLevels = (currentCharacter) => {
       () => currentCharacter.value?.level,
       debounce(() => {
         if (currentCharacter.value) {
-          currentCharacter.value.characteristics.limits.intelligence = Math.floor((currentCharacter.value.level + 2) / 4);
-          currentCharacter.value.characteristics.limits.strength = Math.floor((currentCharacter.value.level + 1) / 4);
-          currentCharacter.value.characteristics.limits.agility = Math.floor(currentCharacter.value.level / 4);
-          currentCharacter.value.characteristics.limits.fortune = Math.floor((currentCharacter.value.level - 1) / 4);
-          currentCharacter.value.characteristics.limits.major = Math.min(Math.floor((currentCharacter.value.level + 25) / 50), 4);
+          setCharacteristicLimits(currentCharacter.value);
         }
       }, 100),
       { immediate: true }
     );
+  };
+
+  const setCharacteristicLimits = (currentCharacter) => {
+    currentCharacter.characteristics.limits.intelligence = Math.floor((currentCharacter.level + 2) / 4);
+    currentCharacter.characteristics.limits.strength = Math.floor((currentCharacter.level + 1) / 4);
+    currentCharacter.characteristics.limits.agility = Math.floor(currentCharacter.level / 4);
+    currentCharacter.characteristics.limits.fortune = Math.floor((currentCharacter.level - 1) / 4);
+    currentCharacter.characteristics.limits.major = Math.min(Math.floor((currentCharacter.level + 25) / 50), 4);
   };
 
   const getBaseStatsForLevel = (level, classType) => {
@@ -34,5 +38,6 @@ export const useLevels = (currentCharacter) => {
   return {
     setup,
     getBaseStatsForLevel,
+    setCharacteristicLimits,
   };
 };

@@ -8,9 +8,16 @@
       <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 }">
         <slot name="content">
           <div class="state-title py-2 px-2">
-            <span>{{ $t(`states.${stateData.name}`) }}</span>
-            <span class="mx-1">State at level</span>
-            <span>{{ currentLevel }}</span>
+            <span>{{ $t(`states.${stateData?.name}`) }}</span>
+            <span class="mx-1">{{
+              $t('tooltips.stateAtLevel', {
+                num_0: Math.min(STATE_LEVEL_LIMITS[stateId], currentLevel) || currentLevel,
+                num_1: STATE_LEVEL_LIMITS[stateId] === undefined ? '??' : STATE_LEVEL_LIMITS[stateId],
+              })
+            }}</span>
+          </div>
+          <div v-if="stateId && STATE_LEVEL_LIMITS[stateId] === undefined" class="px-2 py-1" style="background: var(--error-50); white-space: break-line; max-width: 45ch">
+            {{ $t('tooltips.missingInfoAboutState') }}
           </div>
           <div class="state-description">
             <div class="flex flex-column">
@@ -43,6 +50,7 @@
 <script setup>
 import { ref, computed } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { STATE_LEVEL_LIMITS } from '@/models/useConstants';
 
 import stateDate from '@/models/state_data.json';
 

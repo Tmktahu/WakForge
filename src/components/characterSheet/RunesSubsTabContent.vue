@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex h-full">
     <div class="flex flex-column">
       <div class="mb-2">
         <tippy placement="left" duration="0">
@@ -75,31 +75,30 @@
               </div>
             </template>
 
-            <tippy duration="0" class="flex h-full">
-              <div
-                class="sublimation-drop-zone ml-2"
-                :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
-                @dragover.prevent
-                @dragenter.prevent
-                @drop="onDrop($event, slotKey, 'subSlot')"
-                @click="onRemoveSublimation(slotKey)"
-              >
-                <template v-if="currentCharacter.equipment[slotKey].subSlot">
-                  <div class="sublimation-entry flex align-items-center px-2">
-                    <p-image
-                      :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
-                      image-style="width: 24px"
-                      class="flex"
-                    />
-                    <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
-                  </div>
-                </template>
+            <MultiTooltip v-if="currentCharacter.equipment[slotKey].subSlot" style="height: 100%">
+              <template v-slot:trigger>
+                <div
+                  class="sublimation-drop-zone ml-2"
+                  :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+                  @dragover.prevent
+                  @dragenter.prevent
+                  @drop="onDrop($event, slotKey, 'subSlot')"
+                  @click="onRemoveSublimation(slotKey)"
+                >
+                  <template v-if="currentCharacter.equipment[slotKey].subSlot">
+                    <div class="sublimation-entry flex align-items-center px-2">
+                      <p-image
+                        :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
+                        image-style="width: 24px"
+                        class="flex"
+                      />
+                      <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                    </div>
+                  </template>
 
-                <div v-else class="px-2" style="opacity: 0.5">
-                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
+                  <i class="pi pi-trash" />
                 </div>
-                <i class="pi pi-trash" />
-              </div>
+              </template>
 
               <template v-slot:content>
                 <div v-if="currentCharacter.equipment[slotKey].subSlot" class="item-card-tooltip">
@@ -122,7 +121,21 @@
                   <ItemStatList :item="currentCharacter.equipment[slotKey].subSlot" />
                 </div>
               </template>
-            </tippy>
+            </MultiTooltip>
+
+            <div
+              v-else
+              class="sublimation-drop-zone ml-2"
+              :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+              @dragover.prevent
+              @dragenter.prevent
+              @drop="onDrop($event, slotKey, 'subSlot')"
+              @click="onRemoveSublimation(slotKey)"
+            >
+              <div class="px-2" style="opacity: 0.5">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
+              </div>
+            </div>
           </div>
 
           <div v-else-if="slotKey !== 'undefined'" class="item-runes-section disabled flex align-items-center mb-2 pr-1">
@@ -134,10 +147,94 @@
               <div class="rune-drop-zone ml-2" @dragover.prevent @dragenter.prevent @drop="onDrop($event, slotKey, `runeSlot${index}`)" />
             </template>
 
-            <div class="info-text">An item must be equipped</div>
+            <div class="info-text">{{ $t('characterSheet.runesAndSubsContent.itemMustBeEquipped') }}</div>
           </div>
         </template>
       </template>
+
+      <div class="flex mb-2">
+        <tippy duration="0" class="flex h-full">
+          <div
+            class="special-sublimation-drop-zone"
+            style="background: #67135b"
+            @dragover.prevent
+            @dragenter.prevent
+            @drop="onDrop($event, null, 'epicSubSlot')"
+            @click="onRemoveSublimation('epicSubSlot')"
+          >
+            <template v-if="currentCharacter.epicSubSlot">
+              <div class="sublimation-entry flex align-items-center px-2 py-2">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.epicSubSlot.imageId}.png`" image-style="width: 24px" class="flex" />
+                <div class="ml-1">{{ $t(`items.${currentCharacter.epicSubSlot.id}`) }}</div>
+              </div>
+            </template>
+
+            <div v-else class="flex align-items-center px-2 py-2">
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/misc/shardPinkEmpty.png`" image-style="width: 24px" class="flex" />
+              <span class="ml-1">{{ $t('characterSheet.runesAndSubsContent.epicSub') }}</span>
+            </div>
+            <i class="pi pi-trash" />
+          </div>
+
+          <template v-slot:content>
+            <div v-if="currentCharacter.epicSubSlot" class="item-card-tooltip">
+              <div class="effect-header flex pt-2 px-1">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.epicSubSlot.imageId}.png`" image-style="width: 40px" />
+                <div class="flex flex-column ml-1">
+                  <div class="item-name mr-2">{{ $t(`items.${currentCharacter.epicSubSlot.id}`) }}</div>
+                  <div class="flex justify-content-left py-1 text-xs">
+                    {{ currentCharacter.epicSubSlot.sublimationParameters.isEpic ? `${$t('constants.epicSublimation')}` : '' }}
+                    {{ currentCharacter.epicSubSlot.sublimationParameters.isRelic ? `${$t('constants.relicSublimation')}` : '' }}
+                  </div>
+                </div>
+              </div>
+
+              <ItemStatList :item="currentCharacter.epicSubSlot" />
+            </div>
+          </template>
+        </tippy>
+
+        <tippy duration="0" class="flex h-full">
+          <div
+            class="special-sublimation-drop-zone ml-2"
+            style="background: #411468"
+            @dragover.prevent
+            @dragenter.prevent
+            @drop="onDrop($event, null, 'relicSubSlot')"
+            @click="onRemoveSublimation('relicSubSlot')"
+          >
+            <template v-if="currentCharacter.relicSubSlot">
+              <div class="sublimation-entry flex align-items-center px-2 py-2">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.relicSubSlot.imageId}.png`" image-style="width: 24px" class="flex" />
+                <div class="ml-1">{{ $t(`items.${currentCharacter.relicSubSlot.id}`) }}</div>
+              </div>
+            </template>
+
+            <div v-else class="flex align-items-center px-2 py-2">
+              <p-image :src="`https://tmktahu.github.io/WakfuAssets/misc/shardPurpleEmpty.png`" image-style="width: 24px" class="flex" />
+              <span class="ml-1">{{ $t('characterSheet.runesAndSubsContent.relicSub') }}</span>
+            </div>
+            <i class="pi pi-trash" />
+          </div>
+
+          <template v-slot:content>
+            <div v-if="currentCharacter.relicSubSlot" class="item-card-tooltip">
+              <div class="effect-header flex pt-2 px-1">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.relicSubSlot.imageId}.png`" image-style="width: 40px" />
+                <div class="flex flex-column ml-1">
+                  <div class="item-name mr-2">{{ $t(`items.${currentCharacter.relicSubSlot.id}`) }}</div>
+                  <div class="flex justify-content-left py-1 text-xs">
+                    {{ currentCharacter.relicSubSlot.sublimationParameters.isEpic ? `${$t('constants.epicSublimation')}` : '' }}
+                    {{ currentCharacter.relicSubSlot.sublimationParameters.isRelic ? `${$t('constants.relicSublimation')}` : '' }}
+                  </div>
+                </div>
+              </div>
+
+              <ItemStatList :item="currentCharacter.relicSubSlot" />
+            </div>
+          </template>
+        </tippy>
+      </div>
 
       <div class="stats-summary">
         <div class="text-lg my-1 pl-2">{{ $t('characterSheet.runesAndSubsContent.statsSummary') }}</div>
@@ -148,12 +245,28 @@
               <div class="ml-2">+{{ summaryEntries[runeOrSubId].totalValue }} {{ $t(`items.${summaryEntries[runeOrSubId].rune.rune.id}`) }}</div>
             </div>
 
-            <div v-else-if="summaryEntries[runeOrSubId].sublimation" class="summary-entry px-2 py-1">
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 24px" class="flex" />
-              <div class="flex ml-2">
-                <span>+{{ summaryEntries[runeOrSubId].totalValue }} levels of</span>
-                <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
-                <span>State</span>
+            <div
+              v-else-if="summaryEntries[runeOrSubId].sublimation"
+              class="summary-entry flex-column align-items-start"
+              :class="{ warning: summaryEntries[runeOrSubId].totalValue > STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] }"
+            >
+              <div class="flex px-2 py-1">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 18px" class="flex" />
+                <div class="flex ml-2">
+                  <span>{{ $t('characterSheet.runesAndSubsContent.addsStateLevelsShort', { num_0: summaryEntries[runeOrSubId].totalValue }) }}</span>
+                  <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
+                </div>
+              </div>
+              <div
+                v-if="summaryEntries[runeOrSubId].totalValue > STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]]"
+                class="warning-message flex pr-2 pl-3 py-1 w-full"
+              >
+                <i class="mdi mdi-arrow-up-left" style="margin-top: -2px; margin-right: 4px" />
+                <span>
+                  {{
+                    $t('characterSheet.runesAndSubsContent.stateStackingWarning', { num_0: STATE_LEVEL_LIMITS[summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]] })
+                  }}
+                </span>
               </div>
             </div>
           </template>
@@ -206,8 +319,8 @@
       </div>
     </div>
 
-    <div class="flex flex-column">
-      <p-inputText v-model="subSearchTerm" class="py-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
+    <div v-if="showOptionLists" class="flex flex-column" style="min-width: 300px">
+      <p-inputText v-model="subSearchTerm" class="py-2 px-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchSublimations')" />
       <div class="flex mt-2">
         <p-checkbox v-model="sortByMatching" :binary="true" />
         <div class="mx-2">{{ $t('characterSheet.runesAndSubsContent.sortByMatching') }}</div>
@@ -221,8 +334,14 @@
         </tippy>
       </div>
 
-      <div class="sublimation-options-wrapper flex flex-column mt-2 py-1">
-        <template v-for="sublimation in normalSublimationOptions" :key="sublimation.id">
+      <p-virtualScroller
+        v-if="normalSublimationOptions"
+        :items="normalSublimationOptions"
+        class="sublimation-options-wrapper my-2 py-1"
+        :item-size="32"
+        style="width: 100%; height: 100%"
+      >
+        <template v-slot:item="{ item: sublimation }">
           <MultiTooltip>
             <template v-slot:trigger>
               <div
@@ -237,7 +356,9 @@
                     <p-image :src="getFilledRuneImage(colorId)" image-style="width: 18px" class="flex" />
                   </div>
                 </div>
-                <div> {{ $t(`items.${sublimation.id}`) }} </div>
+                <div>
+                  {{ $t(`items.${sublimation.id}`) }}
+                </div>
               </div>
             </template>
 
@@ -258,7 +379,59 @@
             </template>
           </MultiTooltip>
         </template>
+      </p-virtualScroller>
+
+      <p-inputText v-model="specialSubSearchTerm" class="py-2 px-2" :placeholder="$t('characterSheet.runesAndSubsContent.searchEpicAndRelicSubs')" />
+      <div class="flex mt-2">
+        <p-checkbox v-model="showEpicSubs" :binary="true" />
+        <div class="mx-2">{{ $t('constants.epic') }}</div>
+        <p-checkbox v-model="showRelicSubs" :binary="true" />
+        <div class="mx-2">{{ $t('constants.relic') }}</div>
       </div>
+
+      <p-virtualScroller
+        v-if="specialSublimationOptions"
+        :items="specialSublimationOptions"
+        class="sublimation-options-wrapper my-2 py-1"
+        :item-size="32"
+        style="width: 100%; height: 100%"
+      >
+        <template v-slot:item="{ item: sublimation }">
+          <MultiTooltip>
+            <template v-slot:trigger>
+              <div
+                class="sublimation-option py-1 px-2 mb-1"
+                :class="{ 'epic-highlighted': currentCharacter.epicSubSlot?.id === sublimation.id, 'relic-highlighted': currentCharacter.relicSubSlot?.id === sublimation.id }"
+                draggable="true"
+                @click="onSpecialSubClick($event, sublimation, sublimation.sublimationParameters.isEpic ? 'epicSubSlot' : 'relicSubSlot')"
+                @dragstart="onDragStart($event, 'sublimation', sublimation)"
+              >
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 20px" class="flex" />
+                <div class="ml-1">
+                  {{ $t(`items.${sublimation.id}`) }}
+                  {{ sublimation.sublimationParameters.isEpic ? `(${$t('constants.epic')})` : '' }}
+                  {{ sublimation.sublimationParameters.isRelic ? `(${$t('constants.relic')})` : '' }}
+                </div>
+              </div>
+            </template>
+
+            <template v-slot:content>
+              <div class="effect-header flex pt-2 px-1">
+                <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 40px" />
+                <div class="flex flex-column ml-1">
+                  <div class="item-name">{{ $t(`items.${sublimation.id}`) }}</div>
+                  <div class="flex justify-content-left py-1 text-xs">
+                    {{ sublimation.sublimationParameters.isEpic ? `${$t('constants.epicSublimation')}` : '' }}
+                    {{ sublimation.sublimationParameters.isRelic ? `${$t('constants.relicSublimation')}` : '' }}
+                  </div>
+                </div>
+              </div>
+
+              <ItemStatList :item="sublimation" />
+            </template>
+          </MultiTooltip>
+        </template>
+      </p-virtualScroller>
     </div>
 
     <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
@@ -281,7 +454,7 @@ import { useI18n } from 'vue-i18n';
 
 import { useItems } from '@/models/useItems';
 import { useStats } from '@/models/useStats';
-import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS } from '@/models/useConstants';
+import { ITEM_SLOT_DATA, RUNE_LEVEL_REQUIREMENTS, STATE_LEVEL_LIMITS } from '@/models/useConstants';
 
 import MultiTooltip from '@/components/MultiTooltip.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
@@ -295,8 +468,7 @@ const { getRunes, getSublimations, canSublimationFit } = useItems();
 const runeOptions = computed(() => getRunes().sort((rune1, rune2) => rune1.shardsParameters.color - rune2.shardsParameters.color));
 const normalSublimationOptions = computed(() =>
   getSublimations()
-    .filter((sub) => sub.sublimationParameters.slotColorPattern.length > 0)
-    .filter((sub) => t(`items.${sub.id}`).toLowerCase().includes(subSearchTerm.value?.toLowerCase()))
+    .filter((sub) => sub.sublimationParameters.slotColorPattern.length > 0 && t(`items.${sub.id}`).toLowerCase().includes(subSearchTerm.value?.toLowerCase()))
     .sort((sub1, sub2) => t(`items.${sub1.id}`).localeCompare(t(`items.${sub2.id}`)))
     .sort((sub1, sub2) => {
       if (itemSlotHighlight.value && sortByMatching.value) {
@@ -308,9 +480,21 @@ const normalSublimationOptions = computed(() =>
       }
     })
 );
-const specialSublimationOptions = computed(() => getSublimations().filter((sub) => sub.sublimationParameters.slotColorPattern.length === 0));
+const specialSublimationOptions = computed(() =>
+  getSublimations().filter((sub) => {
+    return (
+      isSpecialSublimation(sub) &&
+      t(`items.${sub.id}`).toLowerCase().includes(specialSubSearchTerm.value?.toLowerCase()) &&
+      (sub.sublimationParameters.isEpic ? showEpicSubs.value : true) &&
+      (sub.sublimationParameters.isRelic ? showRelicSubs.value : true)
+    );
+  })
+);
 const subSearchTerm = ref('');
+const specialSubSearchTerm = ref('');
 const sortByMatching = ref(true);
+const showEpicSubs = ref(true);
+const showRelicSubs = ref(true);
 
 const runeLevel = ref(1);
 const itemSlotHighlight = ref(null);
@@ -342,6 +526,12 @@ const runeContextOptions = ref([
     },
   },
 ]);
+
+const showOptionLists = ref(false);
+
+const showLists = () => {
+  showOptionLists.value = true;
+};
 
 const summaryEntries = computed(() => {
   let entries = {};
@@ -378,6 +568,20 @@ const summaryEntries = computed(() => {
       }
     }
   });
+
+  if (currentCharacter.value.epicSubSlot) {
+    entries[currentCharacter.value.epicSubSlot.equipEffects[0].values[0]] = {
+      totalValue: 1,
+      sublimation: currentCharacter.value.epicSubSlot,
+    };
+  }
+
+  if (currentCharacter.value.relicSubSlot) {
+    entries[currentCharacter.value.relicSubSlot.equipEffects[0].values[0]] = {
+      totalValue: 1,
+      sublimation: currentCharacter.value.relicSubSlot,
+    };
+  }
 
   return entries;
 });
@@ -466,7 +670,15 @@ const onDrop = (event, itemSlotKey, targetSlotKey) => {
 
     if (type === 'sublimation') {
       let sublimation = JSON.parse(event.dataTransfer.getData('sublimation'));
-      currentCharacter.value.equipment[itemSlotKey].subSlot = sublimation;
+      if (isSpecialSublimation(sublimation)) {
+        if (sublimation.sublimationParameters.isEpic && targetSlotKey === 'epicSubSlot') {
+          currentCharacter.value.epicSubSlot = sublimation;
+        } else if (sublimation.sublimationParameters.isRelic && targetSlotKey === 'relicSubSlot') {
+          currentCharacter.value.relicSubSlot = sublimation;
+        }
+      } else {
+        currentCharacter.value.equipment[itemSlotKey].subSlot = sublimation;
+      }
     }
   } catch (error) {
     console.error(error);
@@ -485,8 +697,18 @@ const onRemoveAll = () => {
   });
 };
 
+const onSpecialSubClick = (event, sublimation, targetSlotKey) => {
+  currentCharacter.value[targetSlotKey] = sublimation;
+};
+
 const onRemoveSublimation = (itemSlotKey) => {
-  currentCharacter.value.equipment[itemSlotKey].subSlot = null;
+  if (itemSlotKey === 'epicSubSlot') {
+    currentCharacter.value.epicSubSlot = null;
+  } else if (itemSlotKey === 'relicSubSlot') {
+    currentCharacter.value.relicSubSlot = null;
+  } else {
+    currentCharacter.value.equipment[itemSlotKey].subSlot = null;
+  }
 };
 
 const getEmptyRuneImage = (colorId) => {
@@ -541,6 +763,10 @@ const maxRuneLevel = computed(() => {
   return level;
 });
 
+const isSpecialSublimation = (sublimation) => {
+  return sublimation.sublimationParameters.isRelic || sublimation.sublimationParameters.isEpic;
+};
+
 watch(
   () => currentCharacter.value.level,
   () => {
@@ -548,6 +774,10 @@ watch(
   },
   { immediate: true }
 );
+
+defineExpose({
+  showLists,
+});
 </script>
 
 <style lang="scss" scoped>
@@ -674,8 +904,41 @@ watch(
     font-weight: bold;
     pointer-events: none;
   }
+}
 
-  .sublimation-entry {
+.special-sublimation-drop-zone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  border: 1px solid var(--primary-50);
+  background-color: var(--primary-10);
+  border-radius: 8px;
+  overflow: hidden;
+
+  &.invalid {
+    background-color: var(--error-40);
+  }
+
+  &:has(.sublimation-entry):hover {
+    cursor: pointer;
+
+    i {
+      display: flex;
+    }
+  }
+
+  i {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    inset: 0;
+    color: white;
+    background-color: rgba(red, 0.5);
+    font-size: 22px;
+    font-weight: bold;
+    pointer-events: none;
   }
 }
 
@@ -725,6 +988,11 @@ watch(
   border: 1px solid var(--highlight-50);
   border-radius: 8px;
   overflow: hidden;
+
+  .stats-summary-list {
+    height: calc(100% - 30px);
+    overflow-y: auto;
+  }
 }
 
 .stats-summary-list {
@@ -736,6 +1004,14 @@ watch(
     span {
       display: flex;
       height: fit-content;
+    }
+
+    &.warning {
+      background: var(--error-50) !important;
+    }
+
+    .warning-message {
+      background-color: var(--error-40);
     }
   }
 
@@ -757,15 +1033,15 @@ watch(
 
 .sublimation-options-wrapper {
   overflow-y: auto;
-  max-height: 550px;
   border: 1px solid var(--primary-50);
   border-radius: 4px;
-
+  min-height: 200px;
   .sublimation-option {
     display: flex;
     align-items: center;
     background-color: var(--background-20);
     cursor: grab;
+    white-space: nowrap;
 
     &:hover {
       background-color: var(--primary-30);
@@ -773,6 +1049,14 @@ watch(
 
     &.highlighted {
       background-color: var(--secondary-30);
+    }
+
+    &.epic-highlighted {
+      background-color: #67135b;
+    }
+
+    &.relic-highlighted {
+      background-color: #411468;
     }
   }
 
