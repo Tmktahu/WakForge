@@ -1,10 +1,10 @@
 <template>
   <tippy delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
     <div class="item-card">
-      <div class="slot-label text-center pt-1 pb-1">
+      <div v-if="withSlotLabel" class="slot-label text-center pt-1 pb-1">
         {{ item.type.validSlots[0] === 'LEFT_HAND' ? 'Ring' : $t(ITEM_SLOT_DATA[item.type.validSlots[0]].name) }} Slot
       </div>
-      <div class="flex px-2 pt-1">
+      <div class="flex px-2 pt-2">
         <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
         <div class="flex flex-column ml-1">
           <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
@@ -69,6 +69,10 @@ let props = defineProps({
   item: {
     type: Object,
     default: () => {},
+  },
+  withSlotLabel: {
+    type: Boolean,
+    default: false,
   },
 });
 
