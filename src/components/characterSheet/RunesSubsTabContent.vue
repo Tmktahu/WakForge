@@ -75,7 +75,7 @@
               </div>
             </template>
 
-            <MultiTooltip v-if="currentCharacter.equipment[slotKey].subSlot" style="height: 100%">
+            <MultiTooltip v-if="currentCharacter.equipment[slotKey].subSlot" :append-to="() => documentVar.body" :offset="[0, -2]" style="height: 100%">
               <template v-slot:trigger>
                 <div
                   class="sublimation-drop-zone ml-2"
@@ -254,7 +254,12 @@
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${summaryEntries[runeOrSubId].sublimation.imageId}.png`" image-style="width: 18px" class="flex" />
                 <div class="flex ml-2">
                   <span>{{ $t('characterSheet.runesAndSubsContent.addsStateLevelsShort', { num_0: summaryEntries[runeOrSubId].totalValue }) }}</span>
-                  <MultiTooltip :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`" :current-level="summaryEntries[runeOrSubId].totalValue" />
+                  <MultiTooltip
+                    :append-to="() => documentVar.body"
+                    :offset="[0, -2]"
+                    :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`"
+                    :current-level="summaryEntries[runeOrSubId].totalValue"
+                  />
                 </div>
               </div>
               <div
@@ -342,7 +347,7 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip>
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]">
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
@@ -397,7 +402,7 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip>
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]">
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
@@ -460,6 +465,7 @@ import MultiTooltip from '@/components/MultiTooltip.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 
 const { t } = useI18n();
+let documentVar = document;
 
 const currentCharacter = inject('currentCharacter');
 

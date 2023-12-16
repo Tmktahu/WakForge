@@ -1,11 +1,11 @@
 <template>
-  <tippy placement="bottom" duration="0" max-width="fit-content" :interactive="stickyCounter === 100" interactive-border="2000" v-bind="$attrs" @state="onStateChange">
+  <tippy duration="0" max-width="fit-content" :interactive="stickyCounter === 100 || !sticky" :interactive-border="sticky ? 2000 : 20" v-bind="$attrs" @state="onStateChange">
     <slot name="trigger">
       <div class="inline-tooltip-trigger" style="width: fit-content">{{ $t(`states.${stateData?.name}`) }}</div>
     </slot>
 
     <template v-slot:content>
-      <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 }">
+      <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 && sticky }">
         <slot name="content">
           <div class="state-title py-2 px-2">
             <span>{{ $t(`states.${stateData?.name}`) }}</span>
@@ -37,6 +37,7 @@
         </slot>
 
         <p-progressBar
+          v-if="sticky"
           :value="stickyCounter"
           :pt="{
             value: { style: { transition: 'none' } },
@@ -62,6 +63,10 @@ const props = defineProps({
   currentLevel: {
     type: Number,
     default: 1,
+  },
+  sticky: {
+    type: Boolean,
+    default: false,
   },
 });
 

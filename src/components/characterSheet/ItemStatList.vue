@@ -18,7 +18,11 @@
 
           <td v-if="itemEffects[effectId]" class="new-item-effect">
             <div class="flex align-items-center w-full px-1 py-1">
-              <div v-if="conflictingItem" class="change-icon mr-1" :class="{ decrease: getEffectDifference(effectId) < 0, increase: getEffectDifference(effectId) > 0 }">
+              <div
+                v-if="conflictingItem && withComparisons"
+                class="change-icon mr-1"
+                :class="{ decrease: getEffectDifference(effectId) < 0, increase: getEffectDifference(effectId) > 0 }"
+              >
                 {{ getEffectDifference(effectId) > 0 ? '+' : '' }}{{ getEffectDifference(effectId) }}
               </div>
               <div v-if="effectId === '304'" class="flex align-items-center">
@@ -28,9 +32,13 @@
               <div v-else>{{ getEffectText(itemEffects[effectId]) }}</div>
             </div>
           </td>
-          <td v-else class="new-item-effect removed" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
+          <td v-else-if="withComparisons" class="new-item-effect removed" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
             <div class="flex align-items-center w-full px-1 py-1">
-              <div v-if="conflictingItem" class="change-icon mr-1" :class="{ decrease: getEffectDifference(effectId) < 0, increase: getEffectDifference(effectId) > 0 }">
+              <div
+                v-if="conflictingItem && withComparisons"
+                class="change-icon mr-1"
+                :class="{ decrease: getEffectDifference(effectId) < 0, increase: getEffectDifference(effectId) > 0 }"
+              >
                 {{ getEffectDifference(effectId) > 0 ? '+' : '' }}{{ getEffectDifference(effectId) }}
               </div>
               <div v-if="effectId === '304'" class="effect-text flex align-items-center">
@@ -313,7 +321,7 @@ const getTotalResistance = (item) => {
   }
 
   .equipped-item-effect {
-    background-color: var(--secondary-10);
+    background-color: var(--background-10);
     border-right: 2px solid var(--highlight-80);
     white-space: nowrap;
 
@@ -335,7 +343,7 @@ const getTotalResistance = (item) => {
       }
 
       .equipped-item-effect {
-        background-color: var(--secondary-40) !important;
+        background-color: var(--background-40) !important;
         color: black;
         font-weight: 800;
         font-size: 14px;
@@ -349,7 +357,7 @@ const getTotalResistance = (item) => {
     }
 
     .equipped-item-effect {
-      background-color: var(--secondary-30);
+      background-color: var(--background-30);
     }
   }
 

@@ -121,6 +121,7 @@ export const es = {
       itemsTotal: 'Objetos en Total',
       displayStats: 'Mostrar Stats',
       displayTotals: 'Display Totals', // NEEDS TRANSLATION
+      compareToEquipped: 'Compare to Equipped', // NEEDS TRANSLATION
       itemLevel: 'Nivel de Objeto',
       openEncyclopediaPage: 'Abrir la página de la enciclopedia',
       noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
