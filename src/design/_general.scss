@@ -44,12 +44,14 @@ body {
 
 .item-card-tooltip {
     background-color: var(--background-10);
-    border-radius: 4px;
-    border: 1px solid var(--highlight-90);
     overflow: hidden;
   
     .effect-header {
       background: var(--primary-20);
+
+      &.existing-item {
+        background: var(--secondary-20);
+      }
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <tippy placement="bottom" duration="0" max-width="fit-content" :interactive="stickyCounter === 100" interactive-border="2000" @state="onStateChange">
+  <tippy placement="bottom" duration="0" max-width="fit-content" :interactive="stickyCounter === 100" interactive-border="2000" v-bind="$attrs" @state="onStateChange">
     <slot name="trigger">
       <div class="inline-tooltip-trigger" style="width: fit-content">{{ $t(`states.${stateData?.name}`) }}</div>
     </slot>

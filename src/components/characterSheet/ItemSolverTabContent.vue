@@ -172,7 +172,9 @@
       <div v-else-if="filteredItemSet?.length">
         <div class="flex flex-wrap gap-1 mt-2">
           <template v-for="item in filteredItemSet" :key="item.id">
-            <ItemListCard :item="item" with-slot-label />
+            <div class="item-card-wrapper">
+              <ItemListCard :item="item" with-slot-label />
+            </div>
           </template>
         </div>
       </div>
@@ -499,5 +501,11 @@ const onRarityClick = (event, rarityId) => {
   width: fit-content;
   border: 1px solid var(--error);
   border-radius: 8px;
+}
+
+.item-card-wrapper {
+  border: 1px solid var(--highlight-90);
+  border-radius: 8px;
+  overflow: hidden;
 }
 </style>

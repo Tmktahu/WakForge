@@ -212,7 +212,7 @@ export const EFFECT_TYPE_DATA = {
   healthSteal: { id: 'healthSteal', rawIds: [24], text: 'constants.healthSteal' },
   healingMastery: { id: 'healingMastery', rawIds: [26], text: 'constants.healingMastery' },
   actionPoints: { id: 'actionPoints', rawIds: [31, 56], text: 'constants.ap' },
-  // armorReceived: { id: 'armorReceived', rawId: 39, text: '% Armor Received' },
+  // armorReceived: { id: 'armorReceived', rawIds: [39], text: 'constants.percentArmorReceived' },
   // armorReceivedReduction: { id: 'armorReceivedReduction', rawId: 40, text: '% Armor Received', isNegative: true },
   movementPoints: { id: 'movementPoints', rawIds: [41, 42, 57], text: 'constants.mp' },
   // movementPointsReductionOld: { id: 'movementPointsReductionOld', rawId: 42, text: 'MP (Old)', isNegative: true },
@@ -284,7 +284,7 @@ export const EFFECT_TYPE_DATA = {
 
   // ones below this point were picked out manually
   armorGiven: { id: 'armorGiven', rawIds: [10000], text: 'constants.percentArmorGiven' },
-  armorReceived: { id: 'armorReceived', rawIds: [10001], text: 'constants.percentArmorReceived' },
+  armorReceived: { id: 'armorReceived', rawIds: [10001, 39, 40], text: 'constants.percentArmorReceived' },
   healsPerformed: { id: 'healsPerformed', rawIds: [10002], text: 'constants.percentHealsPerformed' },
   indirectDamageInflicted: { id: 'indirectDamageInflicted', rawIds: [10003], text: 'constants.percentIndirectDamageInflicted' },
   dodgeOverride: { id: 'dodgeOverride', rawIds: [10004], text: 'constants.dodgeOverride' },
