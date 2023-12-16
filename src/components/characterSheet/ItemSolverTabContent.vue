@@ -146,11 +146,16 @@
     <div class="flex align-items-center mt-3">
       <p-button class="py-2 px-3 mr-2" :disabled="!hasValidValues" :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'" @click="onCalculate" />
       <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
-      <OptionCheckbox v-model="showAllItems" :label="$t('characterSheet.itemSolverContent.showAllItems')" />
-      <OptionCheckbox v-model="displayTotals" :label="$t('characterSheet.itemSolverContent.displayTotals')" />
+
       <div class="flex-grow-1" />
 
       <div v-html="$t('characterSheet.itemSolverContent.poweredBy', { credit: getLinkText() })" />
+    </div>
+
+    <div class="flex align-items-center gap-4 mt-2">
+      <OptionCheckbox v-model="showAllItems" :label="$t('characterSheet.itemSolverContent.showAllItems')" />
+      <OptionCheckbox v-model="displayTotals" :label="$t('characterSheet.itemSolverContent.displayTotals')" />
+      <OptionCheckbox v-model="withComparisons" :label="$t('characterSheet.equipmentContent.compareToEquipped')" />
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
@@ -172,7 +177,7 @@
         <div class="flex flex-wrap gap-1 mt-2">
           <template v-for="item in filteredItemSet" :key="item.id">
             <div class="item-card-wrapper">
-              <ItemListCard :item="item" with-slot-label with-comparisons :with-totals="displayTotals" />
+              <ItemListCard :item="item" with-slot-label :with-comparisons="withComparisons" :with-totals="displayTotals" />
             </div>
           </template>
         </div>
@@ -222,7 +227,8 @@ const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderErr
 const { createBuildCode } = useBuildCodes();
 
 const showAllItems = ref(false);
-const displayTotals = ref(true);
+const displayTotals = ref(false);
+const withComparisons = ref(false);
 
 const filteredItemSet = computed(() => {
   if (showAllItems.value) {

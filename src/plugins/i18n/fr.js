@@ -122,6 +122,7 @@ export const fr = {
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',
       displayTotals: 'Display Totals', // NEEDS TRANSLATION
+      compareToEquipped: 'Compare to Equipped', // NEEDS TRANSLATION
       itemLevel: "Niveau de l'item",
       openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
       noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",

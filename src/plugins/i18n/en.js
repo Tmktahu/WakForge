@@ -120,6 +120,7 @@ export const en = {
       itemsTotal: 'Items Total',
       displayStats: 'Display Stats',
       displayTotals: 'Display Totals',
+      compareToEquipped: 'Compare to Equipped',
       itemLevel: 'Item Level',
       openEncyclopediaPage: 'Open Encyclopedia Page',
       noItemsFound: 'No items were found with those filters. Please revise your search.',

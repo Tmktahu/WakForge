@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column h-full" style="overflow-y: auto">
-    <EquipmentButtons :character="currentCharacter" />
+    <EquipmentButtons :character="currentCharacter" :with-totals="displayTotalValues" />
 
     <ItemFilters />
 
@@ -25,11 +25,12 @@
         {{ currentItemList.length }} {{ $t('characterSheet.equipmentContent.resultsOutOf') }} {{ getNumTotalItems() }}
         {{ $t('characterSheet.equipmentContent.itemsTotal') }}
       </div>
-      <div class="flex-grow-1" />
-      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayTotals') }}</span>
-      <p-checkbox v-model="displayTotalValues" :binary="true" />
-      <span class="mr-1 ml-3">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
-      <p-checkbox v-model="displayStatsInList" :binary="true" />
+    </div>
+
+    <div class="flex align-items-center gap-4 mt-2">
+      <OptionCheckbox v-model="displayStatsInList" :label="$t('characterSheet.equipmentContent.displayStats')" />
+      <OptionCheckbox v-model="displayTotalValues" :label="$t('characterSheet.equipmentContent.displayTotals')" />
+      <OptionCheckbox v-model="withComparisons" :label="$t('characterSheet.equipmentContent.compareToEquipped')" />
     </div>
 
     <div v-if="showItemList && !itemListLoading" ref="itemResultsWrapper" class="item-results-wrapper flex flex-grow-1 mt-2">
@@ -65,10 +66,10 @@
                   </div>
                 </div>
 
-                <ItemStatList card-mode :item="item" />
+                <ItemStatList card-mode :item="item" :with-totals="displayTotalValues" :with-comparisons="withComparisons" />
               </div>
 
-              <ItemListCard v-else :item="item" :with-totals="displayTotalValues" />
+              <ItemListCard v-else :item="item" :with-totals="displayTotalValues" :with-comparisons="withComparisons" />
             </template>
           </div>
           <div v-else> {{ $t('characterSheet.equipmentContent.noItemsFound') }} </div>
@@ -101,6 +102,7 @@ import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import ItemFilters from '@/components/characterSheet/ItemFilters.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 import ItemListCard from '@/components/characterSheet/ItemListCard.vue';
+import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
 
 const confirm = useConfirm();
 const { t } = useI18n();
@@ -147,7 +149,8 @@ let structuredItemList = computed(() => {
 
 const showItemList = ref(false);
 const displayStatsInList = ref(false);
-const displayTotalValues = ref(true);
+const displayTotalValues = ref(false);
+const withComparisons = ref(false);
 
 const showList = () => {
   showItemList.value = true;

@@ -1,5 +1,5 @@
 <template>
-  <MultiTooltip delay="[0, 0]" duration="0" position="top" :offset="[0, -2]" :append-to="() => documentVar.body" :max-width="500">
+  <MultiTooltip delay="[0, 0]" duration="0" position="top" :offset="[0, -2]" :append-to="() => documentVar.body" :sticky="sticky" :max-width="500">
     <template v-slot:trigger>
       <div class="item-card">
         <div v-if="withSlotLabel" class="slot-label text-center pt-1 pb-1">
@@ -35,7 +35,7 @@
 
     <template v-slot:content>
       <div v-if="item" class="item-card-tooltip">
-        <div v-if="conflictingItem" class="effect-header existing-item flex pt-2 px-1">
+        <div v-if="conflictingItem && withComparisons" class="effect-header existing-item flex pt-2 px-1">
           <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${conflictingItem.imageId}.png`" image-style="width: 40px" />
           <div class="flex flex-column ml-1">
             <div class="item-name mr-2">{{ $t(`items.${conflictingItem.id}`) }}</div>
@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <ItemStatList :item="item" with-comparisons :with-totals="withTotals" />
+        <ItemStatList :item="item" :with-comparisons="withComparisons" :with-totals="withTotals" />
 
         <div class="effect-header flex pt-2 px-1">
           <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
@@ -95,6 +95,14 @@ let props = defineProps({
     default: false,
   },
   withTotals: {
+    type: Boolean,
+    default: false,
+  },
+  withComparisons: {
+    type: Boolean,
+    default: false,
+  },
+  sticky: {
     type: Boolean,
     default: false,
   },
