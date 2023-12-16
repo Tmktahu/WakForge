@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import esItemTranslations from './itemTranslations/es_items.json';
 import esStatesTranslations from './statesTranslations/es_states.json';
 
@@ -119,6 +120,7 @@ export const es = {
       resultsOutOf: 'Resultados de',
       itemsTotal: 'Objetos en Total',
       displayStats: 'Mostrar Stats',
+      displayTotals: 'Display Totals', // NEEDS TRANSLATION
       itemLevel: 'Nivel de Objeto',
       openEncyclopediaPage: 'Abrir la página de la enciclopedia',
       noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
@@ -166,8 +168,7 @@ export const es = {
       healingMasteryTooltip: '¿Debe incluirse Dominio Cura si es posible?',
       rearMasteryTooltip: '¿Debe incluirse Dominio Espalda si es posible?',
       berserkMasteryTooltip: '¿Debe incluirse Dominio Berserker si es posible?',
-      poweredBy: 'Desarrollado por',
-      code: 'código',
+      poweredBy: "Powered by {credit}'s code.", // NEEDS TRANSLATION, context = "Powered by Apple's code"
       problemMessage: 'Ha habido un problema con el solucionador automático. Si crees que se trata de un error, ponte en contacto con Fryke en Discord.',
       instructions: 'Introduce los parámetros y haz clic en "Generar conjunto de artículos"..',
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
@@ -187,6 +188,8 @@ export const es = {
       rangeForLevelWarning: 'Puede que estés pidiendo más alcance del que es posible a tu nivel.',
       rangeImpossibleWarning: 'Puede que estés pidiendo más alcance del que es posible.',
       combinedApMpWarning: 'Puede que estés pidiendo una cantidad combinada de PA+PM que no sea posible en tu nivel.',
+      showAllItems: 'Show All Items', // NEEDS TRANSLATION
+      displayTotals: 'Display Totals', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {

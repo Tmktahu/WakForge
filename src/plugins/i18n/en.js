@@ -119,6 +119,7 @@ export const en = {
       resultsOutOf: 'Results out of',
       itemsTotal: 'Items Total',
       displayStats: 'Display Stats',
+      displayTotals: 'Display Totals',
       itemLevel: 'Item Level',
       openEncyclopediaPage: 'Open Encyclopedia Page',
       noItemsFound: 'No items were found with those filters. Please revise your search.',
@@ -166,8 +167,7 @@ export const en = {
       healingMasteryTooltip: 'Should Healing Mastery be included if possible?',
       rearMasteryTooltip: 'Should Rear Mastery be included if possible?',
       berserkMasteryTooltip: 'Should Berserk Mastery be included if possible?',
-      poweredBy: 'Powered by',
-      code: 'code',
+      poweredBy: 'Powered by {credit} code.',
       problemMessage: 'There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord.',
       instructions: 'Enter your parameters above and click "Generate Item Set".',
       ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.',
@@ -187,6 +187,8 @@ export const en = {
       rangeForLevelWarning: 'You may be asking for more range than is possible at your level.',
       rangeImpossibleWarning: 'You may be asking for more range than is possible.',
       combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.',
+      showAllItems: 'Show All Items',
+      displayTotals: 'Display Totals',
     },
 
     runesAndSubsContent: {

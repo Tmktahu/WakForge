@@ -121,6 +121,7 @@ export const fr = {
       resultsOutOf: 'Résultats sur',
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',
+      displayTotals: 'Display Totals', // NEEDS TRANSLATION
       itemLevel: "Niveau de l'item",
       openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
       noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
@@ -170,8 +171,7 @@ export const fr = {
       healingMasteryTooltip: 'La Maîtrise Soin doit-elle être inclue si possible ?',
       rearMasteryTooltip: 'La Maîtrise Dos doit-elle être inclue si possible ?',
       berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
-      poweredBy: 'Powered by',
-      code: 'code',
+      poweredBy: "Powered by {credit}'s code.", // NEEDS TRANSLATION, context = "Powered by Apple's code"
       problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
       instructions: 'Entrer vos paramètres au-dessus et cliquer sur "Générer un set d\'items".',
       ifYouNeedHelp: "Si vous avez besoin d'assistance, n'hésitez pas à nous contacter sur Discord avec vos questions.",
@@ -192,6 +192,8 @@ export const fr = {
       rangeForLevelWarning: "Vous demandez plus de PO qu'il n'est possible pour votre niveau.",
       rangeImpossibleWarning: 'Vous demandez un nombre en PO qui peut être impossible.',
       combinedApMpWarning: "Vous demandez une somme AP+MP qui n'est pas possible à votre niveau.",
+      showAllItems: 'Show All Items', // NEEDS TRANSLATION
+      displayTotals: 'Display Totals', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {
