@@ -43,11 +43,11 @@
         </tr>
       </template>
 
-      <tr v-if="conflictingItem || getTotalMastery(item) > 0 || getTotalMastery(conflictingItem) > 0" class="effect-line totals">
-        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect">
+      <tr v-if="withTotals && (conflictingItem || getTotalMastery(item) > 0 || getTotalMastery(conflictingItem) > 0)" class="effect-line totals">
+        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect" style="border-top: 3px solid var(--secondary-70)">
           <div class="flex align-items-center w-full px-1 py-1">{{ getTotalMastery(conflictingItem) }} Total Mastery</div>
         </td>
-        <td class="new-item-effect">
+        <td class="new-item-effect" style="border-top: 3px solid var(--primary-70)">
           <div class="flex align-items-center w-full px-1 py-1">
             <div
               v-if="conflictingItem"
@@ -61,12 +61,12 @@
         </td>
       </tr>
 
-      <tr v-if="conflictingItem || getTotalResistance(item) > 0 || getTotalResistance(conflictingItem) > 0" class="effect-line totals">
-        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect">
+      <tr v-if="withTotals && (conflictingItem || getTotalResistance(item) > 0 || getTotalResistance(conflictingItem) > 0)" class="effect-line totals">
+        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect" style="border-top: 3px solid var(--secondary-70)">
           <div class="flex align-items-center w-full px-1 py-1">{{ getTotalResistance(conflictingItem) }} Total Resistance </div>
         </td>
         <td class="new-item-effect">
-          <div class="flex align-items-center w-full px-1 py-1">
+          <div class="flex align-items-center w-full px-1 py-1" style="border-top: 3px solid var(--primary-70)">
             <div
               v-if="conflictingItem"
               class="change-icon mr-1"
@@ -103,6 +103,10 @@ let props = defineProps({
     default: false,
   },
   withComparisons: {
+    type: Boolean,
+    default: false,
+  },
+  withTotals: {
     type: Boolean,
     default: false,
   },
@@ -328,7 +332,6 @@ const getTotalResistance = (item) => {
         color: black;
         font-weight: 800;
         font-size: 14px;
-        border-top: 2px solid var(--primary-10);
       }
 
       .equipped-item-effect {
@@ -336,7 +339,6 @@ const getTotalResistance = (item) => {
         color: black;
         font-weight: 800;
         font-size: 14px;
-        border-top: 2px solid var(--secondary-10);
       }
     }
   }

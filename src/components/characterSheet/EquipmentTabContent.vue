@@ -26,7 +26,9 @@
         {{ $t('characterSheet.equipmentContent.itemsTotal') }}
       </div>
       <div class="flex-grow-1" />
-      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
+      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayTotals') }}</span>
+      <p-checkbox v-model="displayTotalValues" :binary="true" />
+      <span class="mr-1 ml-3">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
       <p-checkbox v-model="displayStatsInList" :binary="true" />
     </div>
 
@@ -66,7 +68,7 @@
                 <ItemStatList card-mode :item="item" />
               </div>
 
-              <ItemListCard v-else :item="item" />
+              <ItemListCard v-else :item="item" :with-totals="displayTotalValues" />
             </template>
           </div>
           <div v-else> {{ $t('characterSheet.equipmentContent.noItemsFound') }} </div>
@@ -145,6 +147,7 @@ let structuredItemList = computed(() => {
 
 const showItemList = ref(false);
 const displayStatsInList = ref(false);
+const displayTotalValues = ref(true);
 
 const showList = () => {
   showItemList.value = true;

@@ -62,7 +62,7 @@
 
           <template v-slot:content>
             <div v-if="items[data.id]" class="item-card-tooltip">
-              <ItemStatList :item="items[data.id]" />
+              <ItemStatList :item="items[data.id]" with-totals />
 
               <div class="effect-header flex pt-2 px-1">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />

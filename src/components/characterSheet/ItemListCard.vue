@@ -52,7 +52,7 @@
           </div>
         </div>
 
-        <ItemStatList :item="item" with-comparisons />
+        <ItemStatList :item="item" with-comparisons :with-totals="withTotals" />
 
         <div class="effect-header flex pt-2 px-1">
           <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
@@ -91,6 +91,10 @@ let props = defineProps({
     default: () => {},
   },
   withSlotLabel: {
+    type: Boolean,
+    default: false,
+  },
+  withTotals: {
     type: Boolean,
     default: false,
   },
