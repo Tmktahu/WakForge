@@ -173,7 +173,7 @@
         <div class="flex flex-wrap gap-1 mt-2">
           <template v-for="item in filteredItemSet" :key="item.id">
             <div class="item-card-wrapper">
-              <ItemListCard :item="item" with-slot-label />
+              <ItemListCard :item="item" with-slot-label with-comparisons />
             </div>
           </template>
         </div>
