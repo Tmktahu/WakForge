@@ -1,10 +1,10 @@
 <template>
-  <div class="flex">
+  <div class="flex flex-column">
     <table class="effect-list-wrapper flex-grow-1" style="border-spacing: 0">
       <template v-for="effectId in combinedEffectKeys" :key="`${item.id}-${effectId}`">
         <tr v-if="!shouldSkipEffect(effectId)" class="effect-line" :class="{ 'with-comparison': conflictingItem && withComparisons }">
           <template v-if="conflictingItem && withComparisons">
-            <td v-if="conflictingItemEffects[effectId]" class="existing-item-effect" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
+            <td v-if="conflictingItemEffects[effectId]" class="equipped-item-effect" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
               <div class="flex align-items-center w-full px-1 py-1">
                 <div v-if="effectId === '304'" class="effect-text flex align-items-center">
                   <span>{{ $t('tooltips.addsStateLevels', { num_0: conflictingItemEffects[effectId].values[2] }) }}</span>
@@ -13,7 +13,7 @@
                 <div v-else class="effect-text">{{ getEffectText(conflictingItemEffects[effectId]) }}</div>
               </div>
             </td>
-            <td v-else class="existing-item-effect" style="min-width: 50px" />
+            <td v-else class="equipped-item-effect" style="min-width: 50px" />
           </template>
 
           <td v-if="itemEffects[effectId]" class="new-item-effect">
@@ -42,6 +42,45 @@
           </td>
         </tr>
       </template>
+
+      <tr v-if="conflictingItem || getTotalMastery(item) > 0 || getTotalMastery(conflictingItem) > 0" class="effect-line totals">
+        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect">
+          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalMastery(conflictingItem) }} Total Mastery</div>
+        </td>
+        <td class="new-item-effect">
+          <div class="flex align-items-center w-full px-1 py-1">
+            <div
+              v-if="conflictingItem"
+              class="change-icon mr-1"
+              :class="{ decrease: getTotalMastery(item) - getTotalMastery(conflictingItem) < 0, increase: getTotalMastery(item) - getTotalMastery(conflictingItem) > 0 }"
+            >
+              {{ getTotalMastery(item) - getTotalMastery(conflictingItem) > 0 ? '+' : '' }}{{ getTotalMastery(item) - getTotalMastery(conflictingItem) }}
+            </div>
+            {{ getTotalMastery(item) }} Total Mastery
+          </div>
+        </td>
+      </tr>
+
+      <tr v-if="conflictingItem || getTotalResistance(item) > 0 || getTotalResistance(conflictingItem) > 0" class="effect-line totals">
+        <td v-if="conflictingItem && withComparisons" class="equipped-item-effect">
+          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalResistance(conflictingItem) }} Total Resistance </div>
+        </td>
+        <td class="new-item-effect">
+          <div class="flex align-items-center w-full px-1 py-1">
+            <div
+              v-if="conflictingItem"
+              class="change-icon mr-1"
+              :class="{
+                decrease: getTotalResistance(item) - getTotalResistance(conflictingItem) < 0,
+                increase: getTotalResistance(item) - getTotalResistance(conflictingItem) > 0,
+              }"
+            >
+              {{ getTotalResistance(item) - getTotalResistance(conflictingItem) > 0 ? '+' : '' }}{{ getTotalResistance(item) - getTotalResistance(conflictingItem) }}
+            </div>
+            {{ getTotalResistance(item) }} Total Resistance
+          </div>
+        </td>
+      </tr>
     </table>
   </div>
 </template>
@@ -175,13 +214,58 @@ const getEffectDifference = (effectId) => {
 
   return currentValue - newValue;
 };
+
+const getTotalMastery = (item) => {
+  let totalValue = 0;
+  let masteryEffectIds = [
+    ...EFFECT_TYPE_DATA.elementalMastery.rawIds,
+    ...EFFECT_TYPE_DATA.fireMastery.rawIds,
+    ...EFFECT_TYPE_DATA.earthMastery.rawIds,
+    ...EFFECT_TYPE_DATA.waterMastery.rawIds,
+    ...EFFECT_TYPE_DATA.airMastery.rawIds,
+    ...EFFECT_TYPE_DATA.rearMastery.rawIds,
+    ...EFFECT_TYPE_DATA.meleeMastery.rawIds,
+    ...EFFECT_TYPE_DATA.distanceMastery.rawIds,
+    ...EFFECT_TYPE_DATA.berserkMastery.rawIds,
+    ...EFFECT_TYPE_DATA.berserkMastery.rawIds,
+  ];
+
+  item?.equipEffects?.forEach((effect) => {
+    if (EFFECT_TYPE_DATA.randomElementalMasteries.rawIds.includes(effect.id)) {
+      totalValue += effect.values[0] * effect.values[2];
+    } else if (masteryEffectIds.includes(effect.id)) {
+      totalValue += effect.values[0];
+    }
+  });
+
+  return totalValue;
+};
+
+const getTotalResistance = (item) => {
+  let totalValue = 0;
+  let masteryEffectIds = [
+    ...EFFECT_TYPE_DATA.rearResistance.rawIds,
+    ...EFFECT_TYPE_DATA.elementalResistance.rawIds,
+    ...EFFECT_TYPE_DATA.fireResistance.rawIds,
+    ...EFFECT_TYPE_DATA.waterResistance.rawIds,
+    ...EFFECT_TYPE_DATA.earthResistance.rawIds,
+    ...EFFECT_TYPE_DATA.airResistance.rawIds,
+    ...EFFECT_TYPE_DATA.criticalResistance.rawIds,
+  ];
+
+  item?.equipEffects?.forEach((effect) => {
+    if (EFFECT_TYPE_DATA.randomElementalResistances.rawIds.includes(effect.id)) {
+      totalValue += effect.values[0] * effect.values[2];
+    } else if (masteryEffectIds.includes(effect.id)) {
+      totalValue += effect.values[0];
+    }
+  });
+
+  return totalValue;
+};
 </script>
 
 <style lang="scss" scoped>
-.effect-line {
-  font-size: 12px;
-}
-
 :deep(.effect-list-wrapper) {
   overflow: hidden;
   flex-direction: column;
@@ -224,9 +308,9 @@ const getEffectDifference = (effectId) => {
     }
   }
 
-  .existing-item-effect {
+  .equipped-item-effect {
     background-color: var(--secondary-10);
-    border-right: 1px solid var(--highlight-90);
+    border-right: 2px solid var(--highlight-80);
     white-space: nowrap;
 
     &.long-entry {
@@ -235,18 +319,40 @@ const getEffectDifference = (effectId) => {
     }
   }
 
+  .effect-line {
+    font-size: 12px;
+
+    &.totals {
+      .new-item-effect {
+        background-color: var(--primary-40) !important;
+        color: black;
+        font-weight: 800;
+        font-size: 14px;
+        border-top: 2px solid var(--primary-10);
+      }
+
+      .equipped-item-effect {
+        background-color: var(--secondary-40) !important;
+        color: black;
+        font-weight: 800;
+        font-size: 14px;
+        border-top: 2px solid var(--secondary-10);
+      }
+    }
+  }
+
   .effect-line:nth-child(2n-1) {
     .new-item-effect {
-      background-color: var(--primary-30) !important;
+      background-color: var(--primary-30);
     }
 
-    .existing-item-effect {
-      background-color: var(--secondary-30) !important;
+    .equipped-item-effect {
+      background-color: var(--secondary-30);
     }
   }
 
   .effect-line:last-child {
-    .existing-item-effect {
+    .equipped-item-effect {
       border-bottom: 1px solid var(--highlight-90);
     }
   }
