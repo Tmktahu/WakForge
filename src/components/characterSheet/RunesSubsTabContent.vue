@@ -449,7 +449,7 @@
 </template>
 
 <script setup>
-import { ref, inject, computed, watch } from 'vue';
+import { ref, inject, computed, watch, nextTick } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 import { useItems } from '@/models/useItems';
@@ -530,7 +530,10 @@ const runeContextOptions = ref([
 const showOptionLists = ref(false);
 
 const showLists = () => {
-  showOptionLists.value = true;
+  showOptionLists.value = false;
+  nextTick(() => {
+    showOptionLists.value = true;
+  });
 };
 
 const summaryEntries = computed(() => {
