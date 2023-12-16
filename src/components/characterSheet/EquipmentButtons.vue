@@ -29,38 +29,41 @@
             <p-image v-else class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${data.id}.png`" image-style="width: 60px" />
           </div>
         </p-button>
-        <tippy v-else placement="bottom" interactive duration="0">
-          <div class="equipment-button" :class="{ 'has-item': items[data.id] !== null }">
-            <div class="flex align-items-center justify-content-center w-full" style="position: relative">
-              <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
-              <div class="hover-icon remove" @click="onRemove(data.id, $event)"> <i class="pi pi-trash" /> </div>
 
-              <p-image class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id].imageId}.png`" image-style="width: 40px" />
+        <MultiTooltip v-else placement="bottom" duration="0">
+          <template v-slot:trigger>
+            <div class="equipment-button" :class="{ 'has-item': items[data.id] !== null }">
+              <div class="flex align-items-center justify-content-center w-full" style="position: relative">
+                <div class="hover-icon edit" @click="onEdit(index, data.id, $event)"> <i class="pi pi-pencil" /> </div>
+                <div class="hover-icon remove" @click="onRemove(data.id, $event)"> <i class="pi pi-trash" /> </div>
 
-              <div v-if="getRandomMasteryEffect(data.id) !== null" class="random-stat-icons-wrapper">
-                <p-image
-                  v-for="masteryIndex in getRandomMasteryEffect(data.id).values[2]"
-                  :key="masteryIndex"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id)[`masterySlot${masteryIndex}`].type}_coin.png`"
-                  image-style="width: 16px"
-                />
-              </div>
+                <p-image class="equipment-image" :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id].imageId}.png`" image-style="width: 40px" />
 
-              <div v-if="getRandomResistanceEffect(data.id) !== null" class="random-stat-icons-wrapper">
-                <p-image
-                  v-for="resistanceIndex in getRandomResistanceEffect(data.id).values[2]"
-                  :key="resistanceIndex"
-                  :src="`https://tmktahu.github.io/WakfuAssets/statistics/${
-                    getRandomResistanceEffect(data.id)[`resistanceSlot${resistanceIndex}`].type
-                  }_coin.png`"
-                  image-style="width: 16px"
-                />
+                <div v-if="getRandomMasteryEffect(data.id) !== null" class="random-stat-icons-wrapper">
+                  <p-image
+                    v-for="masteryIndex in getRandomMasteryEffect(data.id).values[2]"
+                    :key="masteryIndex"
+                    :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomMasteryEffect(data.id)[`masterySlot${masteryIndex}`].type}_coin.png`"
+                    image-style="width: 16px"
+                  />
+                </div>
+
+                <div v-if="getRandomResistanceEffect(data.id) !== null" class="random-stat-icons-wrapper">
+                  <p-image
+                    v-for="resistanceIndex in getRandomResistanceEffect(data.id).values[2]"
+                    :key="resistanceIndex"
+                    :src="`https://tmktahu.github.io/WakfuAssets/statistics/${getRandomResistanceEffect(data.id)[`resistanceSlot${resistanceIndex}`].type}_coin.png`"
+                    image-style="width: 16px"
+                  />
+                </div>
               </div>
             </div>
-          </div>
+          </template>
 
           <template v-slot:content>
             <div v-if="items[data.id]" class="item-card-tooltip">
+              <ItemStatList :item="items[data.id]" with-totals />
+
               <div class="effect-header flex pt-2 px-1">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id]?.imageId}.png`" image-style="width: 40px" />
                 <div class="flex flex-column">
@@ -80,10 +83,9 @@
                   </tippy>
                 </div>
               </div>
-              <ItemStatList :item="items[data.id]" />
             </div>
           </template>
-        </tippy>
+        </MultiTooltip>
 
         <EditEquipmentModal ref="editEquipmentModal" />
       </template>
@@ -102,6 +104,7 @@ import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 import EditEquipmentModal from '@/components/characterSheet/EditEquipmentModal.vue';
+import MultiTooltip from '@/components/MultiTooltip.vue';
 
 const { t } = useI18n();
 

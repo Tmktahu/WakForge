@@ -605,6 +605,7 @@ const onRuneClick = (event, itemSlotKey, runeSlotKey) => {
   }
 
   if (event.ctrlKey) {
+    runeContextMenu.value.hide();
     currentCharacter.value.equipment[itemSlotKey][runeSlotKey] = null;
   }
 };

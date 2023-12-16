@@ -4,11 +4,7 @@
 
     <div class="flex flex-column mt-4">
       <div class="flex">
-        <OptionCheckbox
-          v-model="considerCurrentItems"
-          label="Consider Current Items"
-          tooltip-text="Should the currently equipped items be taken into consideration?"
-        />
+        <OptionCheckbox v-model="considerCurrentItems" label="Consider Current Items" tooltip-text="Should the currently equipped items be taken into consideration?" />
       </div>
 
       <div class="flex mt-3">
@@ -95,11 +91,7 @@
         <div class="flex flex-column">
           <div class="rarity-container">
             <div class="flex align-items-center mb-1">
-              <p-button
-                class="filter-button item-filter-action mr-2"
-                :label="$t('characterSheet.equipmentContent.itemFilters.all')"
-                @click="onSelectAllRarities"
-              />
+              <p-button class="filter-button item-filter-action mr-2" :label="$t('characterSheet.equipmentContent.itemFilters.all')" @click="onSelectAllRarities" />
               <tippy placement="top">
                 <i class="mdi mdi-information-outline" />
                 <template v-slot:content>
@@ -115,11 +107,7 @@
                   <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox" @change="onRarityClick($event, rarity.id)">
                     <template v-slot:icon="slotProps">
                       <div class="flex justify-content-center align-items-center">
-                        <p-image
-                          :class="{ disabled: !slotProps.checked }"
-                          :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`"
-                          image-style="width: 14px;"
-                        />
+                        <p-image :class="{ disabled: !slotProps.checked }" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`" image-style="width: 14px;" />
                       </div>
                     </template>
                   </p-checkbox>
@@ -156,20 +144,13 @@
     </div>
 
     <div class="flex align-items-center mt-3">
-      <p-button
-        class="py-2 px-3 mr-2"
-        :disabled="!hasValidValues"
-        :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'"
-        @click="onCalculate"
-      />
+      <p-button class="py-2 px-3 mr-2" :disabled="!hasValidValues" :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'" @click="onCalculate" />
       <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
-      <OptionCheckbox v-model="showAllItems" label="Show All Items" />
+      <OptionCheckbox v-model="showAllItems" :label="$t('characterSheet.itemSolverContent.showAllItems')" />
+      <OptionCheckbox v-model="displayTotals" :label="$t('characterSheet.itemSolverContent.displayTotals')" />
       <div class="flex-grow-1" />
-      <div
-        >{{ $t('characterSheet.itemSolverContent.poweredBy') }}
-        <a href="https://github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>'s
-        {{ $t('characterSheet.itemSolverContent.code') }}.</div
-      >
+
+      <div v-html="$t('characterSheet.itemSolverContent.poweredBy', { credit: getLinkText() })" />
     </div>
 
     <div v-if="!builderLoading" class="results-display flex flex-column flex-grow-1 mt-2">
@@ -190,7 +171,9 @@
       <div v-else-if="filteredItemSet?.length">
         <div class="flex flex-wrap gap-1 mt-2">
           <template v-for="item in filteredItemSet" :key="item.id">
-            <ItemListCard :item="item" />
+            <div class="item-card-wrapper">
+              <ItemListCard :item="item" with-slot-label with-comparisons :with-totals="displayTotals" />
+            </div>
           </template>
         </div>
       </div>
@@ -239,6 +222,7 @@ const { runCalculations, autoBuilderIsReady, itemSet, builderLoading, builderErr
 const { createBuildCode } = useBuildCodes();
 
 const showAllItems = ref(false);
+const displayTotals = ref(true);
 
 const filteredItemSet = computed(() => {
   if (showAllItems.value) {
@@ -418,6 +402,10 @@ const onRarityClick = (event, rarityId) => {
     });
   }
 };
+
+const getLinkText = () => {
+  return `<a href="//github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>\'s`;
+};
 </script>
 
 <style lang="scss" scoped>
@@ -517,5 +505,11 @@ const onRarityClick = (event, rarityId) => {
   width: fit-content;
   border: 1px solid var(--error);
   border-radius: 8px;
+}
+
+.item-card-wrapper {
+  border: 1px solid var(--highlight-90);
+  border-radius: 8px;
+  overflow: hidden;
 }
 </style>

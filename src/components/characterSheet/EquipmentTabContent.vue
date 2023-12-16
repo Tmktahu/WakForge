@@ -26,7 +26,9 @@
         {{ $t('characterSheet.equipmentContent.itemsTotal') }}
       </div>
       <div class="flex-grow-1" />
-      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
+      <span class="mr-1">{{ $t('characterSheet.equipmentContent.displayTotals') }}</span>
+      <p-checkbox v-model="displayTotalValues" :binary="true" />
+      <span class="mr-1 ml-3">{{ $t('characterSheet.equipmentContent.displayStats') }}</span>
       <p-checkbox v-model="displayStatsInList" :binary="true" />
     </div>
 
@@ -66,60 +68,7 @@
                 <ItemStatList card-mode :item="item" />
               </div>
 
-              <tippy v-else :delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
-                <div class="item-card">
-                  <div class="flex px-2 pt-2">
-                    <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                    <div class="flex flex-column ml-1">
-                      <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
-                      <div class="flex">
-                        <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                        <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                        <div v-if="LEVELABLE_ITEMS.includes(item.type.id)"> {{ $t('characterSheet.equipmentContent.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }} </div>
-                        <div v-else>Lvl: {{ item.level }}</div>
-                        <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
-                          {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
-                        </div>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1" />
-
-                    <div class="flex flex-column gap-1">
-                      <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
-                      <tippy placement="left">
-                        <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
-                        <template v-slot:content>
-                          <div class="simple-tooltip">
-                            {{ $t('characterSheet.equipmentContent.openEncyclopediaPage') }}
-                          </div>
-                        </template>
-                      </tippy>
-                    </div>
-                  </div>
-                </div>
-
-                <template v-slot:content>
-                  <div v-if="item" class="item-card-tooltip">
-                    <div class="effect-header flex pt-2 px-1">
-                      <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                      <div class="flex flex-column ml-1">
-                        <div class="item-name mr-2">{{ $t(`items.${item.id}`) }}</div>
-                        <div class="flex">
-                          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                          <div v-if="LEVELABLE_ITEMS.includes(item.type.id)"> {{ $t('characterSheet.equipmentContent.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }} </div>
-                          <div v-else>Lvl: {{ item.level }}</div>
-                          <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
-                            {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <ItemStatList :item="item" />
-                  </div>
-                </template>
-              </tippy>
+              <ItemListCard v-else :item="item" :with-totals="displayTotalValues" />
             </template>
           </div>
           <div v-else> {{ $t('characterSheet.equipmentContent.noItemsFound') }} </div>
@@ -151,6 +100,7 @@ import { useEncyclopedia } from '@/models/useEncyclopedia';
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import ItemFilters from '@/components/characterSheet/ItemFilters.vue';
 import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
+import ItemListCard from '@/components/characterSheet/ItemListCard.vue';
 
 const confirm = useConfirm();
 const { t } = useI18n();
@@ -197,6 +147,7 @@ let structuredItemList = computed(() => {
 
 const showItemList = ref(false);
 const displayStatsInList = ref(false);
+const displayTotalValues = ref(true);
 
 const showList = () => {
   showItemList.value = true;
