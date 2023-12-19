@@ -506,8 +506,19 @@ const hasCharacteristicsError = computed(() => {
   );
 });
 
+const hasCharacteristicsPointsToSpend = computed(() => {
+  return (
+    calcRemainingPoints('intelligence') > 0 ||
+    calcRemainingPoints('strength') > 0 ||
+    calcRemainingPoints('agility') > 0 ||
+    calcRemainingPoints('fortune') > 0 ||
+    calcRemainingPoints('major') > 0
+  );
+});
+
 defineExpose({
   hasCharacteristicsError,
+  hasCharacteristicsPointsToSpend,
 });
 </script>
 

@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 import enItemTranslations from './itemTranslations/en_items.json';
 import enStatesTranslations from './statesTranslations/en_states.json';
 
@@ -73,6 +74,7 @@ export const en = {
     buildCopyPaste: 'You can copy-paste this code to people to share this build.',
     buildCode: 'Build Code',
     copy: 'Copy',
+    guides: 'Guides',
     characteristics: 'Characteristics',
     equipment: 'Equipment',
     autoItemSolver: 'Auto Item Solver',
@@ -100,6 +102,12 @@ export const en = {
       statsSummary: 'Stats Summary',
       effectiveHpAgainst: 'Effective HP Against {type} Damage',
       numSelected: '{num} Selected',
+    },
+
+    guidesContent: {
+      doYouHaveAGuide: "Do you have a guide you would like to list here? Contact us in the Discord server. We'd love to add it.",
+      classGuides: '{class} Guides',
+      openGuide: 'Open Guide',
     },
 
     characteristicsContent: {

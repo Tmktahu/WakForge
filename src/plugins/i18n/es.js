@@ -74,6 +74,7 @@ export const es = {
     buildCopyPaste: 'Puedes copiar y pegar este código para compartir la build con otras personas',
     buildCode: 'Build Code',
     copy: 'Copiar',
+    guides: 'Guides', // NEEDS TRANSLATION
     characteristics: 'Características',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
@@ -101,6 +102,12 @@ export const es = {
       statsSummary: 'Resumen de los stats',
       effectiveHpAgainst: 'Effective HP Against {type} Damage', // NEEDS TRANSLATION
       numSelected: '{num} Selected', // NEEDS TRANSLATION
+    },
+
+    guidesContent: {
+      doYouHaveAGuide: "Do you have a guide you would like to list here? Contact us in the Discord server. We'd love to add it.", // NEEDS TRANSLATION
+      classGuides: '{class} Guides', // NEEDS TRANSLATION
+      openGuide: 'Open Guide', // NEEDS TRANSLATION
     },
 
     characteristicsContent: {
