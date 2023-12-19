@@ -284,23 +284,23 @@ export const useBuildCodes = () => {
     });
 
     if (randomEffect) {
-      let bitNumberString = itemData[1].toString(2);
+      let bitNumberField = itemData[1];
       let elementIdArray = [];
 
-      if (parseInt(bitNumberString[3]) === 1) {
-        elementIdArray.push('fire'); // has fire
+      if (bitNumberField & ELEMENT_TYPE_ENUM.fire === ELEMENT_TYPE_ENUM.fire) {
+        elementIdArray.push('fire');
       }
 
-      if (parseInt(bitNumberString[2]) === 1) {
-        elementIdArray.push('earth'); // has earth
+      if (bitNumberField & ELEMENT_TYPE_ENUM.water === ELEMENT_TYPE_ENUM.water) {
+        elementIdArray.push('water');
       }
 
-      if (parseInt(bitNumberString[1]) === 1) {
-        elementIdArray.push('water'); // has water
+      if (bitNumberField & ELEMENT_TYPE_ENUM.earth === ELEMENT_TYPE_ENUM.earth) {
+        elementIdArray.push('earth');
       }
 
-      if (parseInt(bitNumberString[0]) === 1) {
-        elementIdArray.push('air'); // has air
+      if (bitNumberField & ELEMENT_TYPE_ENUM.air === ELEMENT_TYPE_ENUM.air) {
+        elementIdArray.push('air');
       }
 
       elementIdArray.sort();
