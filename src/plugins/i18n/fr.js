@@ -100,6 +100,8 @@ export const fr = {
       indirectDamage: 'Dommages Indirects',
       totalMastery: 'Total Mastery', // NEEDS TRANSLATION
       statsSummary: 'Résumé Stats',
+      effectiveHpAgainst: 'Effective HP Against {type} Damage', // NEEDS TRANSLATION
+      numSelected: '{num} Selected', // NEEDS TRANSLATION
     },
 
     characteristicsContent: {

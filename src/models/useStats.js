@@ -397,14 +397,21 @@ export const useStats = (currentCharacter) => {
     return finalValue;
   };
 
-  const calcTotalMastery = () => {
+  const calcTotalMastery = (targetMasteryKeys) => {
     let totalMastery = 0;
 
-    Object.keys(currentCharacter.value?.masteries).forEach((masteryKey) => {
+    targetMasteryKeys?.forEach((masteryKey) => {
       totalMastery += currentCharacter.value?.masteries?.[masteryKey];
     });
 
     return totalMastery;
+  };
+
+  const calcEffectiveHp = (damageType) => {
+    let startingHP = currentCharacter.value?.healthPoints;
+
+    let effectiveHp = startingHP / (1 - calcElemResistancePercentage(currentCharacter.value?.resistances?.[damageType]) / 100);
+    return Math.round(effectiveHp);
   };
 
   return {
@@ -413,5 +420,6 @@ export const useStats = (currentCharacter) => {
     calcItemContribution,
     getRuneValue,
     calcTotalMastery,
+    calcEffectiveHp,
   };
 };

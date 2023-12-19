@@ -98,6 +98,8 @@ export const en = {
       indirectDamage: 'Indirect Damage',
       totalMastery: 'Total Mastery',
       statsSummary: 'Stats Summary',
+      effectiveHpAgainst: 'Effective HP Against {type} Damage',
+      numSelected: '{num} Selected',
     },
 
     characteristicsContent: {
