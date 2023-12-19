@@ -73,10 +73,22 @@
         <p-tabView class="main-tab-view" @tab-change="onTabChange">
           <p-tabPanel>
             <template v-slot:header>
-              <div class="characteristics-tab-header px-3 h-full" :class="{ error: hasCharacteristicsError, 'points-to-spend': false }">
+              <div class="tab-header">
+                <span>{{ $t('characterSheet.guides') }}</span>
+              </div>
+            </template>
+            <GuidesTabContent />
+          </p-tabPanel>
+
+          <p-tabPanel>
+            <template v-slot:header>
+              <div
+                class="tab-header characteristics-tab-header"
+                :class="{ error: hasCharacteristicsError, 'points-to-spend': hasCharacteristicsPointsToSpend && !hasCharacteristicsError }"
+              >
                 <span>{{ $t('characterSheet.characteristics') }}</span>
-                <i class="points-to-spend-icon mdi mdi-arrow-up-bold ml-2" style="font-size: 26px" />
-                <i class="error-icon mdi mdi-alert-octagon-outline ml-2" style="font-size: 26px" />
+                <i class="points-to-spend-icon mdi mdi-arrow-up-bold ml-1" style="font-size: 20px" />
+                <i class="error-icon mdi mdi-alert-octagon-outline ml-1" style="font-size: 20px" />
               </div>
             </template>
             <CharacteristicsTabContent ref="characteristicsTabContent" />
@@ -84,7 +96,7 @@
 
           <p-tabPanel>
             <template v-slot:header>
-              <div class="flex align-items-center px-3 py-3">
+              <div class="tab-header">
                 <span>{{ $t('characterSheet.equipment') }}</span>
               </div>
             </template>
@@ -93,7 +105,7 @@
 
           <p-tabPanel>
             <template v-slot:header>
-              <div class="flex align-items-center px-3 py-3">
+              <div class="tab-header">
                 <span>{{ $t('characterSheet.autoItemSolver') }}</span>
               </div>
             </template>
@@ -102,7 +114,7 @@
 
           <p-tabPanel>
             <template v-slot:header>
-              <div class="flex align-items-center px-3 py-3">
+              <div class="tab-header">
                 <span>{{ $t('characterSheet.runesAndSubs') }}</span>
               </div>
             </template>
@@ -111,7 +123,7 @@
 
           <p-tabPanel>
             <template v-slot:header>
-              <div class="flex align-items-center px-3 py-3">
+              <div class="tab-header">
                 <span>{{ $t('characterSheet.spellsAndPassives') }}</span>
               </div>
             </template>
@@ -132,6 +144,7 @@ import { CLASS_CONSTANTS } from '@/models/useConstants';
 import { useBuildCodes } from '@/models/useBuildCodes';
 
 import StatDisplay from '@/components/characterSheet/StatDisplay.vue';
+import GuidesTabContent from '@/components/characterSheet/GuidesTabContent.vue';
 import CharacteristicsTabContent from '@/components/characterSheet/CharacteristicsTabContent.vue';
 import EquipmentTabContent from '@/components/characterSheet/EquipmentTabContent.vue';
 import SpellTabContent from '@/components/characterSheet/SpellTabContent.vue';
@@ -198,6 +211,10 @@ const hasCharacteristicsError = computed(() => {
   return characteristicsTabContent.value?.hasCharacteristicsError;
 });
 
+const hasCharacteristicsPointsToSpend = computed(() => {
+  return characteristicsTabContent.value?.hasCharacteristicsPointsToSpend;
+});
+
 const onCopyBuildCode = () => {
   navigator.clipboard.writeText(buildCode.value);
 
@@ -248,7 +265,13 @@ const onCopyBuildCode = () => {
     height: calc(100% - 52px);
   }
 
-  .p-tabview-panel {
+  .p-tabview-nav-container {
+    height: 40px;
+  }
+
+  .p-tabview-panel,
+  .p-tabview-nav,
+  .p-tabview-nav-content {
     height: 100%;
   }
 }
@@ -265,11 +288,38 @@ const onCopyBuildCode = () => {
   }
 }
 
-.characteristics-tab-header {
+.tab-header {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 175px;
+  padding: 0px 12px;
+  background-color: var(--background-20);
+  border-right: 1px solid var(--background-50);
+}
+
+@media (max-width: 1380px) {
+  .tab-header {
+    font-weight: 500;
+    font-size: 0.75rem;
+  }
+
+  .characteristics-tab-header {
+    width: 126px !important;
+    i {
+      font-size: 1rem !important;
+    }
+  }
+}
+
+.p-highlight {
+  .tab-header {
+    background-color: var(--primary-20);
+  }
+}
+
+.characteristics-tab-header {
+  width: 158px;
 
   .error-icon {
     display: none;
@@ -290,6 +340,9 @@ const onCopyBuildCode = () => {
   }
 
   &.points-to-spend {
+    color: var(--secondary-50);
+    background-color: var(--secondary-10);
+
     .points-to-spend-icon {
       display: block;
     }

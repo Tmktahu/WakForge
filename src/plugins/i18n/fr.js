@@ -75,6 +75,7 @@ export const fr = {
     buildCopyPaste: 'Vous pouvez copier-coller ce code pour partager ce build',
     buildCode: 'Code Build',
     copy: 'Copier',
+    guides: 'Guides', // NEEDS TRANSLATION
     characteristics: 'Caractéristiques',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
@@ -104,6 +105,12 @@ export const fr = {
       numSelected: '{num} Selected', // NEEDS TRANSLATION
     },
 
+    guidesContent: {
+      doYouHaveAGuide: "Do you have a guide you would like to list here? Contact us in the Discord server. We'd love to add it.", // NEEDS TRANSLATION
+      classGuides: '{class} Guides', // NEEDS TRANSLATION
+      openGuide: 'Open Guide', // NEEDS TRANSLATION
+    },
+
     characteristicsContent: {
       points: 'Points',
       intelligence: 'Intelligence',
@@ -122,6 +129,7 @@ export const fr = {
 
     equipmentContent: {
       sortBy: 'Trier par',
+      newSort: 'New Sort', // NEEDS TRANSLATION
       resultsOutOf: 'Résultats sur',
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',

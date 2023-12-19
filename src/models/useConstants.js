@@ -1225,3 +1225,174 @@ export const PASSIVE_SPELL_UNLOCK_MAP = {
   7800: 85, // Elemental Combination
   7798: 90, // Runic Transcendence
 };
+
+export const GUIDES_DATA = {
+  [CLASS_CONSTANTS.feca.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "THE SQUIRE'S BIG BOOK",
+      languages: ['sidebar.english', 'sidebar.spanish'],
+      description: 'A written guide by Tokki outlining the basics of the Feca class along with several builds including protector, tank, and damage.',
+      url: 'https://www.wakfu.com/en/forum/49-feca/241229-guide-squire-big-book',
+    },
+    {
+      // eslint-disable-next-line quotes
+      name: "Nutella's Feca Guide",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Nutella that goes over build reccomendations based on what they have found to be most effective.',
+      url: 'https://www.wakfu.com/en/forum/49-feca/196023-nutella-feca-guide-last-updated-8-25-22',
+    },
+  ],
+  [CLASS_CONSTANTS.osamodas.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Marfolog's Osamodas Guide",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Marofolog for the Osamodas class that goes over the entire class.',
+      url: 'https://www.wakfu.com/en/forum/44-osamodas/242523-marfolog-osamodas-guide-last-updated-04-08-2023',
+    },
+    {
+      // eslint-disable-next-line quotes
+      name: 'Osamodas Summons List',
+      languages: ['sidebar.english'],
+      description: 'A list of all summons the Osamodas class can get, along with their abilities. Put together by Fixxr.',
+      url: 'https://www.wakfu.com/en/forum/44-osamodas/242022-osamodas-summons-list',
+    },
+  ],
+  [CLASS_CONSTANTS.enutrof.id]: [],
+  [CLASS_CONSTANTS.sram.id]: [
+    {
+      name: 'Sram Guide for PVE',
+      languages: ['sidebar.english'],
+      description: 'A written guide by PandaKing for the Sram class that focuses on PVE and rifts.',
+      url: 'https://www.wakfu.com/en/forum/48-sram/242662-sram-guide-pve-kinda-focused-rifts',
+    },
+  ],
+  [CLASS_CONSTANTS.xelor.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Infoculus's Xelor Mini-Guide 1.79",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Infoculus for the Xelor class that goes over new mechanics for returning or new players.',
+      url: 'https://www.wakfu.com/en/forum/50-xelor/243051-guide-infoculus-xelor-mini-guide-1-79',
+    },
+    {
+      // eslint-disable-next-line quotes
+      name: "Pelayus's Xelor Guide 1.73",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Pelayus for the Xelor class that goes over the spells and mechanics.',
+      url: 'https://www.wakfu.com/en/forum/50-xelor/240877-guide-pelayus-xelor-guide-24-09-21-1-73-update',
+    },
+  ],
+  [CLASS_CONSTANTS.ecaflip.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: 'Creating Chaos with a Cheshire Smile',
+      languages: ['sidebar.english'],
+      description: 'A written guide by Kaze that goes over the class mechanics of Ecaflip.',
+      url: 'https://docs.google.com/document/d/14w7OiHiLvZYg0z0HFQjMuDK-Dee2oddYYdDlz3WJ_hY/edit#heading=h.nrnw03t7conb',
+    },
+  ],
+  [CLASS_CONSTANTS.eniripsa.id]: [],
+  [CLASS_CONSTANTS.iop.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Dragon Pig's Single-Target PVE Guide",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Dragon Pig (Hatespawn) that goes over the entire Iop class with a focus on PVE.',
+      url: 'https://docs.google.com/document/d/1hL2JM6tV4W7GtVz2nSlxhKfNtyoGv2BWMkcSkGi0OcU/edit#heading=h.t99fx93c4s20',
+    },
+  ],
+  [CLASS_CONSTANTS.cra.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: 'Cra, Best Distance Class?',
+      languages: ['sidebar.french'],
+      description: 'A video guide by Reyfte that goes over AOE and single target damage builds for the Cra class.',
+      url: 'https://www.youtube.com/watch?v=lvPV58L52m4',
+    },
+  ],
+  [CLASS_CONSTANTS.sadida.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Comprehensive Guide to Sadida's Mechanism",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Thothus for the Sadida class that goes over the class mechanics in-depth.',
+      url: 'https://www.wakfu.com/en/forum/40-sadida/240491-comprehensive-guide-sadida-mechanism-regarding-dolls-voodoll-heals-indirect-damage-15-2-2023',
+    },
+  ],
+  [CLASS_CONSTANTS.sacrier.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Suspect's Sacrier Guide 1.76",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Suspect for the Sacrier class that goes over all the spells and mechanics of the class, along with many build suggestions and breakdowns.',
+      url: 'https://docs.google.com/document/d/1tBHK2XLljtKvlTzzOIQ-neH7cSIzGgL6f815AOhEHlc/edit#heading=h.80nds2pt6cad',
+    },
+    {
+      // eslint-disable-next-line quotes
+      name: 'The Caveman Sacrier’s Guide Book',
+      languages: ['sidebar.english'],
+      description: 'A written guide by Red Hood for the Sacrier class that goes over all the spells and mechanics.',
+      url: 'https://docs.google.com/document/d/1-c1ZfZIrv63ScmEG5EvUfKVv8P1oDAq-oEaRRD0rLaE/edit',
+    },
+  ],
+  [CLASS_CONSTANTS.pandawa.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Genn's How To Tank With Pandawa",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Genn that goes over how to tank with the Pandawa class.',
+      url: 'https://www.wakfu.com/en/forum/52-pandawa/234748-genn-how-tank-with-pandawa',
+    },
+  ],
+  [CLASS_CONSTANTS.rogue.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Loka's General Rogue Guide",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Loka that goes over the Rogue class as a whole along with leveling spell deck suggestions.',
+      url: 'https://www.wakfu.com/en/forum/97-rogue/241266-loka-1-75-9-general-rogue-guide',
+    },
+  ],
+  [CLASS_CONSTANTS.masqueraider.id]: [
+    {
+      // eslint-disable-next-line quotes
+      name: "Owlite's Guide to the Masqueraider",
+      languages: ['sidebar.english'],
+      description: 'A written guide by Owlite that goes over a flexible build for the Masqueraider class that can switch between damage and support roles.',
+      url: 'https://www.wakfu.com/en/forum/103-masqueraiders/242854-owlite-guide-masqueraider',
+    },
+  ],
+  [CLASS_CONSTANTS.ouginak.id]: [
+    {
+      name: 'Ouginak Rework Guide 1.77',
+      languages: ['sidebar.english'],
+      description: 'A written guide by Barinade for the Ouginak class that goes over all the spells and mechanics of the class.',
+      url: 'https://www.wakfu.com/en/forum/323-ouginak/242542-ouginak-rework-guide-1-77',
+    },
+    {
+      name: '1.79 Build Guide, What the Dog doin?',
+      languages: ['sidebar.english'],
+      description: 'A video guide by Ken Evagreen that goes over melee, poison melee, poison ranged, and tank builds for Ouginak.',
+      url: 'https://www.youtube.com/watch?v=KWPSOCVTIjQ',
+    },
+  ],
+  [CLASS_CONSTANTS.foggernaut.id]: [
+    {
+      name: '1.79 Foggernaut Guide by That One Weeb',
+      languages: ['sidebar.english'],
+      description: 'A video guide by That One Weeb for the Foggernaut class that focuses on rift grinding.',
+      url: 'https://www.youtube.com/watch?v=50iwH2tJGJ4',
+    },
+  ],
+  [CLASS_CONSTANTS.eliotrope.id]: [],
+  [CLASS_CONSTANTS.huppermage.id]: [
+    {
+      name: '1.79 Huppermage Rework Guide by Barinade',
+      languages: ['sidebar.english'],
+      description: 'A video guide by Barinade for the Huppermage class that goes over the whole class and various mechanics.',
+      url: 'https://www.youtube.com/watch?v=lgwGal-6wbQ',
+    },
+  ],
+};

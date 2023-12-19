@@ -1,5 +1,3 @@
-let currentSortBy = { id: 'none' };
-let currentSortOrder = 'ascending';
 let EFFECT_TYPE_DATA = null;
 
 const filterItems = (items, params) => {
@@ -19,60 +17,57 @@ const filterItems = (items, params) => {
 };
 
 const handleSortingLogic = (items, params) => {
-  let targetSortBy = params.sortBy;
-  let targetSortOrder = params.sortOrder;
-
   // first copy the original data incase the sort is 'none'
   let initialData = structuredClone(items);
 
-  if (targetSortBy === currentSortBy && targetSortOrder === currentSortOrder) {
-    // there was no sorting change, so don't sort
-    return initialData;
-  }
+  for (let sortSettingIndex in params.sortingParams) {
+    let targetSortBy = params.sortingParams[sortSettingIndex].sortBy;
+    let targetSortOrder = params.sortingParams[sortSettingIndex].sortOrder;
 
-  // we want to perform a sort
+    // if the sortBy is none, don't sort
+    if (targetSortBy.id === 'none') {
+      continue;
+    }
 
-  // save the current sort settings for next time
-  currentSortBy = targetSortBy;
-  currentSortOrder = targetSortOrder;
-
-  // if the sortBy is none, don't sort
-  if (targetSortBy.id === 'none') {
-    return initialData;
+    initialData = initialData.sort((itemA, itemB) => {
+      return sortComparisonFunction(itemA, itemB, targetSortBy, targetSortOrder);
+    });
   }
 
   // otherwise we want to do a sort
-  return initialData.sort((itemA, itemB) => {
-    if (targetSortBy.id === 'level') {
-      // we handle level sorting manually
-      return targetSortOrder.id === 'ascending' ? itemA.level - itemB.level : itemB.level - itemA.level;
-    } else if (targetSortBy.id === 'name') {
-      // we handle name sorting manually
-      let nameA = itemA.name.toLowerCase(),
-        nameB = itemB.name.toLowerCase();
+  return initialData;
+};
 
-      if (targetSortOrder.id === 'ascending') {
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-        return 0;
-      } else {
-        if (nameA > nameB) {
-          return -1;
-        }
-        if (nameA < nameB) {
-          return 1;
-        }
-        return 0;
+const sortComparisonFunction = (itemA, itemB, targetSortBy, targetSortOrder) => {
+  if (targetSortBy.id === 'level') {
+    // we handle level sorting manually
+    return targetSortOrder.id === 'ascending' ? itemA.level - itemB.level : itemB.level - itemA.level;
+  } else if (targetSortBy.id === 'name') {
+    // we handle name sorting manually
+    let nameA = itemA.name.toLowerCase(),
+      nameB = itemB.name.toLowerCase();
+
+    if (targetSortOrder.id === 'ascending') {
+      if (nameA < nameB) {
+        return -1;
       }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
     } else {
-      // we use this function to sort by an equip effect
-      return sortByEquipEffect(itemA, itemB, targetSortBy, targetSortOrder);
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+      return 0;
     }
-  });
+  } else {
+    // we use this function to sort by an equip effect
+    return sortByEquipEffect(itemA, itemB, targetSortBy, targetSortOrder);
+  }
 };
 
 const sortByEquipEffect = (itemA, itemB, targetSortBy, targetSortOrder) => {

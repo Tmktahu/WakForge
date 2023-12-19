@@ -52,8 +52,7 @@ export const sortByOptions = [
 ];
 
 const itemFilters = reactive({
-  sortBy: sortByOptions[0],
-  sortOrder: sortOrderOptions[0], // ascending means 'smallest to largest', descending means 'largest to smallest'
+  sortingParams: [{ sortBy: sortByOptions[0], sortOrder: sortOrderOptions[0] }], // ascending means 'smallest to largest', descending means 'largest to smallest'
   searchTerm: '',
   startLevel: 0,
   endLevel: 230,
@@ -68,8 +67,7 @@ const itemFilters = reactive({
     return { ...entry, checked: true };
   }),
   resetFilters() {
-    this.sortBy = sortByOptions[0];
-    this.sortOrder = sortOrderOptions[0];
+    this.sortingParams = [{ sortBy: sortByOptions[0], sortOrder: sortOrderOptions[0] }];
     this.searchTerm = '';
     this.startLevel = 0;
     this.endLevel = 230;
@@ -131,8 +129,7 @@ export const useItems = (character = ref(null)) => {
   const prepareInputParams = () => {
     let params = {};
 
-    params.sortBy = itemFilters.sortBy;
-    params.sortOrder = itemFilters.sortOrder;
+    params.sortingParams = itemFilters.sortingParams;
     params.startLevel = itemFilters.startLevel;
     params.endLevel = itemFilters.endLevel;
     params.effectFilters = itemFilters.effectFilters;
