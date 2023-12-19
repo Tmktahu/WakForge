@@ -97,6 +97,8 @@ export const es = {
       secondary: 'Secundario',
       armorReceived: 'Armodura Recibida',
       indirectDamage: 'Daños Indirectos',
+      totalMastery: 'Total Mastery', // NEEDS TRANSLATION
+      statsSummary: 'Resumen de los stats',
     },
 
     characteristicsContent: {
@@ -201,7 +203,6 @@ export const es = {
       shiftClick: 'SHIFT-Click en una runa para cambiarla a blanca.',
       rightClick: 'RIGHT-Click en una runa para ver más opciones..',
       hightlightClick: 'Selecciona una ranura y haz clic en una runa de la derecha para asignarla.',
-      statsSummary: 'Resumen de los stats',
       runeLevelTooltip: `El máximo nivel de runa posible está ligado al nivel del objeto, pero para nuestros propósitos limitamos esta opción al nivel de tu personaje.`,
       runeLevel: 'Nivel de Runa',
       toggleWhite: 'Cambiar a blanco',
