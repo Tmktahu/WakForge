@@ -286,6 +286,9 @@ export const useBuildCodes = () => {
     if (randomEffect) {
       let bitNumberString = itemData[1].toString(2);
       let elementIdArray = [];
+      while (bitNumberString.length < 4) {
+        bitNumberString = `0${bitNumberString}`;
+      }
 
       if (parseInt(bitNumberString[3]) === 1) {
         elementIdArray.push('fire'); // has fire
