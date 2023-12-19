@@ -80,9 +80,7 @@ export const useStats = (currentCharacter) => {
 
       // Other masteries
       currentCharacter.value.masteries.melee =
-        currentCharacter.value.characteristics.strength.meleeMastery * 8 +
-        calcItemContribution(EFFECT_TYPE_DATA.meleeMastery) +
-        calcRuneContribution(RUNE_TYPES.meleeMastery);
+        currentCharacter.value.characteristics.strength.meleeMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.meleeMastery) + calcRuneContribution(RUNE_TYPES.meleeMastery);
       currentCharacter.value.masteries.distance =
         currentCharacter.value.characteristics.strength.distanceMastery * 8 +
         calcItemContribution(EFFECT_TYPE_DATA.distanceMastery) +
@@ -93,17 +91,11 @@ export const useStats = (currentCharacter) => {
         calcItemContribution(EFFECT_TYPE_DATA.criticalMastery) +
         calcRuneContribution(RUNE_TYPES.criticalMastery);
       currentCharacter.value.masteries.rear =
-        currentCharacter.value.characteristics.fortune.rearMastery * 6 +
-        calcItemContribution(EFFECT_TYPE_DATA.rearMastery) +
-        calcRuneContribution(RUNE_TYPES.rearMastery);
+        currentCharacter.value.characteristics.fortune.rearMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.rearMastery) + calcRuneContribution(RUNE_TYPES.rearMastery);
       currentCharacter.value.masteries.berserk =
-        currentCharacter.value.characteristics.fortune.berserkMastery * 8 +
-        calcItemContribution(EFFECT_TYPE_DATA.berserkMastery) +
-        calcRuneContribution(RUNE_TYPES.berserkMastery);
+        currentCharacter.value.characteristics.fortune.berserkMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.berserkMastery) + calcRuneContribution(RUNE_TYPES.berserkMastery);
       currentCharacter.value.masteries.healing =
-        currentCharacter.value.characteristics.fortune.healingMastery * 6 +
-        calcItemContribution(EFFECT_TYPE_DATA.healingMastery) +
-        calcRuneContribution(RUNE_TYPES.healingMastery);
+        currentCharacter.value.characteristics.fortune.healingMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.healingMastery) + calcRuneContribution(RUNE_TYPES.healingMastery);
 
       // Resistances
       currentCharacter.value.resistances.water =
@@ -129,8 +121,7 @@ export const useStats = (currentCharacter) => {
 
       currentCharacter.value.resistances.critical =
         currentCharacter.value.characteristics.fortune.criticalResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.criticalResistance);
-      currentCharacter.value.resistances.rear =
-        currentCharacter.value.characteristics.fortune.rearResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.rearResistance);
+      currentCharacter.value.resistances.rear = currentCharacter.value.characteristics.fortune.rearResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.rearResistance);
 
       // Other stats
       currentCharacter.value.stats.lock =
@@ -154,9 +145,7 @@ export const useStats = (currentCharacter) => {
       );
 
       currentCharacter.value.stats.initiative =
-        currentCharacter.value.characteristics.agility.initiative * 4 +
-        calcItemContribution(EFFECT_TYPE_DATA.initiative) +
-        calcRuneContribution(RUNE_TYPES.initiative);
+        currentCharacter.value.characteristics.agility.initiative * 4 + calcItemContribution(EFFECT_TYPE_DATA.initiative) + calcRuneContribution(RUNE_TYPES.initiative);
 
       currentCharacter.value.stats.forceOfWill =
         currentCharacter.value.characteristics.agility.forceOfWill * 1 +
@@ -188,14 +177,10 @@ export const useStats = (currentCharacter) => {
       );
 
       currentCharacter.value.stats.range =
-        currentCharacter.value.characteristics.major.rangeAndDamage +
-        calcItemContribution(EFFECT_TYPE_DATA.range) +
-        calcPassivesContribution(EFFECT_TYPE_DATA.range);
+        currentCharacter.value.characteristics.major.rangeAndDamage + calcItemContribution(EFFECT_TYPE_DATA.range) + calcPassivesContribution(EFFECT_TYPE_DATA.range);
 
       currentCharacter.value.stats.control =
-        currentCharacter.value.characteristics.major.controlAndDamage * 2 +
-        calcItemContribution(EFFECT_TYPE_DATA.control) +
-        calcPassivesContribution(EFFECT_TYPE_DATA.control);
+        currentCharacter.value.characteristics.major.controlAndDamage * 2 + calcItemContribution(EFFECT_TYPE_DATA.control) + calcPassivesContribution(EFFECT_TYPE_DATA.control);
 
       currentCharacter.value.stats.indirectDamage = calcPassivesContribution(EFFECT_TYPE_DATA.indirectDamageInflicted);
       currentCharacter.value.stats.healsReceived = calcPassivesContribution(EFFECT_TYPE_DATA.healsReceived);
@@ -388,12 +373,7 @@ export const useStats = (currentCharacter) => {
       rune.id === RUNE_TYPES.healingMastery
     ) {
       baseValue = RUNE_MASTERY_LEVEL_VALUES[level - 1];
-    } else if (
-      rune.id === RUNE_TYPES.earthResistance ||
-      rune.id === RUNE_TYPES.fireResistance ||
-      rune.id === RUNE_TYPES.waterResistance ||
-      rune.id === RUNE_TYPES.airResistance
-    ) {
+    } else if (rune.id === RUNE_TYPES.earthResistance || rune.id === RUNE_TYPES.fireResistance || rune.id === RUNE_TYPES.waterResistance || rune.id === RUNE_TYPES.airResistance) {
       baseValue = RUNE_RESISTANCE_LEVEL_VALUES[level - 1];
     } else if (rune.id === RUNE_TYPES.lock || rune.id === RUNE_TYPES.dodge) {
       baseValue = RUNE_DODGE_LOCK_LEVEL_VALUES[level - 1];
@@ -417,10 +397,21 @@ export const useStats = (currentCharacter) => {
     return finalValue;
   };
 
+  const calcTotalMastery = () => {
+    let totalMastery = 0;
+
+    Object.keys(currentCharacter.value?.masteries).forEach((masteryKey) => {
+      totalMastery += currentCharacter.value?.masteries?.[masteryKey];
+    });
+
+    return totalMastery;
+  };
+
   return {
     setup,
     calcElemResistancePercentage,
     calcItemContribution,
     getRuneValue,
+    calcTotalMastery,
   };
 };

@@ -292,8 +292,16 @@
       </div>
     </div>
 
-    <!-- <div class="section-header py-1 mb-1">Summary</div> -->
-    <!-- <div class="summary-area px-2"> This is where we will display a summary of various conditional and other things </div> -->
+    <div class="flex flex-column">
+      <div class="section-header py-1 mb-1">{{ $t('characterSheet.statsDisplay.statsSummary') }}</div>
+
+      <div class="stat-block pr-2">
+        <p-image src="https://tmktahu.github.io/WakfuAssets/characteristics/223.png" style="height: 20px" image-style="height: 20px" />
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.totalMastery') }}</span>
+        <div class="flex-grow-1" />
+        <span>{{ calcTotalMastery() }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -304,7 +312,7 @@ import { useStats } from '@/models/useStats';
 
 const currentCharacter = inject('currentCharacter');
 
-const { calcElemResistancePercentage } = useStats();
+const { calcElemResistancePercentage, calcTotalMastery } = useStats(currentCharacter);
 </script>
 
 <style lang="scss" scoped>
