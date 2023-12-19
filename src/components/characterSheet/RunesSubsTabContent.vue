@@ -237,7 +237,7 @@
       </div>
 
       <div class="stats-summary">
-        <div class="text-lg my-1 pl-2">{{ $t('characterSheet.runesAndSubsContent.statsSummary') }}</div>
+        <div class="text-lg my-1 pl-2">{{ $t('characterSheet.statsDisplay.statsSummary') }}</div>
         <div class="stats-summary-list flex flex-column">
           <template v-for="runeOrSubId in Object.keys(summaryEntries)" :key="runeOrSubId">
             <div v-if="summaryEntries[runeOrSubId].rune" class="summary-entry px-2 py-1">

@@ -98,6 +98,8 @@ export const fr = {
       secondary: 'Secondaire',
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
+      totalMastery: 'Total Mastery', // NEEDS TRANSLATION
+      statsSummary: 'Résumé Stats',
     },
 
     characteristicsContent: {
@@ -205,7 +207,6 @@ export const fr = {
       shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
       rightClick: "Clic-Droit sur une rune pour plus d'options.",
       hightlightClick: "Sélectionner un slot et cliquer sur une rune à droite pour l'assigner.",
-      statsSummary: 'Résumé Stats',
       runeLevelTooltip: `Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.`,
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
