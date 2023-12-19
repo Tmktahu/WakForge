@@ -298,21 +298,67 @@
       <div class="stat-block pr-2 ml-1">
         <p-image src="https://tmktahu.github.io/WakfuAssets/characteristics/223.png" style="height: 20px" image-style="height: 20px" />
         <span class="ml-1">{{ $t('characterSheet.statsDisplay.totalMastery') }}</span>
+        <p-multiSelect v-model="selectedTotalMasteries" class="ml-2" :options="totalMasteryOptions" :show-toggle-all="false">
+          <template v-slot:value="slotProps">
+            <div class="flex align-items-center">
+              {{ $t('characterSheet.statsDisplay.numSelected', { num: slotProps.value.length }) }}
+            </div>
+          </template>
+
+          <template v-slot:option="slotProps">
+            <div class="flex align-items-center">
+              <div class="capitalize">{{ $t(`constants.${slotProps.option}Mastery`) }}</div>
+            </div>
+          </template>
+        </p-multiSelect>
+
         <div class="flex-grow-1" />
-        <span>{{ calcTotalMastery() }}</span>
+
+        <span>{{ calcTotalMastery(selectedTotalMasteries) }}</span>
+      </div>
+
+      <div class="stat-block pr-2 ml-1">
+        <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/water_coin.png" />
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Water' }) }}</span>
+        <div class="flex-grow-1" />
+        <span>{{ calcEffectiveHp('water') }}</span>
+      </div>
+
+      <div class="stat-block pr-2 ml-1">
+        <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/air_coin.png" />
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Air' }) }}</span>
+        <div class="flex-grow-1" />
+        <span>{{ calcEffectiveHp('air') }}</span>
+      </div>
+
+      <div class="stat-block pr-2 ml-1">
+        <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/earth_coin.png" />
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Earth' }) }}</span>
+        <div class="flex-grow-1" />
+        <span>{{ calcEffectiveHp('earth') }}</span>
+      </div>
+
+      <div class="stat-block pr-2 ml-1">
+        <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/fire_coin.png" />
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Fire' }) }}</span>
+        <div class="flex-grow-1" />
+        <span>{{ calcEffectiveHp('fire') }}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { ref, inject } from 'vue';
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 import { useStats } from '@/models/useStats';
 
 const currentCharacter = inject('currentCharacter');
 
-const { calcElemResistancePercentage, calcTotalMastery } = useStats(currentCharacter);
+const { calcElemResistancePercentage, calcTotalMastery, calcEffectiveHp } = useStats(currentCharacter);
+
+const selectedTotalMasteries = ref(['water', 'air', 'earth', 'fire', 'melee', 'distance', 'berserk', 'critical', 'rear']);
+const totalMasteryOptions = ['water', 'air', 'earth', 'fire', 'melee', 'distance', 'berserk', 'critical', 'rear'];
 </script>
 
 <style lang="scss" scoped>
@@ -374,5 +420,21 @@ const { calcElemResistancePercentage, calcTotalMastery } = useStats(currentChara
   img {
     width: 20px;
   }
+}
+
+:deep(.p-multiselect-label-container) {
+  .p-multiselect-label {
+    padding: 4px 6px;
+    visibility: visible;
+  }
+}
+
+:global(.p-multiselect-item) {
+  padding: 4px 6px;
+}
+
+:global(.p-multiselect-item.p-highlight) {
+  background: transparent;
+  color: white;
 }
 </style>
