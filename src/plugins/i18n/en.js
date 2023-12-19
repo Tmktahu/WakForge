@@ -128,6 +128,7 @@ export const en = {
 
     equipmentContent: {
       sortBy: 'Sort By',
+      newSort: 'New Sort',
       resultsOutOf: 'Results out of',
       itemsTotal: 'Items Total',
       displayStats: 'Display Stats',

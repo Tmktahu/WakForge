@@ -4,33 +4,45 @@
 
     <ItemFilters />
 
-    <p-divider class="mt-3 mb-2" />
+    <p-divider class="mt-2 mb-2" />
 
-    <div class="flex align-items-center">
-      <div>{{ $t('characterSheet.equipmentContent.sortBy') }}:</div>
-      <p-dropdown v-model="itemFilters.sortBy" class="sort-dropdown ml-2" option-label="label" filter auto-filter-focus :options="sortByOptions">
-        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
-        <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+    <div class="flex">
+      <div class="flex flex-wrap gap-2">
+        <p-button icon="pi pi-plus" class="filter-button" :label="$t('characterSheet.equipmentContent.newSort')" @click="onAddSort" />
+
+        <template v-for="(sortSetting, index) in itemFilters.sortingParams" :key="index">
+          <div class="filter-entry">
+            <p-dropdown v-model="sortSetting.sortBy" class="filter-type-dropdown" option-label="label" filter auto-filter-focus :options="sortByOptions">
+              <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+              <template v-slot:option="slotProps">
+                <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+              </template>
+            </p-dropdown>
+
+            <p-dropdown v-model="sortSetting.sortOrder" class="filter-comparator-dropdown" option-label="label" :options="sortOrderOptions">
+              <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
+              <template v-slot:option="slotProps">
+                <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
+              </template>
+            </p-dropdown>
+            <p-button class="remove-filter-button" icon="pi pi-trash" @click="onRemoveSort(sortSetting)" />
+          </div>
         </template>
-      </p-dropdown>
-      <p-dropdown v-model="itemFilters.sortOrder" class="sort-dropdown ml-2" option-label="label" :options="sortOrderOptions">
-        <template v-slot:value="slotProps"> {{ $t(slotProps.value.label) }} </template>
-        <template v-slot:option="slotProps">
-          <div class="px-2 py-1">{{ $t(slotProps.option.label) }}</div>
-        </template>
-      </p-dropdown>
-      <div class="flex-grow-1" />
-      <div class="ml-2">
-        {{ currentItemList.length }} {{ $t('characterSheet.equipmentContent.resultsOutOf') }} {{ getNumTotalItems() }}
-        {{ $t('characterSheet.equipmentContent.itemsTotal') }}
       </div>
     </div>
+
+    <p-divider class="mt-2 mb-2" />
 
     <div class="flex align-items-center gap-4 mt-2">
       <OptionCheckbox v-model="displayStatsInList" :label="$t('characterSheet.equipmentContent.displayStats')" />
       <OptionCheckbox v-model="displayTotalValues" :label="$t('characterSheet.equipmentContent.displayTotals')" />
       <OptionCheckbox v-model="withComparisons" :label="$t('characterSheet.equipmentContent.compareToEquipped')" />
+
+      <div class="flex-grow-1" />
+      <div class="ml-2">
+        {{ currentItemList.length }} {{ $t('characterSheet.equipmentContent.resultsOutOf') }} {{ getNumTotalItems() }}
+        {{ $t('characterSheet.equipmentContent.itemsTotal') }}
+      </div>
     </div>
 
     <div v-if="showItemList && !itemListLoading" ref="itemResultsWrapper" class="item-results-wrapper flex flex-grow-1 mt-2">
@@ -291,6 +303,20 @@ const onGotoEncyclopedia = (item) => {
   window.open(url, '_blank');
 };
 
+const onAddSort = () => {
+  let newSort = {
+    sortBy: sortByOptions[0],
+    sortOrder: sortOrderOptions[0],
+  };
+
+  itemFilters.sortingParams.push(newSort);
+};
+
+const onRemoveSort = (sort) => {
+  let targetIndex = itemFilters.sortingParams.indexOf(sort);
+  itemFilters.sortingParams.splice(targetIndex, 1);
+};
+
 defineExpose({
   showList,
 });
@@ -357,6 +383,61 @@ defineExpose({
 
   .second-spinner {
     position: absolute;
+  }
+}
+
+:deep(.filter-button) {
+  padding: 4px 6px;
+  background-color: var(--background-20);
+  font-weight: 400;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+
+  &:hover {
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  &.item-filter-action {
+    background-color: var(--background-20);
+  }
+}
+
+:deep(.filter-entry) {
+  height: fit-content;
+  // border: 1px solid var(--primary-60);
+  .filter-type-dropdown {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    .p-dropdown-label {
+      padding: 4px 6px;
+    }
+  }
+
+  .filter-comparator-dropdown {
+    border-radius: 0;
+    .p-dropdown-label {
+      padding: 4px 6px;
+    }
+  }
+
+  .filter-value-input {
+    .p-inputtext {
+      width: 4rem;
+      border-radius: 0;
+      padding: 4px 6px;
+    }
+  }
+
+  .remove-filter-button {
+    width: 30px;
+    padding: 4px 6px;
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
   }
 }
 </style>

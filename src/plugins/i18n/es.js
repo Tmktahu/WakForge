@@ -128,6 +128,7 @@ export const es = {
 
     equipmentContent: {
       sortBy: 'Ordenar por',
+      newSort: 'New Sort', // NEEDS TRANSLATION
       resultsOutOf: 'Resultados de',
       itemsTotal: 'Objetos en Total',
       displayStats: 'Mostrar Stats',

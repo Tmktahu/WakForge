@@ -1,11 +1,6 @@
 <template>
   <div class="flex align-items-center flex-wrap mt-3">
-    <p-inputText
-      v-model="searchTerm"
-      :placeholder="$t('characterSheet.equipmentContent.itemFilters.searchItems')"
-      class="search-input mr-2"
-      @input="onSearchInput"
-    />
+    <p-inputText v-model="searchTerm" :placeholder="$t('characterSheet.equipmentContent.itemFilters.searchItems')" class="search-input mr-2" @input="onSearchInput" />
     <div class="flex align-items-center mr-2" style="width: 100%; max-width: 400px">
       <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'min')" />
       <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
@@ -33,11 +28,7 @@
             <p-checkbox v-model="rarity.checked" :binary="true" class="rarity-checkbox" @change="onRarityClick($event, rarity.id)">
               <template v-slot:icon="slotProps">
                 <div class="flex justify-content-center align-items-center">
-                  <p-image
-                    :class="{ disabled: !slotProps.checked }"
-                    :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`"
-                    image-style="width: 14px;"
-                  />
+                  <p-image :class="{ disabled: !slotProps.checked }" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${rarity.id}.png`" image-style="width: 14px;" />
                 </div>
               </template>
             </p-checkbox>
@@ -176,15 +167,7 @@
 
     <template v-for="filter in effectFilters" :key="filter.id">
       <div class="filter-entry">
-        <p-dropdown
-          v-model="filter.type"
-          class="filter-type-dropdown"
-          :options="filterTypeOptions"
-          filter
-          auto-filter-focus
-          option-label="text"
-          @change="updateFilters"
-        >
+        <p-dropdown v-model="filter.type" class="filter-type-dropdown" :options="filterTypeOptions" filter auto-filter-focus option-label="text" @change="updateFilters">
           <template v-slot:value="slotProps"> {{ $t(slotProps.value.text) }} </template>
           <template v-slot:option="slotProps">
             <div class="px-2 py-1">{{ $t(slotProps.option.text) }}</div>
