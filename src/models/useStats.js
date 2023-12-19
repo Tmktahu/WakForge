@@ -400,8 +400,8 @@ export const useStats = (currentCharacter) => {
   const calcTotalMastery = () => {
     let totalMastery = 0;
 
-    Object.keys(currentCharacter.value.masteries).forEach((masteryKey) => {
-      totalMastery += currentCharacter.value.masteries[masteryKey];
+    Object.keys(currentCharacter.value?.masteries).forEach((masteryKey) => {
+      totalMastery += currentCharacter.value?.masteries?.[masteryKey];
     });
 
     return totalMastery;
