@@ -283,13 +283,18 @@ export const useBuildCodes = () => {
       return effect.id === 1068 || effect.id === 1069;
     });
 
+    // if we have a random effect
     if (randomEffect) {
+      // .string(2) converts the decimal number into a string binary number, so '110' for instance
       let bitNumberString = itemData[1].toString(2);
       let elementIdArray = [];
+
+      // if the length of the string is less than 4, we need to pad the front of it with 0s
       while (bitNumberString.length < 4) {
         bitNumberString = `0${bitNumberString}`;
       }
 
+      // then we check each character position in the string to determine what elements there are
       if (parseInt(bitNumberString[3]) === 1) {
         elementIdArray.push('fire'); // has fire
       }
@@ -306,9 +311,11 @@ export const useBuildCodes = () => {
         elementIdArray.push('air'); // has air
       }
 
+      // we do a sort here so any '0' values are pushed to the end
       elementIdArray.sort();
       elementIdArray.push(...['empty', 'empty', 'empty']); // we buffer this incase there are empty slots
 
+      // then we inset the info into the random effect as needed
       for (let slotIndex = 1; slotIndex < randomEffect.values[2] + 1; slotIndex++) {
         let slotKey = `${randomEffect.id === 1068 ? 'mastery' : 'resistance'}Slot${slotIndex}`;
 
