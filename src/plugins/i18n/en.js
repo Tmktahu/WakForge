@@ -96,6 +96,8 @@ export const en = {
       secondary: 'Secondary',
       armorReceived: 'Armor Received',
       indirectDamage: 'Indirect Damage',
+      totalMastery: 'Total Mastery',
+      statsSummary: 'Stats Summary',
     },
 
     characteristicsContent: {
@@ -200,7 +202,6 @@ export const en = {
       shiftClick: 'SHIFT-Click a rune to toggle it white.',
       rightClick: 'Right-Click a rune for more options.',
       hightlightClick: 'Highlight a slot and click a rune on the right to assign it.',
-      statsSummary: 'Stats Summary',
       runeLevelTooltip: `The maximum possible rune level is tied to the item's level, but for our purposes I limit this input by your character level.`,
       runeLevel: 'Rune Level',
       toggleWhite: 'Toggle White',
