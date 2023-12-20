@@ -74,7 +74,7 @@ export const es = {
     buildCopyPaste: 'Puedes copiar y pegar este código para compartir la build con otras personas',
     buildCode: 'Build Code',
     copy: 'Copiar',
-    guides: 'Guides', // NEEDS TRANSLATION
+    guides: 'Guías', 
     characteristics: 'Características',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
@@ -98,16 +98,16 @@ export const es = {
       secondary: 'Secundario',
       armorReceived: 'Armodura Recibida',
       indirectDamage: 'Daños Indirectos',
-      totalMastery: 'Total Mastery', // NEEDS TRANSLATION
+      totalMastery: 'Maestria Total', 
       statsSummary: 'Resumen de los stats',
-      effectiveHpAgainst: 'Effective HP Against {type} Damage', // NEEDS TRANSLATION
-      numSelected: '{num} Selected', // NEEDS TRANSLATION
+      effectiveHpAgainst: 'PdV efectivos contra tipo {type}', 
+      numSelected: '{num} Dominios Seleccionados', 
     },
 
     guidesContent: {
-      doYouHaveAGuide: "Do you have a guide you would like to list here? Contact us in the Discord server. We'd love to add it.", // NEEDS TRANSLATION
-      classGuides: '{class} Guides', // NEEDS TRANSLATION
-      openGuide: 'Open Guide', // NEEDS TRANSLATION
+      doYouHaveAGuide: "¿Tienes una guía que te gustaría incluir aquí? Ponte en contacto con nosotros en el servidor Discord. Nos encantaría añadirla.", 
+      classGuides: 'Guías de {class}', 
+      openGuide: 'Abrir Guía', 
     },
 
     characteristicsContent: {
@@ -128,12 +128,12 @@ export const es = {
 
     equipmentContent: {
       sortBy: 'Ordenar por',
-      newSort: 'New Sort', // NEEDS TRANSLATION
+      newSort: 'Nueva Ordenación', 
       resultsOutOf: 'Resultados de',
       itemsTotal: 'Objetos en Total',
       displayStats: 'Mostrar Stats',
-      displayTotals: 'Display Totals', // NEEDS TRANSLATION
-      compareToEquipped: 'Compare to Equipped', // NEEDS TRANSLATION
+      displayTotals: 'Mostrar Totales', 
+      compareToEquipped: 'Comparar con Equipados', 
       itemLevel: 'Nivel de Objeto',
       openEncyclopediaPage: 'Abrir la página de la enciclopedia',
       noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
@@ -181,7 +181,7 @@ export const es = {
       healingMasteryTooltip: '¿Debe incluirse Dominio Cura si es posible?',
       rearMasteryTooltip: '¿Debe incluirse Dominio Espalda si es posible?',
       berserkMasteryTooltip: '¿Debe incluirse Dominio Berserker si es posible?',
-      poweredBy: "Powered by {credit}'s code.", // NEEDS TRANSLATION, context = "Powered by Apple's code"
+      poweredBy: "Gracias al código de {credit}.",
       problemMessage: 'Ha habido un problema con el solucionador automático. Si crees que se trata de un error, ponte en contacto con Fryke en Discord.',
       instructions: 'Introduce los parámetros y haz clic en "Generar conjunto de artículos"..',
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
@@ -201,8 +201,8 @@ export const es = {
       rangeForLevelWarning: 'Puede que estés pidiendo más alcance del que es posible a tu nivel.',
       rangeImpossibleWarning: 'Puede que estés pidiendo más alcance del que es posible.',
       combinedApMpWarning: 'Puede que estés pidiendo una cantidad combinada de PA+PM que no sea posible en tu nivel.',
-      showAllItems: 'Show All Items', // NEEDS TRANSLATION
-      displayTotals: 'Display Totals', // NEEDS TRANSLATION
+      showAllItems: 'Mostrar todos los items', 
+      displayTotals: 'Mostrar Totales', 
     },
 
     runesAndSubsContent: {
@@ -217,15 +217,15 @@ export const es = {
       runeLevel: 'Nivel de Runa',
       toggleWhite: 'Cambiar a blanco',
       removeAllRunes: 'Remover todas las Runas/Sublis',
-      sortByMatching: 'Sort by Matching', // NEEDS TRANSLATION
-      sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.', // NEEDS TRANSLATION
-      searchSublimations: 'Search Sublimations...', // NEEDS TRANSLATION
-      searchEpicAndRelicSubs: 'Search Epic/Relic Sublimations...', // NEEDS TRANSLATION
-      addsStateLevelsShort: '+{num_0} levels of', // NEEDS TRANSLATION, context = "+1 levels of Abandon"
-      stateStackingWarning: 'This state only stacks up to level {num_0}', // NEEDS TRANSLATION
-      relicSub: 'Relic Sub', // NEEDS TRANSLATION, context = shorthand for "Relic Sublimation"
-      epicSub: 'Epic Sub', // NEEDS TRANSLATION, context = shorthand for "Epic Sublimation"
-      itemMustBeEquipped: 'An item must be equipped', // NEEDS TRANSLATION
+      sortByMatching: 'Ordenar por coincidencias', 
+      sortByMatchingNote: 'Si una ranura de equipo está resaltada, esto ordenará las sublimaciones según coincidan con los colores de las runas de esa ranura de equipo.', 
+      searchSublimations: 'Buscar Sublimaciones...', 
+      searchEpicAndRelicSubs: 'Buscar Sublimaciones Épicas/Reliquias...', 
+      addsStateLevelsShort: '+{num_0} Niveles de',
+      stateStackingWarning: 'Este estado sólo se acumula hasta el nivel {num_0}', 
+      relicSub: 'Sub Reliquia',
+      epicSub: 'Sub Épica',
+      itemMustBeEquipped: 'Se debe equipar un objeto', 
     },
 
     spellsAndPassivesContent: {
@@ -289,8 +289,8 @@ export const es = {
     sublimationScroll: 'Pergamino de Sublimación',
     enchantment: 'Runas',
 
-    epicSublimation: 'Epic Sublimation', // NEEDS TRANSLATION
-    relicSublimation: 'Relic Sublimation', // NEEDS TRANSLATION
+    epicSublimation: 'Sublimación Épica', 
+    relicSublimation: 'Sublimación Reliquia', 
 
     oneHandedWeapons: 'Armas a una Mano',
     twoHandedWeapons: 'Armas a dos Manos',
@@ -380,10 +380,10 @@ export const es = {
     willReplaceItems: '¿Estás seguro? Esto reemplazará cualquier otro objeto que tengas equipado ahora mismo en ranuras en conflicto.',
   },
   tooltips: {
-    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
-    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
-    addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
-    stateAtLevel: 'State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
-    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
+    randomMasteryValue: '+{num_0} Dominio de {num_1} elementos aleatorios', 
+    randomResistanceValue: '+{num_0} Resistencia de {num_1} elementos aleatorios', 
+    addsStateLevels: 'Añade +{num_0} niveles de',
+    stateAtLevel: 'Estado en el nivel {num_0} (Max {num_1})',
+    missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.', 
   },
 };
