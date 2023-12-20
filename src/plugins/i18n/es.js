@@ -13,6 +13,7 @@ export const es = {
   sidebar: {
     charactersTab: 'Personajes',
     dataTab: 'Datos',
+    guidesTab: 'Guides', // NEEDS TRANSLATION
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Idioma',
@@ -37,6 +38,10 @@ export const es = {
     createNewCharacterButton: 'Crea un nuevo Personaje',
     createNewGroupButton: 'Crear un Nuevo Grupo',
     newGroup: 'Nuevo Grupo',
+  },
+  guidesPage: {
+    title: 'General Guides', // NEEDS TRANSLATION
+    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
   },
   dataPage: {
     title: 'Gestión de datos de la aplicación',

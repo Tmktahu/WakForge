@@ -33,12 +33,12 @@
 
 <script setup>
 import { inject, computed } from 'vue';
-import { GUIDES_DATA } from '@/models/useConstants';
+import { CLASS_GUIDES_DATA } from '@/models/useConstants';
 
 const currentCharacter = inject('currentCharacter');
 
 const guideData = computed(() => {
-  return GUIDES_DATA[currentCharacter.value.class];
+  return CLASS_GUIDES_DATA[currentCharacter.value.class];
 });
 
 const onOpenGuide = (guide) => {

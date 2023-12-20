@@ -1226,7 +1226,17 @@ export const PASSIVE_SPELL_UNLOCK_MAP = {
   7798: 90, // Runic Transcendence
 };
 
-export const GUIDES_DATA = {
+export const GENERAL_GUIDES_DATA = [
+  {
+    // eslint-disable-next-line quotes
+    name: "THE SQUIRE'S BIG BOOK",
+    languages: ['sidebar.english', 'sidebar.spanish'],
+    description: 'A written guide by Tokki outlining the basics of the Feca class along with several builds including protector, tank, and damage.',
+    url: 'https://www.wakfu.com/en/forum/49-feca/241229-guide-squire-big-book',
+  },
+];
+
+export const CLASS_GUIDES_DATA = {
   [CLASS_CONSTANTS.feca.id]: [
     {
       // eslint-disable-next-line quotes
@@ -1361,7 +1371,7 @@ export const GUIDES_DATA = {
       name: "Owlite's Guide to the Masqueraider",
       languages: ['sidebar.english'],
       description: 'A written guide by Owlite that goes over a flexible build for the Masqueraider class that can switch between damage and support roles.',
-      url: 'https://www.wakfu.com/en/forum/103-masqueraiders/242854-owlite-guide-masqueraider',
+      url: 'https://docs.google.com/spreadsheets/u/0/d/e/2PACX-1vRzdp61QysDLsUYmxD_17-C_aZTYaec5AAhW6J249F5iRUt67I0i0oNZ9TpLE0VQeISO70aR1TR5p00/pubhtml?pli=1',
     },
   ],
   [CLASS_CONSTANTS.ouginak.id]: [
