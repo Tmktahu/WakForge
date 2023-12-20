@@ -14,6 +14,7 @@ export const fr = {
   sidebar: {
     charactersTab: 'Personnages',
     dataTab: 'Données',
+    guidesTab: 'Guides', // NEEDS TRANSLATION
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Langage',
@@ -38,6 +39,10 @@ export const fr = {
     createNewCharacterButton: 'Créer un nouveau Personnage',
     createNewGroupButton: 'Créer nouveau groupe',
     newGroup: 'Nouveau groupe',
+  },
+  guidesPage: {
+    title: 'General Guides', // NEEDS TRANSLATION
+    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -75,7 +80,6 @@ export const fr = {
     buildCopyPaste: 'Vous pouvez copier-coller ce code pour partager ce build',
     buildCode: 'Code Build',
     copy: 'Copier',
-    guides: 'Guides', // NEEDS TRANSLATION
     characteristics: 'Caractéristiques',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
@@ -373,7 +377,7 @@ export const fr = {
     armorGiven: 'Armure donnée',
     healthPoints: 'Points de Vie',
 
-    remove: 'Remove',
+    remove: 'Remove', // NEEDS TRANSLATION
   },
   confirms: {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',

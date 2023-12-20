@@ -74,7 +74,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="tab-header">
-                <span>{{ $t('characterSheet.guides') }}</span>
+                <span>{{ $t('sidebar.guidesTab') }}</span>
               </div>
             </template>
             <GuidesTabContent />
