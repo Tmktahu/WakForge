@@ -98,13 +98,13 @@
               :label="invalidJson ? $t('dataPage.invalidJSON') : $t('dataPage.saveToLocalstorage')"
               @click="onSaveEditorToLocalStorage"
             />
-            <p-button class="local-storage-button" :label="$t('dataPage.downloadData')" @click="onDownloadData" />
+            <p-button class="local-storage-button" :label="$t('app.downloadData')" @click="onDownloadData" />
             <div class="flex-grow-1" />
             <tippy>
               <p-button :disabled="!downloadedData" class="local-storage-button delete" :label="$t('dataPage.deleteAllData')" @click="onDeleteData" />
 
               <template v-slot:content>
-                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('dataPage.mustDownloadFirst') }}</div>
+                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('oldDataDialog.mustDownloadFirst') }}</div>
               </template>
             </tippy>
           </div>
