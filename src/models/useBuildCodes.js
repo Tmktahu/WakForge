@@ -287,19 +287,19 @@ export const useBuildCodes = () => {
       let bitNumberField = itemData[1];
       let elementIdArray = [];
 
-      if (bitNumberField & ELEMENT_TYPE_ENUM.fire === ELEMENT_TYPE_ENUM.fire) {
+      if ((bitNumberField & ELEMENT_TYPE_ENUM.fire) === ELEMENT_TYPE_ENUM.fire) {
         elementIdArray.push('fire');
       }
 
-      if (bitNumberField & ELEMENT_TYPE_ENUM.water === ELEMENT_TYPE_ENUM.water) {
+      if ((bitNumberField & ELEMENT_TYPE_ENUM.water) === ELEMENT_TYPE_ENUM.water) {
         elementIdArray.push('water');
       }
 
-      if (bitNumberField & ELEMENT_TYPE_ENUM.earth === ELEMENT_TYPE_ENUM.earth) {
+      if ((bitNumberField & ELEMENT_TYPE_ENUM.earth) === ELEMENT_TYPE_ENUM.earth) {
         elementIdArray.push('earth');
       }
 
-      if (bitNumberField & ELEMENT_TYPE_ENUM.air === ELEMENT_TYPE_ENUM.air) {
+      if ((bitNumberField & ELEMENT_TYPE_ENUM.air) === ELEMENT_TYPE_ENUM.air) {
         elementIdArray.push('air');
       }
 

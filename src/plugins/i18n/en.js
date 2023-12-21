@@ -9,10 +9,27 @@ export const en = {
     disclaimer: 'WAKFU is an MMORPG published by Ankama. "WakForge" is an unofficial website with no link to Ankama.',
     globalErrorMessage: 'There was a severe error that stopped the app from working correctly.',
     globalErrorContact: 'Please contact Fryke on Discord ASAP with the below information.',
+    ignoreGlobalError: 'Ignore Error',
+    discordServer: 'Discord Server',
+    downloadData: 'Download Current Data',
+  },
+  oldDataDialog: {
+    migrateOldData: 'Migrate Old Data',
+    oldDataDetected: 'An old storage data structure has been detected and it must be updated before you can use the app.',
+    reloadNotice: 'Once the update is complete, this page will reload.',
+    backupReccomendation:
+      'It is highly reccomended that you backup your current data before attempting to update it to the new structure. I do my best to try and automatically handle this for you, but there is always a chance that something goes wrong with the update.',
+    ifUpdateFails:
+      "If the update fails to work and you lose your data, don't worry. As long as you have a backup JSON you can recover everything. Feel free to reach out to Fryke (fryke) directly on Discord for assistance.",
+    downloadCurrentData: 'Download Current Data',
+    updatingPleaseWait: 'Updating Data. Please Wait',
+    updateData: 'Update Data to New Structure',
+    mustDownloadFirst: 'You must download a backup of your data first.',
   },
   sidebar: {
     charactersTab: 'Characters',
     dataTab: 'Data',
+    guidesTab: 'Guides',
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Language',
@@ -38,6 +55,11 @@ export const en = {
     createNewGroupButton: 'Create New Group',
     newGroup: 'New Group',
   },
+  guidesPage: {
+    title: 'General Guides',
+    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.',
+    searchGuides: 'Search Guides...',
+  },
   dataPage: {
     title: 'Application Data Management',
     importDescription: 'Here you can upload a JSON file to import characters.',
@@ -59,10 +81,8 @@ export const en = {
     warning: 'WARNING',
     warningMessage:
       'Editing your LocalStorage data directly in this manner is dangerous and could result in irreperable damage to your data. Only do so after you have made a backup and understand what you are doing.',
-    mustDownloadFirst: 'You must download a backup of your data first.',
     invalidJSON: 'That is invalid JSON',
     saveToLocalstorage: 'Save to LocalStorage',
-    downloadData: 'Download Current Data',
     deleteAllData: 'Delete All Data',
     migrateData: 'Migrate Data',
     importCharacters: 'Import Selected Characters',
@@ -382,7 +402,7 @@ export const en = {
     randomMasteryValue: '+{num_0} Mastery of {num_1} random elements',
     randomResistanceValue: '+{num_0} Resistance of {num_1} random elements',
     addsStateLevels: 'Adds +{num_0} levels of', // context = "Adds +1 level of Abandon"
-    stateAtLevel: 'State at level {num_0} (Max {num_1})', // context = "Abandon State at level 1 (Max 6)"
+    stateAtLevel: '{state} State at level {num_0} (Max {num_1})', // context = "Abandon State at level 1 (Max 6)"
     missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.',
   },
 };

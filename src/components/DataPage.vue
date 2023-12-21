@@ -3,7 +3,7 @@
     <div class="mt-3 ml-4" style="font-size: 42px">{{ $t('dataPage.title') }}</div>
 
     <div class="flex gap-2 w-full mt-3 h-full" style="overflow: hidden">
-      <div class="flex flex-column flex-grow-1 ml-3 pb-2">
+      <!-- <div class="flex flex-column flex-grow-1 ml-3 pb-2">
         <div class="mb-2">{{ $t('dataPage.importDescription') }}</div>
         <div class="flex">
           <div class="flex-grow-1">
@@ -72,9 +72,9 @@
 
         <div class="flex-grow-1" />
         <p-button :label="$t('dataPage.importCharacters')" @click="onImportCharacters" />
-      </div>
+      </div> -->
 
-      <div class="flex flex-column flex-grow-1" style="max-width: 550px; min-width: 550px">
+      <div class="flex flex-column flex-grow-1 px-4">
         <div class="mr-2">
           <div class="mb-2">
             {{ $t('dataPage.operatesOffLocalstorage') }}<br />
@@ -98,13 +98,13 @@
               :label="invalidJson ? $t('dataPage.invalidJSON') : $t('dataPage.saveToLocalstorage')"
               @click="onSaveEditorToLocalStorage"
             />
-            <p-button class="local-storage-button" :label="$t('dataPage.downloadData')" @click="onDownloadData" />
+            <p-button class="local-storage-button" :label="$t('app.downloadData')" @click="onDownloadData" />
             <div class="flex-grow-1" />
             <tippy>
               <p-button :disabled="!downloadedData" class="local-storage-button delete" :label="$t('dataPage.deleteAllData')" @click="onDeleteData" />
 
               <template v-slot:content>
-                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('dataPage.mustDownloadFirst') }}</div>
+                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('oldDataDialog.mustDownloadFirst') }}</div>
               </template>
             </tippy>
           </div>
@@ -130,8 +130,8 @@ import { basicSetup } from 'codemirror';
 import { defaultKeymap } from '@codemirror/commands';
 import { json } from '@codemirror/lang-json';
 
-import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
-import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
+// import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
+// import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
 
 const { t } = useI18n();
 
@@ -145,10 +145,10 @@ let editorView = null;
 
 const { needsMigration, readFromJSON, saveToLocalStorage, migrateData, mergeData } = useStorage();
 
-const onLoadJSON = async ({ files }) => {
-  let data = await readFromJSON(files[0]);
-  importedData.value = data;
-};
+// const onLoadJSON = async ({ files }) => {
+//   let data = await readFromJSON(files[0]);
+//   importedData.value = data;
+// };
 
 const getLocalStorageSize = () => {
   let storageEntry = window.localStorage.getItem(LOCALSTORAGE_KEY);
@@ -302,7 +302,7 @@ const toggleCharacterSelection = (targetId) => {
 
 :deep(.local-storage-button) {
   padding: 4px 6px;
-  background-color: var(--primary-70);
+  background-color: var(--primary-20);
   border: 1px solid transparent;
   font-weight: 400;
 
@@ -340,12 +340,12 @@ const toggleCharacterSelection = (targetId) => {
 
   .ͼ2 .cm-gutters {
     color: white !important;
-    background-color: var(--primary-70);
+    background-color: var(--primary-20);
     border: none !important;
   }
 
   .ͼ2 .cm-activeLineGutter {
-    background-color: var(--primary-40-80);
+    background-color: var(--primary-40);
   }
 }
 

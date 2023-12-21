@@ -1,9 +1,13 @@
 <template>
-  <div v-if="globalError" class="severe-error-state">
+  <div v-if="globalError && !ignoreError" class="severe-error-state">
     <p-image :src="wakforgeLogoURL" image-style="width: 140px" />
     <div class="text-lg mt-3">{{ $t('app.globalErrorMessage') }}</div>
     <div class="text-lg mt-1">{{ $t('app.globalErrorContact') }}</div>
-    <p-button icon="mdi mdi-discord" class="mt-3" label="Discord Server" @click="onDiscord" />
+    <div class="flex gap-2">
+      <p-button icon="mdi mdi-discord" class="mt-3" :label="$t('app.discordServer')" @click="onDiscord" />
+      <p-button icon="mdi mdi-content-save-outline" class="mt-3" :label="$t('app.downloadData')" @click="onDownloadData" />
+      <p-button icon="mdi mdi-alert-octagon-outline" style="background-color: rgb(207, 17, 0)" class="mt-3" :label="$t('app.ignoreGlobalError')" @click="onIgnoreError" />
+    </div>
     <div class="error-message px-3 py-3 mt-4" v-html="globalError?.stack?.replaceAll(' at', '<br \>- at')" />
   </div>
   <div v-else class="flex">
@@ -24,8 +28,9 @@
 import { ref, watch, provide, nextTick, onMounted, inject } from 'vue';
 import { useRoute } from 'vue-router';
 import { EventBus, Events } from '@/eventBus';
+import { useI18n } from 'vue-i18n';
 
-import { masterData, useStorage } from '@/models/useStorage.js';
+import { masterData, useStorage, LOCALSTORAGE_KEY } from '@/models/useStorage.js';
 import { useCharacterBuilds } from '@/models/useCharacterBuilds.js';
 import { useItems } from '@/models/useItems.js';
 import { useStats } from '@/models/useStats';
@@ -38,9 +43,15 @@ import AppSidebar from '@/components/AppSidebar.vue';
 
 import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
+import { useConfirm } from 'primevue/useconfirm';
+const confirm = useConfirm();
+
+const { t } = useI18n();
+
 const route = useRoute();
 const oldDataDialog = ref(null);
 const globalError = inject('globalError');
+const ignoreError = ref(false);
 
 // const showSidebar = ref(true);
 
@@ -100,8 +111,33 @@ EventBus.on(Events.OPEN_OLD_DATA_DIALOG, (data) => {
   }, 100);
 });
 
+const onDownloadData = () => {
+  // we want to save the app data to JSON file
+  let data = window.localStorage.getItem(LOCALSTORAGE_KEY);
+
+  let elem = document.createElement('a');
+  let file = new Blob([data], { type: 'text/plain' });
+  elem.href = URL.createObjectURL(file);
+  let today = new Date();
+  elem.download = `wakforge_${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}.json`;
+  elem.click();
+
+  // downloadedData.value = true;
+};
+
 const onDiscord = () => {
   window.open('https://discord.gg/k3v2fXQWJp', '_blank').focus();
+};
+
+const onIgnoreError = (event) => {
+  confirm.require({
+    group: 'popup',
+    target: event.currentTarget,
+    message: t('confirms.areYouSure'),
+    accept: () => {
+      ignoreError.value = true;
+    },
+  });
 };
 </script>
 

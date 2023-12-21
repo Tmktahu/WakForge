@@ -9,10 +9,27 @@ export const es = {
     disclaimer: 'WAKFU es un MMORPG publicado por Ankama. "WakForge" es un sitio web no oficial sin ningún vínculo con Ankama.',
     globalErrorMessage: 'Se ha producido un error grave que ha detenido el correcto funcionamiento de la aplicación.',
     globalErrorContact: 'Ponte en contacto con Fryke en Discord lo antes posible con la información que aparece debajo.',
+    ignoreGlobalError: 'Ignorar Error',
+    discordServer: 'Servidor de Discord',
+    downloadData: 'Descargar los datos actuales',
+  },
+  oldDataDialog: {
+    migrateOldData: 'Migrar datos Antiguos',
+    oldDataDetected: 'Se ha detectado una estructura de datos de almacenamiento antigua y debe actualizarse antes de poder utilizar la aplicación.',
+    reloadNotice: 'Una vez finalizada la actualización, esta página volverá a cargarse.',
+    backupReccomendation:
+      'Se recomienda realizar una copia de seguridad de tus datos actuales antes de intentar actualizar a una nueva estructura. Jimmy intenta realizar esto automáticamente por ti, pero siempre hay chances de que algo suceda con la actualización.',
+    ifUpdateFails:
+      'Si la actualización sale mal y pierdes tus datos, no te preocupes. Mientras tengas una copia de seguridad JSON podrás recuperarlo todo. No dudes en ponerte en contacto con Fryke (fryke) directamente en Discord para obtener ayuda.',
+    downloadCurrentData: 'Descargar datos Actuales',
+    updatingPleaseWait: 'Actualizando datos. Por favor espera',
+    updateData: 'Datos Actualizados a la nueva Estructura',
+    mustDownloadFirst: 'Debes descargar primero una copia de seguridad de tus datos.',
   },
   sidebar: {
     charactersTab: 'Personajes',
     dataTab: 'Datos',
+    guidesTab: 'Guías',
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Idioma',
@@ -38,6 +55,11 @@ export const es = {
     createNewGroupButton: 'Crear un Nuevo Grupo',
     newGroup: 'Nuevo Grupo',
   },
+  guidesPage: {
+    title: 'General Guides', // NEEDS TRANSLATION
+    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
+    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
+  },
   dataPage: {
     title: 'Gestión de datos de la aplicación',
     importDescription: 'Aquí puedes cargar un archivo JSON para importar personajes.',
@@ -59,10 +81,8 @@ export const es = {
     warning: 'ADVERTENCIA',
     warningMessage:
       'Editar sus datos directamente en LocalStorage es peligroso y podría causar daños irreparables a sus datos. Hazlo únicamente después de haber hecho una copia de seguridad y comprender qué estás haciendo.',
-    mustDownloadFirst: 'Debes descargar primero una copia de seguridad de tus datos.',
     invalidJSON: 'Esto es JSON inválido',
     saveToLocalstorage: 'Guardar en LocalStorage',
-    downloadData: 'Descargar los datos actuales',
     deleteAllData: 'Borrar todos los datos',
     migrateData: 'Migrar los datos',
     importCharacters: 'Importar los personajes seleccionados',
@@ -74,7 +94,6 @@ export const es = {
     buildCopyPaste: 'Puedes copiar y pegar este código para compartir la build con otras personas',
     buildCode: 'Build Code',
     copy: 'Copiar',
-    guides: 'Guías', 
     characteristics: 'Características',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
@@ -98,16 +117,16 @@ export const es = {
       secondary: 'Secundario',
       armorReceived: 'Armodura Recibida',
       indirectDamage: 'Daños Indirectos',
-      totalMastery: 'Maestria Total', 
+      totalMastery: 'Maestria Total',
       statsSummary: 'Resumen de los stats',
-      effectiveHpAgainst: 'PdV efectivos contra tipo {type}', 
-      numSelected: '{num} Dominios Seleccionados', 
+      effectiveHpAgainst: 'PdV efectivos contra tipo {type}',
+      numSelected: '{num} Dominios Seleccionados',
     },
 
     guidesContent: {
-      doYouHaveAGuide: "¿Tienes una guía que te gustaría incluir aquí? Ponte en contacto con nosotros en el servidor Discord. Nos encantaría añadirla.", 
-      classGuides: 'Guías de {class}', 
-      openGuide: 'Abrir Guía', 
+      doYouHaveAGuide: '¿Tienes una guía que te gustaría incluir aquí? Ponte en contacto con nosotros en el servidor Discord. Nos encantaría añadirla.',
+      classGuides: 'Guías de {class}',
+      openGuide: 'Abrir Guía',
     },
 
     characteristicsContent: {
@@ -128,12 +147,12 @@ export const es = {
 
     equipmentContent: {
       sortBy: 'Ordenar por',
-      newSort: 'Nueva Ordenación', 
+      newSort: 'Nueva Ordenación',
       resultsOutOf: 'Resultados de',
       itemsTotal: 'Objetos en Total',
       displayStats: 'Mostrar Stats',
-      displayTotals: 'Mostrar Totales', 
-      compareToEquipped: 'Comparar con Equipados', 
+      displayTotals: 'Mostrar Totales',
+      compareToEquipped: 'Comparar con Equipados',
       itemLevel: 'Nivel de Objeto',
       openEncyclopediaPage: 'Abrir la página de la enciclopedia',
       noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
@@ -181,7 +200,7 @@ export const es = {
       healingMasteryTooltip: '¿Debe incluirse Dominio Cura si es posible?',
       rearMasteryTooltip: '¿Debe incluirse Dominio Espalda si es posible?',
       berserkMasteryTooltip: '¿Debe incluirse Dominio Berserker si es posible?',
-      poweredBy: "Gracias al código de {credit}.",
+      poweredBy: 'Gracias al código de {credit}.',
       problemMessage: 'Ha habido un problema con el solucionador automático. Si crees que se trata de un error, ponte en contacto con Fryke en Discord.',
       instructions: 'Introduce los parámetros y haz clic en "Generar conjunto de artículos"..',
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
@@ -201,8 +220,8 @@ export const es = {
       rangeForLevelWarning: 'Puede que estés pidiendo más alcance del que es posible a tu nivel.',
       rangeImpossibleWarning: 'Puede que estés pidiendo más alcance del que es posible.',
       combinedApMpWarning: 'Puede que estés pidiendo una cantidad combinada de PA+PM que no sea posible en tu nivel.',
-      showAllItems: 'Mostrar todos los items', 
-      displayTotals: 'Mostrar Totales', 
+      showAllItems: 'Mostrar todos los items',
+      displayTotals: 'Mostrar Totales',
     },
 
     runesAndSubsContent: {
@@ -217,15 +236,15 @@ export const es = {
       runeLevel: 'Nivel de Runa',
       toggleWhite: 'Cambiar a blanco',
       removeAllRunes: 'Remover todas las Runas/Sublis',
-      sortByMatching: 'Ordenar por coincidencias', 
-      sortByMatchingNote: 'Si una ranura de equipo está resaltada, esto ordenará las sublimaciones según coincidan con los colores de las runas de esa ranura de equipo.', 
-      searchSublimations: 'Buscar Sublimaciones...', 
-      searchEpicAndRelicSubs: 'Buscar Sublimaciones Épicas/Reliquias...', 
+      sortByMatching: 'Ordenar por coincidencias',
+      sortByMatchingNote: 'Si una ranura de equipo está resaltada, esto ordenará las sublimaciones según coincidan con los colores de las runas de esa ranura de equipo.',
+      searchSublimations: 'Buscar Sublimaciones...',
+      searchEpicAndRelicSubs: 'Buscar Sublimaciones Épicas/Reliquias...',
       addsStateLevelsShort: '+{num_0} Niveles de',
-      stateStackingWarning: 'Este estado sólo se acumula hasta el nivel {num_0}', 
+      stateStackingWarning: 'Este estado sólo se acumula hasta el nivel {num_0}',
       relicSub: 'Sub Reliquia',
       epicSub: 'Sub Épica',
-      itemMustBeEquipped: 'Se debe equipar un objeto', 
+      itemMustBeEquipped: 'Se debe equipar un objeto',
     },
 
     spellsAndPassivesContent: {
@@ -289,8 +308,8 @@ export const es = {
     sublimationScroll: 'Pergamino de Sublimación',
     enchantment: 'Runas',
 
-    epicSublimation: 'Sublimación Épica', 
-    relicSublimation: 'Sublimación Reliquia', 
+    epicSublimation: 'Sublimación Épica',
+    relicSublimation: 'Sublimación Reliquia',
 
     oneHandedWeapons: 'Armas a una Mano',
     twoHandedWeapons: 'Armas a dos Manos',
@@ -380,10 +399,10 @@ export const es = {
     willReplaceItems: '¿Estás seguro? Esto reemplazará cualquier otro objeto que tengas equipado ahora mismo en ranuras en conflicto.',
   },
   tooltips: {
-    randomMasteryValue: '+{num_0} Dominio de {num_1} elementos aleatorios', 
-    randomResistanceValue: '+{num_0} Resistencia de {num_1} elementos aleatorios', 
+    randomMasteryValue: '+{num_0} Dominio de {num_1} elementos aleatorios',
+    randomResistanceValue: '+{num_0} Resistencia de {num_1} elementos aleatorios',
     addsStateLevels: 'Añade +{num_0} niveles de',
-    stateAtLevel: 'Estado en el nivel {num_0} (Max {num_1})',
-    missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.', 
+    stateAtLevel: '{state} Estado en el nivel {num_0} (Max {num_1})',
+    missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.',
   },
 };

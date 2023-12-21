@@ -8,9 +8,9 @@
       <div class="multi-tooltip" :class="{ stuck: stickyCounter === 100 && sticky }">
         <slot name="content">
           <div class="state-title py-2 px-2">
-            <span>{{ $t(`states.${stateData?.name}`) }}</span>
-            <span class="mx-1">{{
+            <span>{{
               $t('tooltips.stateAtLevel', {
+                state: $t(`states.${stateData?.name}`),
                 num_0: Math.min(STATE_LEVEL_LIMITS[stateId], currentLevel) || currentLevel,
                 num_1: STATE_LEVEL_LIMITS[stateId] === undefined ? '??' : STATE_LEVEL_LIMITS[stateId],
               })

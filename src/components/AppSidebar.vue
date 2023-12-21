@@ -2,18 +2,12 @@
   <div class="sidebar">
     <div class="flex justify-content-center mt-3 mb-2"> <p-image :src="wakforgeLogoURL" image-style="width: 60px" /> </div>
     <p-button :label="$t('sidebar.charactersTab')" icon="mdi mdi-account-multiple" class="sidebar-button w-full text-left px-2" @click="gotoCharacters" />
+    <p-button :label="$t('sidebar.guidesTab')" icon="mdi mdi-book-open-blank-variant" class="sidebar-button w-full text-left px-2" @click="gotoGuides" />
     <!-- <p-button label="AutoBuilder" icon="mdi mdi-creation" class="sidebar-button w-full text-left px-2" @click="gotoAutoBuilder" /> -->
     <p-button :label="$t('sidebar.dataTab')" icon="mdi mdi-graph" class="sidebar-button w-full text-left px-2" @click="gotoData" />
 
     <div class="flex-grow-1" />
-    <p-button
-      :label="$t('sidebar.theme')"
-      icon="mdi mdi-palette"
-      class="sidebar-button w-full text-left px-2"
-      aria-haspopup="true"
-      aria-controls="theme_menu"
-      @click="onTheme"
-    />
+    <p-button :label="$t('sidebar.theme')" icon="mdi mdi-palette" class="sidebar-button w-full text-left px-2" aria-haspopup="true" aria-controls="theme_menu" @click="onTheme" />
     <p-button
       :label="$t('sidebar.language')"
       icon="mdi mdi-translate"
@@ -53,7 +47,7 @@ import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
 import { masterData } from '@/models/useStorage';
-import { CHARACTERS_ROUTE, DATA_ROUTE } from '@/router/routes.js';
+import { CHARACTERS_ROUTE, DATA_ROUTE, GUIDES_ROUTE } from '@/router/routes.js';
 
 import wakforgeLogoURL from '@/assets/images/branding/wakforge.svg';
 
@@ -72,7 +66,7 @@ watch(
 
       if (!!masterData.language && locale.value !== masterData.language) {
         console.log('trying to set locale from master data', masterData.language);
-        // locale.value = masterData.language;
+        locale.value = masterData.language;
       }
     });
   },
@@ -137,6 +131,12 @@ const gotoCharacters = () => {
 //     name: AUTO_BUILDER_ROUTE,
 //   });
 // };
+
+const gotoGuides = () => {
+  router.push({
+    name: GUIDES_ROUTE,
+  });
+};
 
 const gotoData = () => {
   router.push({

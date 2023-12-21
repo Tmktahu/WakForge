@@ -65,7 +65,7 @@
     </div>
 
     <div class="flex flex-grow-1" style="overflow: auto">
-      <div class="stats-area pt-3">
+      <div class="stats-area">
         <StatDisplay />
       </div>
 
@@ -74,7 +74,7 @@
           <p-tabPanel>
             <template v-slot:header>
               <div class="tab-header">
-                <span>{{ $t('characterSheet.guides') }}</span>
+                <span>{{ $t('sidebar.guidesTab') }}</span>
               </div>
             </template>
             <GuidesTabContent />

@@ -1,10 +1,15 @@
 <template>
-  <div class="flex flex-column h-full">
-    <div class="text-xl font-bold" style="text-transform: capitalize"> {{ $t('characterSheet.guidesContent.classGuides', { class: currentCharacter.class }) }} </div>
-    <div class="mt-1">{{ $t('characterSheet.guidesContent.doYouHaveAGuide') }}</div>
+  <div class="flex flex-column flex-grow-1 ml-4 mr-3" style="height: 100%; overflow: hidden">
+    <div class="mt-3" style="font-size: 42px">{{ $t('guidesPage.title') }}</div>
+    <div class="mt-2">{{ $t('guidesPage.description') }}</div>
+    <div class="mt-2">{{ $t('characterSheet.guidesContent.doYouHaveAGuide') }}</div>
 
-    <div class="mt-3">
-      <template v-for="guide in guideData" :key="guide.name">
+    <p-divider />
+
+    <p-inputText v-model="searchTerm" :placeholder="$t('guidesPage.searchGuides')" />
+
+    <div class="guide-list mt-3 pr-1">
+      <template v-for="guide in guides" :key="guide.name">
         <div class="guide-entry px-3 py-1 mb-2">
           <div class="guide-name">{{ guide.name }}</div>
           <div class="flex-grow-1" />
@@ -22,23 +27,20 @@
         </div>
       </template>
     </div>
-
-    <p-divider />
-    <!--
-    <div class="text-xl font-bold" style="text-transform: capitalize">{{ currentCharacter.class }} Curated Builds</div>
-
-    <div class="mt-3">curated builds list</div> -->
   </div>
 </template>
 
 <script setup>
-import { inject, computed } from 'vue';
-import { CLASS_GUIDES_DATA } from '@/models/useConstants';
+import { ref, computed, nextTick } from 'vue';
 
-const currentCharacter = inject('currentCharacter');
+import { GENERAL_GUIDES_DATA } from '@/models/useConstants';
 
-const guideData = computed(() => {
-  return CLASS_GUIDES_DATA[currentCharacter.value.class];
+const searchTerm = ref('');
+
+const guides = computed(() => {
+  return GENERAL_GUIDES_DATA.filter((guide) => {
+    return guide.name.toLowerCase().includes(searchTerm.value.toLowerCase()) || guide.description.toLowerCase().includes(searchTerm.value.toLowerCase());
+  });
 });
 
 const onOpenGuide = (guide) => {
@@ -47,6 +49,10 @@ const onOpenGuide = (guide) => {
 </script>
 
 <style lang="scss" scoped>
+.guide-list {
+  overflow-y: auto;
+}
+
 .guide-entry {
   display: flex;
   align-items: center;
