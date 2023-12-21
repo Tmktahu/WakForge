@@ -29,6 +29,10 @@
 
 <script setup>
 import { GENERAL_GUIDES_DATA } from '@/models/useConstants';
+
+const onOpenGuide = (guide) => {
+  window.open(guide.url, '_blank').focus();
+};
 </script>
 
 <style lang="scss" scoped>

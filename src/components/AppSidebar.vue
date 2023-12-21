@@ -66,7 +66,7 @@ watch(
 
       if (!!masterData.language && locale.value !== masterData.language) {
         console.log('trying to set locale from master data', masterData.language);
-        // locale.value = masterData.language;
+        locale.value = masterData.language;
       }
     });
   },
