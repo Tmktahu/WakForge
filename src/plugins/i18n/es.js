@@ -9,21 +9,21 @@ export const es = {
     disclaimer: 'WAKFU es un MMORPG publicado por Ankama. "WakForge" es un sitio web no oficial sin ningún vínculo con Ankama.',
     globalErrorMessage: 'Se ha producido un error grave que ha detenido el correcto funcionamiento de la aplicación.',
     globalErrorContact: 'Ponte en contacto con Fryke en Discord lo antes posible con la información que aparece debajo.',
-    ignoreGlobalError: 'Ignore Error', // NEEDS TRANSLATION
-    discordServer: 'Discord Server', // NEEDS TRANSLATION
+    ignoreGlobalError: 'Ignorar Error',
+    discordServer: 'Servidor de Discord',
     downloadData: 'Descargar los datos actuales',
   },
   oldDataDialog: {
-    migrateOldData: 'Migrate Old Data', // NEEDS TRANSLATION
-    oldDataDetected: 'An old storage data structure has been detected and it must be updated before you can use the app.', // NEEDS TRANSLATION
-    reloadNotice: 'Once the update is complete, this page will reload.', // NEEDS TRANSLATION
+    migrateOldData: 'Migrar datos Antiguos',
+    oldDataDetected: 'Se ha detectado una estructura de datos de almacenamiento antigua y debe actualizarse antes de poder utilizar la aplicación.',
+    reloadNotice: 'Una vez finalizada la actualización, esta página volverá a cargarse.',
     backupReccomendation:
-      'It is highly reccomended that you backup your current data before attempting to update it to the new structure. I do my best to try and automatically handle this for you, but there is always a chance that something goes wrong with the update.', // NEEDS TRANSLATION
+      'Se recomienda realizar una copia de seguridad de tus datos actuales antes de intentar actualizar a una nueva estructura. Jimmy intenta realizar esto automáticamente por ti, pero siempre hay chances de que algo suceda con la actualización.',
     ifUpdateFails:
-      "If the update fails to work and you lose your data, don't worry. As long as you have a backup JSON you can recover everything. Feel free to reach out to Fryke (fryke) directly on Discord for assistance.", // NEEDS TRANSLATION
-    downloadCurrentData: 'Download Current Data', // NEEDS TRANSLATION
-    updatingPleaseWait: 'Updating Data. Please Wait', // NEEDS TRANSLATION
-    updateData: 'Update Data to New Structure', // NEEDS TRANSLATION
+      'Si la actualización sale mal y pierdes tus datos, no te preocupes. Mientras tengas una copia de seguridad JSON podrás recuperarlo todo. No dudes en ponerte en contacto con Fryke (fryke) directamente en Discord para obtener ayuda.',
+    downloadCurrentData: 'Descargar datos Actuales',
+    updatingPleaseWait: 'Actualizando datos. Por favor espera',
+    updateData: 'Datos Actualizados a la nueva Estructura',
     mustDownloadFirst: 'Debes descargar primero una copia de seguridad de tus datos.',
   },
   sidebar: {
