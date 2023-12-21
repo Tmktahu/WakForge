@@ -28,7 +28,7 @@ export const fr = {
   sidebar: {
     charactersTab: 'Personnages',
     dataTab: 'Données',
-    guidesTab: 'Guides', // NEEDS TRANSLATION
+    guidesTab: 'Guides', 
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Langage',
@@ -55,9 +55,9 @@ export const fr = {
     newGroup: 'Nouveau groupe',
   },
   guidesPage: {
-    title: 'General Guides', // NEEDS TRANSLATION
-    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
-    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
+    title: 'Guides Généraux', 
+    description: "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.", 
+    searchGuides: 'Rechercher Guides...', 
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -246,7 +246,7 @@ export const fr = {
       stateStackingWarning: 'Cet état atteint seulement un maximum de {num_0} Niveau', 
       relicSub: 'Subli Relique', 
       epicSub: 'Subli Épique', 
-      itemMustBeEquipped: 'Un item doit etre equiper', 
+      itemMustBeEquipped: 'Un item doit être équipé', 
     },
 
     spellsAndPassivesContent: {
@@ -390,7 +390,7 @@ export const fr = {
     armorGiven: 'Armure donnée',
     healthPoints: 'Points de Vie',
 
-    remove: 'Remove', // NEEDS TRANSLATION
+    remove: 'Enlever', 
   },
   confirms: {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
@@ -398,10 +398,10 @@ export const fr = {
     willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les items équipés qui sont dans les slots en conflit.',
   },
   tooltips: {
-    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
-    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
+    randomMasteryValue: '+{num_0} Maîtrise de {num_1} élements aléatoire ', 
+    randomResistanceValue: '+{num_0} Résistance de {num_1} élements aléatoire', 
     addsStateLevels: 'Rajoute +{num_0} Niveau de', 
-    stateAtLevel: "L'Effet {State} au niveau {num_0} (Max {num_1})",
-    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
+    stateAtLevel: "L'État {State} au niveau {num_0} (Max {num_1})",
+    missingInfoAboutState: "Nous manquons d'information a propos de cet état. Si vous en avez, merci de nous contacter sur le serveur Discord.", 
   },
 };
