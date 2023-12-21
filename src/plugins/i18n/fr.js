@@ -57,6 +57,7 @@ export const fr = {
   guidesPage: {
     title: 'General Guides', // NEEDS TRANSLATION
     description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
+    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -400,7 +401,7 @@ export const fr = {
     randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
     randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
     addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
-    stateAtLevel: 'State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
+    stateAtLevel: '{state} State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
     missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
   },
 };

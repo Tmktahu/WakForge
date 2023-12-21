@@ -58,6 +58,7 @@ export const es = {
   guidesPage: {
     title: 'General Guides', // NEEDS TRANSLATION
     description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
+    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
   },
   dataPage: {
     title: 'Gestión de datos de la aplicación',
@@ -401,7 +402,7 @@ export const es = {
     randomMasteryValue: '+{num_0} Dominio de {num_1} elementos aleatorios',
     randomResistanceValue: '+{num_0} Resistencia de {num_1} elementos aleatorios',
     addsStateLevels: 'Añade +{num_0} niveles de',
-    stateAtLevel: 'Estado en el nivel {num_0} (Max {num_1})',
+    stateAtLevel: '{state} Estado en el nivel {num_0} (Max {num_1})',
     missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.',
   },
 };

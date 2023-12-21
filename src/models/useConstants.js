@@ -1233,6 +1233,68 @@ export const GENERAL_GUIDES_DATA = [
     description: 'A quick video guide by LightusBerberMan about installing UI themes into the Wakfu game client.',
     url: 'https://www.youtube.com/watch?v=B_I9sRj3H2g',
   },
+  {
+    name: 'Divine Artifact Locations',
+    languages: ['sidebar.french'],
+    description: 'A quick written guide by Tompa about where you can get the various divine artifacts.',
+    url: 'https://methodwakfu.com/divers/utilitaires/les-artefacts-divins/',
+  },
+  {
+    name: 'Artifact Treasure Locations',
+    languages: ['sidebar.english'],
+    description: 'A list of locations by 9ryex for all the treasures that require the divine artifacts to get.',
+    url: 'https://www.wakfu.com/en/forum/143-guides/239216-2023-artifact-treasure-locations',
+  },
+  {
+    name: 'Locations by Level (2022)',
+    languages: ['sidebar.english'],
+    description: 'A list by 9ryexof locations organized by level. Useful for knowing where to be while leveling up.',
+    url: 'https://www.wakfu.com/en/forum/143-guides/239420-2022-locations-level',
+  },
+  {
+    name: 'Wakfu Cheatsheet',
+    languages: ['sidebar.english'],
+    description: 'A google spreadsheet of useful information by Oyuu, including Guild of Hunters locations, tool recipies, aura previews, and a bestiary.',
+    url: 'https://docs.google.com/spreadsheets/d/15JZW-hNQ36tfaep9YMns3LtcnwblfGqHPsOgcI2dgTk/edit#gid=1487013779',
+  },
+  {
+    name: 'All Emote Locations',
+    languages: ['sidebar.french'],
+    description:
+      'A video by Lar do Wakfu that showcases all of the emote locations. Note that Incarnam no longer exists come part 1.81, and so that part of the video can be skipped.',
+    url: 'https://www.youtube.com/watch?v=tVWInYukweg',
+  },
+  {
+    name: 'Allocating More RAM to the Game Client',
+    languages: ['sidebar.english'],
+    description: 'A written guide by Ankama about how to allocate more RAM to the game client to improve performance.',
+    url: 'https://www.wakfu.com/en/mmorpg/news/announcements/1459515-allocate-more-ram-improve-performance',
+  },
+  {
+    // eslint-disable-next-line quotes
+    name: "Piego's Sublimation Sheet",
+    languages: ['sidebar.english'],
+    description: 'A google sheet by Piego that has information on all the various sublimations in the game.',
+    url: 'https://www.wakfu.com/en/forum/143-guides/241241-updated-sublimations',
+  },
+  {
+    name: 'How to Find All Sublimations Info in one place',
+    languages: ['sidebar.english'],
+    description: 'A video by LightusBerberMan highlighting a google sheet that has all the sublimation information for the game. Link to the sheet in the video description.',
+    url: 'https://www.youtube.com/watch?v=pyB8e1qBoDw',
+  },
+  {
+    name: 'Rift Artifacts Cheatsheet',
+    languages: ['sidebar.english'],
+    description: 'A list of the various artifacts you can pick up in rifts, along with their effects.',
+    url: 'https://docs.google.com/document/d/1NJIXkzXVbRnJ1cugKIXuARySOPoF4b7tbHlqTwTlXFE/edit',
+  },
+  {
+    name: 'Titles Cheatsheet',
+    languages: ['sidebar.english'],
+    description: 'An excel spreadsheet by Eisaku of all the various titles in the game and where to get them.',
+    url: 'https://www.wakfu.com/en/forum/143-guides/236670-biggest-title-database',
+  },
 ];
 
 export const CLASS_GUIDES_DATA = {
