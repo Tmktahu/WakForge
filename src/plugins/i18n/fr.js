@@ -10,10 +10,25 @@ export const fr = {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
     globalErrorMessage: "Il y a eu une erreur critique qui a empêché l'application de fonctionner correctement.",
     globalErrorContact: 'Merci de contacter Fryke sur Discord le plus tôt possible avec les informations ci-dessous.',
+    ignoreGlobalError: "Ignorer l'Erreur",
+    discordServer: 'Serveur Discord',
+    downloadData: 'Télécharger les données actuelles',
+  },
+  oldDataDialog: {
+    migrateOldData: 'Migrer les Anciennes Données',
+    oldDataDetected: "Une ancienne structure de stockage de données a été détectée et doit être mise à jour avant que vous ne puissiez utiliser l'application.",
+    reloadNotice: 'Une fois la mise à jour terminée, cette page se rechargera.',
+    backupReccomendation: "Il est vivement recommandé de sauvegarder vos données actuelles avant d'essayer de les mettre à jour vers la nouvelle structure. Je fais de mon mieux pour essayer de gérer cela automatiquement pour vous, mais il y a toujours un risque que quelque chose se passe mal avec la mise à jour.",
+    ifUpdateFails: "Si la mise à jour échoue et que vous perdez vos données, ne vous inquiétez pas. Tant que vous avez une sauvegarde en format JSON, vous pouvez tout récupérer. N'hésitez pas à contacter directement Fryke (fryke) sur Discord pour obtenir de l'aide.",
+    downloadCurrentData: 'Télécharger les Données Actuelles',
+    updatingPleaseWait: 'Mise à jour des Données. Veuillez Patienter',
+    updateData: 'Mettre à Jour les Données vers la Nouvelle Structure',
+    mustDownloadFirst: "Vous devez d'abort télecharger vos données",
   },
   sidebar: {
     charactersTab: 'Personnages',
     dataTab: 'Données',
+    guidesTab: 'Guides', // NEEDS TRANSLATION
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Langage',
@@ -39,6 +54,11 @@ export const fr = {
     createNewGroupButton: 'Créer nouveau groupe',
     newGroup: 'Nouveau groupe',
   },
+  guidesPage: {
+    title: 'General Guides', // NEEDS TRANSLATION
+    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
+    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
+  },
   dataPage: {
     title: "Gestion des données de l'application",
     importDescription: 'Vous pouvez upload ici un fichier JSON pour importer des personnages.',
@@ -60,10 +80,8 @@ export const fr = {
     warning: 'ATTENTION',
     warningMessage:
       "Éditer les données du LocalStorage directement est dangereux et peut corrompre définitivement vos données. Ne le faites qu'après avoir fait une sauvegarde et si vous savez ce que vous faites.",
-    mustDownloadFirst: "Vous devez d'abort télecharger vos données",
     invalidJSON: 'JSON invalide',
     saveToLocalstorage: 'Sauvegarder dans le LocalStorage',
-    downloadData: 'Télécharger les données actuelles',
     deleteAllData: 'Supprimer toutes les données',
     migrateData: 'Migrer les données',
     importCharacters: 'Importer les personnages sélectionnés',
@@ -75,7 +93,6 @@ export const fr = {
     buildCopyPaste: 'Vous pouvez copier-coller ce code pour partager ce build',
     buildCode: 'Code Build',
     copy: 'Copier',
-    guides: 'Guides', 
     characteristics: 'Caractéristiques',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
@@ -217,12 +234,12 @@ export const fr = {
       shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
       rightClick: "Clic-Droit sur une rune pour plus d'options.",
       hightlightClick: "Sélectionner un slot et cliquer sur une rune à droite pour l'assigner.",
-      runeLevelTooltip: `Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.`,
+      runeLevelTooltip: "Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.",
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
       removeAllRunes: 'Enlever toutes les runes/subl.',
       sortByMatching: 'Trier pas correspondant', 
-      sortByMatchingNote: 'Si un équipement est sélectionné , cela triera les sublimations en fonction de la couleurs et l'ordre des chasses mise sur cet équipement ', // NEEDS TRANSLATION
+      sortByMatchingNote: "Si un équipement est sélectionné , cela triera les sublimations en fonction de la couleurs et l'ordre des chasses mise sur cet équipement",
       searchSublimations: 'Recherche Sublimations...', 
       searchEpicAndRelicSubs: 'Recherche Sublimations Épique/Relique...', 
       addsStateLevelsShort: '+{num_0} niveau de', 
@@ -373,7 +390,7 @@ export const fr = {
     armorGiven: 'Armure donnée',
     healthPoints: 'Points de Vie',
 
-    remove: 'Remove',
+    remove: 'Remove', // NEEDS TRANSLATION
   },
   confirms: {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
@@ -384,7 +401,7 @@ export const fr = {
     randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
     randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
     addsStateLevels: 'Rajoute +{num_0} Niveau de', 
-    stateAtLevel: 'State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
+    stateAtLevel: "L'Effet {State} au niveau {num_0} (Max {num_1})",
     missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
   },
 };

@@ -1,13 +1,15 @@
 // import Vue from 'vue';
 import { watch, reactive, nextTick } from 'vue';
 import { EventBus, Events } from '@/eventBus';
-import { ITEM_SLOT_DATA } from '@/models/useConstants';
+import { useBuildCodes } from '@/models/useBuildCodes';
+import { useLevels } from '@/models/useLevels';
+import { characterDataTemplate } from '@/models/useCharacterBuilds';
 import * as fs from 'fs';
 import { v4 as uuidv4 } from 'uuid';
 import { debounce } from 'lodash';
 
 export const LOCALSTORAGE_KEY = 'wakforge-data';
-export const CURRENT_STORAGE_VERSION = '0.0.5';
+export const CURRENT_STORAGE_VERSION = '0.0.6';
 
 export let masterData = reactive({
   appVersion: '',
@@ -19,6 +21,9 @@ export let masterData = reactive({
 });
 
 export function useStorage() {
+  const { createBuildCode, parseBuildData, decodeBuildCode } = useBuildCodes();
+  const { setCharacteristicLimits } = useLevels();
+
   const setup = async () => {
     const { data, errors } = readFromLocalStorage();
 
@@ -35,7 +40,23 @@ export function useStorage() {
       };
     } else {
       if (data?.characters?.length) {
-        masterData.characters = data.characters;
+        let parsedCharacterData = [];
+
+        data.characters.forEach((characterEntry) => {
+          let parsedBuildData = decodeBuildCode(characterEntry.buildCode);
+          let assembledCharacterData = parseBuildData(parsedBuildData);
+
+          let newCharacterData = structuredClone(characterDataTemplate);
+          let newObject = mergeDeep(newCharacterData, assembledCharacterData);
+          setCharacteristicLimits(newObject);
+
+          newObject.id = characterEntry.id;
+          newObject.name = characterEntry.name;
+
+          parsedCharacterData.push(newObject);
+        });
+
+        masterData.characters = parsedCharacterData;
       }
       masterData.appVersion = data.appVersion || import.meta.env.VUE_APP_VERSION;
       masterData.uiTheme = data.uiTheme || 'bonta';
@@ -91,11 +112,19 @@ export function useStorage() {
         let newStorageData = {
           appVersion: import.meta.env.VITE_APP_VERSION,
           storageVersion: CURRENT_STORAGE_VERSION,
-          characters: inData.characters,
+          characters: [],
           uiTheme: inData.uiTheme,
           language: inData.language,
           groups: inData.groups,
         };
+
+        inData.characters.forEach((character) => {
+          newStorageData.characters.push({
+            id: character.id,
+            name: character.name,
+            buildCode: createBuildCode(character),
+          });
+        });
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
@@ -155,36 +184,6 @@ export function useStorage() {
     let newData = oldData;
     // we place migration data shenanigans here
 
-    // this handles old pet and mount data. could remove after some time
-    newData.characters.forEach((character) => {
-      if (!([ITEM_SLOT_DATA.PET.id] in character.equipment)) {
-        character.equipment[ITEM_SLOT_DATA.PET.id] = null;
-      }
-
-      if (!([ITEM_SLOT_DATA.MOUNT.id] in character.equipment)) {
-        character.equipment[ITEM_SLOT_DATA.MOUNT.id] = null;
-      }
-    });
-
-    // this handles old spell keys. could remove after some time
-    newData.characters.forEach((character) => {
-      if (character.passiveSpells) {
-        delete character.passiveSpells;
-      }
-
-      if (character.activeSpells) {
-        delete character.activeSpells;
-      }
-
-      if (character.equipment.pet) {
-        delete character.equipment.pet;
-      }
-
-      if (character.equipment.mount) {
-        delete character.equipment.mount;
-      }
-    });
-
     // this handles adding new spell keys if they don't exist
     newData.characters.forEach((character) => {
       if (!character.spells) {
@@ -208,6 +207,17 @@ export function useStorage() {
           passiveSlot4: null,
           passiveSlot5: null,
           passiveSlot6: null,
+        };
+      }
+    });
+
+    // this converts old stored character data to new build code storage
+    newData.characters.forEach((character) => {
+      if (character.buildCode === undefined) {
+        character = {
+          id: character.id,
+          name: character.name,
+          buildCode: createBuildCode(character),
         };
       }
     });
@@ -237,6 +247,42 @@ export function useStorage() {
         masterData.characters.push(incomingCharacter);
       }
     });
+  };
+
+  /**
+   * Simple object check.
+   * @param item
+   * @returns {boolean}
+   */
+  const isObject = (item) => {
+    return item && typeof item === 'object' && !Array.isArray(item);
+  };
+
+  /**
+   * Deep merge two objects.
+   * @param target
+   * @param ...sources
+   */
+  const mergeDeep = (target, ...sources) => {
+    if (!sources.length) {
+      return target;
+    }
+    const source = sources.shift();
+
+    if (isObject(target) && isObject(source)) {
+      for (const key in source) {
+        if (isObject(source[key])) {
+          if (!target[key]) {
+            Object.assign(target, { [key]: {} });
+          }
+          mergeDeep(target[key], source[key]);
+        } else {
+          Object.assign(target, { [key]: source[key] });
+        }
+      }
+    }
+
+    return mergeDeep(target, ...sources);
   };
 
   return {
