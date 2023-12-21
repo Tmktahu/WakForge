@@ -10,21 +10,19 @@ export const fr = {
     disclaimer: 'WAKFU est un MMORPG édité par Ankama. "WakForge" est un site non-officiel sans aucun lien avec Ankama.',
     globalErrorMessage: "Il y a eu une erreur critique qui a empêché l'application de fonctionner correctement.",
     globalErrorContact: 'Merci de contacter Fryke sur Discord le plus tôt possible avec les informations ci-dessous.',
-    ignoreGlobalError: 'Ignore Error', // NEEDS TRANSLATION
-    discordServer: 'Discord Server', // NEEDS TRANSLATION
+    ignoreGlobalError: "Ignorer l'Erreur",
+    discordServer: 'Serveur Discord',
     downloadData: 'Télécharger les données actuelles',
   },
   oldDataDialog: {
-    migrateOldData: 'Migrate Old Data', // NEEDS TRANSLATION
-    oldDataDetected: 'An old storage data structure has been detected and it must be updated before you can use the app.', // NEEDS TRANSLATION
-    reloadNotice: 'Once the update is complete, this page will reload.', // NEEDS TRANSLATION
-    backupReccomendation:
-      'It is highly reccomended that you backup your current data before attempting to update it to the new structure. I do my best to try and automatically handle this for you, but there is always a chance that something goes wrong with the update.', // NEEDS TRANSLATION
-    ifUpdateFails:
-      "If the update fails to work and you lose your data, don't worry. As long as you have a backup JSON you can recover everything. Feel free to reach out to Fryke (fryke) directly on Discord for assistance.", // NEEDS TRANSLATION
-    downloadCurrentData: 'Download Current Data', // NEEDS TRANSLATION
-    updatingPleaseWait: 'Updating Data. Please Wait', // NEEDS TRANSLATION
-    updateData: 'Update Data to New Structure', // NEEDS TRANSLATION
+    migrateOldData: 'Migrer les Anciennes Données',
+    oldDataDetected: "Une ancienne structure de stockage de données a été détectée et doit être mise à jour avant que vous ne puissiez utiliser l'application.",
+    reloadNotice: 'Une fois la mise à jour terminée, cette page se rechargera.',
+    backupReccomendation: "Il est vivement recommandé de sauvegarder vos données actuelles avant d'essayer de les mettre à jour vers la nouvelle structure. Je fais de mon mieux pour essayer de gérer cela automatiquement pour vous, mais il y a toujours un risque que quelque chose se passe mal avec la mise à jour.",
+    ifUpdateFails: "Si la mise à jour échoue et que vous perdez vos données, ne vous inquiétez pas. Tant que vous avez une sauvegarde en format JSON, vous pouvez tout récupérer. N'hésitez pas à contacter directement Fryke (fryke) sur Discord pour obtenir de l'aide.",
+    downloadCurrentData: 'Télécharger les Données Actuelles',
+    updatingPleaseWait: 'Mise à jour des Données. Veuillez Patienter',
+    updateData: 'Mettre à Jour les Données vers la Nouvelle Structure',
     mustDownloadFirst: "Vous devez d'abort télecharger vos données",
   },
   sidebar: {
