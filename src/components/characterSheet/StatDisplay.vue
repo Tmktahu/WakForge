@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentCharacter">
+  <div v-if="currentCharacter" class="py-3" style="overflow: auto">
     <div class="flex justify-content-between w-full px-2">
       <div class="main-stat-box">
         <div class="flex align-items-center my-1">
@@ -295,26 +295,44 @@
     <div class="flex flex-column">
       <div class="section-header py-1 mb-1">{{ $t('characterSheet.statsDisplay.statsSummary') }}</div>
 
-      <div class="stat-block pr-2 ml-1">
-        <p-image src="https://tmktahu.github.io/WakfuAssets/characteristics/223.png" style="height: 20px" image-style="height: 20px" />
-        <span class="ml-1">{{ $t('characterSheet.statsDisplay.totalMastery') }}</span>
-        <p-multiSelect v-model="selectedTotalMasteries" class="ml-2" :options="totalMasteryOptions" :show-toggle-all="false">
-          <template v-slot:value="slotProps">
-            <div class="flex align-items-center">
-              {{ $t('characterSheet.statsDisplay.numSelected', { num: slotProps.value.length }) }}
+      <div class="stat-block mr-1">
+        <div class="flex flex-column px-1 py-1 w-full" style="border: 1px solid var(--primary-40); border-radius: 8px">
+          <div class="mastery-container flex gap-2 w-full">
+            <div class="mastery-button-wrapper">
+              <template v-for="mastery in masteryOptions" :key="mastery.id">
+                <tippy duration="0">
+                  <p-checkbox v-model="mastery.checked" :binary="true" class="mastery-checkbox" @change="onMasteryClick($event, mastery.id)">
+                    <template v-slot:icon="slotProps">
+                      <div class="flex justify-content-center align-items-center">
+                        <p-image
+                          class="checkbox-icon"
+                          :class="{ disabled: !slotProps.checked }"
+                          :src="`https://tmktahu.github.io/WakfuAssets/statistics/${mastery.iconName}.png`"
+                          image-style="width: 20px;"
+                        />
+                      </div>
+                    </template>
+                  </p-checkbox>
+
+                  <template v-slot:content>
+                    <div class="simple-tooltip">
+                      {{ $t(mastery.name) }}
+                    </div>
+                  </template>
+                </tippy>
+              </template>
             </div>
-          </template>
+          </div>
 
-          <template v-slot:option="slotProps">
-            <div class="flex align-items-center">
-              <div class="capitalize">{{ $t(`constants.${slotProps.option}Mastery`) }}</div>
-            </div>
-          </template>
-        </p-multiSelect>
+          <div class="flex w-full mt-1">
+            <p-image src="https://tmktahu.github.io/WakfuAssets/characteristics/223.png" style="height: 20px" image-style="height: 20px" />
+            <span class="ml-1">{{ $t('characterSheet.statsDisplay.totalMastery') }}</span>
 
-        <div class="flex-grow-1" />
+            <div class="flex-grow-1" />
 
-        <span>{{ calcTotalMastery(selectedTotalMasteries) }}</span>
+            <span>{{ calcTotalMastery(selectedTotalMasteries) }}</span>
+          </div>
+        </div>
       </div>
 
       <div class="stat-block pr-2 ml-1">
@@ -349,7 +367,7 @@
 </template>
 
 <script setup>
-import { ref, inject } from 'vue';
+import { ref, inject, watch, computed } from 'vue';
 import { CLASS_CONSTANTS } from '@/models/useConstants';
 import { useStats } from '@/models/useStats';
 
@@ -357,8 +375,62 @@ const currentCharacter = inject('currentCharacter');
 
 const { calcElemResistancePercentage, calcTotalMastery, calcEffectiveHp } = useStats(currentCharacter);
 
-const selectedTotalMasteries = ref(['water', 'air', 'earth', 'fire', 'melee', 'distance', 'berserk', 'critical', 'rear']);
-const totalMasteryOptions = ['water', 'air', 'earth', 'fire', 'melee', 'distance', 'berserk', 'critical', 'rear'];
+const selectedTotalMasteries = computed(() => {
+  return masteryOptions.value.filter((option) => option.checked).map((option) => option.id);
+});
+
+const masteryOptions = ref([
+  { name: 'constants.waterMastery', id: 'water', iconName: 'water_coin', checked: false },
+  { name: 'constants.airMastery', id: 'air', iconName: 'air_coin', checked: false },
+  { name: 'constants.earthMastery', id: 'earth', iconName: 'earth_coin', checked: false },
+  { name: 'constants.fireMastery', id: 'fire', iconName: 'fire_coin', checked: false },
+  { name: 'constants.meleeMastery', id: 'melee', iconName: 'melee_mastery', checked: false },
+  { name: 'constants.distanceMastery', id: 'distance', iconName: 'distance_mastery', checked: false },
+  { name: 'constants.berserkMastery', id: 'berserk', iconName: 'berserk_mastery', checked: false },
+  { name: 'constants.criticalMastery', id: 'critical', iconName: 'critical_mastery', checked: false },
+  { name: 'constants.rearMastery', id: 'rear', iconName: 'rear_mastery', checked: false },
+  { name: 'constants.healingMastery', id: 'healing', iconName: 'healing_mastery', checked: false },
+]);
+
+const onMasteryClick = (event, masteryId) => {
+  if (event.ctrlKey) {
+    // we want to remove all mastery selections and have just the clicked one
+    masteryOptions.value.forEach((mastery) => {
+      if (mastery.id !== masteryId) {
+        mastery.checked = false;
+      } else {
+        mastery.checked = true;
+      }
+    });
+  }
+};
+
+let setDefaults = false;
+watch(
+  currentCharacter,
+  () => {
+    if (currentCharacter.value && !setDefaults) {
+      let sortedArray = [
+        { index: 0, value: currentCharacter.value.masteries.water },
+        { index: 1, value: currentCharacter.value.masteries.air },
+        { index: 2, value: currentCharacter.value.masteries.earth },
+        { index: 3, value: currentCharacter.value.masteries.fire },
+      ].sort((item1, item2) => item2.value - item1.value);
+
+      masteryOptions.value[sortedArray[0].index].checked = true;
+
+      masteryOptions.value[4].checked = currentCharacter.value.masteries.melee > 0;
+      masteryOptions.value[5].checked = currentCharacter.value.masteries.distance > 0;
+      masteryOptions.value[6].checked = currentCharacter.value.masteries.berserk > 0;
+      masteryOptions.value[7].checked = currentCharacter.value.masteries.critical > 0;
+      masteryOptions.value[8].checked = currentCharacter.value.masteries.rear > 0;
+      masteryOptions.value[9].checked = currentCharacter.value.masteries.healing > 0;
+
+      setDefaults = true;
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <style lang="scss" scoped>
@@ -422,19 +494,56 @@ const totalMasteryOptions = ['water', 'air', 'earth', 'fire', 'melee', 'distance
   }
 }
 
-:deep(.p-multiselect-label-container) {
-  .p-multiselect-label {
-    padding: 4px 6px;
-    visibility: visible;
+.mastery-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+
+  .mastery-button-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
   }
 }
 
-:global(.p-multiselect-item) {
-  padding: 4px 6px;
-}
+:deep(.mastery-checkbox) {
+  width: 26px;
+  height: 26px;
+  box-shadow: none !important;
 
-:global(.p-multiselect-item.p-highlight) {
-  background: transparent;
-  color: white;
+  .checkbox-icon {
+    background-color: transparent !important;
+  }
+
+  &:hover {
+    .p-checkbox-box {
+      background-color: var(--primary-40);
+    }
+  }
+
+  .p-checkbox-box {
+    width: 26px;
+    height: 26px;
+    border-color: var(--highlight-50);
+    background-color: var(--highlight-90);
+
+    &:has(.disabled) {
+      background-color: var(--background-10);
+    }
+  }
+
+  .disabled img {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+
+  .p-image.p-component {
+    height: 20px;
+    margin-right: 0px;
+  }
 }
 </style>

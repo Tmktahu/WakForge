@@ -1228,11 +1228,10 @@ export const PASSIVE_SPELL_UNLOCK_MAP = {
 
 export const GENERAL_GUIDES_DATA = [
   {
-    // eslint-disable-next-line quotes
-    name: "THE SQUIRE'S BIG BOOK",
-    languages: ['sidebar.english', 'sidebar.spanish'],
-    description: 'A written guide by Tokki outlining the basics of the Feca class along with several builds including protector, tank, and damage.',
-    url: 'https://www.wakfu.com/en/forum/49-feca/241229-guide-squire-big-book',
+    name: 'How to Install UI Themes',
+    languages: ['sidebar.english'],
+    description: 'A quick video guide by LightusBerberMan about installing UI themes into the Wakfu game client.',
+    url: 'https://www.youtube.com/watch?v=B_I9sRj3H2g',
   },
 ];
 

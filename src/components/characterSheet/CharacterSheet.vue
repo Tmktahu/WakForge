@@ -65,7 +65,7 @@
     </div>
 
     <div class="flex flex-grow-1" style="overflow: auto">
-      <div class="stats-area pt-3">
+      <div class="stats-area">
         <StatDisplay />
       </div>
 
