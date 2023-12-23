@@ -116,7 +116,6 @@ export const fr = {
       secondary: 'Secondaire',
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
-      totalMastery: 'Maîtrise Total', 
       statsSummary: 'Résumé Stats',
       effectiveHpAgainst: 'PV Effectif Contre les Dommages {type}', 
       numSelected: '{num} Sélectionnée', 
@@ -153,7 +152,6 @@ export const fr = {
       displayTotals: 'Afficher Totaux', 
       compareToEquipped: 'Comparer aux Équipements', 
       itemLevel: "Niveau de l'item",
-      openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
       noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
       hasRelicWarning: 'Vous avez déjà un item Relique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
       hasEpicWarning: 'Vous avez déjà un item Épique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
@@ -403,5 +401,10 @@ export const fr = {
     addsStateLevels: 'Rajoute +{num_0} Niveau de', 
     stateAtLevel: "L'État {State} au niveau {num_0} (Max {num_1})",
     missingInfoAboutState: "Nous manquons d'information a propos de cet état. Si vous en avez, merci de nous contacter sur le serveur Discord.", 
+    equipped: 'equipped', // NEEDS TRANSLATION
+    itemLevel: 'Item Level', // NEEDS TRANSLATION
+    openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
+    totalMastery: 'Maîtrise Total',
+    totalResistance: 'Total Resistance', // NEEDS TRANSLATION
   },
 };

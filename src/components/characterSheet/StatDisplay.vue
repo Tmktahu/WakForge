@@ -326,7 +326,7 @@
 
           <div class="flex w-full mt-1">
             <p-image src="https://tmktahu.github.io/WakfuAssets/characteristics/223.png" style="height: 20px" image-style="height: 20px" />
-            <span class="ml-1">{{ $t('characterSheet.statsDisplay.totalMastery') }}</span>
+            <span class="ml-1">{{ $t('tooltips.totalMastery') }}</span>
 
             <div class="flex-grow-1" />
 

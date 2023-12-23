@@ -79,8 +79,8 @@ body {
 }
 
 .p-confirm-popup {
-    background-color: var(--primary-40);
-    border: 1px solid var(--primary-50);
+    background-color: var(--background-10);
+    border: 1px solid var(--highlight-50);
 
     &:before {
         border-bottom-color: var(--primary-50);
@@ -112,6 +112,7 @@ body {
         padding: 4px 0px;
         margin: 6px 6px;
         color: black;
+        background-color: var(--primary-50);
     }
 }
 

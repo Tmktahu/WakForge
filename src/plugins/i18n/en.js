@@ -118,7 +118,6 @@ export const en = {
       secondary: 'Secondary',
       armorReceived: 'Armor Received',
       indirectDamage: 'Indirect Damage',
-      totalMastery: 'Total Mastery',
       statsSummary: 'Stats Summary',
       effectiveHpAgainst: 'Effective HP Against {type} Damage',
       numSelected: '{num} Selected',
@@ -155,7 +154,6 @@ export const en = {
       displayTotals: 'Display Totals',
       compareToEquipped: 'Compare to Equipped',
       itemLevel: 'Item Level',
-      openEncyclopediaPage: 'Open Encyclopedia Page',
       noItemsFound: 'No items were found with those filters. Please revise your search.',
       hasRelicWarning: 'You already have a Relic item equipped. Doing this will remove it. Are you sure?',
       hasEpicWarning: 'You already have an Epic item equipped. Doing this will remove it. Are you sure?',
@@ -404,5 +402,10 @@ export const en = {
     addsStateLevels: 'Adds +{num_0} levels of', // context = "Adds +1 level of Abandon"
     stateAtLevel: '{state} State at level {num_0} (Max {num_1})', // context = "Abandon State at level 1 (Max 6)"
     missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.',
+    equipped: 'equipped',
+    itemLevel: 'Item Level',
+    openEncyclopediaPage: 'Open Encyclopedia Page',
+    totalMastery: 'Total Mastery',
+    totalResistance: 'Total Resistance',
   },
 };

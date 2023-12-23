@@ -53,7 +53,7 @@
 
       <tr v-if="withTotals && (conflictingItem || getTotalMastery(item) > 0 || getTotalMastery(conflictingItem) > 0)" class="effect-line totals">
         <td v-if="conflictingItem && withComparisons" class="equipped-item-effect" style="border-top: 3px solid var(--secondary-70)">
-          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalMastery(conflictingItem) }} Total Mastery</div>
+          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalMastery(conflictingItem) }} {{ $t('tooltips.totalMastery') }}</div>
         </td>
         <td class="new-item-effect" style="border-top: 3px solid var(--primary-70)">
           <div class="flex align-items-center w-full px-1 py-1">
@@ -64,14 +64,14 @@
             >
               {{ getTotalMastery(item) - getTotalMastery(conflictingItem) > 0 ? '+' : '' }}{{ getTotalMastery(item) - getTotalMastery(conflictingItem) }}
             </div>
-            {{ getTotalMastery(item) }} Total Mastery
+            {{ getTotalMastery(item) }} {{ $t('tooltips.totalMastery') }}
           </div>
         </td>
       </tr>
 
       <tr v-if="withTotals && (conflictingItem || getTotalResistance(item) > 0 || getTotalResistance(conflictingItem) > 0)" class="effect-line totals">
         <td v-if="conflictingItem && withComparisons" class="equipped-item-effect" style="border-top: 3px solid var(--secondary-70)">
-          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalResistance(conflictingItem) }} Total Resistance </div>
+          <div class="flex align-items-center w-full px-1 py-1">{{ getTotalResistance(conflictingItem) }} {{ $t('tooltips.totalResistance') }} </div>
         </td>
         <td class="new-item-effect">
           <div class="flex align-items-center w-full px-1 py-1" style="border-top: 3px solid var(--primary-70)">
@@ -85,7 +85,7 @@
             >
               {{ getTotalResistance(item) - getTotalResistance(conflictingItem) > 0 ? '+' : '' }}{{ getTotalResistance(item) - getTotalResistance(conflictingItem) }}
             </div>
-            {{ getTotalResistance(item) }} Total Resistance
+            {{ getTotalResistance(item) }} {{ $t('tooltips.totalResistance') }}
           </div>
         </td>
       </tr>
