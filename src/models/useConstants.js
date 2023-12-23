@@ -1364,7 +1364,14 @@ export const CLASS_GUIDES_DATA = {
       url: 'https://docs.google.com/document/d/14w7OiHiLvZYg0z0HFQjMuDK-Dee2oddYYdDlz3WJ_hY/edit#heading=h.nrnw03t7conb',
     },
   ],
-  [CLASS_CONSTANTS.eniripsa.id]: [],
+  [CLASS_CONSTANTS.eniripsa.id]: [
+    {
+      name: 'Wakfu Eniripsa Healer Gide V1.82',
+      languages: ['sidebar.english'],
+      description: 'A video guide by Raff that goes over their support healing build for the class.',
+      url: 'https://www.youtube.com/watch?v=jcX37uaRGUY&t=1s',
+    },
+  ],
   [CLASS_CONSTANTS.iop.id]: [
     {
       // eslint-disable-next-line quotes

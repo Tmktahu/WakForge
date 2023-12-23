@@ -16,8 +16,6 @@ export function useCharacterBuilds(masterData) {
   const { decodeBuildCode, parseBuildData } = useBuildCodes();
   const { setCharacteristicLimits } = useLevels();
 
-  // TODO load in builds from local storage
-
   const setup = () => {
     route = useRoute();
 

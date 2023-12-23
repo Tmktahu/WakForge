@@ -12,7 +12,7 @@
             <div class="flex">
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-              <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: {{ item.id === 12237 ? '25' : '50' }} </div>
+              <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">{{ $t('tooltips.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }} </div>
               <div v-else>Lvl: {{ item.level }}</div>
               <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                 {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
@@ -26,7 +26,9 @@
 
             <tippy placement="left">
               <p-button icon="pi pi-question-circle" class="action-button" @click="onGotoEncyclopedia(item)" />
-              <template v-slot:content> <div class="simple-tooltip">Open Encyclopedia Page</div></template>
+              <template v-slot:content>
+                <div class="simple-tooltip">{{ $t('tooltips.openEncyclopediaPage') }}</div>
+              </template>
             </tippy>
           </div>
         </div>
@@ -42,12 +44,12 @@
             <div class="flex">
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${conflictingItem.rarity}.png`" image-style="width: 12px;" />
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${conflictingItem.type.id}.png`" image-style="width: 18px;" />
-              <div v-if="LEVELABLE_ITEMS.includes(conflictingItem.type.id)">Item Level: {{ conflictingItem.id === 12237 ? '25' : '50' }}</div>
+              <div v-if="LEVELABLE_ITEMS.includes(conflictingItem.type.id)">{{ $t('tooltips.itemLevel') }}: {{ conflictingItem.id === 12237 ? '25' : '50' }}</div>
               <div v-else>Lvl: {{ conflictingItem.level }}</div>
               <div v-if="conflictingItem.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                 {{ conflictingItem.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
               </div>
-              <div class="ml-1">(equipped)</div>
+              <div class="ml-1">({{ $t('tooltips.equipped') }})</div>
             </div>
           </div>
         </div>
@@ -61,7 +63,7 @@
             <div class="flex">
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
               <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-              <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">Item Level: {{ item.id === 12237 ? '25' : '50' }}</div>
+              <div v-if="LEVELABLE_ITEMS.includes(item.type.id)">{{ $t('tooltips.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }}</div>
               <div v-else>Lvl: {{ item.level }}</div>
               <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
                 {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}

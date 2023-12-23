@@ -117,7 +117,6 @@ export const es = {
       secondary: 'Secundario',
       armorReceived: 'Armodura Recibida',
       indirectDamage: 'Daños Indirectos',
-      totalMastery: 'Maestria Total',
       statsSummary: 'Resumen de los stats',
       effectiveHpAgainst: 'PdV efectivos contra tipo {type}',
       numSelected: '{num} Dominios Seleccionados',
@@ -154,7 +153,6 @@ export const es = {
       displayTotals: 'Mostrar Totales',
       compareToEquipped: 'Comparar con Equipados',
       itemLevel: 'Nivel de Objeto',
-      openEncyclopediaPage: 'Abrir la página de la enciclopedia',
       noItemsFound: 'No se han encontrado objetos con estos filtros. Por favor, compruebe su búsqueda.',
       hasRelicWarning: 'Ya tienes un objeto Reliquia equipado. Al hacer esto, lo quitarás. ¿Estás seguro?',
       hasEpicWarning: 'Ya tienes un objeto Épico equipado. Al hacer esto, lo quitarás. ¿Estás seguro?',
@@ -404,5 +402,10 @@ export const es = {
     addsStateLevels: 'Añade +{num_0} niveles de',
     stateAtLevel: '{state} Estado en el nivel {num_0} (Max {num_1})',
     missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.',
+    equipped: 'equipped', // NEEDS TRANSLATION
+    itemLevel: 'Item Level', // NEEDS TRANSLATION
+    openEncyclopediaPage: 'Abrir la página de la enciclopedia',
+    totalMastery: 'Maestria Total',
+    totalResistance: 'Total Resistance', // NEEDS TRANSLATION
   },
 };

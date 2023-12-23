@@ -116,7 +116,6 @@ export const fr = {
       secondary: 'Secondaire',
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
-      totalMastery: 'Total Mastery', // NEEDS TRANSLATION
       statsSummary: 'Résumé Stats',
       effectiveHpAgainst: 'Effective HP Against {type} Damage', // NEEDS TRANSLATION
       numSelected: '{num} Selected', // NEEDS TRANSLATION
@@ -153,7 +152,6 @@ export const fr = {
       displayTotals: 'Display Totals', // NEEDS TRANSLATION
       compareToEquipped: 'Compare to Equipped', // NEEDS TRANSLATION
       itemLevel: "Niveau de l'item",
-      openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
       noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
       hasRelicWarning: 'Vous avez déjà un item Relique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
       hasEpicWarning: 'Vous avez déjà un item Epique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
@@ -403,5 +401,10 @@ export const fr = {
     addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
     stateAtLevel: '{state} State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
     missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
+    equipped: 'equipped', // NEEDS TRANSLATION
+    itemLevel: 'Item Level', // NEEDS TRANSLATION
+    openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
+    totalMastery: 'Total Mastery', // NEEDS TRANSLATION
+    totalResistance: 'Total Resistance', // NEEDS TRANSLATION
   },
 };

@@ -204,6 +204,7 @@ export const useItems = (character = ref(null)) => {
     if (hasConflict) {
       if (confirm && event) {
         confirm.require({
+          group: 'popup',
           target: event.currentTarget,
           message: confirmMessage,
           accept: () => {
