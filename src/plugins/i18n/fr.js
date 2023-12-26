@@ -188,8 +188,8 @@ export const fr = {
     },
 
     itemSolverContent: {
-      considerCurrentItems: 'Consider Current Items', // NEEDS TRANSLATION
-      considerCurrentItemsTooltip: 'Should the currently equipped items be taken into consideration?', // NEEDS TRANSLATION
+      considerCurrentItems: 'Considerer les Items actuels', 
+      considerCurrentItemsTooltip: 'Est ce-que les Items déjà équiper doivent être pris en consideration ?', 
       numElements: "Nombre d'éléments",
       apTooltip: 'Combien de PA au total vous souhaitez.',
       mpTooltip: 'Combien de PM au total vous souhaitez.',
@@ -203,13 +203,13 @@ export const fr = {
       berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
       poweredBy: "Fonctionne grâce au code de {credit}",
       problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
-      generateItemSet: 'Generate Item Set', // NEEDS TRANSLATION
-      regenerateItemSet: 'Re-Generate Item Set', // NEEDS TRANSLATION
+      generateItemSet: "Générer l'ensemble des Items",
+      regenerateItemSet: "Re-Générer l'ensemble des Items", 
       instructions: 'Entrer vos paramètres au-dessus et cliquer sur "Générer un set d\'items".',
       ifYouNeedHelp: "Si vous avez besoin d'assistance, n'hésitez pas à nous contacter sur Discord avec vos questions.",
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: "N'oubliez pas qu'en fonction des options, celà peut prendre du temps.",
-      equipAllItems: 'Equip All Items', // NEEDS TRANSLATION
+      equipAllItems: 'Equiper tous les items', 
       normal: 'Normal',
       prioritized: 'Priorisée',
       preferNoNegatives: 'Préférée non négative',
@@ -411,7 +411,7 @@ export const fr = {
     openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
     totalMastery: 'Maîtrise Total',
     totalResistance: 'Résistance Total',
-    yes: 'Yes', // NEEDS TRANSLATION
-    no: 'No', // NEEDS TRANSLATION
+    yes: 'Oui',
+    no: 'Non', 
   },
 };
