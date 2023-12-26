@@ -28,7 +28,7 @@ export const fr = {
   sidebar: {
     charactersTab: 'Personnages',
     dataTab: 'Données',
-    guidesTab: 'Guides', // NEEDS TRANSLATION
+    guidesTab: 'Guides', 
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Langage',
@@ -45,7 +45,7 @@ export const fr = {
   charactersPage: {
     title: 'Bienvenue sur Wakforge',
     description: "Si vous rencontrez le moindre problème, n'hésitez pas à contacter Fryke (fryke) sur Discord.",
-    codeInputLabel: 'Code Build',
+    codeInputLabel: 'Build Code',
     codeInputPlaceholder: 'Entrer le Build Code',
     codeInputButton: "Créer à partir d'un code",
     invalidBuildCode: 'Build Code invalide.',
@@ -55,9 +55,9 @@ export const fr = {
     newGroup: 'Nouveau groupe',
   },
   guidesPage: {
-    title: 'General Guides', // NEEDS TRANSLATION
-    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
-    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
+    title: 'Guides Généraux', 
+    description: "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.", 
+    searchGuides: 'Rechercher Guides...', 
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -117,14 +117,14 @@ export const fr = {
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
       statsSummary: 'Résumé Stats',
-      effectiveHpAgainst: 'Effective HP Against {type} Damage', // NEEDS TRANSLATION
-      numSelected: '{num} Selected', // NEEDS TRANSLATION
+      effectiveHpAgainst: 'PV Effectif Contre les Dommages {type}', 
+      numSelected: '{num} Sélectionnée', 
     },
 
     guidesContent: {
-      doYouHaveAGuide: "Do you have a guide you would like to list here? Contact us in the Discord server. We'd love to add it.", // NEEDS TRANSLATION
-      classGuides: '{class} Guides', // NEEDS TRANSLATION
-      openGuide: 'Open Guide', // NEEDS TRANSLATION
+      doYouHaveAGuide: "Vous avez un guide que vous aimeriez voir ici ? Contactez nous sur le serveur Discord pour le rajouter.", 
+      classGuides: 'Guides {class} ', 
+      openGuide: 'Ouvrir le Guide', 
     },
 
     characteristicsContent: {
@@ -145,16 +145,16 @@ export const fr = {
 
     equipmentContent: {
       sortBy: 'Trier par',
-      newSort: 'New Sort', // NEEDS TRANSLATION
+      newSort: 'Nouveau Tri', 
       resultsOutOf: 'Résultats sur',
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',
-      displayTotals: 'Display Totals', // NEEDS TRANSLATION
-      compareToEquipped: 'Compare to Equipped', // NEEDS TRANSLATION
+      displayTotals: 'Afficher Totaux', 
+      compareToEquipped: 'Comparer aux Équipements', 
       itemLevel: "Niveau de l'item",
       noItemsFound: "Aucun item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
       hasRelicWarning: 'Vous avez déjà un item Relique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
-      hasEpicWarning: 'Vous avez déjà un item Epique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
+      hasEpicWarning: 'Vous avez déjà un item Épique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
       twoHandedWeaponWarning: "Ceci est une arme à deux mains et il existe déjà un item dans le slot d'arme secondaire. Êtes-vous sûr ?",
       secondWeaponWarning: 'Vous avez une arme à deux mains équipée. Cette dernière sera retirée avec cette action. Êtes-vous sûr ?',
       relicAndTwoHandedWarning:
@@ -166,7 +166,7 @@ export const fr = {
 
       itemFilters: {
         searchItems: 'Recherche Items',
-        resetFilters: 'Reset Filtres',
+        resetFilters: 'Réinitialiser Filtres',
         rarities: 'Raretés',
         all: 'Tout',
         none: 'Aucun',
@@ -183,7 +183,7 @@ export const fr = {
         criticalHitChance: 'Chance Coup Critique',
         blockChance: 'Parade',
         randElemResistanceValue: 'Résis. élem. aléatoire',
-        ctrlClickToSelectOne: 'CTRL-Click to select one and remove all others.',
+        ctrlClickToSelectOne: 'CTRL-Click pour selectionner 1 et retirer tous les autres.',
       },
     },
 
@@ -201,7 +201,7 @@ export const fr = {
       healingMasteryTooltip: 'La Maîtrise Soin doit-elle être inclue si possible ?',
       rearMasteryTooltip: 'La Maîtrise Dos doit-elle être inclue si possible ?',
       berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
-      poweredBy: "Powered by {credit}'s code.", // NEEDS TRANSLATION, context = "Powered by Apple's code"
+      poweredBy: "Fonctionne grâce au code de {credit}",
       problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
       generateItemSet: 'Generate Item Set', // NEEDS TRANSLATION
       regenerateItemSet: 'Re-Generate Item Set', // NEEDS TRANSLATION
@@ -225,8 +225,8 @@ export const fr = {
       rangeForLevelWarning: "Vous demandez plus de PO qu'il n'est possible pour votre niveau.",
       rangeImpossibleWarning: 'Vous demandez un nombre en PO qui peut être impossible.',
       combinedApMpWarning: "Vous demandez une somme AP+MP qui n'est pas possible à votre niveau.",
-      showAllItems: 'Show All Items', // NEEDS TRANSLATION
-      displayTotals: 'Display Totals', // NEEDS TRANSLATION
+      showAllItems: 'Montrer tous les items', 
+      displayTotals: 'Afficher Totaux', 
     },
 
     runesAndSubsContent: {
@@ -237,19 +237,19 @@ export const fr = {
       shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
       rightClick: "Clic-Droit sur une rune pour plus d'options.",
       hightlightClick: "Sélectionner un slot et cliquer sur une rune à droite pour l'assigner.",
-      runeLevelTooltip: `Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.`,
+      runeLevelTooltip: "Le niveau maximum possible d'une rune est dépendant du niveau de l'item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.",
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
       removeAllRunes: 'Enlever toutes les runes/subl.',
-      sortByMatching: 'Sort by Matching', // NEEDS TRANSLATION
-      sortByMatchingNote: 'If an equipment slot is hightlighted, this will sort the sublimations by whether they match the rune colors on that equipment slot.', // NEEDS TRANSLATION
-      searchSublimations: 'Search Sublimations...', // NEEDS TRANSLATION
-      searchEpicAndRelicSubs: 'Search Epic/Relic Sublimations...', // NEEDS TRANSLATION
-      addsStateLevelsShort: '+{num_0} levels of', // NEEDS TRANSLATION, context = "+1 levels of Abandon"
-      stateStackingWarning: 'This state only stacks up to level {num_0}', // NEEDS TRANSLATION
-      relicSub: 'Relic Sub', // NEEDS TRANSLATION, context = shorthand for "Relic Sublimation"
-      epicSub: 'Epic Sub', // NEEDS TRANSLATION, context = shorthand for "Epic Sublimation"
-      itemMustBeEquipped: 'An item must be equipped', // NEEDS TRANSLATION
+      sortByMatching: 'Trier pas correspondant', 
+      sortByMatchingNote: "Si un équipement est sélectionné , cela triera les sublimations en fonction de la couleurs et l'ordre des chasses mise sur cet équipement",
+      searchSublimations: 'Recherche Sublimations...', 
+      searchEpicAndRelicSubs: 'Recherche Sublimations Épique/Relique...', 
+      addsStateLevelsShort: '+{num_0} niveau de', 
+      stateStackingWarning: 'Cet état atteint seulement un maximum de {num_0} Niveau', 
+      relicSub: 'Subli Relique', 
+      epicSub: 'Subli Épique', 
+      itemMustBeEquipped: 'Un item doit être équipé', 
     },
 
     spellsAndPassivesContent: {
@@ -313,8 +313,8 @@ export const fr = {
     sublimationScroll: 'Parchemin de Sublimation',
     enchantment: 'Rune',
 
-    epicSublimation: 'Epic Sublimation', // NEEDS TRANSLATION
-    relicSublimation: 'Relic Sublimation', // NEEDS TRANSLATION
+    epicSublimation: 'Sublimation Épique',
+    relicSublimation: 'Sublimation Relique', 
 
     oneHandedWeapons: 'Armes à 1 main',
     twoHandedWeapons: 'Armes à 2 mains',
@@ -393,7 +393,7 @@ export const fr = {
     armorGiven: 'Armure donnée',
     healthPoints: 'Points de Vie',
 
-    remove: 'Remove', // NEEDS TRANSLATION
+    remove: 'Enlever', 
   },
   confirms: {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
@@ -401,16 +401,16 @@ export const fr = {
     willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les items équipés qui sont dans les slots en conflit.',
   },
   tooltips: {
-    randomMasteryValue: '+{num_0} Mastery of {num_1} random elements', // NEEDS TRANSLATION
-    randomResistanceValue: '+{num_0} Resistance of {num_1} random elements', // NEEDS TRANSLATION
-    addsStateLevels: 'Adds +{num_0} levels of', // NEEDS TRANSLATION, context = "Adds +1 level of Abandon"
-    stateAtLevel: '{state} State at level {num_0} (Max {num_1})', // NEEDS TRANSLATION, context = "Abandon State at level 1 (Max 6)"
-    missingInfoAboutState: 'We are missing information about this state. If you have any, please let us know in the Discord server.', // NEEDS TRANSLATION
-    equipped: 'equipped', // NEEDS TRANSLATION
-    itemLevel: 'Item Level', // NEEDS TRANSLATION
+    randomMasteryValue: '+{num_0} Maîtrise de {num_1} élements aléatoire ', 
+    randomResistanceValue: '+{num_0} Résistance de {num_1} élements aléatoire', 
+    addsStateLevels: 'Rajoute +{num_0} Niveau de', 
+    stateAtLevel: "L'État {State} au niveau {num_0} (Max {num_1})",
+    missingInfoAboutState: "Nous manquons d'information a propos de cet état. Si vous en avez, merci de nous contacter sur le serveur Discord.", 
+    equipped: 'équipper', 
+    itemLevel: 'Niveau Item', 
     openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
-    totalMastery: 'Total Mastery', // NEEDS TRANSLATION
-    totalResistance: 'Total Resistance', // NEEDS TRANSLATION
+    totalMastery: 'Maîtrise Total',
+    totalResistance: 'Résistance Total',
     yes: 'Yes', // NEEDS TRANSLATION
     no: 'No', // NEEDS TRANSLATION
   },
