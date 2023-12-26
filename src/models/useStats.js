@@ -15,11 +15,12 @@ import {
   RUNE_TYPES,
   ITEM_SLOT_DATA,
 } from '@/models/useConstants';
-import { SPELL_CATEGORIES, useSpells } from '@/models/spells/useSpells';
-
-const { getSpellData } = useSpells();
+import { SPELL_CATEGORIES } from '@/models/spells/useSpells';
+import { useStates } from '@/models/useStates';
 
 export const useStats = (currentCharacter) => {
+  const { getStatesFromCharacter } = useStates();
+
   const setup = () => {
     EventBus.on(Events.UPDATE_STATS, () => {
       updateStats();
@@ -39,29 +40,37 @@ export const useStats = (currentCharacter) => {
 
   const updateStats = () => {
     if (currentCharacter.value) {
+      let states = getStatesFromCharacter(currentCharacter);
+      console.log(states);
+
+      // Health Points
       currentCharacter.value.healthPoints = Math.floor(
         (50 +
-          currentCharacter.value.characteristics.strength.healthPoints * 20 +
-          calcItemContribution(EFFECT_TYPE_DATA.healthPoints) +
-          calcRuneContribution(RUNE_TYPES.healthPoints) +
-          calcPassivesContribution(EFFECT_TYPE_DATA.healthPointsFromLevel) * 0.01 * currentCharacter.value.level +
-          10 * currentCharacter.value.level) *
-          (1 + currentCharacter.value.characteristics.intelligence.percentHealthPoints * 0.04)
+          currentCharacter.value.characteristics.strength.healthPoints * 20 + // from strength characteristic
+          calcItemContribution(EFFECT_TYPE_DATA.healthPoints) + // from items
+          calcRuneContribution(RUNE_TYPES.healthPoints) + // from runes
+          calcPassivesContribution(EFFECT_TYPE_DATA.healthPointsFromLevel) * 0.01 * currentCharacter.value.level + // from passives
+          10 * currentCharacter.value.level) * // the base amount of health
+          (1 + currentCharacter.value.characteristics.intelligence.percentHealthPoints * 0.04) // all multiplied by the intelligent characteristic multiplier
       );
 
-      // armor points are capped at 50% of the character's max health
+      // Armor Points are capped at 50% of the character's max health
       currentCharacter.value.armorPoints = Math.min(
         currentCharacter.value.healthPoints * 0.5,
         Math.floor(currentCharacter.value.healthPoints * currentCharacter.value.characteristics.intelligence.percentArmorHeathPoints * 0.04)
       );
+
+      // Action Points
       currentCharacter.value.actionPoints = 6 + currentCharacter.value.characteristics.major.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints);
+
+      // Movement Points
       currentCharacter.value.movementPoints =
         3 +
         currentCharacter.value.characteristics.major.movementPointsAndDamage +
         calcItemContribution(EFFECT_TYPE_DATA.movementPoints) +
         calcPassivesContribution(EFFECT_TYPE_DATA.movementPoints);
 
-      // wakfu points are capped at 20
+      // wakfu Points are capped at 20
       currentCharacter.value.wakfuPoints = Math.min(
         20,
         (currentCharacter.value.class === CLASS_CONSTANTS.xelor.id ? 12 : 6) +
@@ -69,6 +78,8 @@ export const useStats = (currentCharacter) => {
           calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints) +
           calcPassivesContribution(EFFECT_TYPE_DATA.wakfuPoints)
       );
+
+      // Quadrumental Breeze
       currentCharacter.value.quadrumentalBreeze =
         (currentCharacter.value.class === CLASS_CONSTANTS.huppermage.id ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
 
@@ -78,22 +89,32 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.masteries.earth = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.earthMastery);
       currentCharacter.value.masteries.fire = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.fireMastery);
 
-      // Other masteries
+      // Melee Mastery
       currentCharacter.value.masteries.melee =
         currentCharacter.value.characteristics.strength.meleeMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.meleeMastery) + calcRuneContribution(RUNE_TYPES.meleeMastery);
+
+      // Distance Mastery
       currentCharacter.value.masteries.distance =
         currentCharacter.value.characteristics.strength.distanceMastery * 8 +
         calcItemContribution(EFFECT_TYPE_DATA.distanceMastery) +
         calcPassivesContribution(EFFECT_TYPE_DATA.distanceMastery) +
         calcRuneContribution(RUNE_TYPES.distanceMastery);
+
+      // Critical Mastery
       currentCharacter.value.masteries.critical =
         currentCharacter.value.characteristics.fortune.criticalMastery * 4 +
         calcItemContribution(EFFECT_TYPE_DATA.criticalMastery) +
         calcRuneContribution(RUNE_TYPES.criticalMastery);
+
+      // Rear Mastery
       currentCharacter.value.masteries.rear =
         currentCharacter.value.characteristics.fortune.rearMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.rearMastery) + calcRuneContribution(RUNE_TYPES.rearMastery);
+
+      // Berserk Mastery
       currentCharacter.value.masteries.berserk =
         currentCharacter.value.characteristics.fortune.berserkMastery * 8 + calcItemContribution(EFFECT_TYPE_DATA.berserkMastery) + calcRuneContribution(RUNE_TYPES.berserkMastery);
+
+      // Healing Mastery
       currentCharacter.value.masteries.healing =
         currentCharacter.value.characteristics.fortune.healingMastery * 6 + calcItemContribution(EFFECT_TYPE_DATA.healingMastery) + calcRuneContribution(RUNE_TYPES.healingMastery);
 
@@ -119,11 +140,14 @@ export const useStats = (currentCharacter) => {
         calcPassivesContribution(EFFECT_TYPE_DATA.elementalResistance) +
         calcRuneContribution(RUNE_TYPES.fireResistance);
 
+      // Critical Resistance
       currentCharacter.value.resistances.critical =
         currentCharacter.value.characteristics.fortune.criticalResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.criticalResistance);
+
+      // Rear Resistance
       currentCharacter.value.resistances.rear = currentCharacter.value.characteristics.fortune.rearResistance * 4 + calcItemContribution(EFFECT_TYPE_DATA.rearResistance);
 
-      // Other stats
+      // Lock
       currentCharacter.value.stats.lock =
         (currentCharacter.value.characteristics.agility.lock * 6 +
           currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
@@ -133,6 +157,7 @@ export const useStats = (currentCharacter) => {
         calcPassivesContribution(EFFECT_TYPE_DATA.lockOverride) *
         calcPassivesContribution(EFFECT_TYPE_DATA.lockDoubled);
 
+      // Dodge
       currentCharacter.value.stats.dodge = Math.floor(
         (currentCharacter.value.characteristics.agility.dodge * 6 +
           currentCharacter.value.characteristics.agility.lockAndDodge * 4 +
@@ -144,19 +169,23 @@ export const useStats = (currentCharacter) => {
           calcPassivesContribution(EFFECT_TYPE_DATA.dodgeOverride)
       );
 
+      // Initiative
       currentCharacter.value.stats.initiative =
         currentCharacter.value.characteristics.agility.initiative * 4 + calcItemContribution(EFFECT_TYPE_DATA.initiative) + calcRuneContribution(RUNE_TYPES.initiative);
 
+      // Force of Will
       currentCharacter.value.stats.forceOfWill =
         currentCharacter.value.characteristics.agility.forceOfWill * 1 +
         calcItemContribution(EFFECT_TYPE_DATA.forceOfWill) +
         calcPassivesContribution(EFFECT_TYPE_DATA.forceOfWill);
 
+      // Armor Received
       currentCharacter.value.stats.armorReceived = calcPassivesContribution(EFFECT_TYPE_DATA.armorReceived);
 
+      // Heals Performed
       currentCharacter.value.stats.healsPerformed = calcPassivesContribution(EFFECT_TYPE_DATA.healsPerformed);
 
-      // block has a cap of 100%
+      // Block has a cap of 100%
       currentCharacter.value.stats.block = Math.min(
         100,
         Math.floor(
@@ -167,23 +196,38 @@ export const useStats = (currentCharacter) => {
         )
       );
 
-      // crit has a cap of 100%, a base of 3%, and a min of -10%
+      // Critical Hit has a cap of 100%, a base of 3%, and a min of -10%
       currentCharacter.value.stats.criticalHit = Math.min(
-        Math.max(3 + currentCharacter.value.characteristics.fortune.percentCriticalHit + calcItemContribution(EFFECT_TYPE_DATA.criticalHit), -10),
-        100
+        Math.max(
+          3 + // the base value
+            currentCharacter.value.characteristics.fortune.percentCriticalHit + // from the fortune characteristic
+            calcItemContribution(EFFECT_TYPE_DATA.criticalHit) + // from items
+            calcStateContribution(states, EFFECT_TYPE_DATA.criticalHit), // from states
+          -10 // the min
+        ),
+        100 // the max
       );
+
+      // Damage Inflicted
       currentCharacter.value.stats.damageInflicted = Math.floor(
         currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100 + calcPassivesContribution(EFFECT_TYPE_DATA.damageInflicted)
       );
 
+      // Range
       currentCharacter.value.stats.range =
         currentCharacter.value.characteristics.major.rangeAndDamage + calcItemContribution(EFFECT_TYPE_DATA.range) + calcPassivesContribution(EFFECT_TYPE_DATA.range);
 
+      // Control
       currentCharacter.value.stats.control =
         currentCharacter.value.characteristics.major.controlAndDamage * 2 + calcItemContribution(EFFECT_TYPE_DATA.control) + calcPassivesContribution(EFFECT_TYPE_DATA.control);
 
+      // Indirect Damage
       currentCharacter.value.stats.indirectDamage = calcPassivesContribution(EFFECT_TYPE_DATA.indirectDamageInflicted);
+
+      // Heals Received
       currentCharacter.value.stats.healsReceived = calcPassivesContribution(EFFECT_TYPE_DATA.healsReceived);
+
+      // Armor Given
       currentCharacter.value.stats.armorGiven = calcPassivesContribution(EFFECT_TYPE_DATA.armorGiven);
     }
   };
@@ -395,6 +439,31 @@ export const useStats = (currentCharacter) => {
     }
 
     return finalValue;
+  };
+
+  const calcStateContribution = (states, targetEffect) => {
+    // note we pass states in as a param so we only have to assemble them once
+    let contribution = 0;
+
+    if (!states) {
+      return contribution;
+    }
+
+    Object.keys(states).forEach((stateId) => {
+      let stateEntry = states[stateId];
+
+      if (stateEntry.state.equipEffects) {
+        stateEntry.state.equipEffects.forEach((effect) => {
+          if (targetEffect.rawIds.includes(effect.rawId)) {
+            contribution += effect.values[stateEntry.level];
+          }
+        });
+      }
+    });
+
+    console.log(targetEffect, contribution);
+
+    return contribution;
   };
 
   const calcTotalMastery = (targetMasteryKeys) => {

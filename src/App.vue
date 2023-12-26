@@ -18,7 +18,21 @@
     </div>
   </div>
 
-  <p-confirmPopup group="popup" />
+  <p-confirmPopup group="popup">
+    <template v-slot:container="{ message, acceptCallback, rejectCallback }">
+      <div class="flex flex-column align-items-center p-1 surface-overlay border-round">
+        <!-- <div style="background: var(--highlight-30)" class="border-circle inline-flex justify-content-center align-items-center h-2rem w-2rem -mt-3">
+          <i class="pi pi-question" />
+        </div> -->
+        <!-- <span class="font-bold text-2xl block mb-2 mt-4">{{ message.header }}</span> -->
+        <div class="px-2 mt-2" style="max-width: 300px">{{ message.message }}</div>
+        <div class="flex justify-content-between mt-2 w-full">
+          <p-button :label="$t('tooltips.yes')" @click="acceptCallback" />
+          <p-button :label="$t('tooltips.no')" @click="rejectCallback" />
+        </div>
+      </div>
+    </template>
+  </p-confirmPopup>
   <p-confirmDialog group="dialog" />
   <p-toast position="top-left" />
   <OldDataDialog ref="oldDataDialog" />

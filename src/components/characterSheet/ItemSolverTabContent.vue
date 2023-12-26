@@ -4,7 +4,11 @@
 
     <div class="flex flex-column mt-4">
       <div class="flex">
-        <OptionCheckbox v-model="considerCurrentItems" label="Consider Current Items" tooltip-text="Should the currently equipped items be taken into consideration?" />
+        <OptionCheckbox
+          v-model="considerCurrentItems"
+          :label="$t('characterSheet.itemSolverContent.considerCurrentItems')"
+          :tooltip-text="$t('characterSheet.itemSolverContent.considerCurrentItemsTooltip')"
+        />
       </div>
 
       <div class="flex mt-3">
@@ -144,8 +148,13 @@
     </div>
 
     <div class="flex align-items-center mt-3">
-      <p-button class="py-2 px-3 mr-2" :disabled="!hasValidValues" :label="filteredItemSet?.length ? 'Re-Generate Item Set' : 'Generate Item Set'" @click="onCalculate" />
-      <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" label="Equip All Items" @click="onEquipAll($event)" />
+      <p-button
+        class="py-2 px-3 mr-2"
+        :disabled="!hasValidValues"
+        :label="filteredItemSet?.length ? $t('characterSheet.itemSolverContent.regenerateItemSet') : $t('characterSheet.itemSolverContent.generateItemSet')"
+        @click="onCalculate"
+      />
+      <p-button class="py-2 px-3 mr-2" :disabled="!filteredItemSet?.length" :label="$t('characterSheet.itemSolverContent.equipAllItems')" @click="onEquipAll($event)" />
 
       <div class="flex-grow-1" />
 
@@ -410,7 +419,7 @@ const onRarityClick = (event, rarityId) => {
 };
 
 const getLinkText = () => {
-  return `<a href="//github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>\'s`;
+  return `<a href="//github.com/mikeshardmind/wakfu-utils" target="_blank">Keeper of Time (sinbad)</a>`;
 };
 </script>
 
