@@ -188,6 +188,8 @@ export const en = {
     },
 
     itemSolverContent: {
+      considerCurrentItems: 'Consider Current Items',
+      considerCurrentItemsTooltip: 'Should the currently equipped items be taken into consideration?',
       numElements: 'Num Elements',
       apTooltip: 'How many total Action Points you want.',
       mpTooltip: 'How many total Movement Points you want.',
@@ -199,12 +201,15 @@ export const en = {
       healingMasteryTooltip: 'Should Healing Mastery be included if possible?',
       rearMasteryTooltip: 'Should Rear Mastery be included if possible?',
       berserkMasteryTooltip: 'Should Berserk Mastery be included if possible?',
-      poweredBy: 'Powered by {credit} code.',
+      poweredBy: "Powered by {credit}'s code.",
       problemMessage: 'There was a problem with the auto solver. If you believe this is a bug, please contact Fryke on Discord.',
+      generateItemSet: 'Generate Item Set',
+      regenerateItemSet: 'Re-Generate Item Set',
       instructions: 'Enter your parameters above and click "Generate Item Set".',
       ifYouNeedHelp: 'If you need any guidance, feel free to poke us on Discord with questions.',
       loadingMessage: 'Jimmy is doing the math and stuff... Please wait...',
       loadingDisclaimer: 'Note that depending on your above options, this can take some time.',
+      equipAllItems: 'Equip All Items',
       normal: 'Normal',
       prioritized: 'Prioritized',
       preferNoNegatives: 'Prefer no negatives',
@@ -407,5 +412,7 @@ export const en = {
     openEncyclopediaPage: 'Open Encyclopedia Page',
     totalMastery: 'Total Mastery',
     totalResistance: 'Total Resistance',
+    yes: 'Yes',
+    no: 'No',
   },
 };

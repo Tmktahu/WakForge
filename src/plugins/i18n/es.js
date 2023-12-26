@@ -187,6 +187,8 @@ export const es = {
     },
 
     itemSolverContent: {
+      considerCurrentItems: 'Consider Current Items', // NEEDS TRANSLATION
+      considerCurrentItemsTooltip: 'Should the currently equipped items be taken into consideration?', // NEEDS TRANSLATION
       numElements: 'Número de elementos',
       apTooltip: 'Cuántos Puntos de Acción quieres en total.',
       mpTooltip: 'Cuántos Puntos de Movimiento quieres en total.',
@@ -198,12 +200,15 @@ export const es = {
       healingMasteryTooltip: '¿Debe incluirse Dominio Cura si es posible?',
       rearMasteryTooltip: '¿Debe incluirse Dominio Espalda si es posible?',
       berserkMasteryTooltip: '¿Debe incluirse Dominio Berserker si es posible?',
-      poweredBy: 'Gracias al código de {credit}.',
+      poweredBy: 'Gracias al código de {credit}.', // NEEDS UPDATE? - New English = "Powered by {credit}'s code".
       problemMessage: 'Ha habido un problema con el solucionador automático. Si crees que se trata de un error, ponte en contacto con Fryke en Discord.',
+      generateItemSet: 'Generate Item Set', // NEEDS TRANSLATION
+      regenerateItemSet: 'Re-Generate Item Set', // NEEDS TRANSLATION
       instructions: 'Introduce los parámetros y haz clic en "Generar conjunto de artículos"..',
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
       loadingMessage: 'Jimmy está haciendo los cálculos y todo eso... Por favor, espera...',
       loadingDisclaimer: 'Tenga en cuenta que, dependiendo de las preferencias anteriores, esto puede llevar algún tiempo.',
+      equipAllItems: 'Equip All Items', // NEEDS TRANSLATION
       normal: 'Normal',
       prioritized: 'Priorizar',
       preferNoNegatives: 'Prefiero no negativos',
@@ -407,5 +412,7 @@ export const es = {
     openEncyclopediaPage: 'Abrir la página de la enciclopedia',
     totalMastery: 'Maestria Total',
     totalResistance: 'Total Resistance', // NEEDS TRANSLATION
+    yes: 'Yes', // NEEDS TRANSLATION
+    no: 'No', // NEEDS TRANSLATION
   },
 };
