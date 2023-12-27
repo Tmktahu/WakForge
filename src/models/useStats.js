@@ -61,7 +61,11 @@ export const useStats = (currentCharacter) => {
       );
 
       // Action Points
-      currentCharacter.value.actionPoints = 6 + currentCharacter.value.characteristics.major.actionPoints + calcItemContribution(EFFECT_TYPE_DATA.actionPoints);
+      currentCharacter.value.actionPoints =
+        6 +
+        currentCharacter.value.characteristics.major.actionPoints +
+        calcItemContribution(EFFECT_TYPE_DATA.actionPoints) +
+        calcStateContribution(states, EFFECT_TYPE_DATA.actionPoints);
 
       // Movement Points
       currentCharacter.value.movementPoints =
@@ -177,7 +181,8 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.forceOfWill =
         currentCharacter.value.characteristics.agility.forceOfWill * 1 +
         calcItemContribution(EFFECT_TYPE_DATA.forceOfWill) +
-        calcPassivesContribution(EFFECT_TYPE_DATA.forceOfWill);
+        calcPassivesContribution(EFFECT_TYPE_DATA.forceOfWill) +
+        calcStateContribution(states, EFFECT_TYPE_DATA.forceOfWill);
 
       // Armor Received
       currentCharacter.value.stats.armorReceived = calcPassivesContribution(EFFECT_TYPE_DATA.armorReceived);
@@ -210,7 +215,9 @@ export const useStats = (currentCharacter) => {
 
       // Damage Inflicted
       currentCharacter.value.stats.damageInflicted = Math.floor(
-        currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100 + calcPassivesContribution(EFFECT_TYPE_DATA.damageInflicted)
+        currentCharacter.value.characteristics.major.percentDamageInflicted * 0.1 * 100 +
+          calcPassivesContribution(EFFECT_TYPE_DATA.damageInflicted) +
+          calcStateContribution(states, EFFECT_TYPE_DATA.damageInflicted)
       );
 
       // Range
@@ -228,7 +235,7 @@ export const useStats = (currentCharacter) => {
       currentCharacter.value.stats.healsReceived = calcPassivesContribution(EFFECT_TYPE_DATA.healsReceived);
 
       // Armor Given
-      currentCharacter.value.stats.armorGiven = calcPassivesContribution(EFFECT_TYPE_DATA.armorGiven);
+      currentCharacter.value.stats.armorGiven = calcPassivesContribution(EFFECT_TYPE_DATA.armorGiven) + calcStateContribution(states, EFFECT_TYPE_DATA.armorGiven);
     }
   };
 
@@ -452,10 +459,14 @@ export const useStats = (currentCharacter) => {
     Object.keys(states).forEach((stateId) => {
       let stateEntry = states[stateId];
 
-      if (stateEntry.state.equipEffects) {
-        stateEntry.state.equipEffects.forEach((effect) => {
+      if (stateEntry.state?.equipEffects) {
+        stateEntry.state?.equipEffects?.forEach((effect) => {
           if (targetEffect.rawIds.includes(effect.rawId)) {
-            contribution += effect.values[stateEntry.level];
+            if (stateEntry.level === 6 && !effect.values[stateEntry.level]) {
+              console.error('Level 6 state detected that we dont have a value for.', stateId);
+            } else {
+              contribution += effect.values[stateEntry.level];
+            }
           }
         });
       }

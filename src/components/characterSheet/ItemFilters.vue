@@ -246,6 +246,8 @@ const FILTER_TYPE_IDS = [
   EFFECT_TYPE_DATA.randomElementalMasteries.id,
   EFFECT_TYPE_DATA.randomElementalResistances.id,
   EFFECT_TYPE_DATA.harvestingQuantity.id,
+  EFFECT_TYPE_DATA.armorGiven.id,
+  EFFECT_TYPE_DATA.armorReceived.id,
 ];
 
 const filterTypeOptions = FILTER_TYPE_IDS.map((typeId) => {
