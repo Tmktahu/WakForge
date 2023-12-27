@@ -239,13 +239,14 @@ const getTotalMastery = (item) => {
     ...EFFECT_TYPE_DATA.meleeMastery.rawIds,
     ...EFFECT_TYPE_DATA.distanceMastery.rawIds,
     ...EFFECT_TYPE_DATA.berserkMastery.rawIds,
-    ...EFFECT_TYPE_DATA.berserkMastery.rawIds,
+    ...EFFECT_TYPE_DATA.criticalMastery.rawIds,
+    ...EFFECT_TYPE_DATA.randomElementalMasteries.rawIds,
   ];
 
   item?.equipEffects?.forEach((effect) => {
-    if (EFFECT_TYPE_DATA.randomElementalMasteries.rawIds.includes(effect.id)) {
-      totalValue += effect.values[0] * effect.values[2];
-    } else if (masteryEffectIds.includes(effect.id)) {
+    // if (EFFECT_TYPE_DATA.randomElementalMasteries.rawIds.includes(effect.id)) {
+    //   totalValue += effect.values[0] * effect.values[2];
+    if (masteryEffectIds.includes(effect.id)) {
       totalValue += effect.values[0];
     }
   });

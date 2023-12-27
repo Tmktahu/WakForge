@@ -32,6 +32,7 @@ export const sortByOptions = [
   { id: 149, label: 'constants.criticalMastery' },
   { id: 180, label: 'constants.rearMastery' },
   { id: 1055, label: 'constants.berserkMastery' },
+  { id: 26, label: 'constants.healingMastery' },
 
   { id: 150, label: 'characterSheet.equipmentContent.itemFilters.criticalHitChance' },
   { id: 875, label: 'characterSheet.equipmentContent.itemFilters.blockChance' },

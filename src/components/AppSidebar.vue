@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref, watch, nextTick } from 'vue';
+import { ref, watch, nextTick, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n';
 
@@ -74,7 +74,7 @@ watch(
 );
 
 const languageMenu = ref(null);
-const languageMenuItems = ref([
+const languageMenuItems = computed(() => [
   {
     label: t('sidebar.language'),
     items: [
@@ -108,7 +108,7 @@ const languageMenuItems = ref([
 
 const themeMenu = ref(null);
 const currentTheme = ref('bonta');
-const themeMenuItems = ref([
+const themeMenuItems = computed(() => [
   {
     label: t('sidebar.colorTheme'),
     items: [
