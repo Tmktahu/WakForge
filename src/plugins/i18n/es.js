@@ -56,9 +56,9 @@ export const es = {
     newGroup: 'Nuevo Grupo',
   },
   guidesPage: {
-    title: 'General Guides', // NEEDS TRANSLATION
-    description: 'Here you can find general game guides. If you are looking for class specific guides, go check the Guides tab in one of your character builds.', // NEEDS TRANSLATION
-    searchGuides: 'Search Guides...', // NEEDS TRANSLATION
+    title: 'Guías Generales',
+    description: 'Aqui puedes encontrar Guías Generales del juego. Si estas buscando alguna clase en especifico, revisa el apartado de Guias dentro de alguna de tus Builds.',
+    searchGuides: 'Buscar Guías ...',
   },
   dataPage: {
     title: 'Gestión de datos de la aplicación',
@@ -187,8 +187,8 @@ export const es = {
     },
 
     itemSolverContent: {
-      considerCurrentItems: 'Consider Current Items', // NEEDS TRANSLATION
-      considerCurrentItemsTooltip: 'Should the currently equipped items be taken into consideration?', // NEEDS TRANSLATION
+      considerCurrentItems: 'Considerar los objetos actuales',
+      considerCurrentItemsTooltip: '¿Deben tenerse en cuenta los elementos actualmente equipados?',
       numElements: 'Número de elementos',
       apTooltip: 'Cuántos Puntos de Acción quieres en total.',
       mpTooltip: 'Cuántos Puntos de Movimiento quieres en total.',
@@ -200,15 +200,15 @@ export const es = {
       healingMasteryTooltip: '¿Debe incluirse Dominio Cura si es posible?',
       rearMasteryTooltip: '¿Debe incluirse Dominio Espalda si es posible?',
       berserkMasteryTooltip: '¿Debe incluirse Dominio Berserker si es posible?',
-      poweredBy: 'Gracias al código de {credit}.', // NEEDS UPDATE? - New English = "Powered by {credit}'s code".
+      poweredBy: 'Gracias al código de {credit}.',
       problemMessage: 'Ha habido un problema con el solucionador automático. Si crees que se trata de un error, ponte en contacto con Fryke en Discord.',
-      generateItemSet: 'Generate Item Set', // NEEDS TRANSLATION
-      regenerateItemSet: 'Re-Generate Item Set', // NEEDS TRANSLATION
+      generateItemSet: 'Generar conjunto de objetos',
+      regenerateItemSet: 'Re-Generar conjunto de objetos',
       instructions: 'Introduce los parámetros y haz clic en "Generar conjunto de artículos"..',
       ifYouNeedHelp: 'Si necesitas ayuda, no dudes en preguntarnos en Discord.',
       loadingMessage: 'Jimmy está haciendo los cálculos y todo eso... Por favor, espera...',
       loadingDisclaimer: 'Tenga en cuenta que, dependiendo de las preferencias anteriores, esto puede llevar algún tiempo.',
-      equipAllItems: 'Equip All Items', // NEEDS TRANSLATION
+      equipAllItems: 'Equipar todos los objetos',
       normal: 'Normal',
       prioritized: 'Priorizar',
       preferNoNegatives: 'Prefiero no negativos',
@@ -407,12 +407,12 @@ export const es = {
     addsStateLevels: 'Añade +{num_0} niveles de',
     stateAtLevel: '{state} Estado en el nivel {num_0} (Max {num_1})',
     missingInfoAboutState: 'Nos falta información sobre este estado. Si tienes alguna, háznoslo saber en el servidor Discord.',
-    equipped: 'equipped', // NEEDS TRANSLATION
-    itemLevel: 'Item Level', // NEEDS TRANSLATION
+    equipped: 'equipado',
+    itemLevel: 'Nivel del objeto',
     openEncyclopediaPage: 'Abrir la página de la enciclopedia',
     totalMastery: 'Maestria Total',
-    totalResistance: 'Total Resistance', // NEEDS TRANSLATION
-    yes: 'Yes', // NEEDS TRANSLATION
-    no: 'No', // NEEDS TRANSLATION
+    totalResistance: 'Resistencia total',
+    yes: 'Si',
+    no: 'No',
   },
 };
