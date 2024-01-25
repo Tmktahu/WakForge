@@ -186,12 +186,13 @@ watch(displayStatsInList, () => {
 const onEquipItem = (item, event) => {
   let isRing = item.type.validSlots.includes(ITEM_SLOT_DATA.LEFT_HAND.id) || item.type.validSlots.includes(ITEM_SLOT_DATA.RIGHT_HAND.id);
   // this one handles equipping a 2H weaon while a second weapon is equipped
-  let twoHandedWeaponConflict = item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) && currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] !== null;
+  let twoHandedWeaponConflict =
+    item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) && currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id].item !== null;
   // this one handles equipping a second weapon while a 2H one is equipped
   let secondWeaponConflict =
     item.type.validSlots[0] === ITEM_SLOT_DATA.SECOND_WEAPON.id &&
-    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] !== null &&
-    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id);
+    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].item !== null &&
+    currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id);
 
   let hasRelicConflict = false;
   let existingRelicSlotId = null;
@@ -199,12 +200,12 @@ const onEquipItem = (item, event) => {
   let existingEpicSlotId = null;
 
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-    if (item.rarity === 5 && currentCharacter.value.equipment[slotKey] !== null && currentCharacter.value.equipment[slotKey].rarity === 5) {
+    if (item.rarity === 5 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item.rarity === 5) {
       hasRelicConflict = true;
       existingRelicSlotId = slotKey;
     }
 
-    if (item.rarity === 7 && currentCharacter.value.equipment[slotKey] !== null && currentCharacter.value.equipment[slotKey].rarity === 7) {
+    if (item.rarity === 7 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item.rarity === 7) {
       hasEpicConflict = true;
       existingEpicSlotId = slotKey;
     }
@@ -252,32 +253,32 @@ const onEquipItem = (item, event) => {
       message: confirmMessage,
       accept: () => {
         if (isRing) {
-          if (currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] === null) {
-            currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] = item;
+          if (currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id].item === null) {
+            currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id].item = item;
           } else {
-            currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id] = item;
+            currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id].item = item;
           }
         }
 
         if (twoHandedWeaponConflict) {
-          currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] = item;
-          currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] = null;
+          currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].item = item;
+          currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id].item = null;
         }
 
         if (secondWeaponConflict) {
-          currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id] = null;
-          currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id] = item;
+          currentCharacter.value.equipment[ITEM_SLOT_DATA.FIRST_WEAPON.id].item = null;
+          currentCharacter.value.equipment[ITEM_SLOT_DATA.SECOND_WEAPON.id].item = item;
         }
 
         if (hasRelicConflict) {
           // there is a relic conflict and they have opted to remove it
-          currentCharacter.value.equipment[existingRelicSlotId] = null;
+          currentCharacter.value.equipment[existingRelicSlotId].item = null;
           currentCharacter.value.equipment[item.type.validSlots[0]] = item;
         }
 
         if (hasEpicConflict) {
           // there is a relic conflict and they have opted to remove it
-          currentCharacter.value.equipment[existingEpicSlotId] = null;
+          currentCharacter.value.equipment[existingEpicSlotId].item = null;
           currentCharacter.value.equipment[item.type.validSlots[0]] = item;
         }
       },
@@ -285,10 +286,10 @@ const onEquipItem = (item, event) => {
   } else {
     // no conflicts, just equip it normally
     if (isRing) {
-      if (currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] === null) {
-        currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] = item;
+      if (currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id].item === null) {
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.LEFT_HAND.id].item = item;
       } else {
-        currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id] = item;
+        currentCharacter.value.equipment[ITEM_SLOT_DATA.RIGHT_HAND.id].item = item;
       }
     } else if (item.type.validSlots.length > 1) {
       console.log('There is an item type with 2 valid slots that we are not handling', item.type);

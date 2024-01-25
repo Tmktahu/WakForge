@@ -76,11 +76,11 @@ export function useCharacterBuilds(masterData) {
     itemSet.forEach((item) => {
       let targetSlot = item.type.validSlots[0];
 
-      if (targetSlot === ITEM_SLOT_DATA.LEFT_HAND.id && newCharacterData.equipment[ITEM_SLOT_DATA.LEFT_HAND.id] !== null) {
+      if (targetSlot === ITEM_SLOT_DATA.LEFT_HAND.id && newCharacterData.equipment[ITEM_SLOT_DATA.LEFT_HAND.id].item !== null) {
         targetSlot = ITEM_SLOT_DATA.RIGHT_HAND.id;
       }
 
-      newCharacterData.equipment[targetSlot] = item;
+      newCharacterData.equipment[targetSlot].item = item;
     });
 
     // then add it to our list of builds
@@ -293,20 +293,20 @@ export const characterDataTemplate = {
   },
 
   equipment: {
-    [ITEM_SLOT_DATA.HEAD.id]: null,
-    [ITEM_SLOT_DATA.NECK.id]: null,
-    [ITEM_SLOT_DATA.BELT.id]: null,
-    [ITEM_SLOT_DATA.LEGS.id]: null,
-    [ITEM_SLOT_DATA.CHEST.id]: null,
-    [ITEM_SLOT_DATA.BACK.id]: null,
-    [ITEM_SLOT_DATA.SHOULDERS.id]: null,
-    [ITEM_SLOT_DATA.LEFT_HAND.id]: null,
-    [ITEM_SLOT_DATA.RIGHT_HAND.id]: null,
-    [ITEM_SLOT_DATA.SECOND_WEAPON.id]: null,
-    [ITEM_SLOT_DATA.FIRST_WEAPON.id]: null,
-    [ITEM_SLOT_DATA.ACCESSORY.id]: null,
-    [ITEM_SLOT_DATA.PET.id]: null,
-    [ITEM_SLOT_DATA.MOUNT.id]: null,
+    [ITEM_SLOT_DATA.HEAD.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.NECK.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.BELT.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.LEGS.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.CHEST.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.BACK.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.SHOULDERS.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.LEFT_HAND.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.RIGHT_HAND.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.SECOND_WEAPON.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.FIRST_WEAPON.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.ACCESSORY.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.PET.id]: { item: null, runes: {}, sub: null },
+    [ITEM_SLOT_DATA.MOUNT.id]: { item: null, runes: {}, sub: null },
   },
 };
 

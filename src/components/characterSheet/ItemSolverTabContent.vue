@@ -245,8 +245,8 @@ const filteredItemSet = computed(() => {
   } else {
     let currentItemIds = Object.keys(currentCharacter.value.equipment)
       .map((key) => {
-        if (currentCharacter.value.equipment[key]) {
-          return currentCharacter.value.equipment[key].id;
+        if (currentCharacter.value.equipment[key].item) {
+          return currentCharacter.value.equipment[key].item.id;
         }
       })
       .filter((id) => id !== undefined);

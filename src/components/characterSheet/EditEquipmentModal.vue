@@ -61,13 +61,7 @@
         <div class="text-center w-full text-lg mb-2 pt-2">+{{ randomResistanceEffect.values[0] }} Resistance Assignment</div>
         <div class="flex justify-content-center gap-2 px-3">
           <template v-for="index in randomResistanceEffect.values[2]" :key="index">
-            <p-dropdown
-              v-model="inputModels['resistanceSlot' + index]"
-              class="mastery-dropdown"
-              :options="elementOptions"
-              option-label="label"
-              @change="onResistanceStatChange"
-            >
+            <p-dropdown v-model="inputModels['resistanceSlot' + index]" class="mastery-dropdown" :options="elementOptions" option-label="label" @change="onResistanceStatChange">
               <template v-slot:value="slotProps">
                 <div v-if="slotProps.value" class="flex align-items-center">
                   <p-image
@@ -214,8 +208,8 @@ const onResistanceStatChange = () => {
 
 const onApplyToAll = () => {
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-    if (currentCharacter.value.equipment[slotKey] !== null && currentCharacter.value.equipment[slotKey].equipEffects) {
-      currentCharacter.value.equipment[slotKey].equipEffects.forEach((equipEffect) => {
+    if (currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item.equipEffects) {
+      currentCharacter.value.equipment[slotKey].item.equipEffects.forEach((equipEffect) => {
         if (equipEffect.id === 1068 && randomMasteryEffect.value) {
           // mastery handling
 
@@ -272,7 +266,7 @@ const onApplyToAll = () => {
 };
 
 const open = (slotKey, left, top) => {
-  item.value = currentCharacter.value.equipment[slotKey];
+  item.value = currentCharacter.value.equipment[slotKey].item;
   visible.value = true;
 
   nextTick(() => {

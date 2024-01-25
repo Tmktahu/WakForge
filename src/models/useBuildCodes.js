@@ -68,14 +68,15 @@ export const useBuildCodes = () => {
     Object.keys(character.equipment)
       .sort()
       .forEach((key, index) => {
-        if (character.equipment[key] !== null) {
+        let itemDataArray = [];
+
+        if (character.equipment[key].item !== null) {
           let assignableEffect = null;
-          let itemDataArray = [];
 
           // index 0 is the item ID
-          itemDataArray.push(character.equipment[key].id);
+          itemDataArray.push(character.equipment[key].item.id);
 
-          character.equipment[key].equipEffects?.forEach((effect) => {
+          character.equipment[key].item.equipEffects?.forEach((effect) => {
             if (effect.id === 1068 || effect.id === 1069) {
               assignableEffect = effect;
             }
@@ -102,22 +103,23 @@ export const useBuildCodes = () => {
           }
 
           itemDataArray.push(assignableData);
-
-          // index 2, will be arrays for rune information
-          itemDataArray.push([
-            [character.equipment[key]?.runeSlot1?.rune?.id || -1, character.equipment[key]?.runeSlot1?.level || -1, character.equipment[key]?.runeSlot1?.color || -1],
-            [character.equipment[key]?.runeSlot2?.rune?.id || -1, character.equipment[key]?.runeSlot2?.level || -1, character.equipment[key]?.runeSlot2?.color || -1],
-            [character.equipment[key]?.runeSlot3?.rune?.id || -1, character.equipment[key]?.runeSlot3?.level || -1, character.equipment[key]?.runeSlot3?.color || -1],
-            [character.equipment[key]?.runeSlot4?.rune?.id || -1, character.equipment[key]?.runeSlot4?.level || -1, character.equipment[key]?.runeSlot4?.color || -1],
-          ]); // each will include ID, color, level
-
-          // index 3 will be for sublimations
-          itemDataArray.push(character.equipment[key]?.subSlot?.id || -1);
-
-          dataArray.push(itemDataArray);
         } else {
-          dataArray.push([]);
+          itemDataArray.push(-1); // placeholder for item ID
+          itemDataArray.push([0, 0, 0]); // placeholder for random assignments
         }
+
+        // index 2, will be arrays for rune information
+        itemDataArray.push([
+          [character.equipment[key].runes.runeSlot1?.rune?.id || -1, character.equipment[key].runes.runeSlot1?.level || -1, character.equipment[key].runes.runeSlot1?.color || -1],
+          [character.equipment[key].runes.runeSlot2?.rune?.id || -1, character.equipment[key].runes.runeSlot2?.level || -1, character.equipment[key].runes.runeSlot2?.color || -1],
+          [character.equipment[key].runes.runeSlot3?.rune?.id || -1, character.equipment[key].runes.runeSlot3?.level || -1, character.equipment[key].runes.runeSlot3?.color || -1],
+          [character.equipment[key].runes.runeSlot4?.rune?.id || -1, character.equipment[key].runes.runeSlot4?.level || -1, character.equipment[key].runes.runeSlot4?.color || -1],
+        ]); // each will include ID, color, level
+
+        // index 3 will be for sublimations
+        itemDataArray.push(character.equipment[key]?.sub?.id || -1);
+
+        dataArray.push(itemDataArray);
       });
 
     // Handling spells
@@ -269,53 +271,54 @@ export const useBuildCodes = () => {
   };
 
   const reassembleItemData = (itemData) => {
+    let newItemEntry = { item: null, runes: {}, sub: null };
+
     if (!itemData.length) {
-      return null;
+      return newItemEntry;
     }
 
-    let item = getItemById(itemData[0]);
+    newItemEntry.item = getItemById(itemData[0]);
 
-    if (!item) {
-      return null;
-    }
+    if (newItemEntry.item) {
+      let randomEffect = newItemEntry.item.equipEffects?.find((effect) => {
+        return effect.id === 1068 || effect.id === 1069;
+      });
 
-    let randomEffect = item.equipEffects?.find((effect) => {
-      return effect.id === 1068 || effect.id === 1069;
-    });
+      if (randomEffect) {
+        let bitNumberField = itemData[1];
+        let elementIdArray = [];
 
-    if (randomEffect) {
-      let bitNumberField = itemData[1];
-      let elementIdArray = [];
+        if ((bitNumberField & ELEMENT_TYPE_ENUM.fire) === ELEMENT_TYPE_ENUM.fire) {
+          elementIdArray.push('fire');
+        }
 
-      if ((bitNumberField & ELEMENT_TYPE_ENUM.fire) === ELEMENT_TYPE_ENUM.fire) {
-        elementIdArray.push('fire');
-      }
+        if ((bitNumberField & ELEMENT_TYPE_ENUM.water) === ELEMENT_TYPE_ENUM.water) {
+          elementIdArray.push('water');
+        }
 
-      if ((bitNumberField & ELEMENT_TYPE_ENUM.water) === ELEMENT_TYPE_ENUM.water) {
-        elementIdArray.push('water');
-      }
+        if ((bitNumberField & ELEMENT_TYPE_ENUM.earth) === ELEMENT_TYPE_ENUM.earth) {
+          elementIdArray.push('earth');
+        }
 
-      if ((bitNumberField & ELEMENT_TYPE_ENUM.earth) === ELEMENT_TYPE_ENUM.earth) {
-        elementIdArray.push('earth');
-      }
+        if ((bitNumberField & ELEMENT_TYPE_ENUM.air) === ELEMENT_TYPE_ENUM.air) {
+          elementIdArray.push('air');
+        }
 
-      if ((bitNumberField & ELEMENT_TYPE_ENUM.air) === ELEMENT_TYPE_ENUM.air) {
-        elementIdArray.push('air');
-      }
+        elementIdArray.sort();
+        elementIdArray.push(...['empty', 'empty', 'empty']); // we buffer this incase there are empty slots
 
-      elementIdArray.sort();
-      elementIdArray.push(...['empty', 'empty', 'empty']); // we buffer this incase there are empty slots
+        for (let slotIndex = 1; slotIndex < randomEffect.values[2] + 1; slotIndex++) {
+          let slotKey = `${randomEffect.id === 1068 ? 'mastery' : 'resistance'}Slot${slotIndex}`;
 
-      for (let slotIndex = 1; slotIndex < randomEffect.values[2] + 1; slotIndex++) {
-        let slotKey = `${randomEffect.id === 1068 ? 'mastery' : 'resistance'}Slot${slotIndex}`;
-
-        randomEffect[slotKey] = {
-          type: elementIdArray[slotIndex - 1],
-          value: randomEffect.values[0],
-        };
+          randomEffect[slotKey] = {
+            type: elementIdArray[slotIndex - 1],
+            value: randomEffect.values[0],
+          };
+        }
       }
     }
 
+    console.log(itemData);
     let runeData = itemData[2];
     runeData.forEach((runeDataArray, index) => {
       let runeId = runeDataArray[0];
@@ -323,7 +326,7 @@ export const useBuildCodes = () => {
         let rune = getItemById(runeId);
 
         if (rune) {
-          item[`runeSlot${index + 1}`] = {
+          newItemEntry.runes[`runeSlot${index + 1}`] = {
             rune: rune,
             level: runeDataArray[1],
             color: runeDataArray[2],
@@ -335,10 +338,10 @@ export const useBuildCodes = () => {
     let sublimationId = itemData[3];
     let sublimation = getItemById(sublimationId);
     if (sublimation) {
-      item.subSlot = sublimation;
+      newItemEntry.sub = sublimation;
     }
 
-    return item;
+    return newItemEntry;
   };
 
   return {

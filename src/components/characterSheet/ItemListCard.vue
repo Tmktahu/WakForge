@@ -121,8 +121,8 @@ const { equipItem } = useItems(currentCharacter);
 const conflictingItem = computed(() => {
   let validSlots = props.item.type.validSlots;
   let targetSlot = validSlots[0]; // how do we handle rings?
-  if (currentCharacter.value.equipment[targetSlot]?.id !== props.item?.id) {
-    return currentCharacter.value.equipment[targetSlot];
+  if (currentCharacter.value.equipment[targetSlot].item?.id !== props.item?.id) {
+    return currentCharacter.value.equipment[targetSlot].item;
   } else {
     return null;
   }
