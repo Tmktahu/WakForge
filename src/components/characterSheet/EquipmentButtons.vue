@@ -1,5 +1,32 @@
 <template>
   <div class="flex equipment-slots-wrapper">
+    <div v-if="withDefaultElemSelector" class="flex flex-column h-full">
+      <div>
+        <tippy>
+          <div class="random-defaults-button flex align-items-center justify-content-center w-full" @click="onEditDefaults(defaultRandomMasteries, 'mastery', $event)">
+            <p-image v-for="type in defaultRandomMasteries" :key="type" :src="`https://tmktahu.github.io/WakfuAssets/statistics/${type}_coin.png`" image-style="width: 24px" />
+          </div>
+
+          <template v-slot:content>
+            <div class="simple-tooltip">Random Mastery Defaults</div>
+          </template>
+        </tippy>
+      </div>
+
+      <div class="flex-grow-1" />
+
+      <div>
+        <tippy placement="bottom" duration="0">
+          <div class="random-defaults-button flex align-items-center justify-content-center w-full" @click="onEditDefaults(defaultRandomResistances, 'resistance', $event)">
+            <p-image v-for="type in defaultRandomResistances" :key="type" :src="`https://tmktahu.github.io/WakfuAssets/statistics/${type}_coin.png`" image-style="width: 24px" />
+          </div>
+          <template v-slot:content>
+            <div class="simple-tooltip">Random Resistance Defaults</div>
+          </template>
+        </tippy>
+      </div>
+    </div>
+
     <template v-for="(data, key, index) in ITEM_SLOT_DATA" :key="data.id">
       <template v-if="readOnly">
         <div class="equipment-display" :class="{ 'has-item': items[data.id] && items[data.id].item !== null }">
@@ -138,10 +165,10 @@
             </div>
           </template>
         </MultiTooltip>
-
-        <EditEquipmentModal ref="editEquipmentModal" />
       </template>
     </template>
+
+    <EditEquipmentModal ref="editEquipmentModal" @change="onAssignmentsChange" />
   </div>
 </template>
 
@@ -151,6 +178,7 @@ import { useConfirm } from 'primevue/useconfirm';
 import { useI18n } from 'vue-i18n';
 import { debounce } from 'lodash';
 
+import { defaultRandomMasteries, defaultRandomResistances } from '@/models/useItems';
 import { ITEM_SLOT_DATA, LEVELABLE_ITEMS } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
 
@@ -170,6 +198,10 @@ let props = defineProps({
     default: false,
   },
   withTotals: {
+    type: Boolean,
+    default: false,
+  },
+  withDefaultElemSelector: {
     type: Boolean,
     default: false,
   },
@@ -221,7 +253,19 @@ const onSearch = (slotKey) => {
 };
 
 const onEdit = (index, slotKey, event) => {
-  editEquipmentModal.value[index].open(slotKey, event.target.getBoundingClientRect().left - 200, event.target.getBoundingClientRect().bottom + 10);
+  editEquipmentModal.value.open(slotKey, event.target.getBoundingClientRect().left - 200, event.target.getBoundingClientRect().bottom + 10);
+};
+
+const onEditDefaults = (dataContainer, type, event) => {
+  editEquipmentModal.value.openForDefaults(dataContainer, type, event.target.getBoundingClientRect().left - 200, event.target.getBoundingClientRect().bottom + 10);
+};
+
+const onAssignmentsChange = ({ type, value }) => {
+  if (type === 'mastery') {
+    defaultRandomMasteries.value = value;
+  } else {
+    defaultRandomResistances.value = value;
+  }
 };
 
 const onRemove = (slotKey, event) => {
@@ -389,6 +433,29 @@ const onGotoEncyclopedia = (item) => {
   .p-button-icon {
     font-size: 14px;
     font-weight: 800;
+  }
+}
+
+.random-defaults-button {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  border-radius: 4px;
+
+  min-width: 0px;
+  width: 60px;
+  padding: 2px 0px;
+
+  background: var(--background-50);
+
+  cursor: pointer;
+
+  .p-image {
+    height: 24px;
+  }
+
+  &:hover {
+    background-color: var(--secondary-40);
   }
 }
 </style>

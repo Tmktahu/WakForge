@@ -318,7 +318,6 @@ export const useBuildCodes = () => {
       }
     }
 
-    console.log(itemData);
     let runeData = itemData[2];
     runeData.forEach((runeDataArray, index) => {
       let runeId = runeDataArray[0];

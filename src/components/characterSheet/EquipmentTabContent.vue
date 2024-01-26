@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-column h-full" style="overflow-y: auto">
-    <EquipmentButtons :character="currentCharacter" :with-totals="displayTotalValues" />
+    <EquipmentButtons :character="currentCharacter" :with-totals="displayTotalValues" with-default-elem-selector />
 
     <ItemFilters />
 

@@ -3,7 +3,15 @@
     <template v-slot:header> <div class="drag-bar" /> </template>
 
     <div class="edit-item-modal-content flex flex-column pb-2">
-      <div class="header-area flex px-3 pt-2 pb-1">
+      <div v-if="defaultsMode" class="header-area flex align-items-center px-3 pt-2 pb-1">
+        <div class="flex flex-column mr-3">
+          <div class="item-name capitalize">Default Random {{ defaultsType }}</div>
+        </div>
+        <div class="flex-grow-1" />
+
+        <p-button class="close-button px-1 py-1" icon="mdi mdi-close-thick" @click="close" />
+      </div>
+      <div v-else class="header-area flex px-3 pt-2 pb-1">
         <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
         <div class="flex flex-column ml-1">
           <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ item.name }}</div>
@@ -20,8 +28,8 @@
       </div>
 
       <div v-if="randomMasteryEffect" class="random-mastery-section flex flex-column px-3">
-        <div class="text-center w-full text-lg mb-2 pt-2">+{{ randomMasteryEffect.values[0] }} Mastery Assignment</div>
-        <div class="flex justify-content-center gap-2 px-3">
+        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">+{{ randomMasteryEffect.values[0] }} Mastery Assignment</div>
+        <div class="flex justify-content-center gap-2 px-3" :class="{ 'mt-3': defaultsMode }">
           <template v-for="index in randomMasteryEffect.values[2]" :key="index">
             <p-dropdown
               v-model="inputModels['masterySlot' + index]"
@@ -58,10 +66,16 @@
       </div>
 
       <div v-if="randomResistanceEffect" class="random-resistance-section flex flex-column px-3">
-        <div class="text-center w-full text-lg mb-2 pt-2">+{{ randomResistanceEffect.values[0] }} Resistance Assignment</div>
-        <div class="flex justify-content-center gap-2 px-3">
+        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">+{{ randomResistanceEffect.values[0] }} Resistance Assignment</div>
+        <div class="flex justify-content-center gap-2 px-3" :class="{ 'mt-3': defaultsMode }">
           <template v-for="index in randomResistanceEffect.values[2]" :key="index">
-            <p-dropdown v-model="inputModels['resistanceSlot' + index]" class="mastery-dropdown" :options="elementOptions" option-label="label" @change="onResistanceStatChange">
+            <p-dropdown
+              v-model="inputModels['resistanceSlot' + index]"
+              class="mastery-dropdown"
+              :options="elementOptions"
+              option-label="label"
+              @change="onResistanceStatChange($event, 'resistanceSlot' + index)"
+            >
               <template v-slot:value="slotProps">
                 <div v-if="slotProps.value" class="flex align-items-center">
                   <p-image
@@ -103,10 +117,15 @@ import { EventBus, Events } from '@/eventBus';
 
 import { LEVELABLE_ITEMS } from '@/models/useConstants';
 
+const emit = defineEmits(['change']);
+
 let uuid = uuidv4();
 const currentCharacter = inject('currentCharacter');
 
 const visible = ref(false);
+const defaultsMode = ref(false);
+const defaultsType = ref(null);
+const defaultsData = ref([]);
 const item = ref(null);
 
 const inputModels = ref({});
@@ -137,32 +156,62 @@ EventBus.on(Events.UPDATE_RAND_ELEM_SELECTORS, () => {
 
 const updateMasterySelectors = () => {
   if (visible.value) {
-    if (randomMasteryEffect.value !== undefined) {
+    if (defaultsMode.value && defaultsType.value === 'mastery') {
       inputModels.value['masterySlot1'] = elementOptions.find((option) => {
-        return option.value === randomMasteryEffect.value['masterySlot1']?.type;
+        return option.value === defaultsData.value[0];
       });
       inputModels.value['masterySlot2'] = elementOptions.find((option) => {
-        return option.value === randomMasteryEffect.value['masterySlot2']?.type;
+        return option.value === defaultsData.value[1];
       });
       inputModels.value['masterySlot3'] = elementOptions.find((option) => {
-        return option.value === randomMasteryEffect.value['masterySlot3']?.type;
+        return option.value === defaultsData.value[2];
       });
+      inputModels.value['masterySlot4'] = elementOptions.find((option) => {
+        return option.value === defaultsData.value[3];
+      });
+    } else {
+      if (randomMasteryEffect.value !== undefined) {
+        inputModels.value['masterySlot1'] = elementOptions.find((option) => {
+          return option.value === randomMasteryEffect.value['masterySlot1']?.type;
+        });
+        inputModels.value['masterySlot2'] = elementOptions.find((option) => {
+          return option.value === randomMasteryEffect.value['masterySlot2']?.type;
+        });
+        inputModels.value['masterySlot3'] = elementOptions.find((option) => {
+          return option.value === randomMasteryEffect.value['masterySlot3']?.type;
+        });
+      }
     }
   }
 };
 
 const updateResistanceSelectors = () => {
   if (visible.value) {
-    if (randomResistanceEffect.value !== undefined) {
+    if (defaultsMode.value && defaultsType.value === 'resistance') {
       inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
-        return option.value === randomResistanceEffect.value?.['resistanceSlot1']?.type;
+        return option.value === defaultsData.value[0];
       });
       inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
-        return option.value === randomResistanceEffect.value?.['resistanceSlot2']?.type;
+        return option.value === defaultsData.value[1];
       });
       inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
-        return option.value === randomResistanceEffect.value?.['resistanceSlot3']?.type;
+        return option.value === defaultsData.value[2];
       });
+      inputModels.value['resistanceSlot4'] = elementOptions.find((option) => {
+        return option.value === defaultsData.value[3];
+      });
+    } else {
+      if (randomResistanceEffect.value !== undefined) {
+        inputModels.value['resistanceSlot1'] = elementOptions.find((option) => {
+          return option.value === randomResistanceEffect.value?.['resistanceSlot1']?.type;
+        });
+        inputModels.value['resistanceSlot2'] = elementOptions.find((option) => {
+          return option.value === randomResistanceEffect.value?.['resistanceSlot2']?.type;
+        });
+        inputModels.value['resistanceSlot3'] = elementOptions.find((option) => {
+          return option.value === randomResistanceEffect.value?.['resistanceSlot3']?.type;
+        });
+      }
     }
   }
 };
@@ -189,21 +238,54 @@ const onMasteryStatChange = (event, changedSlotKey) => {
       }
     }
   });
+
+  if (defaultsMode.value) {
+    let newData = [];
+    Object.keys(effect).forEach((key) => {
+      if (effect[key]?.type) {
+        newData.push(effect[key].type);
+      }
+    });
+
+    defaultsData.value = newData;
+    emit('change', { type: 'mastery', value: newData });
+  }
 };
 
-const onResistanceStatChange = () => {
-  Object.keys(inputModels.value).forEach((key) => {
-    if (inputModels.value[key]) {
-      let effect = item.value?.equipEffects?.find((effect) => {
-        return effect.id === 1069;
-      });
+const onResistanceStatChange = (event, changedSlotKey) => {
+  let effect = item.value?.equipEffects?.find((effect) => {
+    return effect.id === 1069;
+  });
 
-      effect[key] = {
-        type: inputModels.value[key].value,
-        value: randomResistanceEffect.value.values[0],
-      };
+  effect[changedSlotKey] = {
+    type: inputModels.value[changedSlotKey].value,
+    value: randomResistanceEffect.value.values[0],
+  };
+
+  Object.keys(effect).forEach((key) => {
+    if (key !== changedSlotKey) {
+      if (effect[key]?.type === inputModels.value[changedSlotKey].value) {
+        effect[key] = {
+          type: elementOptions[0].value,
+          value: [],
+        };
+
+        inputModels.value[key] = elementOptions[0];
+      }
     }
   });
+
+  if (defaultsMode.value) {
+    let newData = [];
+    Object.keys(effect).forEach((key) => {
+      if (effect[key]?.type) {
+        newData.push(effect[key].type);
+      }
+    });
+
+    defaultsData.value = newData;
+    emit('change', { type: 'resistance', value: newData });
+  }
 };
 
 const onApplyToAll = () => {
@@ -262,12 +344,56 @@ const onApplyToAll = () => {
     }
   });
 
-  EventBus.emit(Events.UPDATE_RAND_ELEM_SELECTORS);
+  // EventBus.emit(Events.UPDATE_RAND_ELEM_SELECTORS);
 };
 
 const open = (slotKey, left, top) => {
+  defaultsMode.value = false;
+
   item.value = currentCharacter.value.equipment[slotKey].item;
   visible.value = true;
+
+  nextTick(() => {
+    let dialogElement = document.getElementById(uuid);
+
+    dialogElement.style.position = 'fixed';
+    dialogElement.style.left = `${left}px`;
+    dialogElement.style.top = `${top}px`;
+
+    updateMasterySelectors();
+    updateResistanceSelectors();
+  });
+};
+
+const openForDefaults = (dataContainer, type, left, top) => {
+  defaultsMode.value = true;
+  defaultsData.value = dataContainer;
+  defaultsType.value = type;
+  visible.value = true;
+
+  item.value = {
+    equipEffects: [],
+  };
+
+  if (type === 'mastery') {
+    item.value.equipEffects.push({
+      id: 1068,
+      values: [-1, 0, 4],
+      masterySlot1: { type: defaultsData.value[0] },
+      masterySlot2: { type: defaultsData.value[1] },
+      masterySlot3: { type: defaultsData.value[2] },
+      masterySlot4: { type: defaultsData.value[3] },
+    });
+  } else {
+    item.value.equipEffects.push({
+      id: 1069,
+      values: [-1, 0, 4],
+      resistanceSlot1: { type: defaultsData.value[0] },
+      resistanceSlot2: { type: defaultsData.value[1] },
+      resistanceSlot3: { type: defaultsData.value[2] },
+      resistanceSlot4: { type: defaultsData.value[3] },
+    });
+  }
 
   nextTick(() => {
     let dialogElement = document.getElementById(uuid);
@@ -287,6 +413,7 @@ const close = () => {
 
 defineExpose({
   open,
+  openForDefaults,
 });
 </script>
 

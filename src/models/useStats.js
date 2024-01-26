@@ -41,7 +41,6 @@ export const useStats = (currentCharacter) => {
   const updateStats = () => {
     if (currentCharacter.value) {
       let states = getStatesFromCharacter(currentCharacter);
-      console.log(states);
 
       // Health Points
       currentCharacter.value.healthPoints = Math.floor(
@@ -272,7 +271,6 @@ export const useStats = (currentCharacter) => {
       if (currentCharacter.value.equipment[slotKey].item !== null) {
         // grab the item
         let item = currentCharacter.value.equipment[slotKey].item;
-
         // now we have to go over each of the item's effects and look for the one we want
         item.equipEffects?.forEach((effect) => {
           // we specifically compare the raw IDs here because that's what we get from the JSON
@@ -475,8 +473,6 @@ export const useStats = (currentCharacter) => {
         });
       }
     });
-
-    console.log(targetEffect, contribution);
 
     return contribution;
   };
