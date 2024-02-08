@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-column h-full" style="overflow-y: auto">
+  <div class="flex flex-column h-full pr-2" style="overflow-y: auto">
     <EquipmentButtons :character="currentCharacter" />
 
     <div class="flex flex-column mt-4">
@@ -11,9 +11,9 @@
         />
       </div>
 
-      <div class="flex mt-3">
-        <div class="setting-group flex flex-column mr-3 gap-2">
-          <div class="mb-2">
+      <div class="flex flex-wrap gap-3 mt-3">
+        <div class="setting-group flex flex-column gap-2">
+          <div>
             <tippy placement="top" duration="0">
               <i class="mdi mdi-information-outline" />
               <template v-slot:content>
@@ -28,9 +28,9 @@
           <OptionNumInput v-model="targetWpAmount" :label="$t('constants.wakfuPoints')" :tooltip-text="$t('characterSheet.itemSolverContent.wakfuTooltip')" />
         </div>
 
-        <div class="setting-group flex flex-column mr-3">
+        <div class="setting-group flex flex-column">
           <div class="flex flex-column gap-2">
-            <div class="mb-2">
+            <div>
               <tippy placement="top" duration="0">
                 <i class="mdi mdi-information-outline" />
                 <template v-slot:content>
@@ -127,7 +127,7 @@
           </div>
 
           <div class="setting-group flex flex-column gap-2 mt-2">
-            <div class="mb-2">
+            <div>
               <tippy placement="top" duration="0">
                 <i class="mdi mdi-information-outline" />
                 <template v-slot:content>
@@ -143,8 +143,53 @@
             <OptionCheckbox v-model="airMastery" :label="$t('constants.airMastery')" />
           </div>
         </div>
+
+        <div class="flex flex-column">
+          <div class="setting-group flex flex-column gap-2">
+            <div>
+              <tippy placement="top" duration="0">
+                <i class="mdi mdi-information-outline" />
+                <template v-slot:content>
+                  <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.itemSourcesInfo') }}</div>
+                </template>
+              </tippy>
+              {{ $t('characterSheet.itemSolverContent.itemSources') }}
+            </div>
+
+            <OptionCheckbox v-model="archmonsters" :label="$t('characterSheet.itemSolverContent.archmonsters')" />
+            <OptionCheckbox v-model="hordes" :label="$t('characterSheet.itemSolverContent.hordes')" />
+            <OptionCheckbox v-model="battlefields" :label="$t('characterSheet.itemSolverContent.battlefields')" />
+            <OptionCheckbox v-model="ultimateBosses" :label="$t('characterSheet.itemSolverContent.ultimateBosses')" />
+          </div>
+        </div>
       </div>
       <div v-if="warningMessage !== null" class="warning-message mt-2 py-1 px-2">{{ warningMessage }}</div>
+    </div>
+
+    <div v-if="excludedItems.length > 0" class="setting-group flex flex-column gap-2 mt-2">
+      <div>
+        <tippy placement="top" duration="0">
+          <i class="mdi mdi-information-outline" />
+          <template v-slot:content>
+            <div class="simple-tooltip">{{ $t('characterSheet.itemSolverContent.excludedItemsInfo') }}</div>
+          </template>
+        </tippy>
+        {{ $t('characterSheet.itemSolverContent.excludedItems') }}
+      </div>
+
+      <div class="flex gap-1">
+        <template v-for="item in excludedItems" :key="item.id">
+          <div class="excluded-item-card px-2 py-1">
+            <span class="mr-2">{{ item.name }}</span>
+            <tippy placement="top" duration="0">
+              <p-button class="allow-button" icon="pi pi-check-circle" @click="onAllowItem(item)" />
+              <template v-slot:content>
+                <div class="simple-tooltip">{{ $t('tooltips.allowItem') }}</div>
+              </template>
+            </tippy>
+          </div>
+        </template>
+      </div>
     </div>
 
     <div class="flex align-items-center mt-3">
@@ -186,7 +231,7 @@
         <div class="flex flex-wrap gap-1 mt-2">
           <template v-for="item in filteredItemSet" :key="item.id">
             <div class="item-card-wrapper">
-              <ItemListCard :item="item" with-slot-label :with-comparisons="withComparisons" :with-totals="displayTotals" />
+              <ItemListCard :item="item" with-slot-label :with-comparisons="withComparisons" :with-totals="displayTotals" with-exclude-button @exclude-item="onExcludeItem" />
             </div>
           </template>
         </div>
@@ -239,6 +284,8 @@ const showAllItems = ref(false);
 const displayTotals = ref(false);
 const withComparisons = ref(false);
 
+const excludedItems = ref([]);
+
 const filteredItemSet = computed(() => {
   if (showAllItems.value) {
     return itemSet.value;
@@ -270,6 +317,11 @@ const fireMastery = ref(false);
 const earthMastery = ref(false);
 const waterMastery = ref(false);
 const airMastery = ref(false);
+
+const archmonsters = ref(true);
+const hordes = ref(true);
+const battlefields = ref(true);
+const ultimateBosses = ref(true);
 
 const priorityOptions = [
   {
@@ -316,6 +368,19 @@ const initLoading = ref(true);
 watch(autoBuilderIsReady, () => {
   initLoading.value = false;
 });
+
+const onExcludeItem = (item) => {
+  if (!excludedItems.value.includes(item)) {
+    excludedItems.value.push(item);
+  }
+};
+
+const onAllowItem = (item) => {
+  if (excludedItems.value.includes(item)) {
+    let targetIndex = excludedItems.value.indexOf(item);
+    excludedItems.value.splice(targetIndex, 1);
+  }
+};
 
 const onSelectAllRarities = () => {
   allowedRarities.value.forEach((filter) => {
@@ -379,6 +444,11 @@ const onCalculate = async () => {
     waterMastery: waterMastery.value,
     airMastery: airMastery.value,
 
+    noArchmonsters: !archmonsters.value,
+    noHordes: !hordes.value,
+    noBattlefields: !battlefields.value,
+    noUltimateBosses: !ultimateBosses.value,
+
     targetApAmount: targetApAmount.value || 0,
     targetMpAmount: targetMpAmount.value || 0,
     targetRangeAmount: targetRangeAmount.value || 0,
@@ -386,6 +456,7 @@ const onCalculate = async () => {
 
     selectedRarityIds: rarityIds,
 
+    excludedItems: excludedItems.value.map((item) => item.id),
     ignoreEquippedItems: !considerCurrentItems.value,
   };
 
@@ -526,5 +597,27 @@ const getLinkText = () => {
   border: 1px solid var(--highlight-90);
   border-radius: 8px;
   overflow: hidden;
+}
+
+.excluded-item-card {
+  display: flex;
+  border: 1px solid var(--highlight-90);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--primary-10);
+
+  .allow-button {
+    padding: 2px;
+    min-width: 20px;
+    max-width: 20px;
+    min-height: 20px;
+    max-height: 20px;
+    background-color: var(--secondary-20);
+
+    .p-button-icon {
+      font-size: 14px;
+      font-weight: 800;
+    }
+  }
 }
 </style>

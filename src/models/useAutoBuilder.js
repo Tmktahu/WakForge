@@ -81,6 +81,23 @@ export const useAutoBuilder = () => {
       elementPriorities += ELEMENT_TYPE_ENUM['air'];
     }
 
+    let excludedSources = [];
+    if (paramData.noArchmonsters) {
+      excludedSources.push('arch');
+    }
+
+    if (paramData.noHordes) {
+      excludedSources.push('horde');
+    }
+
+    if (paramData.noBattlefields) {
+      excludedSources.push('pvp');
+    }
+
+    if (paramData.noUltimateBosses) {
+      excludedSources.push('ultimate_boss');
+    }
+
     let params = {
       buildCode: paramData.buildCode,
 
@@ -100,6 +117,9 @@ export const useAutoBuilder = () => {
         ra: paramData.targetRangeAmount,
         wp: paramData.targetWpAmount,
       },
+
+      forbiddenSources: excludedSources,
+      excludedItems: paramData.excludedItems,
 
       ignoreEquippedItems: paramData.ignoreEquippedItems,
     };
