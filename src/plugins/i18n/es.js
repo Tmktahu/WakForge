@@ -225,6 +225,14 @@ export const es = {
       combinedApMpWarning: 'Puede que estés pidiendo una cantidad combinada de PA+PM que no sea posible en tu nivel.',
       showAllItems: 'Mostrar todos los items',
       displayTotals: 'Mostrar Totales',
+      itemSources: 'Item Sources', // NEEDS TRANSLATION
+      itemSourcesInfo: 'These let you adjust what item sources you want to consider.', // NEEDS TRANSLATION
+      archmonsters: 'ArchMonsters', // NEEDS TRANSLATION
+      hordes: 'Hordes', // NEEDS TRANSLATION
+      battlefields: 'Battlefields', // NEEDS TRANSLATION
+      ultimateBosses: 'Ultimate Bosses', // NEEDS TRANSLATION
+      excludedItems: 'Excluded Items', // NEEDS TRANSLATION
+      excludedItemsInfo: 'These items are excluded from the possible set of results.', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {
@@ -414,5 +422,7 @@ export const es = {
     totalResistance: 'Resistencia total',
     yes: 'Si',
     no: 'No',
+    excludeItem: 'Exclude Item', // NEEDS TRANSLATION
+    allowItem: 'Allow Item', // NEEDS TRANSLATION
   },
 };

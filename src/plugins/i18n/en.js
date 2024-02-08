@@ -226,6 +226,14 @@ export const en = {
       combinedApMpWarning: 'You may be asking for a combined AP+MP amount that is not possible at your level.',
       showAllItems: 'Show All Items',
       displayTotals: 'Display Totals',
+      itemSources: 'Item Sources',
+      itemSourcesInfo: 'These let you adjust what item sources you want to consider.',
+      archmonsters: 'ArchMonsters',
+      hordes: 'Hordes',
+      battlefields: 'Battlefields',
+      ultimateBosses: 'Ultimate Bosses',
+      excludedItems: 'Excluded Items',
+      excludedItemsInfo: 'These items are excluded from the possible set of results.',
     },
 
     runesAndSubsContent: {
@@ -414,5 +422,7 @@ export const en = {
     totalResistance: 'Total Resistance',
     yes: 'Yes',
     no: 'No',
+    excludeItem: 'Exclude Item',
+    allowItem: 'Allow Item',
   },
 };
