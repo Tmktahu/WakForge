@@ -41,7 +41,6 @@ export const useStats = (currentCharacter) => {
   const updateStats = () => {
     if (currentCharacter.value) {
       let states = getStatesFromCharacter(currentCharacter);
-      console.log(states);
 
       // Health Points
       currentCharacter.value.healthPoints = Math.floor(
@@ -85,7 +84,11 @@ export const useStats = (currentCharacter) => {
 
       // Quadrumental Breeze
       currentCharacter.value.quadrumentalBreeze =
-        (currentCharacter.value.class === CLASS_CONSTANTS.huppermage.id ? 500 : 0) + currentCharacter.value.characteristics.major.wakfuPoints * 150;
+        (currentCharacter.value.class === CLASS_CONSTANTS.huppermage.id ? 500 : 0) +
+        (currentCharacter.value.characteristics.major.wakfuPoints * 2 +
+          calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints) +
+          calcPassivesContribution(EFFECT_TYPE_DATA.wakfuPoints)) *
+          150;
 
       // Elemental masteries
       currentCharacter.value.masteries.water = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.waterMastery);
@@ -265,10 +268,9 @@ export const useStats = (currentCharacter) => {
     // So to pull this off we need to iterate over each item slot
     Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
       // if the item slot has an item assigned, we're good to go
-      if (currentCharacter.value.equipment[slotKey] !== null) {
+      if (currentCharacter.value.equipment[slotKey].item !== null) {
         // grab the item
-        let item = currentCharacter.value.equipment[slotKey];
-
+        let item = currentCharacter.value.equipment[slotKey].item;
         // now we have to go over each of the item's effects and look for the one we want
         item.equipEffects?.forEach((effect) => {
           // we specifically compare the raw IDs here because that's what we get from the JSON
@@ -388,9 +390,9 @@ export const useStats = (currentCharacter) => {
 
     Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
       // if the item slot has an item assigned, we're good to go
-      if (currentCharacter.value.equipment[slotKey] !== null) {
+      if (currentCharacter.value.equipment[slotKey].item !== null) {
         // grab the item
-        let item = currentCharacter.value.equipment[slotKey];
+        let item = currentCharacter.value.equipment[slotKey].item;
 
         for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
           let possibleRune = item[`runeSlot${runeSlotIndex}`];
@@ -471,8 +473,6 @@ export const useStats = (currentCharacter) => {
         });
       }
     });
-
-    console.log(targetEffect, contribution);
 
     return contribution;
   };

@@ -52,6 +52,8 @@ import { useSpells } from '@/models/spells/useSpells';
 import { useLevels } from '@/models/useLevels';
 import { useAutoBuilder } from '@/models/useAutoBuilder';
 
+console.log(masterData);
+
 import OldDataDialog from '@/components/OldDataDialog.vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 

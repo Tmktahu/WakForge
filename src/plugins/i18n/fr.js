@@ -28,7 +28,7 @@ export const fr = {
   sidebar: {
     charactersTab: 'Personnages',
     dataTab: 'Données',
-    guidesTab: 'Guides', 
+    guidesTab: 'Guides',
     discordTab: 'Discord',
     githubTab: 'GitHub',
     language: 'Langage',
@@ -55,9 +55,9 @@ export const fr = {
     newGroup: 'Nouveau groupe',
   },
   guidesPage: {
-    title: 'Guides Généraux', 
-    description: "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.", 
-    searchGuides: 'Rechercher Guides...', 
+    title: 'Guides Généraux',
+    description: "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.",
+    searchGuides: 'Rechercher Guides...',
   },
   dataPage: {
     title: "Gestion des données de l'application",
@@ -117,14 +117,14 @@ export const fr = {
       armorReceived: 'Armure reçue',
       indirectDamage: 'Dommages Indirects',
       statsSummary: 'Résumé Stats',
-      effectiveHpAgainst: 'PV Effectif Contre les Dommages {type}', 
-      numSelected: '{num} Sélectionnée', 
+      effectiveHpAgainst: 'PV Effectif Contre les Dommages {type}',
+      numSelected: '{num} Sélectionnée',
     },
 
     guidesContent: {
-      doYouHaveAGuide: "Vous avez un guide que vous aimeriez voir ici ? Contactez nous sur le serveur Discord pour le rajouter.", 
-      classGuides: 'Guides {class} ', 
-      openGuide: 'Ouvrir le Guide', 
+      doYouHaveAGuide: "Vous avez un guide que vous aimeriez voir ici ? Contactez nous sur le serveur Discord pour le rajouter.",
+      classGuides: 'Guides {class} ',
+      openGuide: 'Ouvrir le Guide',
     },
 
     characteristicsContent: {
@@ -145,12 +145,12 @@ export const fr = {
 
     equipmentContent: {
       sortBy: 'Trier par',
-      newSort: 'Nouveau Tri', 
+      newSort: 'Nouveau Tri',
       resultsOutOf: 'Résultats sur',
       itemsTotal: 'Items au total',
       displayStats: 'Afficher les stats',
-      displayTotals: 'Afficher Totaux', 
-      compareToEquipped: 'Comparer aux Équipements', 
+      displayTotals: 'Afficher Totaux',
+      compareToEquipped: 'Comparer aux Équipements',
       itemLevel: "Niveau de l'Item",
       noItemsFound: "Aucun Item n'a été trouvé avec ces filtres. N'hésitez pas à changer votre recherche.",
       hasRelicWarning: 'Vous avez déjà un Item Relique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
@@ -188,8 +188,8 @@ export const fr = {
     },
 
     itemSolverContent: {
-      considerCurrentItems: 'Considerer les Items actuels', 
-      considerCurrentItemsTooltip: 'Est ce-que les Items déjà équiper doivent être pris en consideration ?', 
+      considerCurrentItems: 'Considerer les Items actuels',
+      considerCurrentItemsTooltip: 'Est ce-que les Items déjà équiper doivent être pris en consideration ?',
       numElements: "Nombre d'éléments",
       apTooltip: 'Combien de PA au total vous souhaitez.',
       mpTooltip: 'Combien de PM au total vous souhaitez.',
@@ -204,12 +204,12 @@ export const fr = {
       poweredBy: "Fonctionne grâce au code de {credit}",
       problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
       generateItemSet: "Générer l'ensemble des Items",
-      regenerateItemSet: "Re-Générer l'ensemble des Items", 
+      regenerateItemSet: "Re-Générer l'ensemble des Items",
       instructions: 'Entrer vos paramètres au-dessus et cliquer sur "Générer un set d\'Items".',
       ifYouNeedHelp: "Si vous avez besoin d'assistance, n'hésitez pas à nous contacter sur Discord avec vos questions.",
       loadingMessage: 'Jimmy est en pleine réflexion avec ses maths... Merci de patienter...',
       loadingDisclaimer: "N'oubliez pas qu'en fonction des options, celà peut prendre du temps.",
-      equipAllItems: 'Equiper tous les Items', 
+      equipAllItems: 'Equiper tous les Items',
       normal: 'Normal',
       prioritized: 'Priorisée',
       preferNoNegatives: 'Préférée non négative',
@@ -225,8 +225,16 @@ export const fr = {
       rangeForLevelWarning: "Vous demandez plus de PO qu'il n'est possible pour votre niveau.",
       rangeImpossibleWarning: 'Vous demandez un nombre en PO qui peut être impossible.',
       combinedApMpWarning: "Vous demandez une somme AP+MP qui n'est pas possible à votre niveau.",
-      showAllItems: 'Montrer tous les Items', 
-      displayTotals: 'Afficher Totaux', 
+      showAllItems: 'Montrer tous les Items',
+      displayTotals: 'Afficher Totaux',
+      itemSources: 'Item Sources', // NEEDS TRANSLATION
+      itemSourcesInfo: 'These let you adjust what item sources you want to consider.', // NEEDS TRANSLATION
+      archmonsters: 'ArchMonsters', // NEEDS TRANSLATION
+      hordes: 'Hordes', // NEEDS TRANSLATION
+      battlefields: 'Battlefields', // NEEDS TRANSLATION
+      ultimateBosses: 'Ultimate Bosses', // NEEDS TRANSLATION
+      excludedItems: 'Excluded Items', // NEEDS TRANSLATION
+      excludedItemsInfo: 'These items are excluded from the possible set of results.', // NEEDS TRANSLATION
     },
 
     runesAndSubsContent: {
@@ -241,15 +249,15 @@ export const fr = {
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
       removeAllRunes: 'Enlever toutes les runes/subl.',
-      sortByMatching: 'Trier pas correspondant', 
+      sortByMatching: 'Trier pas correspondant',
       sortByMatchingNote: "Si un équipement est sélectionné , cela triera les sublimations en fonction de la couleurs et l'ordre des chasses mise sur cet équipement",
-      searchSublimations: 'Recherche Sublimations...', 
-      searchEpicAndRelicSubs: 'Recherche Sublimations Épique/Relique...', 
-      addsStateLevelsShort: '+{num_0} niveau de', 
-      stateStackingWarning: 'Cet état atteint seulement un maximum de {num_0} Niveau', 
-      relicSub: 'Subli Relique', 
-      epicSub: 'Subli Épique', 
-      itemMustBeEquipped: 'Un Item doit être équipé', 
+      searchSublimations: 'Recherche Sublimations...',
+      searchEpicAndRelicSubs: 'Recherche Sublimations Épique/Relique...',
+      addsStateLevelsShort: '+{num_0} niveau de',
+      stateStackingWarning: 'Cet état atteint seulement un maximum de {num_0} Niveau',
+      relicSub: 'Subli Relique',
+      epicSub: 'Subli Épique',
+      itemMustBeEquipped: 'Un Item doit être équipé',
     },
 
     spellsAndPassivesContent: {
@@ -314,7 +322,7 @@ export const fr = {
     enchantment: 'Rune',
 
     epicSublimation: 'Sublimation Épique',
-    relicSublimation: 'Sublimation Relique', 
+    relicSublimation: 'Sublimation Relique',
 
     oneHandedWeapons: 'Armes à 1 main',
     twoHandedWeapons: 'Armes à 2 mains',
@@ -393,7 +401,7 @@ export const fr = {
     armorGiven: 'Armure donnée',
     healthPoints: 'Points de Vie',
 
-    remove: 'Enlever', 
+    remove: 'Enlever',
   },
   confirms: {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
@@ -401,17 +409,19 @@ export const fr = {
     willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les Items équipés qui sont dans les slots en conflit.',
   },
   tooltips: {
-    randomMasteryValue: '+{num_0} Maîtrise de {num_1} élements aléatoire ', 
-    randomResistanceValue: '+{num_0} Résistance de {num_1} élements aléatoire', 
-    addsStateLevels: 'Rajoute +{num_0} Niveau de', 
+    randomMasteryValue: '+{num_0} Maîtrise de {num_1} élements aléatoire ',
+    randomResistanceValue: '+{num_0} Résistance de {num_1} élements aléatoire',
+    addsStateLevels: 'Rajoute +{num_0} Niveau de',
     stateAtLevel: "L'État {State} au niveau {num_0} (Max {num_1})",
-    missingInfoAboutState: "Nous manquons d'information a propos de cet état. Si vous en avez, merci de nous contacter sur le serveur Discord.", 
-    equipped: 'équipper', 
-    itemLevel: 'Niveau Item', 
+    missingInfoAboutState: "Nous manquons d'information a propos de cet état. Si vous en avez, merci de nous contacter sur le serveur Discord.",
+    equipped: 'équipper',
+    itemLevel: 'Niveau Item',
     openEncyclopediaPage: "Ouvrir la page de l'encyclopédie",
     totalMastery: 'Maîtrise Total',
     totalResistance: 'Résistance Total',
     yes: 'Oui',
-    no: 'Non', 
+    no: 'Non',
+    excludeItem: 'Exclude Item', // NEEDS TRANSLATION
+    allowItem: 'Allow Item', // NEEDS TRANSLATION
   },
 };

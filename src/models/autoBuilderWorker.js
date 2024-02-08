@@ -40,9 +40,7 @@ const setup = async () => {
   // After the next pyodide release, this can become micropip.install('msgspec');
   // see https://github.com/pyodide/pyodide/issues/4264
   console.log('Installing msgspec');
-  await micropip.install(
-    'https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl'
-  );
+  await micropip.install('https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl');
 
   // we use micropip to install the auto builder package
   console.log('Setting up the AutoBuild package loaded.');
@@ -101,9 +99,12 @@ const performCalculations = async (params) => {
     target_stats: targetStats,
     dry_run: false,
     objectives: statPriorities,
-    forbidden_items: [],
+    forbidden_items: params.excludedItems,
+    forbidden_sources: params.forbiddenSources,
     ignore_existing_items: params.ignoreEquippedItems || false,
   });
+
+  console.log(params.excludedItems);
 
   let pythonParams = {
     build_code: params.buildCode,

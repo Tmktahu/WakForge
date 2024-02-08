@@ -22,13 +22,13 @@
 
       <template v-for="slotKey in Object.keys(currentCharacter.equipment)" :key="slotKey">
         <template v-if="slotKey !== 'ACCESSORY' && slotKey !== 'PET' && slotKey !== 'MOUNT' && slotKey !== 'SECOND_WEAPON'">
-          <div v-if="slotKey !== 'undefined' && currentCharacter.equipment[slotKey]" class="item-runes-section flex align-items-center mb-2">
+          <div v-if="slotKey !== 'undefined'" class="item-runes-section flex align-items-center mb-2">
             <div class="slot-image" :class="{ highlighted: itemSlotHighlight === slotKey }" @click="onItemSlotClick($event, slotKey)">
               <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotKey}.png`" image-style="width: 40px; height: 40px" />
             </div>
 
             <template v-for="index in 4" :key="index">
-              <tippy v-if="currentCharacter.equipment[slotKey][`runeSlot${index}`]" duration="0">
+              <tippy v-if="currentCharacter.equipment[slotKey].runes[`runeSlot${index}`]" duration="0">
                 <div
                   class="rune-drop-zone equipped ml-2"
                   draggable="true"
@@ -41,29 +41,29 @@
                     onDragStart(
                       $event,
                       'rune',
-                      currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
+                      currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].rune,
                       // eslint-disable-next-line vue/comma-dangle
-                      currentCharacter.equipment[slotKey][`runeSlot${index}`].level
+                      currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].level
                     )
                   "
                 >
                   <div class="rune-image">
-                    <p-image :src="getFilledRuneImage(currentCharacter.equipment[slotKey][`runeSlot${index}`].color)" image-style="width: 26px" />
+                    <p-image :src="getFilledRuneImage(currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].color)" image-style="width: 26px" />
                   </div>
-                  <div class="rune-level">{{ currentCharacter.equipment[slotKey][`runeSlot${index}`].level }}</div>
+                  <div class="rune-level">{{ currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].level }}</div>
                 </div>
 
                 <template v-slot:content>
                   <div class="simple-tooltip">
                     +{{
                       getRuneValue(
-                        currentCharacter.equipment[slotKey][`runeSlot${index}`].rune,
-                        currentCharacter.equipment[slotKey][`runeSlot${index}`].level,
+                        currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].rune,
+                        currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].level,
                         // eslint-disable-next-line vue/comma-dangle
                         slotKey
                       )
                     }}
-                    {{ $t(`items.${currentCharacter.equipment[slotKey][`runeSlot${index}`].rune.id}`) }}
+                    {{ $t(`items.${currentCharacter.equipment[slotKey].runes[`runeSlot${index}`].rune.id}`) }}
                   </div>
                 </template>
               </tippy>
@@ -75,24 +75,20 @@
               </div>
             </template>
 
-            <MultiTooltip v-if="currentCharacter.equipment[slotKey].subSlot" :append-to="() => documentVar.body" :offset="[0, -2]" style="height: 100%">
+            <MultiTooltip v-if="currentCharacter.equipment[slotKey].sub" :append-to="() => documentVar.body" :offset="[0, -2]" style="height: 100%">
               <template v-slot:trigger>
                 <div
                   class="sublimation-drop-zone ml-2"
-                  :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+                  :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].sub) }"
                   @dragover.prevent
                   @dragenter.prevent
-                  @drop="onDrop($event, slotKey, 'subSlot')"
+                  @drop="onDrop($event, slotKey, 'sub')"
                   @click="onRemoveSublimation(slotKey)"
                 >
-                  <template v-if="currentCharacter.equipment[slotKey].subSlot">
+                  <template v-if="currentCharacter.equipment[slotKey].sub">
                     <div class="sublimation-entry flex align-items-center px-2">
-                      <p-image
-                        :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`"
-                        image-style="width: 24px"
-                        class="flex"
-                      />
-                      <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                      <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].sub.imageId}.png`" image-style="width: 24px" class="flex" />
+                      <div class="ml-1">{{ $t(`items.${currentCharacter.equipment[slotKey].sub.id}`) }}</div>
                     </div>
                   </template>
 
@@ -101,14 +97,14 @@
               </template>
 
               <template v-slot:content>
-                <div v-if="currentCharacter.equipment[slotKey].subSlot" class="item-card-tooltip">
+                <div v-if="currentCharacter.equipment[slotKey].sub" class="item-card-tooltip">
                   <div class="effect-header flex pt-2 px-1">
-                    <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].subSlot.imageId}.png`" image-style="width: 40px" />
+                    <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${currentCharacter.equipment[slotKey].sub.imageId}.png`" image-style="width: 40px" />
                     <div class="flex flex-column ml-1">
-                      <div class="item-name mr-2">{{ $t(`items.${currentCharacter.equipment[slotKey].subSlot.id}`) }}</div>
+                      <div class="item-name mr-2">{{ $t(`items.${currentCharacter.equipment[slotKey].sub.id}`) }}</div>
                       <div class="rune-requirements flex justify-content-left gap-1 py-1">
                         <div
-                          v-for="(colorId, index) in currentCharacter.equipment[slotKey].subSlot.sublimationParameters.slotColorPattern"
+                          v-for="(colorId, index) in currentCharacter.equipment[slotKey].sub.sublimationParameters.slotColorPattern"
                           :key="index"
                           class="flex align-items-center"
                         >
@@ -118,7 +114,7 @@
                     </div>
                   </div>
 
-                  <ItemStatList :item="currentCharacter.equipment[slotKey].subSlot" />
+                  <ItemStatList :item="currentCharacter.equipment[slotKey].sub" />
                 </div>
               </template>
             </MultiTooltip>
@@ -126,28 +122,16 @@
             <div
               v-else
               class="sublimation-drop-zone ml-2"
-              :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].subSlot) }"
+              :class="{ invalid: !canSublimationFit(currentCharacter.equipment[slotKey], currentCharacter.equipment[slotKey].sub) }"
               @dragover.prevent
               @dragenter.prevent
-              @drop="onDrop($event, slotKey, 'subSlot')"
+              @drop="onDrop($event, slotKey, 'sub')"
               @click="onRemoveSublimation(slotKey)"
             >
               <div class="px-2" style="opacity: 0.5">
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/812.png`" image-style="width: 30px" class="flex" />
               </div>
             </div>
-          </div>
-
-          <div v-else-if="slotKey !== 'undefined'" class="item-runes-section disabled flex align-items-center mb-2 pr-1">
-            <div class="slot-image">
-              <p-image :src="`https://tmktahu.github.io/WakfuAssets/equipmentDefaults/${slotKey}.png`" image-style="width: 40px; height: 40px" />
-            </div>
-
-            <template v-for="index in 4" :key="index">
-              <div class="rune-drop-zone ml-2" @dragover.prevent @dragenter.prevent @drop="onDrop($event, slotKey, `runeSlot${index}`)" />
-            </template>
-
-            <div class="info-text">{{ $t('characterSheet.runesAndSubsContent.itemMustBeEquipped') }}</div>
           </div>
         </template>
       </template>
@@ -547,9 +531,9 @@ const summaryEntries = computed(() => {
 
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
     // if the item slot has an item assigned, we're good to go
-    if (currentCharacter.value.equipment[slotKey] !== null) {
+    if (currentCharacter.value.equipment[slotKey].item !== null) {
       // grab the item
-      let item = currentCharacter.value.equipment[slotKey];
+      let item = currentCharacter.value.equipment[slotKey].item;
 
       for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
         let possibleRune = item[`runeSlot${runeSlotIndex}`];
@@ -565,15 +549,15 @@ const summaryEntries = computed(() => {
         }
       }
 
-      if (item.subSlot) {
-        if (!entries[item.subSlot.equipEffects[0].values[0]]) {
-          entries[item.subSlot.equipEffects[0].values[0]] = {
+      if (item.sub) {
+        if (!entries[item.sub.equipEffects[0].values[0]]) {
+          entries[item.sub.equipEffects[0].values[0]] = {
             totalValue: 0,
-            sublimation: item.subSlot,
+            sublimation: item.sub,
           };
         }
 
-        entries[item.subSlot.equipEffects[0].values[0]].totalValue += item.subSlot.equipEffects[0].values[2];
+        entries[item.sub.equipEffects[0].values[0]].totalValue += item.sub.equipEffects[0].values[2];
       }
     }
   });
@@ -606,21 +590,21 @@ const onItemSlotClick = (event, slotKey) => {
 
 const onRuneClick = (event, itemSlotKey, runeSlotKey) => {
   if (event.shiftKey) {
-    if (currentCharacter.value.equipment[itemSlotKey][runeSlotKey].color === 0) {
-      currentCharacter.value.equipment[itemSlotKey][runeSlotKey].color = currentCharacter.value.equipment[itemSlotKey][runeSlotKey].rune.shardsParameters.color;
+    if (currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey].color === 0) {
+      currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey].color = currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey].rune.shardsParameters.color;
     } else {
-      currentCharacter.value.equipment[itemSlotKey][runeSlotKey].color = 0;
+      currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey].color = 0;
     }
   }
 
   if (event.ctrlKey) {
     runeContextMenu.value.hide();
-    currentCharacter.value.equipment[itemSlotKey][runeSlotKey] = null;
+    currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey] = null;
   }
 };
 
 const onRightClick = (event, itemSlotKey, runeSlotKey) => {
-  let rune = currentCharacter.value.equipment[itemSlotKey][runeSlotKey];
+  let rune = currentCharacter.value.equipment[itemSlotKey].runes[runeSlotKey];
 
   if (rune) {
     rightClickedRuneData.value = { itemSlotKey, runeSlotKey };
@@ -629,15 +613,15 @@ const onRightClick = (event, itemSlotKey, runeSlotKey) => {
 };
 
 const onRuneOptionClick = (event, rune) => {
-  if (itemSlotHighlight.value && currentCharacter.value.equipment[itemSlotHighlight.value] !== null) {
+  if (itemSlotHighlight.value) {
     let runeSlotKeys = ['runeSlot1', 'runeSlot2', 'runeSlot3', 'runeSlot4'];
 
     for (let keyIndex in runeSlotKeys) {
       if (
-        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] === null ||
-        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] === undefined
+        currentCharacter.value.equipment[itemSlotHighlight.value].runes[runeSlotKeys[keyIndex]] === null ||
+        currentCharacter.value.equipment[itemSlotHighlight.value].runes[runeSlotKeys[keyIndex]] === undefined
       ) {
-        currentCharacter.value.equipment[itemSlotHighlight.value][runeSlotKeys[keyIndex]] = {
+        currentCharacter.value.equipment[itemSlotHighlight.value].runes[runeSlotKeys[keyIndex]] = {
           rune,
           color: rune.shardsParameters.color,
           level: runeLevel.value,
@@ -671,7 +655,7 @@ const onDrop = (event, itemSlotKey, targetSlotKey) => {
     if (type === 'rune' && targetSlotKey.includes('rune')) {
       let rune = JSON.parse(event.dataTransfer.getData('rune'));
       let level = event.dataTransfer.getData('level');
-      currentCharacter.value.equipment[itemSlotKey][targetSlotKey] = {
+      currentCharacter.value.equipment[itemSlotKey].runes[targetSlotKey] = {
         rune,
         color: rune.shardsParameters.color,
         level: level || runeLevel.value,
@@ -687,7 +671,7 @@ const onDrop = (event, itemSlotKey, targetSlotKey) => {
           currentCharacter.value.relicSubSlot = sublimation;
         }
       } else {
-        currentCharacter.value.equipment[itemSlotKey].subSlot = sublimation;
+        currentCharacter.value.equipment[itemSlotKey].sub = sublimation;
       }
     }
   } catch (error) {
@@ -698,12 +682,10 @@ const onDrop = (event, itemSlotKey, targetSlotKey) => {
 const onRemoveAll = () => {
   let runeSlotKeys = ['runeSlot1', 'runeSlot2', 'runeSlot3', 'runeSlot4'];
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-    if (currentCharacter.value.equipment[slotKey]) {
-      runeSlotKeys.forEach((runeSlotKey) => {
-        currentCharacter.value.equipment[slotKey][runeSlotKey] = undefined;
-      });
-      currentCharacter.value.equipment[slotKey].subSlot = null;
-    }
+    runeSlotKeys.forEach((runeSlotKey) => {
+      currentCharacter.value.equipment[slotKey].runes[runeSlotKey] = undefined;
+    });
+    currentCharacter.value.equipment[slotKey].sub = null;
   });
 };
 
@@ -717,7 +699,7 @@ const onRemoveSublimation = (itemSlotKey) => {
   } else if (itemSlotKey === 'relicSubSlot') {
     currentCharacter.value.relicSubSlot = null;
   } else {
-    currentCharacter.value.equipment[itemSlotKey].subSlot = null;
+    currentCharacter.value.equipment[itemSlotKey].sub = null;
   }
 };
 

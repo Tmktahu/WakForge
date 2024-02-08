@@ -1,7 +1,3 @@
-import { watch } from 'vue';
-import { debounce } from 'lodash';
-import { CLASS_CONSTANTS } from '@/models/useConstants';
-
 import stateDate from '@/models/state_data.json';
 
 export const useStates = () => {
@@ -17,7 +13,7 @@ export const useStates = () => {
 
     // items
     Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-      let item = currentCharacter.value.equipment[slotKey];
+      let item = currentCharacter.value.equipment[slotKey].item;
 
       // item effects
       if (item && item.equipEffects) {
@@ -40,12 +36,12 @@ export const useStates = () => {
       }
 
       // sublimations
-      if (item && item.subSlot && item.subSlot.equipEffects) {
-        for (let effectIndex in item.subSlot.equipEffects) {
-          if (item.subSlot.equipEffects[effectIndex].id === 304) {
-            let stateId = item.subSlot.equipEffects[effectIndex].values[0];
+      if (item && item.sub && item.sub.equipEffects) {
+        for (let effectIndex in item.sub.equipEffects) {
+          if (item.sub.equipEffects[effectIndex].id === 304) {
+            let stateId = item.sub.equipEffects[effectIndex].values[0];
             let state = getStateById(stateId);
-            let numLevels = item.subSlot.equipEffects[effectIndex].values[2];
+            let numLevels = item.sub.equipEffects[effectIndex].values[2];
 
             if (states[stateId] === undefined) {
               states[stateId] = {

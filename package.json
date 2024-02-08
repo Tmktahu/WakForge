@@ -1,6 +1,6 @@
 {
   "name": "wakfu-wizard",
-  "version": "2.4.2",
+  "version": "2.5",
   "private": true,
   "scripts": {
     "serve": "vite",
@@ -20,6 +20,7 @@
     "@codemirror/view": "^6.21.4",
     "@mikeshardmind/base2048": "^1.0.1",
     "@msgpack/msgpack": "^3.0.0-beta2",
+    "@vitest/web-worker": "^1.2.2",
     "buffer": "^6.0.3",
     "codemirror": "^6.0.1",
     "esbuild-plugin-polyfill-node": "^0.3.0",

@@ -455,6 +455,13 @@
     loupe "^2.3.6"
     pretty-format "^29.5.0"
 
+"@vitest/web-worker@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@vitest/web-worker/-/web-worker-1.2.2.tgz#b9d20e5a30e99bc6608a94088a3bb78fa00a84a4"
+  integrity sha512-nDHsEE8s+e32PPKJOP+HR/X658ja+BZ1dC9y2jfX8+qiuuN/HSc6KiWrnBHZaLEuKMS0XAEjaIWsbzo0oneSsw==
+  dependencies:
+    debug "^4.3.4"
+
 "@vue/compiler-core@3.3.8":
   version "3.3.8"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.3.8.tgz#301bb60d0245265a88ed5b30e200fbf223acb313"
