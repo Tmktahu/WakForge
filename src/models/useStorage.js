@@ -76,7 +76,7 @@ export function useStorage() {
       }, 100)
     );
 
-    return { storageData: data, errors };
+    return { masterData, errors };
   };
 
   const readFromLocalStorage = () => {
