@@ -227,14 +227,14 @@ export const fr = {
       combinedApMpWarning: "Vous demandez une somme AP+MP qui n'est pas possible à votre niveau.",
       showAllItems: 'Montrer tous les Items',
       displayTotals: 'Afficher Totaux',
-      itemSources: 'Item Sources', // NEEDS TRANSLATION
-      itemSourcesInfo: 'These let you adjust what item sources you want to consider.', // NEEDS TRANSLATION
-      archmonsters: 'ArchMonsters', // NEEDS TRANSLATION
-      hordes: 'Hordes', // NEEDS TRANSLATION
-      battlefields: 'Battlefields', // NEEDS TRANSLATION
-      ultimateBosses: 'Ultimate Bosses', // NEEDS TRANSLATION
-      excludedItems: 'Excluded Items', // NEEDS TRANSLATION
-      excludedItemsInfo: 'These items are excluded from the possible set of results.', // NEEDS TRANSLATION
+      itemSources: ' Sources des Item',
+      itemSourcesInfo: "Cela vous permet de choisir de quelles sources les items proviennent.", 
+      archmonsters: 'Arch-Monstres', 
+      hordes: 'Hordes', 
+      battlefields: 'Champs de Batailles',
+      ultimateBosses: 'Bosses Ultimes', 
+      excludedItems: 'Items Exclus',
+      excludedItemsInfo: 'Ces items sont exclus des possibles résultats.', 
     },
 
     runesAndSubsContent: {
@@ -421,7 +421,7 @@ export const fr = {
     totalResistance: 'Résistance Total',
     yes: 'Oui',
     no: 'Non',
-    excludeItem: 'Exclude Item', // NEEDS TRANSLATION
-    allowItem: 'Allow Item', // NEEDS TRANSLATION
+    excludeItem: "Exclure l'Item",
+    allowItem: "Autoriser l'Item",
   },
 };
