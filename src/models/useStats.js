@@ -389,17 +389,14 @@ export const useStats = (currentCharacter) => {
     let contribution = 0;
 
     Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-      // if the item slot has an item assigned, we're good to go
-      if (currentCharacter.value.equipment[slotKey].item !== null) {
-        // grab the item
-        let item = currentCharacter.value.equipment[slotKey].item;
+      // grab the runes
+      let runes = currentCharacter.value.equipment[slotKey].runes;
 
-        for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
-          let possibleRune = item[`runeSlot${runeSlotIndex}`];
-          if (possibleRune && possibleRune.rune.id === targetRuneId) {
-            let value = getRuneValue(possibleRune.rune, possibleRune.level, slotKey);
-            contribution += value;
-          }
+      for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
+        let possibleRune = runes[`runeSlot${runeSlotIndex}`];
+        if (possibleRune && possibleRune.rune.id === targetRuneId) {
+          let value = getRuneValue(possibleRune.rune, possibleRune.level, slotKey);
+          contribution += value;
         }
       }
     });

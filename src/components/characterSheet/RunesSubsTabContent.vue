@@ -426,8 +426,8 @@
     <p-contextMenu ref="runeContextMenu" :model="runeContextOptions">
       <template v-slot:item="{ item, props }">
         <div v-if="item.levelSlider" class="flex flex-column px-4 py-2">
-          <div class="mb-2"> {{ $t('constants.level') }}: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level }} </div>
-          <p-slider v-model="currentCharacter.equipment[rightClickedRuneData.itemSlotKey][rightClickedRuneData.runeSlotKey].level" :min="1" :max="11" />
+          <div class="mb-2"> {{ $t('constants.level') }}: {{ currentCharacter.equipment[rightClickedRuneData.itemSlotKey].runes[rightClickedRuneData.runeSlotKey].level }} </div>
+          <p-slider v-model="currentCharacter.equipment[rightClickedRuneData.itemSlotKey].runes[rightClickedRuneData.runeSlotKey].level" :min="1" :max="11" />
         </div>
         <a v-else v-ripple class="flex align-items-center" v-bind="props.action">
           <span class="ml-2">{{ item.label }}</span>
@@ -512,7 +512,7 @@ const runeContextOptions = ref([
   {
     label: t('constants.remove'),
     command: () => {
-      currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey] = null;
+      currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey].runes[rightClickedRuneData.value.runeSlotKey] = null;
     },
   },
 ]);
@@ -530,13 +530,11 @@ const summaryEntries = computed(() => {
   let entries = {};
 
   Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-    // if the item slot has an item assigned, we're good to go
-    if (currentCharacter.value.equipment[slotKey].item !== null) {
-      // grab the item
-      let item = currentCharacter.value.equipment[slotKey].item;
-
+    // grab the item
+    let runes = currentCharacter.value.equipment[slotKey].runes;
+    if (runes) {
       for (let runeSlotIndex = 1; runeSlotIndex <= 4; runeSlotIndex++) {
-        let possibleRune = item[`runeSlot${runeSlotIndex}`];
+        let possibleRune = runes[`runeSlot${runeSlotIndex}`];
         if (possibleRune) {
           if (!entries[possibleRune.rune.id]) {
             entries[possibleRune.rune.id] = {
@@ -549,15 +547,17 @@ const summaryEntries = computed(() => {
         }
       }
 
-      if (item.sub) {
-        if (!entries[item.sub.equipEffects[0].values[0]]) {
-          entries[item.sub.equipEffects[0].values[0]] = {
+      let sub = currentCharacter.value.equipment[slotKey].sub;
+
+      if (sub) {
+        if (!entries[sub.equipEffects[0].values[0]]) {
+          entries[sub.equipEffects[0].values[0]] = {
             totalValue: 0,
-            sublimation: item.sub,
+            sublimation: sub,
           };
         }
 
-        entries[item.sub.equipEffects[0].values[0]].totalValue += item.sub.equipEffects[0].values[2];
+        entries[sub.equipEffects[0].values[0]].totalValue += sub.equipEffects[0].values[2];
       }
     }
   });
