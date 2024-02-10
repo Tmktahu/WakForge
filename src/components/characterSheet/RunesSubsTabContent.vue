@@ -500,11 +500,11 @@ const runeContextOptions = ref([
     label: t('characterSheet.runesAndSubsContent.toggleWhite'),
     command: () => {
       if (rightClickedRuneData.value) {
-        if (currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey].color === 0) {
-          currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey].color =
-            currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey].rune.shardsParameters.color;
+        if (currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey].runes[rightClickedRuneData.value.runeSlotKey].color === 0) {
+          currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey].runes[rightClickedRuneData.value.runeSlotKey].color =
+            currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey].runes[rightClickedRuneData.value.runeSlotKey].rune.shardsParameters.color;
         } else {
-          currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey][rightClickedRuneData.value.runeSlotKey].color = 0;
+          currentCharacter.value.equipment[rightClickedRuneData.value.itemSlotKey].runes[rightClickedRuneData.value.runeSlotKey].color = 0;
         }
       }
     },
