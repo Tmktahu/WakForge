@@ -214,12 +214,12 @@ export const useItems = (character = ref(null)) => {
     let existingEpicSlotId = null;
 
     Object.keys(currentCharacter.value.equipment).forEach((slotKey) => {
-      if (item.rarity === 5 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item.rarity === 5) {
+      if (item.rarity === 5 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item?.rarity === 5) {
         hasRelicConflict = true;
         existingRelicSlotId = slotKey;
       }
 
-      if (item.rarity === 7 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item.rarity === 7) {
+      if (item.rarity === 7 && currentCharacter.value.equipment[slotKey].item !== null && currentCharacter.value.equipment[slotKey].item?.rarity === 7) {
         hasEpicConflict = true;
         existingEpicSlotId = slotKey;
       }
@@ -288,13 +288,13 @@ export const useItems = (character = ref(null)) => {
             if (hasRelicConflict) {
               // there is a relic conflict and they have opted to remove it
               currentCharacter.value.equipment[existingRelicSlotId].item = null;
-              currentCharacter.value.equipment[item.type.validSlots[0]] = item;
+              currentCharacter.value.equipment[item.type.validSlots[0]].item = item;
             }
 
             if (hasEpicConflict) {
               // there is a relic conflict and they have opted to remove it
               currentCharacter.value.equipment[existingEpicSlotId].item = null;
-              currentCharacter.value.equipment[item.type.validSlots[0]] = item;
+              currentCharacter.value.equipment[item.type.validSlots[0]].item = item;
             }
           },
         });
@@ -320,13 +320,13 @@ export const useItems = (character = ref(null)) => {
         if (hasRelicConflict) {
           // there is a relic conflict and they have opted to remove it
           currentCharacter.value.equipment[existingRelicSlotId].item = null;
-          currentCharacter.value.equipment[item.type.validSlots[0]] = item;
+          currentCharacter.value.equipment[item.type.validSlots[0]].item = item;
         }
 
         if (hasEpicConflict) {
           // there is a relic conflict and they have opted to remove it
           currentCharacter.value.equipment[existingEpicSlotId].item = null;
-          currentCharacter.value.equipment[item.type.validSlots[0]] = item;
+          currentCharacter.value.equipment[item.type.validSlots[0]].item = item;
         }
       }
     } else {
