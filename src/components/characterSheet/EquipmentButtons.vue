@@ -1,6 +1,6 @@
 <template>
   <div class="flex equipment-slots-wrapper">
-    <div v-if="withDefaultElemSelector" class="flex flex-column h-full">
+    <div v-if="withDefaultElemSelector" class="flex flex-column h-full" style="max-height: 60px">
       <div>
         <tippy>
           <div class="random-defaults-button flex align-items-center justify-content-center w-full" @click="onEditDefaults(defaultRandomMasteries, 'mastery', $event)">
@@ -8,7 +8,7 @@
           </div>
 
           <template v-slot:content>
-            <div class="simple-tooltip">Random Mastery Defaults</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.randomMasteryDefaults') }}</div>
           </template>
         </tippy>
       </div>
@@ -21,7 +21,7 @@
             <p-image v-for="type in defaultRandomResistances" :key="type" :src="`https://tmktahu.github.io/WakfuAssets/statistics/${type}_coin.png`" image-style="width: 24px" />
           </div>
           <template v-slot:content>
-            <div class="simple-tooltip">Random Resistance Defaults</div>
+            <div class="simple-tooltip">{{ $t('characterSheet.equipmentContent.randomResistanceDefaults') }}</div>
           </template>
         </tippy>
       </div>

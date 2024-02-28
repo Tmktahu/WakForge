@@ -28,7 +28,9 @@
       </div>
 
       <div v-if="randomMasteryEffect" class="random-mastery-section flex flex-column px-3">
-        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">+{{ randomMasteryEffect.values[0] }} Mastery Assignment</div>
+        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">
+          {{ $t('characterSheet.equipmentContent.masteryAssignment', { num: randomMasteryEffect.values[0] }) }}
+        </div>
         <div class="flex justify-content-center gap-2 px-3" :class="{ 'mt-3': defaultsMode }">
           <template v-for="index in randomMasteryEffect.values[2]" :key="index">
             <p-dropdown
@@ -57,7 +59,7 @@
 
               <template v-slot:option="slotProps">
                 <div class="flex align-items-center py-1 px-2">
-                  <div class="capitalize">{{ slotProps.option.label }}</div>
+                  <div class="capitalize">{{ $t(slotProps.option.label) }}</div>
                 </div>
               </template>
             </p-dropdown>
@@ -66,7 +68,9 @@
       </div>
 
       <div v-if="randomResistanceEffect" class="random-resistance-section flex flex-column px-3">
-        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">+{{ randomResistanceEffect.values[0] }} Resistance Assignment</div>
+        <div v-if="!defaultsMode" class="text-center w-full text-lg mb-2 pt-2">
+          {{ $t('characterSheet.equipmentContent.resistanceAssignment', { num: randomResistanceEffect.values[0] }) }}
+        </div>
         <div class="flex justify-content-center gap-2 px-3" :class="{ 'mt-3': defaultsMode }">
           <template v-for="index in randomResistanceEffect.values[2]" :key="index">
             <p-dropdown
@@ -104,7 +108,7 @@
       </div>
 
       <div class="flex justify-content-center mt-2">
-        <p-button class="py-2" label="Apply to all Items" @click="onApplyToAll" />
+        <p-button class="py-2" :label="$t('characterSheet.equipmentContent.applyToAllItems')" @click="onApplyToAll" />
       </div>
     </div>
   </p-dialog>
@@ -130,11 +134,11 @@ const item = ref(null);
 
 const inputModels = ref({});
 const elementOptions = [
-  { value: 'empty', label: 'None', icon: 'empty_coin' },
-  { value: 'water', label: 'Water', icon: 'water_coin' },
-  { value: 'earth', label: 'Earth', icon: 'earth_coin' },
-  { value: 'air', label: 'Air', icon: 'air_coin' },
-  { value: 'fire', label: 'Fire', icon: 'fire_coin' },
+  { value: 'empty', label: 'equipmentContent.itemFilters.none', icon: 'empty_coin' },
+  { value: 'water', label: 'characterSheet.statsDisplay.water', icon: 'water_coin' },
+  { value: 'earth', label: 'characterSheet.statsDisplay.earth', icon: 'earth_coin' },
+  { value: 'air', label: 'characterSheet.statsDisplay.air', icon: 'air_coin' },
+  { value: 'fire', label: 'characterSheet.statsDisplay.fire', icon: 'fire_coin' },
 ];
 
 const randomMasteryEffect = computed(() => {

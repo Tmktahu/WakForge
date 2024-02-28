@@ -283,8 +283,8 @@ export const EFFECT_TYPE_DATA = {
   harvestingQuantity: { id: 'harvestingQuantity', rawIds: [2001], text: 'constants.harvestingQuantity' }, // TODO figure this one out
 
   // ones below this point were picked out manually
-  armorGiven: { id: 'armorGiven', rawIds: [10000], text: 'constants.percentArmorGiven' },
-  armorReceived: { id: 'armorReceived', rawIds: [10001, 39, 40], text: 'constants.percentArmorReceived' },
+  armorGiven: { id: 'armorGiven', rawIds: [10000, 39], text: 'constants.percentArmorGiven' },
+  armorReceived: { id: 'armorReceived', rawIds: [10001, 40], text: 'constants.percentArmorReceived' },
   healsPerformed: { id: 'healsPerformed', rawIds: [10002], text: 'constants.percentHealsPerformed' },
   indirectDamageInflicted: { id: 'indirectDamageInflicted', rawIds: [10003], text: 'constants.percentIndirectDamageInflicted' },
   dodgeOverride: { id: 'dodgeOverride', rawIds: [10004], text: 'constants.dodgeOverride' },
