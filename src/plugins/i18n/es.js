@@ -162,6 +162,11 @@ export const es = {
       relicAndSecondWeaponWarning: 'Ya tienes un arma a dos manos y un objeto Reliquia equipados. Ambos serán removidos si haces esto. ¿Estás seguro?',
       epicAndTwoHandedWarning: 'Tienes un objeto en tu segunda ranura de arma y un objeto Épico ya equipado. Ambos serán removidos si haces esto. ¿Estás seguro?',
       epicAndSecondWeaponWarning: 'Ya tienes equipados un arma a dos manos y un objeto Épico ya equipiado. Ambos serán removidos si haces esto. ¿Estás seguro?',
+      randomResistanceDefaults: 'Random Resistance Defaults', // NEEDS TRANSLATION
+      randomMasteryDefaults: 'Random Mastery Defaults', // NEEDS TRANSLATION
+      masteryAssignment: '+{num} Mastery Assignment', // NEEDS TRANSLATION
+      resistanceAssignment: '+{num} Resistance Assignment', // NEEDS TRANSLATION
+      applyToAllItems: 'Apply to all Items', // NEEDS TRANSLATION
 
       itemFilters: {
         searchItems: 'Buscar Objetos',
