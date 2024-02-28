@@ -163,6 +163,11 @@ export const en = {
       relicAndSecondWeaponWarning: 'You have two handed weapon and a Relic item already equipped. Both will be removed if you do this. Are you sure?',
       epicAndTwoHandedWarning: 'You have an item in your second weapon slot and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
       epicAndSecondWeaponWarning: 'You have two handed weapon and an Epic item already equipped. Both will be removed if you do this. Are you sure?',
+      randomResistanceDefaults: 'Random Resistance Defaults',
+      randomMasteryDefaults: 'Random Mastery Defaults',
+      masteryAssignment: '+{num} Mastery Assignment',
+      resistanceAssignment: '+{num} Resistance Assignment',
+      applyToAllItems: 'Apply to all Items',
 
       itemFilters: {
         searchItems: 'Search Items',

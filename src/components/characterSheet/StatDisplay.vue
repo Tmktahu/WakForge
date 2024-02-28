@@ -337,28 +337,28 @@
 
       <div class="stat-block pr-2 ml-1">
         <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/water_coin.png" />
-        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Water' }) }}</span>
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: $t('characterSheet.statsDisplay.water') }) }}</span>
         <div class="flex-grow-1" />
         <span>{{ calcEffectiveHp('water') }}</span>
       </div>
 
       <div class="stat-block pr-2 ml-1">
         <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/air_coin.png" />
-        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Air' }) }}</span>
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: $t('characterSheet.statsDisplay.air') }) }}</span>
         <div class="flex-grow-1" />
         <span>{{ calcEffectiveHp('air') }}</span>
       </div>
 
       <div class="stat-block pr-2 ml-1">
         <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/earth_coin.png" />
-        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Earth' }) }}</span>
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: $t('characterSheet.statsDisplay.earth') }) }}</span>
         <div class="flex-grow-1" />
         <span>{{ calcEffectiveHp('earth') }}</span>
       </div>
 
       <div class="stat-block pr-2 ml-1">
         <p-image class="stat-icon element" src="https://tmktahu.github.io/WakfuAssets/statistics/fire_coin.png" />
-        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: 'Fire' }) }}</span>
+        <span class="ml-1">{{ $t('characterSheet.statsDisplay.effectiveHpAgainst', { type: $t('characterSheet.statsDisplay.fire') }) }}</span>
         <div class="flex-grow-1" />
         <span>{{ calcEffectiveHp('fire') }}</span>
       </div>
