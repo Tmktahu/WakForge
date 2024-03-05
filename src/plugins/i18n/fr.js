@@ -163,11 +163,11 @@ export const fr = {
       epicAndTwoHandedWarning:
         "Vous avez un Item dans le slot d'arme secondaire et un Item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
       epicAndSecondWeaponWarning: 'Vous avez une arme à deux main et un Item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
-      randomResistanceDefaults: 'Random Resistance Defaults', // NEEDS TRANSLATION
-      randomMasteryDefaults: 'Random Mastery Defaults', // NEEDS TRANSLATION
-      masteryAssignment: '+{num} Mastery Assignment', // NEEDS TRANSLATION
-      resistanceAssignment: '+{num} Resistance Assignment', // NEEDS TRANSLATION
-      applyToAllItems: 'Apply to all Items', // NEEDS TRANSLATION
+      randomResistanceDefaults: 'Résistance aléatoires par défaut', 
+      randomMasteryDefaults: 'Maitrises aléatoires par défaut', 
+      masteryAssignment: '+{num} Maitrises assignées', 
+      resistanceAssignment: '+{num} Résistance assignées', 
+      applyToAllItems: 'Appliquer à tout les items',
 
       itemFilters: {
         searchItems: 'Recherche Items',
