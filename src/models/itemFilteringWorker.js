@@ -154,7 +154,14 @@ const matchesEffectFilters = (item, params) => {
     });
 
     if (hadEffect === false) {
-      validItem = false;
+      // if the item did not have the effect in question, then we assume its value is 0;
+      if (filter.comparator.id === 'equalTo') {
+        validItem = filter.value === 0;
+      } else if (filter.comparator.id === 'greaterThanOrEqualTo') {
+        validItem = filter.value <= 0;
+      } else if (filter.comparator.id === 'lessThanOrEqualTo') {
+        validItem = filter.value >= 0;
+      }
     }
 
     if (validItem === false) {

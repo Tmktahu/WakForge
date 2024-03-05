@@ -88,7 +88,7 @@ export const useStats = (currentCharacter) => {
         (currentCharacter.value.characteristics.major.wakfuPoints * 2 +
           calcItemContribution(EFFECT_TYPE_DATA.wakfuPoints) +
           calcPassivesContribution(EFFECT_TYPE_DATA.wakfuPoints)) *
-          150;
+          75;
 
       // Elemental masteries
       currentCharacter.value.masteries.water = calcElemMasteryBonus() + calcItemContribution(EFFECT_TYPE_DATA.waterMastery);
