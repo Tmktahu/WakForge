@@ -331,7 +331,7 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]">
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left">
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
@@ -386,7 +386,7 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]">
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left">
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"

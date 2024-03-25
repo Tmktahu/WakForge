@@ -99,7 +99,7 @@
 
               <template v-slot:option="slotProps">
                 <div class="flex align-items-center py-1 px-2">
-                  <div class="capitalize">{{ slotProps.option.label }}</div>
+                  <div class="capitalize">{{ $t(slotProps.option.label) }}</div>
                 </div>
               </template>
             </p-dropdown>
@@ -134,7 +134,7 @@ const item = ref(null);
 
 const inputModels = ref({});
 const elementOptions = [
-  { value: 'empty', label: 'equipmentContent.itemFilters.none', icon: 'empty_coin' },
+  { value: 'empty', label: 'characterSheet.equipmentContent.itemFilters.none', icon: 'empty_coin' },
   { value: 'water', label: 'characterSheet.statsDisplay.water', icon: 'water_coin' },
   { value: 'earth', label: 'characterSheet.statsDisplay.earth', icon: 'earth_coin' },
   { value: 'air', label: 'characterSheet.statsDisplay.air', icon: 'air_coin' },
