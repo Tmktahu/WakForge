@@ -4,6 +4,11 @@ import { EFFECT_TYPE_DATA, ITEM_RARITY_DATA, ITEM_TYPE_FILTERS, ITEM_SLOT_DATA }
 import { useI18n } from 'vue-i18n';
 import deepUnref from '@/plugins/deepUnref.js';
 
+const cleanedItemData = itemData.filter((item) => {
+  let isCostume = item.type.id === 647;
+  return !isCostume;
+});
+
 // eslint-disable-next-line import/no-unresolved
 import workerThing from '@/models/itemFilteringWorker?worker&url';
 let worker = new Worker(import.meta.env.MODE === 'development' ? '../src/models/itemFilteringWorker.js' : workerThing);
@@ -127,7 +132,7 @@ export const useItems = (character = ref(null)) => {
   const performSortAndFilter = () => {
     let params = prepareInputParams();
     let unreffedParams = deepUnref(params);
-    worker.postMessage({ params: unreffedParams, itemData, EFFECT_TYPE_DATA });
+    worker.postMessage({ params: unreffedParams, itemData: cleanedItemData, EFFECT_TYPE_DATA });
   };
 
   const prepareInputParams = () => {
@@ -346,23 +351,23 @@ export const useItems = (character = ref(null)) => {
   };
 
   const getNumTotalItems = () => {
-    return itemData.length;
+    return cleanedItemData.length;
   };
 
   const getRunes = () => {
-    return itemData.filter((item) => {
+    return cleanedItemData.filter((item) => {
       return item.type.id === 811 && item.id !== 27095 && item.id !== 27096;
     });
   };
 
   const getSublimations = () => {
-    return itemData.filter((item) => {
+    return cleanedItemData.filter((item) => {
       return item.type.id === 812 && item.id !== 27282; // we filter out an unused "Healing" sub scroll here
     });
   };
 
   const getItemById = (itemId) => {
-    let potentialitem = itemData.find((item) => {
+    let potentialitem = cleanedItemData.find((item) => {
       return item.id === itemId;
     });
     return potentialitem || null;
