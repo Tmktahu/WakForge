@@ -3,77 +3,6 @@
     <div class="mt-3 ml-4" style="font-size: 42px">{{ $t('dataPage.title') }}</div>
 
     <div class="flex gap-2 w-full mt-3 h-full" style="overflow: hidden">
-      <!-- <div class="flex flex-column flex-grow-1 ml-3 pb-2">
-        <div class="mb-2">{{ $t('dataPage.importDescription') }}</div>
-        <div class="flex">
-          <div class="flex-grow-1">
-            <p-fileUpload accept="application/json" custom-upload auto @uploader="onLoadJSON">
-              <template v-slot:header="{ chooseCallback, files }">
-                <div class="w-full">
-                  <p-button class="select-file-button" :label="$t('dataPage.selectJson')" :disabled="files?.length !== 0" @click="chooseCallback" />
-                </div>
-              </template>
-
-              <template v-slot:empty>
-                <div class="flex align-items-center justify-content-center flex-column py-3">
-                  <i class="pi pi-cloud-upload border-2 border-circle p-1" />
-                  <div class="mt-2">
-                    {{ $t('dataPage.dragOrDrop') }}
-                  </div>
-                </div>
-              </template>
-            </p-fileUpload>
-          </div>
-
-          <div class="imported-data-status flex-grow-1 px-2 py-2 ml-2" style="max-width: 50%">
-            <div v-if="importedData === undefined">{{ $t('dataPage.dataNotRecognized') }}</div>
-            <div v-else-if="importedData === null">{{ $t('dataPage.beforeImport') }}</div>
-            <div v-else-if="needsMigration(importedData)" class="flex flex-column h-full needs-migration">
-              <span>{{ $t('dataPage.needsMigration') }}</span>
-              <div class="flex-grow-1" />
-              <p-button :label="$t('dataPage.migrateData')" @click="onMigrateData" />
-            </div>
-            <div v-else class="flex flex-column gap-2 valid-data">
-              <span>{{ $t('dataPage.goodToGo') }}</span>
-              <span>{{ $t('dataPage.dataSize') }}: {{ getImportedDataSize() }}</span>
-              <span>{{ $t('dataPage.numberOfCharacters') }}: {{ importedData.characters.length }}</span>
-            </div>
-          </div>
-        </div>
-
-        <div v-if="importedData?.characters?.length" class="character-list pr-2 pb-2">
-          <template v-for="character in importedData.characters" :key="character.id">
-            <div
-              class="character-entry py-2 mt-2"
-              :class="{ selected: selectedCharacterIDs.includes(character.id) }"
-              @click="toggleCharacterSelection(character.id)"
-            >
-              <div class="ml-3">
-                <p-image
-                  v-if="character.class"
-                  class="class-image"
-                  :src="`https://tmktahu.github.io/WakfuAssets/classes/${character.class}.png`"
-                  image-style="width: 40px"
-                />
-                <p-image v-else class="class-image" :src="addCompanionIconURL" image-style="width: 40px" />
-              </div>
-              <p-divider class="mx-2" layout="vertical" />
-              <div class="flex-grow-1 truncate" style="max-width: 300px">{{ character.name }}</div>
-              <p-divider class="mx-2" layout="vertical" />
-              <div class="text-center" style="min-width: 60px">Lvl {{ character.level }}</div>
-              <p-divider class="mx-2" layout="vertical" />
-              <div class="flex-grow-1" style="max-width: 460px">
-                <EquipmentButtons :character="character" read-only />
-              </div>
-            </div>
-          </template>
-        </div>
-        <div v-else class="mt-3 ml-2">{{ $t('dataPage.noCharactersFound') }}</div>
-
-        <div class="flex-grow-1" />
-        <p-button :label="$t('dataPage.importCharacters')" @click="onImportCharacters" />
-      </div> -->
-
       <div class="flex flex-column flex-grow-1 px-4">
         <div class="mr-2">
           <div class="mb-2">
@@ -92,12 +21,19 @@
             {{ $t('dataPage.warningMessage') }}
           </div>
           <div class="flex">
-            <p-button
-              class="local-storage-button mr-2"
-              :disabled="invalidJson"
-              :label="invalidJson ? $t('dataPage.invalidJSON') : $t('dataPage.saveToLocalstorage')"
-              @click="onSaveEditorToLocalStorage"
-            />
+            <tippy>
+              <p-button
+                class="local-storage-button mr-2"
+                :disabled="invalidJson || !downloadedData"
+                :label="invalidJson ? $t('dataPage.invalidJSON') : $t('dataPage.saveToLocalstorage')"
+                @click="onSaveEditorToLocalStorage"
+              />
+
+              <template v-slot:content>
+                <div v-if="!downloadedData" class="simple-tooltip">{{ $t('oldDataDialog.mustDownloadFirst') }}</div>
+              </template>
+            </tippy>
+
             <p-button class="local-storage-button" :label="$t('app.downloadData')" @click="onDownloadData" />
             <div class="flex-grow-1" />
             <tippy>
@@ -130,25 +66,17 @@ import { basicSetup } from 'codemirror';
 import { defaultKeymap } from '@codemirror/commands';
 import { json } from '@codemirror/lang-json';
 
-// import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
-// import addCompanionIconURL from '@/assets/images/ui/addCompanion.png';
-
+import { useToast } from 'primevue/usetoast';
+const toast = useToast();
 const { t } = useI18n();
 
 const jsonEditor = ref(null);
 const editedJson = ref(null);
-const importedData = ref(null);
 const invalidJson = ref(false);
 const downloadedData = ref(false);
-const selectedCharacterIDs = ref([]);
 let editorView = null;
 
-const { needsMigration, readFromJSON, saveToLocalStorage, migrateData, mergeData } = useStorage();
-
-// const onLoadJSON = async ({ files }) => {
-//   let data = await readFromJSON(files[0]);
-//   importedData.value = data;
-// };
+const { saveJsonToLocalStorage } = useStorage();
 
 const getLocalStorageSize = () => {
   let storageEntry = window.localStorage.getItem(LOCALSTORAGE_KEY);
@@ -156,15 +84,6 @@ const getLocalStorageSize = () => {
     return 0;
   }
   let length = (storageEntry.length + LOCALSTORAGE_KEY.length) * 2;
-  return formatSize(length);
-};
-
-const getImportedDataSize = () => {
-  if (importedData.value === null) {
-    return 0;
-  }
-  let stringifiedData = JSON.stringify(importedData.value);
-  let length = (stringifiedData.length + LOCALSTORAGE_KEY.length) * 2;
   return formatSize(length);
 };
 
@@ -215,7 +134,9 @@ const onJsonEditorChange = () => {
 
 const onSaveEditorToLocalStorage = () => {
   let json = JSON.parse(editedJson.value);
-  saveToLocalStorage(json);
+  saveJsonToLocalStorage(json);
+
+  toast.add({ severity: 'info', summary: 'Data has been saved. You will need to refresh to see the changes.', life: 3000 });
 };
 
 const onDownloadData = () => {
@@ -237,31 +158,6 @@ const onDeleteData = () => {
   editorView.dispatch({
     changes: { from: 0, to: editorView.state.doc.length, insert: t('dataPage.noDataFound') },
   });
-};
-
-const onMigrateData = () => {
-  let migratedData = migrateData(importedData.value);
-  importedData.value = migratedData;
-};
-
-const onImportCharacters = () => {
-  let newData = {
-    characters: importedData.value.characters.filter((character) => {
-      return selectedCharacterIDs.value.includes(character.id);
-    }),
-  };
-
-  mergeData(newData);
-  importedData.value = null;
-};
-
-const toggleCharacterSelection = (targetId) => {
-  if (selectedCharacterIDs.value.includes(targetId)) {
-    let targetIndex = selectedCharacterIDs.value.indexOf(targetId);
-    selectedCharacterIDs.value.splice(targetId, targetIndex);
-  } else {
-    selectedCharacterIDs.value.push(targetId);
-  }
 };
 </script>
 
