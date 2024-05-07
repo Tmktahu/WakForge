@@ -1,7 +1,7 @@
 <template>
   <tippy duration="0" max-width="fit-content" :interactive="stickyCounter === 100 || !sticky" :interactive-border="sticky ? 2000 : 20" v-bind="$attrs" @state="onStateChange">
     <slot name="trigger">
-      <div class="inline-tooltip-trigger" style="width: fit-content">{{ $t(`states.${stateData?.name}`) }}</div>
+      <div class="tooltip-trigger" :class="{'inline-tooltip-trigger': inline}" style="width: fit-content">{{ $t(`states.${stateData?.name}`) }}</div>
     </slot>
 
     <template v-slot:content>
@@ -68,6 +68,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  inline: {
+    type: Boolean,
+    default: false,
+  }
 });
 
 const { t } = useI18n();
@@ -130,12 +134,15 @@ const getLineText = (line) => {
   background-color: var(--primary-30);
 }
 
-.inline-tooltip-trigger {
+.tooltip-trigger {
   color: var(--primary-50);
-  margin-left: 4px;
-  margin-right: 4px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.inline-tooltip-trigger {
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .stuck {

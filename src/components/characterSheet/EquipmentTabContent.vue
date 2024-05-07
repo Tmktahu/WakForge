@@ -55,33 +55,7 @@
         <template v-slot:item="{ item: itemBunch }">
           <div v-if="structuredItemList[0].length > 0" class="flex">
             <template v-for="(item, index) of itemBunch" :key="index">
-              <div v-if="displayStatsInList && item" class="item-card with-stats">
-                <div class="flex px-2 pt-2">
-                  <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
-                  <div class="flex flex-column ml-1">
-                    <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
-                    <div class="flex">
-                      <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
-                      <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
-                      <div v-if="LEVELABLE_ITEMS.includes(item.type.id)"> {{ $t('characterSheet.equipmentContent.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }} </div>
-                      <div v-else>Lvl: {{ item.level }}</div>
-                      <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
-                        {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex-grow-1" />
-
-                  <div class="flex flex-column gap-1">
-                    <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
-                    <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
-                  </div>
-                </div>
-
-                <ItemStatList card-mode :item="item" :with-totals="displayTotalValues" :with-comparisons="withComparisons" />
-              </div>
-
-              <ItemListCard v-else :item="item" :with-totals="displayTotalValues" :with-comparisons="withComparisons" />
+              <ItemListCard :item="item" :with-totals="displayTotalValues" :with-comparisons="withComparisons" :with-stats="displayStatsInList" />
             </template>
           </div>
           <div v-else> {{ $t('characterSheet.equipmentContent.noItemsFound') }} </div>
@@ -112,7 +86,6 @@ import { useEncyclopedia } from '@/models/useEncyclopedia';
 
 import EquipmentButtons from '@/components/characterSheet/EquipmentButtons.vue';
 import ItemFilters from '@/components/characterSheet/ItemFilters.vue';
-import ItemStatList from '@/components/characterSheet/ItemStatList.vue';
 import ItemListCard from '@/components/characterSheet/ItemListCard.vue';
 import OptionCheckbox from '@/components/itemSolver/OptionCheckbox.vue';
 
@@ -127,7 +100,6 @@ const itemFilters = inject('itemFilters');
 const itemResultsWrapper = ref(null);
 const numItemsPerRow = ref(4);
 const { getNumTotalItems } = useItems();
-let documentVar = document;
 
 const { getItemEncyclopediaUrl } = useEncyclopedia();
 
@@ -333,13 +305,7 @@ defineExpose({
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 8px;
-    background: var(--background-20);
     overflow: hidden;
-
-    &.with-stats {
-      height: 215px;
-      width: 310px;
-    }
   }
 
   .equip-button {

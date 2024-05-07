@@ -264,7 +264,14 @@ const gotoBuild = (event, id) => {
 };
 
 const getBuildById = (buildId) => {
-  return masterData.characters.find((character) => character.id === buildId);
+  let potentialCharacter = masterData.characters.find((character) => character.id === buildId);
+
+  if(potentialCharacter) {
+    return potentialCharacter;
+  } else {
+    // We are trying to pull character data that does not exist.
+    return {};
+  }
 };
 
 const onBuildDragStart = (event, buildId) => {

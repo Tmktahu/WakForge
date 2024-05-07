@@ -85,14 +85,14 @@ export const ITEM_SLOT_SORT_ORDER = Object.keys(ITEM_SLOT_DATA)
   .map((item) => item.id);
 
 export const ITEM_RARITY_DATA = [
-  { id: 0, name: 'constants.common' },
-  { id: 1, name: 'constants.unusual' },
-  { id: 2, name: 'constants.rare' },
-  { id: 3, name: 'constants.mythical' },
-  { id: 4, name: 'constants.legendary' },
-  { id: 5, name: 'constants.relic' },
-  { id: 6, name: 'constants.souvenir' },
-  { id: 7, name: 'constants.epic' },
+  { id: 0, name: 'constants.common', color: '#ABABAB' },
+  { id: 1, name: 'constants.unusual', color: '#FFFFFF' },
+  { id: 2, name: 'constants.rare', color: '#00F488' },
+  { id: 3, name: 'constants.mythical', color: '#FF902D' },
+  { id: 4, name: 'constants.legendary', color: '#FFDF6A' },
+  { id: 5, name: 'constants.relic', color: '#FF73DF' },
+  { id: 6, name: 'constants.souvenir', color: '#8DC6E3' },
+  { id: 7, name: 'constants.epic', color: '#FF83B8' },
 ];
 
 export const LEVELABLE_ITEMS = [582, 611];

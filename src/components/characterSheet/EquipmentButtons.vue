@@ -33,7 +33,7 @@
           <div v-if="items[data.id] && items[data.id].item">
             <!-- <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${items[data.id].item?.imageId}.png`" image-style="width: 40px" /> -->
 
-            <MultiTooltip placement="bottom" duration="0">
+            <MultiTooltip placement="bottom" duration="0" inline>
               <template v-slot:trigger>
                 <div class="equipment-button" :class="{ 'has-item': items[data.id].item !== null }">
                   <div class="flex align-items-center justify-content-center w-full" style="position: relative">
@@ -109,7 +109,7 @@
           </div>
         </p-button>
 
-        <MultiTooltip v-else placement="bottom" duration="0">
+        <MultiTooltip v-else placement="bottom" duration="0" inline>
           <template v-slot:trigger>
             <div class="equipment-button" :class="{ 'has-item': items[data.id].item !== null }">
               <div class="flex align-items-center justify-content-center w-full" style="position: relative">
