@@ -237,6 +237,16 @@ export function useStorage() {
           passiveSlot6: null,
         };
       }
+
+      Object.keys(character.equipment)
+        .sort()
+        .forEach((key, index) => {
+          if(character.equipment[key] === null) {
+            character.equipment[key] = { item: null, runes: {}, sub: null }
+          } else if(character.equipment[key].item === undefined) {
+            character.equipment[key] = { item: character.equipment[key], runes: {}, sub: null }
+          }
+        })
     });
 
     // this converts old stored character data to new build code storage
