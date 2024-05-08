@@ -75,7 +75,7 @@
               </div>
             </template>
 
-            <MultiTooltip v-if="currentCharacter.equipment[slotKey].sub" :append-to="() => documentVar.body" :offset="[0, -2]" style="height: 100%">
+            <MultiTooltip v-if="currentCharacter.equipment[slotKey].sub" :append-to="() => documentVar.body" :offset="[0, -2]" style="height: 100%" inline>
               <template v-slot:trigger>
                 <div
                   class="sublimation-drop-zone ml-2"
@@ -243,6 +243,7 @@
                     :offset="[0, -2]"
                     :state-id="`${summaryEntries[runeOrSubId].sublimation.equipEffects[0].values[0]}`"
                     :current-level="summaryEntries[runeOrSubId].totalValue"
+                    inline
                   />
                 </div>
               </div>
@@ -288,7 +289,7 @@
               @click="onRuneOptionClick($event, rune)"
             >
               <p-image class="rune-image" :src="getEmptyRuneImage(rune.shardsParameters.color)" image-style="width: 20px" />
-              <div class="ml-2">+{{ getRuneValue(rune, runeLevel) }} {{ $t(`items.${rune.id}`) }}</div>
+              <div class="ml-2 py-1">+{{ getRuneValue(rune, runeLevel) }} {{ $t(`items.${rune.id}`) }}</div>
               <div class="flex-grow-1 mr-2" />
               <div v-for="slotId in rune.shardsParameters.doubleBonusPosition" :key="slotId" class="ml-1">
                 <p-image
@@ -331,13 +332,14 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left">
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left" inline>
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
                 :class="{ highlighted: canSublimationFit(currentCharacter.equipment[itemSlotHighlight], sublimation) }"
                 draggable="true"
                 @dragstart="onDragStart($event, 'sublimation', sublimation)"
+                @click="onSublimationOptionClick($event, sublimation)"
               >
                 <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${sublimation.imageId}.png`" image-style="width: 20px" class="flex" />
                 <div v-if="sublimation.sublimationParameters?.slotColorPattern?.length" class="rune-requirements flex gap-1 mx-1 px-1 py-1">
@@ -386,7 +388,7 @@
         style="width: 100%; height: 100%"
       >
         <template v-slot:item="{ item: sublimation }">
-          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left">
+          <MultiTooltip :append-to="() => documentVar.body" :offset="[0, -2]" placement="left" inline>
             <template v-slot:trigger>
               <div
                 class="sublimation-option py-1 px-2 mb-1"
@@ -632,6 +634,12 @@ const onRuneOptionClick = (event, rune) => {
   }
 };
 
+const onSublimationOptionClick = (event, sublimation) => {
+  if (itemSlotHighlight.value) {
+    currentCharacter.value.equipment[itemSlotHighlight.value].sub = sublimation;
+  }
+}
+
 const onDragStart = (event, type, object, level) => {
   event.dataTransfer.dropEffect = 'move';
   event.dataTransfer.effectAllowed = 'move';
@@ -777,6 +785,7 @@ defineExpose({
   border: 1px solid var(--highlight-50);
   width: fit-content;
   border-radius: 8px;
+  min-height: 42px;
   height: 42px;
   overflow: hidden;
 
@@ -937,7 +946,7 @@ defineExpose({
 :deep(.rune-draggable) {
   display: flex;
   align-items: center;
-  height: 30px;
+  height: auto;
   background-color: var(--background-20);
   cursor: grab;
   font-size: 0.9rem;
@@ -1021,6 +1030,10 @@ defineExpose({
   height: fit-content;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.rune-options {
+  overflow-y: auto;
 }
 
 .sublimation-options-wrapper {

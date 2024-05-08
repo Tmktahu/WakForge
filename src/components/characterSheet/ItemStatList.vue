@@ -6,7 +6,7 @@
           <template v-if="conflictingItem && withComparisons">
             <td v-if="conflictingItemEffects[effectId]" class="equipped-item-effect" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
               <div class="flex align-items-center w-full px-1 py-1">
-                <div v-if="effectId === '304'" class="effect-text flex align-items-center">
+                <div v-if="effectId === '304'" class="effect-text flex flex-column">
                   <span>{{ $t('tooltips.addsStateLevels', { num_0: conflictingItemEffects[effectId].values[2] }) }}</span>
                   <MultiTooltip :state-id="`${conflictingItemEffects[effectId].values[0]}`" :current-level="conflictingItemEffects[effectId].values[2]" />
                 </div>
@@ -27,11 +27,12 @@
               </div>
               <div v-if="effectId === '304'" class="flex align-items-center">
                 <span>{{ $t('tooltips.addsStateLevels', { num_0: itemEffects[effectId].values[2] }) }}</span>
-                <MultiTooltip :state-id="`${itemEffects[effectId].values[0]}`" :current-level="itemEffects[effectId].values[2]" />
+                <MultiTooltip :state-id="`${itemEffects[effectId].values[0]}`" :current-level="itemEffects[effectId].values[2]" inline />
               </div>
               <div v-else>{{ getEffectText(itemEffects[effectId]) }}</div>
             </div>
           </td>
+          
           <td v-else-if="withComparisons" class="new-item-effect removed" :class="{ 'long-entry': conflictingItemEffects[effectId].longEntry }">
             <div class="flex align-items-center w-full px-1 py-1">
               <div
@@ -41,7 +42,7 @@
               >
                 {{ getEffectDifference(effectId) > 0 ? '+' : '' }}{{ getEffectDifference(effectId) }}
               </div>
-              <div v-if="effectId === '304'" class="effect-text flex align-items-center">
+              <div v-if="effectId === '304'" class="effect-text flex flex-column">
                 <span>{{ $t('tooltips.addsStateLevels', { num_0: conflictingItemEffects[effectId].values[2] }) }}</span>
                 <MultiTooltip :state-id="`${conflictingItemEffects[effectId].values[0]}`" :current-level="conflictingItemEffects[effectId].values[2]" />
               </div>

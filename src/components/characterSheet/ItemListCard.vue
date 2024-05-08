@@ -1,11 +1,41 @@
 <template>
-  <MultiTooltip delay="[0, 0]" duration="0" position="top" :offset="[0, -2]" :append-to="() => documentVar.body" :sticky="sticky" :max-width="500">
+  <div v-if="withStats" class="item-card with-stats flex flex-column">
+    <div class="flex px-2 py-2 relative">
+      <div class="rarity-background-color" :style="`background-color: ${getRarityColor(item.rarity)}`"></div>
+      <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
+      <div class="flex flex-column ml-1">
+        <div class="item-name mr-2 truncate" style="max-width: 15ch">{{ $t(`items.${item.id}`) }}</div>
+        <div class="flex">
+          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/rarities/${item.rarity}.png`" image-style="width: 12px;" />
+          <p-image class="mr-1" :src="`https://tmktahu.github.io/WakfuAssets/itemTypes/${item.type.id}.png`" image-style="width: 18px;" />
+          <div v-if="LEVELABLE_ITEMS.includes(item.type.id)"> {{ $t('characterSheet.equipmentContent.itemLevel') }}: {{ item.id === 12237 ? '25' : '50' }} </div>
+          <div v-else>Lvl: {{ item.level }}</div>
+          <div v-if="item.type.validSlots[0] === ITEM_SLOT_DATA.FIRST_WEAPON.id" class="ml-1">
+            {{ item.type.disabledSlots.includes(ITEM_SLOT_DATA.SECOND_WEAPON.id) ? '(2H)' : '(1H)' }}
+          </div>
+        </div>
+      </div>
+      <div class="flex-grow-1" />
+
+      <div class="flex flex-column gap-1">
+        <p-button icon="pi pi-plus" class="equip-button" @click="onEquipItem(item, $event)" />
+        <p-button icon="pi pi-question-circle" class="equip-button" @click="onGotoEncyclopedia(item)" />
+      </div>
+    </div>
+
+    <div class="flex w-full" style="overflow-y: auto">
+      <ItemStatList card-mode :item="item" :with-totals="withTotals" :with-comparisons="withComparisons" class="w-full" />
+    </div>
+  </div>
+
+  <MultiTooltip v-else delay="[0, 0]" duration="0" position="top" :offset="[0, -2]" :append-to="() => documentVar.body" :sticky="sticky" :max-width="500" inline>
     <template v-slot:trigger>
       <div class="item-card">
         <div v-if="withSlotLabel" class="slot-label text-center pt-1 pb-1">
           {{ item.type.validSlots[0] === 'LEFT_HAND' ? 'Ring' : $t(ITEM_SLOT_DATA[item.type.validSlots[0]].name) }} Slot
         </div>
-        <div class="flex px-2 pt-2">
+        <div class="flex px-2 py-2 relative">
+          <div class="rarity-background-color" :style="`background-color: ${getRarityColor(item.rarity)}`"></div>
           <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
           <div class="flex flex-column ml-1">
             <div class="item-name mr-2 truncate" :style="`max-width: ${withExcludeButton ? '116px' : '15ch'}`">{{ $t(`items.${item.id}`) }}</div>
@@ -89,7 +119,7 @@
 import { computed, inject } from 'vue';
 import { useConfirm } from 'primevue/useconfirm';
 
-import { LEVELABLE_ITEMS, ITEM_SLOT_DATA } from '@/models/useConstants';
+import { LEVELABLE_ITEMS, ITEM_SLOT_DATA, ITEM_RARITY_DATA } from '@/models/useConstants';
 import { useEncyclopedia } from '@/models/useEncyclopedia';
 import { useItems } from '@/models/useItems';
 
@@ -116,6 +146,10 @@ let props = defineProps({
     default: false,
   },
   withExcludeButton: {
+    type: Boolean,
+    default: false,
+  },
+  withStats: {
     type: Boolean,
     default: false,
   },
@@ -157,18 +191,21 @@ const onGotoEncyclopedia = (item) => {
   let url = getItemEncyclopediaUrl(item);
   window.open(url, '_blank');
 };
+
+const getRarityColor = (rarityId) => {
+  return ITEM_RARITY_DATA.find((entry) => entry.id === rarityId).color;
+}
 </script>
 
 <style lang="scss" scoped>
 .item-card {
   width: 230px;
   height: 85px;
-  background: var(--background-20);
   overflow: hidden;
 
   &.with-stats {
-    height: 215px;
-    width: 310px;
+    height: 215px !important;
+    width: 310px !important;
   }
 
   .slot-label {
@@ -200,5 +237,11 @@ const onGotoEncyclopedia = (item) => {
     font-size: 14px;
     font-weight: 800;
   }
+}
+
+.rarity-background-color {
+  position: absolute;
+  inset: 0;
+  opacity: 0.1;
 }
 </style>

@@ -61,7 +61,23 @@ export function useStorage() {
       masterData.appVersion = data.appVersion || import.meta.env.VUE_APP_VERSION;
       masterData.uiTheme = data.uiTheme || 'bonta';
       masterData.language = data.language || null;
-      masterData.groups = data.groups || [];
+
+      if(data?.groups?.length) {
+        // We want to make sure that in edge case situtations, any groups that have non-existant characters are cleaned
+        let groupsData = data.groups;
+
+        groupsData.forEach((group) => {
+          group.buildIds.forEach((buildId) => {
+            let potentialCharacter = masterData.characters.find((character) => character.id === buildId);
+            if(!potentialCharacter) {
+              let index = group.buildIds.indexOf(buildId);
+              group.buildIds.splice(index, 1);
+            }
+          })
+        });
+
+        masterData.groups = groupsData;
+      }
     }
 
     EventBus.on(Events.SAVE_DATA, (data) => {
@@ -127,6 +143,18 @@ export function useStorage() {
         });
 
         let stringifiedData = JSON.stringify(newStorageData, null, 2);
+        window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
+      }
+    } catch (error) {
+      console.error('Error writing to local storage: ', error);
+      //   Vue.toasted.global.alertError({ message: 'Error saving to localstorage', description: error });
+    }
+  };
+
+  const saveJsonToLocalStorage = async (inData) => {
+    try {
+      if (inData !== null) {
+        let stringifiedData = JSON.stringify(inData, null, 2);
         window.localStorage.setItem(LOCALSTORAGE_KEY, stringifiedData);
       }
     } catch (error) {
@@ -209,6 +237,16 @@ export function useStorage() {
           passiveSlot6: null,
         };
       }
+
+      Object.keys(character.equipment)
+        .sort()
+        .forEach((key, index) => {
+          if(character.equipment[key] === null) {
+            character.equipment[key] = { item: null, runes: {}, sub: null }
+          } else if(character.equipment[key].item === undefined) {
+            character.equipment[key] = { item: character.equipment[key], runes: {}, sub: null }
+          }
+        })
     });
 
     // this converts old stored character data to new build code storage
@@ -289,6 +327,7 @@ export function useStorage() {
     setup,
     readFromLocalStorage,
     saveToLocalStorage,
+    saveJsonToLocalStorage,
     migrateData,
     readFromJSON,
     saveToJSON,
