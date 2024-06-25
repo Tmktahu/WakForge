@@ -1,6 +1,6 @@
 ![](https://i.imgur.com/TsVnKyB.jpeg)
 
-[![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=2.6.0&color=blue)]() [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/k3v2fXQWJp)
+[![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=2.6.0&color=blue)]() [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/k3v2fXQWJp) [![Patreon](https://img.shields.io/badge/Patreon-FFFFFF)](https://patreon.com/FrykesFiddlings)
 
 This is the repository for WakForge, coded by Fryke (fryke) on Discord.
 <br>
