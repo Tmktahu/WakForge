@@ -3437,6 +3437,16 @@
     "name": "6331_name"
   },
   {
+    "id": "6637",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "6637_0"
+      }
+    ],
+    "name": "6637_name"
+  },
+  {
     "id": "6705",
     "descriptionData": [
       {
@@ -6510,5 +6520,416 @@
       }
     ],
     "name": "8132_name"
+  },
+  {
+    "id": "8251",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8251_0"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 200,
+          "level_2": 200,
+          "level_3": 200,
+          "level_4": 200,
+          "level_5": 200
+        },
+        "num_1": {
+          "level_1": 200,
+          "level_2": 200,
+          "level_3": 200,
+          "level_4": 200,
+          "level_5": 200
+        },
+        "num_2": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8251_1"
+      }
+    ],
+    "name": "8251_name"
+  },
+  {
+    "id": "8366",
+    "descriptionData": [],
+    "name": "8366_name"
+  },
+  {
+    "id": "8367",
+    "descriptionData": [],
+    "name": "8367_name"
+  },
+  {
+    "id": "8368",
+    "descriptionData": [],
+    "name": "8368_name"
+  },
+  {
+    "id": "8370",
+    "descriptionData": [],
+    "name": "8370_name"
+  },
+  {
+    "id": "8372",
+    "descriptionData": [],
+    "name": "8372_name"
+  },
+  {
+    "id": "8374",
+    "descriptionData": [],
+    "name": "8374_name"
+  },
+  {
+    "id": "8375",
+    "descriptionData": [],
+    "name": "8375_name"
+  },
+  {
+    "id": "8376",
+    "descriptionData": [],
+    "name": "8376_name"
+  },
+  {
+    "id": "8379",
+    "descriptionData": [],
+    "name": "8379_name"
+  },
+  {
+    "id": "8380",
+    "descriptionData": [],
+    "name": "8380_name"
+  },
+  {
+    "id": "8381",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8381_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8381_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 2,
+          "level_3": 2,
+          "level_4": 2,
+          "level_5": 2
+        },
+        "text": "8381_2"
+      }
+    ],
+    "name": "8381_name"
+  },
+  {
+    "id": "8382",
+    "descriptionData": [],
+    "name": "8382_name"
+  },
+  {
+    "id": "8383",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8383_0"
+      },
+      {
+        "indented": true,
+        "linker": true,
+        "linkerData": {
+          "l": "en",
+          "id": "3434",
+          "level": "1"
+        },
+        "text": "8383_1"
+      }
+    ],
+    "name": "8383_name"
+  },
+  {
+    "id": "8384",
+    "descriptionData": [],
+    "name": "8384_name"
+  },
+  {
+    "id": "8385",
+    "descriptionData": [],
+    "name": "8385_name"
+  },
+  {
+    "id": "8386",
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 16,
+          "level_5": 20
+        },
+        "text": "8386_0"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 3,
+          "level_2": 6,
+          "level_3": 9,
+          "level_4": 12,
+          "level_5": 15
+        },
+        "text": "8386_1"
+      }
+    ],
+    "name": "8386_name",
+    "equipEffects": [
+      {
+        "id": "forceOfWill",
+        "rawId": 177,
+        "values": {
+          "1": -4,
+          "2": 6,
+          "3": 9,
+          "4": 12,
+          "5": 15
+        },
+        "negative": true
+      },
+      {
+        "id": "forceOfWill",
+        "rawId": 177,
+        "values": {
+          "1": 3
+        },
+        "negative": false
+      }
+    ]
+  },
+  {
+    "id": "8387",
+    "descriptionData": [],
+    "name": "8387_name"
+  },
+  {
+    "id": "8388",
+    "descriptionData": [],
+    "name": "8388_name"
+  },
+  {
+    "id": "8389",
+    "descriptionData": [],
+    "name": "8389_name"
+  },
+  {
+    "id": "8390",
+    "descriptionData": [],
+    "name": "8390_name"
+  },
+  {
+    "id": "8391",
+    "descriptionData": [],
+    "name": "8391_name"
+  },
+  {
+    "id": "8392",
+    "descriptionData": [],
+    "name": "8392_name"
+  },
+  {
+    "id": "8393",
+    "descriptionData": [],
+    "name": "8393_name"
+  },
+  {
+    "id": "8394",
+    "descriptionData": [],
+    "name": "8394_name"
+  },
+  {
+    "id": "8395",
+    "descriptionData": [],
+    "name": "8395_name"
+  },
+  {
+    "id": "8398",
+    "descriptionData": [],
+    "name": "8398_name"
+  },
+  {
+    "id": "8399",
+    "descriptionData": [],
+    "name": "8399_name"
+  },
+  {
+    "id": "8400",
+    "descriptionData": [],
+    "name": "8400_name"
+  },
+  {
+    "id": "8402",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8402_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 10,
+          "level_2": 10,
+          "level_3": 10,
+          "level_4": 10,
+          "level_5": 10
+        },
+        "text": "8402_1"
+      }
+    ],
+    "name": "8402_name"
+  },
+  {
+    "id": "8403",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8403_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8403_1"
+      }
+    ],
+    "name": "8403_name"
+  },
+  {
+    "id": "8489",
+    "descriptionData": [],
+    "name": "8489_name"
+  },
+  {
+    "id": "8490",
+    "descriptionData": [],
+    "name": "8490_name"
+  },
+  {
+    "id": "8492",
+    "descriptionData": [],
+    "name": "8492_name"
+  },
+  {
+    "id": "8493",
+    "descriptionData": [],
+    "name": "8493_name"
+  },
+  {
+    "id": "8494",
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8494_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "num_1": {
+          "level_1": 40,
+          "level_2": 40,
+          "level_3": 40,
+          "level_4": 40,
+          "level_5": 40
+        },
+        "text": "8494_1"
+      },
+      {
+        "indented": false,
+        "text": "8494_2"
+      }
+    ],
+    "name": "8494_name"
+  },
+  {
+    "id": "8496",
+    "descriptionData": [],
+    "name": "8496_name"
+  },
+  {
+    "id": "8497",
+    "descriptionData": [],
+    "name": "8497_name"
+  },
+  {
+    "id": "8498",
+    "descriptionData": [],
+    "name": "8498_name"
+  },
+  {
+    "id": "8499",
+    "descriptionData": [],
+    "name": "8499_name"
+  },
+  {
+    "id": "8502",
+    "descriptionData": [],
+    "name": "8502_name"
+  },
+  {
+    "id": "8505",
+    "descriptionData": [],
+    "name": "8505_name"
+  },
+  {
+    "id": "8508",
+    "descriptionData": [],
+    "name": "8508_name"
+  },
+  {
+    "id": "8518",
+    "descriptionData": [],
+    "name": "8518_name"
+  },
+  {
+    "id": "8519",
+    "descriptionData": [],
+    "name": "8519_name"
+  },
+  {
+    "id": "8520",
+    "descriptionData": [],
+    "name": "8520_name"
+  },
+  {
+    "id": "8521",
+    "descriptionData": [],
+    "name": "8521_name"
   }
 ]
