@@ -86,7 +86,7 @@
                 class="tab-header characteristics-tab-header"
                 :class="{ error: hasCharacteristicsError, 'points-to-spend': hasCharacteristicsPointsToSpend && !hasCharacteristicsError }"
               >
-                <span>{{ $t('characterSheet.characteristics') }}</span>
+                <span>{{ $t('characterSheet.characteristicsAndSpells') }}</span>
                 <i class="points-to-spend-icon mdi mdi-arrow-up-bold ml-1" style="font-size: 20px" />
                 <i class="error-icon mdi mdi-alert-octagon-outline ml-1" style="font-size: 20px" />
               </div>
@@ -121,14 +121,14 @@
             <RunesSubsTabContent ref="runesAndSubsTabContent" />
           </p-tabPanel>
 
-          <p-tabPanel>
+          <!-- <p-tabPanel>
             <template v-slot:header>
               <div class="tab-header">
                 <span>{{ $t('characterSheet.spellsAndPassives') }}</span>
               </div>
             </template>
             <SpellTabContent />
-          </p-tabPanel>
+          </p-tabPanel> -->
         </p-tabView>
       </div>
     </div>
@@ -305,7 +305,7 @@ const onCopyBuildCode = () => {
   }
 
   .characteristics-tab-header {
-    width: 126px !important;
+    width: 173px !important;
     i {
       font-size: 1rem !important;
     }
@@ -319,7 +319,7 @@ const onCopyBuildCode = () => {
 }
 
 .characteristics-tab-header {
-  width: 158px;
+  width: 219px;
 
   .error-icon {
     display: none;

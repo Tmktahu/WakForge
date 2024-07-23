@@ -2,13 +2,12 @@
 
 [![MIT License](https://img.shields.io/static/v1?label=Licence&message=MIT&color=green)](https://opensource.org/licenses/) [![GitHub Release](https://img.shields.io/static/v1?label=Version&message=2.6.0&color=blue)]() [![Discord](https://img.shields.io/static/v1?label=Discord&message=Click%20to%20Join&color=purple)](https://discord.gg/k3v2fXQWJp) [![Patreon](https://img.shields.io/badge/Patreon-FFFFFF)](https://patreon.com/FrykesFiddlings)
 
-This is the repository for WakForge, coded by Fryke (fryke) on Discord.
-<br>
-Come check out the [WakForge Discord Server](https://discord.gg/k3v2fXQWJp).
+This is the repository for WakForge, coded by Fryke (fryke) on Discord. <br> Come check out the [WakForge Discord Server](https://discord.gg/k3v2fXQWJp).
 
 WakForge is a character build tool for the game Wakfu. This README will be updated with current features as the project is upgraded and added to.
 
 You can find the site at <https://wakforge.org>.<br>
+
 <!-- You can find the standalone Electron version in the [releases section](https://github.com/Tmktahu/atlas/releases). -->
 
 ## Features
@@ -42,7 +41,7 @@ If you are interested in contributing to this project, feel free to look through
 
 - Keeper of Time (sinbad) for allowing us to use his [auto-item-set](https://github.com/mikeshardmind/wakfu-utils) library on the site.
 - \<Krieg\> (fl_cl) for icon hunting and Spanish translation work.
-- Isp (_is) for bug hunting and French translation work.
+- Isp (\_is) for bug hunting and French translation work.
 - Slendy (slendycandy) for pulling together the default equipment slot icons.
 - Scour (scour.) and Liz (morgouse) for collecting data and doing the busy work no one likes.
 - Hooks (hooks0), Ruchi (ruchi), \<Krieg\> (fl_cl), Owlite (owlite), Hate (hatespawn), Soza (sozalord), Kimas (kimasage) for feature ideas and feedback.

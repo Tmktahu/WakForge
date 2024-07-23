@@ -56,7 +56,7 @@
                     class="create-character-button py-1 pr-3 pl-2 ml-3"
                     @click.stop="onCreateCharacter(group)"
                   />
-                  <p-button icon="pi pi-trash" class="ml-3 py-1" @click.stop="onDeleteGroup(group)" />
+                  <p-button icon="pi pi-trash" class="delete-button ml-3 py-1" @click.stop="onDeleteGroup($event, group)" />
                 </div>
               </template>
               <div @drop="onBuildDrop($event, group)" @dragover.prevent @dragenter.prevent>
@@ -82,7 +82,7 @@
                     <div class="character-items flex-grow-1">
                       <EquipmentButtons :character="getBuildById(buildId)" read-only />
                     </div>
-                    <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3" icon="pi pi-trash" @click="onDeleteCharacter($event, buildId)" />
+                    <p-button class="at-end-delete-button delete-button py-2 px-2 mr-3 h-full" icon="pi pi-trash" @click="onDeleteCharacter($event, buildId)" />
                   </div>
                 </template>
               </div>
@@ -213,12 +213,26 @@ const onCreateGroup = () => {
   });
 };
 
-const onDeleteGroup = (group) => {
+const onDeleteGroup = (event, group) => {
   if (group.buildIds.length === 0) {
     let targetIndex = masterData.groups.indexOf(group);
     masterData.groups.splice(targetIndex, 1);
   } else {
-    toast.add({ severity: 'error', summary: 'You cannot delete a group that has characters in it.', life: 3000 });
+    // toast.add({ severity: 'error', summary: 'You cannot delete a group that has characters in it.', life: 3000 });
+
+    confirm.require({
+      group: 'dialog',
+      target: event.currentTarget,
+      message: t('confirms.willDeleteCharacters'),
+      accept: () => {
+        group.buildIds.forEach((buildId) => {
+          deleteCharacter(buildId);
+        });
+
+        let targetIndex = masterData.groups.indexOf(group);
+        masterData.groups.splice(targetIndex, 1);
+      },
+    });
   }
 };
 
@@ -266,7 +280,7 @@ const gotoBuild = (event, id) => {
 const getBuildById = (buildId) => {
   let potentialCharacter = masterData.characters.find((character) => character.id === buildId);
 
-  if(potentialCharacter) {
+  if (potentialCharacter) {
     return potentialCharacter;
   } else {
     // We are trying to pull character data that does not exist.
@@ -335,6 +349,7 @@ const onBuildDrop = (event, group) => {
 
 :deep(.character-enties-wrapper) {
   overflow-y: auto;
+  flex-grow: 1;
 
   .class-name {
     min-width: 100px;
@@ -347,12 +362,12 @@ const onBuildDrop = (event, group) => {
   }
 
   .delete-button {
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 100%;
     background-color: var(--error-70);
 
     .p-button-icon {
-      font-size: 24px;
+      font-size: 16px;
       font-weight: 800;
       pointer-events: none;
     }

@@ -18,8 +18,10 @@ export const fr = {
     migrateOldData: 'Migrer les Anciennes Données',
     oldDataDetected: "Une ancienne structure de stockage de données a été détectée et doit être mise à jour avant que vous ne puissiez utiliser l'application.",
     reloadNotice: 'Une fois la mise à jour terminée, cette page se rechargera.',
-    backupReccomendation: "Il est vivement recommandé de sauvegarder vos données actuelles avant d'essayer de les mettre à jour vers la nouvelle structure. Je fais de mon mieux pour essayer de gérer cela automatiquement pour vous, mais il y a toujours un risque que quelque chose se passe mal avec la mise à jour.",
-    ifUpdateFails: "Si la mise à jour échoue et que vous perdez vos données, ne vous inquiétez pas. Tant que vous avez une sauvegarde en format JSON, vous pouvez tout récupérer. N'hésitez pas à contacter directement Fryke (fryke) sur Discord pour obtenir de l'aide.",
+    backupReccomendation:
+      "Il est vivement recommandé de sauvegarder vos données actuelles avant d'essayer de les mettre à jour vers la nouvelle structure. Je fais de mon mieux pour essayer de gérer cela automatiquement pour vous, mais il y a toujours un risque que quelque chose se passe mal avec la mise à jour.",
+    ifUpdateFails:
+      "Si la mise à jour échoue et que vous perdez vos données, ne vous inquiétez pas. Tant que vous avez une sauvegarde en format JSON, vous pouvez tout récupérer. N'hésitez pas à contacter directement Fryke (fryke) sur Discord pour obtenir de l'aide.",
     downloadCurrentData: 'Télécharger les Données Actuelles',
     updatingPleaseWait: 'Mise à jour des Données. Veuillez Patienter',
     updateData: 'Mettre à Jour les Données vers la Nouvelle Structure',
@@ -56,7 +58,8 @@ export const fr = {
   },
   guidesPage: {
     title: 'Guides Généraux',
-    description: "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.",
+    description:
+      "Ici vous pouvez trouver des guides généraux sur le jeu. Si vous cherchez des guides spécifique pour une classe, vous pouvez aller dans l'onglet Guides dans un de vos Builds de Personnage.",
     searchGuides: 'Rechercher Guides...',
   },
   dataPage: {
@@ -94,6 +97,7 @@ export const fr = {
     buildCode: 'Code Build',
     copy: 'Copier',
     characteristics: 'Caractéristiques',
+    characteristicsAndSpells: 'Caractéristiques & Sorts',
     equipment: 'Équipement',
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Runes & Sublimations',
@@ -122,7 +126,7 @@ export const fr = {
     },
 
     guidesContent: {
-      doYouHaveAGuide: "Vous avez un guide que vous aimeriez voir ici ? Contactez nous sur le serveur Discord pour le rajouter.",
+      doYouHaveAGuide: 'Vous avez un guide que vous aimeriez voir ici ? Contactez nous sur le serveur Discord pour le rajouter.',
       classGuides: 'Guides {class} ',
       openGuide: 'Ouvrir le Guide',
     },
@@ -157,16 +161,14 @@ export const fr = {
       hasEpicWarning: 'Vous avez déjà un Item Épique équipé. Ce dernier sera retiré avec cette action. Êtes-vous sûr ?',
       twoHandedWeaponWarning: "Ceci est une arme à deux mains et il existe déjà un Item dans le slot d'arme secondaire. Êtes-vous sûr ?",
       secondWeaponWarning: 'Vous avez une arme à deux mains équipée. Cette dernière sera retirée avec cette action. Êtes-vous sûr ?',
-      relicAndTwoHandedWarning:
-        "Vous avez un Item dans le slot d'arme secondaire et un Item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
+      relicAndTwoHandedWarning: "Vous avez un Item dans le slot d'arme secondaire et un Item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
       relicAndSecondWeaponWarning: 'Vous avez une arme à deux main et un Item Relique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
-      epicAndTwoHandedWarning:
-        "Vous avez un Item dans le slot d'arme secondaire et un Item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
+      epicAndTwoHandedWarning: "Vous avez un Item dans le slot d'arme secondaire et un Item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?",
       epicAndSecondWeaponWarning: 'Vous avez une arme à deux main et un Item Epique équipés. Ces derniers seront retirés avec cette action. Êtes-vous sûr ?',
-      randomResistanceDefaults: 'Résistance aléatoires par défaut', 
-      randomMasteryDefaults: 'Maitrises aléatoires par défaut', 
-      masteryAssignment: '+{num} Maitrises assignées', 
-      resistanceAssignment: '+{num} Résistance assignées', 
+      randomResistanceDefaults: 'Résistance aléatoires par défaut',
+      randomMasteryDefaults: 'Maitrises aléatoires par défaut',
+      masteryAssignment: '+{num} Maitrises assignées',
+      resistanceAssignment: '+{num} Résistance assignées',
       applyToAllItems: 'Appliquer à tout les items',
 
       itemFilters: {
@@ -206,7 +208,7 @@ export const fr = {
       healingMasteryTooltip: 'La Maîtrise Soin doit-elle être inclue si possible ?',
       rearMasteryTooltip: 'La Maîtrise Dos doit-elle être inclue si possible ?',
       berserkMasteryTooltip: 'La Maîtrise Berserk doit-elle être inclue si possible ?',
-      poweredBy: "Fonctionne grâce au code de {credit}",
+      poweredBy: 'Fonctionne grâce au code de {credit}',
       problemMessage: "Il y a eu un souci avec l'auto-solver. Si vous pensez qu'il s'agit d'un bug, merci de contacter Fryke sur Discord.",
       generateItemSet: "Générer l'ensemble des Items",
       regenerateItemSet: "Re-Générer l'ensemble des Items",
@@ -233,13 +235,13 @@ export const fr = {
       showAllItems: 'Montrer tous les Items',
       displayTotals: 'Afficher Totaux',
       itemSources: ' Sources des Item',
-      itemSourcesInfo: "Cela vous permet de choisir de quelles sources les items proviennent.", 
-      archmonsters: 'Arch-Monstres', 
-      hordes: 'Hordes', 
+      itemSourcesInfo: 'Cela vous permet de choisir de quelles sources les items proviennent.',
+      archmonsters: 'Arch-Monstres',
+      hordes: 'Hordes',
       battlefields: 'Champs de Batailles',
-      ultimateBosses: 'Bosses Ultimes', 
+      ultimateBosses: 'Bosses Ultimes',
       excludedItems: 'Items Exclus',
-      excludedItemsInfo: 'Ces items sont exclus des possibles résultats.', 
+      excludedItemsInfo: 'Ces items sont exclus des possibles résultats.',
     },
 
     runesAndSubsContent: {
@@ -250,7 +252,8 @@ export const fr = {
       shiftClick: 'SHIFT-Clic sur une rune pour la rendre blanche.',
       rightClick: "Clic-Droit sur une rune pour plus d'options.",
       hightlightClick: "Sélectionner un slot et cliquer sur une rune à droite pour l'assigner.",
-      runeLevelTooltip: "Le niveau maximum possible d'une rune est dépendant du niveau de l'Item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.",
+      runeLevelTooltip:
+        "Le niveau maximum possible d'une rune est dépendant du niveau de l'Item mais pour les besoins du builder, je limite ce champs par le niveau du personnage.",
       runeLevel: 'Niveau Rune',
       toggleWhite: 'Rendre Blanche',
       removeAllRunes: 'Enlever toutes les runes/subl.',
@@ -412,6 +415,7 @@ export const fr = {
     irreversable: 'Êtes-vous sûr ? Ceci est irréversible.',
     areYouSure: 'Êtes-vous sûr ?',
     willReplaceItems: 'Êtes-vous sûr ? Ceci remplacera tous les Items équipés qui sont dans les slots en conflit.',
+    willDeleteCharacters: 'Êtes-vous sûr ? Cette opération supprimera également tous les personnages du groupe.',
   },
   tooltips: {
     randomMasteryValue: '+{num_0} Maîtrise de {num_1} élements aléatoire ',
