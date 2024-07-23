@@ -96,6 +96,7 @@ export const en = {
     copy: 'Copy',
     guides: 'Guides',
     characteristics: 'Characteristics',
+    characteristicsAndSpells: 'Characteristics & Spells',
     equipment: 'Equipment',
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Runes & Sublimations',
@@ -413,6 +414,7 @@ export const en = {
     irreversable: 'Are you sure? This is irreversible.',
     areYouSure: 'Are you sure?',
     willReplaceItems: 'Are you sure? This will replace any other items you have equipped right now in conflicting slots.',
+    willDeleteCharacters: 'Are you sure? This will also delete all characters in the group.',
   },
   tooltips: {
     randomMasteryValue: '+{num_0} Mastery of {num_1} random elements',

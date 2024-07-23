@@ -95,6 +95,7 @@ export const es = {
     buildCode: 'Build Code',
     copy: 'Copiar',
     characteristics: 'Características',
+    characteristicsAndSpells: 'Características y Hechizos',
     equipment: 'Equipamiento',
     autoItemSolver: 'Auto Item Solver',
     runesAndSubs: 'Engraces y Sublimaciones',
@@ -413,6 +414,7 @@ export const es = {
     irreversable: '¿Estás seguro? Esto es irreversible.',
     areYouSure: '¿Estás seguro?',
     willReplaceItems: '¿Estás seguro? Esto reemplazará cualquier otro objeto que tengas equipado ahora mismo en ranuras en conflicto.',
+    willDeleteCharacters: '¿Está seguro? Esto también borrará todos los caracteres del grupo.',
   },
   tooltips: {
     randomMasteryValue: '+{num_0} Dominio de {num_1} elementos aleatorios',

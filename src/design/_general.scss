@@ -1,7 +1,7 @@
 body {
-    margin: 0 !important;
-    background-color: var(--background-10);
-    overflow-y: hidden;
+  margin: 0 !important;
+  background-color: var(--background-10);
+  overflow-y: hidden;
 }
 
 .p-component,
@@ -9,307 +9,317 @@ body {
 .p-tabview .p-tabview-nav li .p-tabview-nav-link,
 .p-inputtext,
 body {
-    color: var(--text-white);
+  color: var(--text-white);
 }
 
 .p-button {
-    background-color: var(--primary-30);
+  background-color: var(--primary-30);
 
-    &:hover {
-        background-color: var(--primary-40);
-    }
+  &:hover {
+    background-color: var(--primary-40);
+  }
 }
 
 .p-slider-handle {
-    background-color: var(--primary-50);
+  background-color: var(--primary-50);
 }
 
 .p-slider-range {
-    background-color: var(--primary-50);
+  background-color: var(--primary-50);
 }
 
 .truncate {
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow-y: hidden;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow-y: hidden;
 }
 
 .simple-tooltip {
-    background-color: var(--background-20);
-    border-radius: 8px;
-    padding: 4px 6px;
-    border: 1px solid var(--highlight-90);
+  background-color: var(--background-20);
+  border-radius: 8px;
+  padding: 4px 6px;
+  border: 1px solid var(--highlight-90);
 }
 
 .item-card-tooltip {
-    background-color: var(--background-10);
-    overflow: hidden;
-  
-    .effect-header {
-      background: var(--primary-20);
+  background-color: var(--background-10);
+  overflow: hidden;
 
-      &.existing-item {
-        background: var(--background-20);
-      }
+  .effect-header {
+    background: var(--primary-20);
+
+    &.existing-item {
+      background: var(--background-20);
     }
+  }
 }
 
 .p-dialog.p-component {
-    .p-dialog-header {
-        overflow: hidden;
-        padding: 0;
-    }
+  .p-dialog-header {
+    overflow: hidden;
+    padding: 0;
+  }
 
-    .p-dialog-content {
-        padding: 0;
-    }
+  .p-dialog-content {
+    padding: 16px 8px;
+  }
 
-    .drag-bar {
-        width: 100%;
-        background-color: var(--highlight-50);
-        height: 16px;
-    }
+  .p-dialog-footer {
+    display: flex;
+    width: 100%;
+    padding: 8px 8px;
+    justify-content: space-between;
 
-    &:has(.drag-bar) {
-        .p-dialog-header-icons {
-            display: none;
-        }
+    button {
+      margin: 0;
     }
+  }
+
+  .drag-bar {
+    width: 100%;
+    background-color: var(--highlight-50);
+    height: 16px;
+  }
+
+  &:has(.drag-bar) {
+    .p-dialog-header-icons {
+      display: none;
+    }
+  }
 }
 
 .p-confirm-popup {
-    background-color: var(--background-10);
-    border: 1px solid var(--highlight-50);
+  background-color: var(--background-10);
+  border: 1px solid var(--highlight-50);
 
-    &:before {
-        border-bottom-color: var(--primary-50);
-    }
+  &:before {
+    border-bottom-color: var(--primary-50);
+  }
 
-    &:after {
-        border-bottom-color: var(--primary-50);
-    }
+  &:after {
+    border-bottom-color: var(--primary-50);
+  }
 
-    .p-confirm-popup-content {
-        display: flex;
-        justify-content: center;
-        text-align: center;
-        padding: 6px 4px;
-        max-width: 250px;
-    
-        .p-confirm-popup-message {
-            margin: 0;
-        }
-    }
-    
-    .p-confirm-popup-footer {
-        display: flex;
-        justify-content: space-between;
-        padding: 0;
-    }
+  .p-confirm-popup-content {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 4px;
+    max-width: 250px;
 
-    .p-button {
-        padding: 4px 0px;
-        margin: 6px 6px;
-        color: black;
-        background-color: var(--primary-50);
+    .p-confirm-popup-message {
+      margin: 0;
     }
+  }
+
+  .p-confirm-popup-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  .p-button {
+    padding: 4px 0px;
+    margin: 6px 6px;
+    color: black;
+    background-color: var(--primary-50);
+  }
 }
 
 .p-tabview-nav-link.p-tabview-header-action {
-    padding: 0;
-    height: 100%;
+  padding: 0;
+  height: 100%;
 }
 
 .p-dropdown-items {
-    .p-dropdown-item {
-        padding: 0;
-        &:is(li) {
-            padding: 4px 6px;
-        }
+  .p-dropdown-item {
+    padding: 0;
+    &:is(li) {
+      padding: 4px 6px;
     }
-    
+  }
 }
 
 .ak-container {
-    .ak-list-element {
-        .ak-main {
-            .ak-main-content {
-                display: flex;
-                flex-direction: column;
+  .ak-list-element {
+    .ak-main {
+      .ak-main-content {
+        display: flex;
+        flex-direction: column;
 
-                .ak-content {
-                    background: var(--primary-70);
+        .ak-content {
+          background: var(--primary-70);
 
-                    &:not(:has(.ak-title)) {
-                        height: 6px;
-                    }
+          &:not(:has(.ak-title)) {
+            height: 6px;
+          }
 
-                    .ak-title {
-                        display: flex;
-                        align-items: center;
-                        padding: 4px 6px;
-                        background: var(--background-30);
-                        white-space: nowrap;
+          .ak-title {
+            display: flex;
+            align-items: center;
+            padding: 4px 6px;
+            background: var(--background-30);
+            white-space: nowrap;
 
-                        .picto:has(img) {
-                            width: 24px;
-                            height: 16px;
+            .picto:has(img) {
+              width: 24px;
+              height: 16px;
 
-                            img {
-                                padding: 0px 4px;
-                                width: 24px;
-                                height: 16px;
-                            }
-                        }
-                    }
-                }
+              img {
+                padding: 0px 4px;
+                width: 24px;
+                height: 16px;
+              }
             }
+          }
         }
+      }
     }
+  }
 }
 
 .spell-tooltip {
-    border-radius: 8px;
-    border: 1px solid var(--highlight-50);
-    overflow: hidden;
-    width: fit-content;
+  border-radius: 8px;
+  border: 1px solid var(--highlight-50);
+  overflow: hidden;
+  width: fit-content;
 
-    .spell-name {
-        background-color: var(--primary-30);
+  .spell-name {
+    background-color: var(--primary-30);
+  }
+
+  .spell-description {
+    background-color: var(--background-20);
+  }
+
+  .spell-details {
+    white-space: nowrap;
+    p {
+      display: flex;
+      align-items: center;
+      margin: 0px;
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      background-color: var(--background-10);
+      border-top: 1px solid var(--highlight-50);
     }
 
-    .spell-description {
-        background-color: var(--background-20);
-    }
+    ul {
+      margin: 0;
+      padding-top: 4px;
+      padding-bottom: 4px;
+      padding-left: 30px;
+      background-color: var(--background-20);
 
-    .spell-details {
-        white-space: nowrap;
-        p {
-            display: flex;
-            align-items: center;
-            margin: 0px;
-            padding-left: 8px;
-            padding-right: 8px;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            background-color: var(--background-10);
-            border-top: 1px solid var(--highlight-50);
-        }
-    
-        ul {
-            margin: 0;
-            padding-top: 4px;
-            padding-bottom: 4px;
-            padding-left: 30px;
-            background-color: var(--background-20);
-
-            li {
-                padding-top: 1px;
-                padding-bottom: 1px;
-
-                img {
-                    margin-bottom: -2px;
-                }
-            }
-        }
+      li {
+        padding-top: 1px;
+        padding-bottom: 1px;
 
         img {
-            margin-left: 3px;
-            margin-right: 3px;
-            width: 16px;
-            height: 16px;
+          margin-bottom: -2px;
         }
+      }
     }
+
+    img {
+      margin-left: 3px;
+      margin-right: 3px;
+      width: 16px;
+      height: 16px;
+    }
+  }
 }
 
 .p-contextmenu {
-    background-color: var(--background-10);
-    border-radius: 8px;
-    border: 1px solid var(--highlight-50);
+  background-color: var(--background-10);
+  border-radius: 8px;
+  border: 1px solid var(--highlight-50);
 
-    .p-menuitem-link {
-        padding: 12px 16px;
+  .p-menuitem-link {
+    padding: 12px 16px;
 
-        &:hover {
-            background-color: var(--primary-30);
-        }
+    &:hover {
+      background-color: var(--primary-30);
     }
+  }
 }
 
 .p-menu {
-    background-color: var(--background-10);
-    border-radius: 8px;
-    border: 1px solid var(--highlight-50);
+  background-color: var(--background-10);
+  border-radius: 8px;
+  border: 1px solid var(--highlight-50);
 
-    .p-submenu-header {
-        padding: 8px 16px;
+  .p-submenu-header {
+    padding: 8px 16px;
+  }
+
+  .p-menuitem-link {
+    padding: 8px 8px;
+  }
+
+  .p-menuitem-content {
+    background-color: transparent;
+
+    &:hover {
+      background-color: var(--primary-30);
     }
-
-    .p-menuitem-link {
-        padding: 8px 8px;
-    }
-
-    .p-menuitem-content{
-        background-color: transparent;
-
-        &:hover {
-            background-color: var(--primary-30);
-        }
-    }
+  }
 }
 
 .p-accordion-header-link {
-    padding: 0;
-    background-color: var(--background-20);
+  padding: 0;
+  background-color: var(--background-20);
 
-    &:hover {
-        background-color: var(--background-30);
-    }
+  &:hover {
+    background-color: var(--background-30);
+  }
 }
 
 .p-inplace-display {
-    padding: 0;
+  padding: 0;
 }
 
 .p-inplace-content {
-    .p-button {
-        padding: 4px 0;
-    }
+  .p-button {
+    padding: 4px 0;
+  }
 }
 
 .p-dropdown-filter {
-    padding: 4px 6px;
+  padding: 4px 6px;
 }
 
 .p-dropdown-header {
-    padding: 6px 8px;
+  padding: 6px 8px;
 }
 
 .condensed-dropdown {
-    .p-dropdown-label {
-        padding: 4px 6px;
-    }
+  .p-dropdown-label {
+    padding: 4px 6px;
+  }
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 8px;
+  width: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: var(--background-30);
-    border-radius: 8px;
+  background: var(--background-30);
+  border-radius: 8px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-50);
-    border-radius: 8px;
+  background: var(--primary-50);
+  border-radius: 8px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-80);
+  background: var(--primary-80);
 }

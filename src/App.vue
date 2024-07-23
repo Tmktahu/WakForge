@@ -27,7 +27,7 @@
         <!-- <span class="font-bold text-2xl block mb-2 mt-4">{{ message.header }}</span> -->
         <div class="px-2 mt-2" style="max-width: 300px">{{ message.message }}</div>
         <div class="flex justify-content-between mt-2 w-full">
-          <p-button :label="$t('tooltips.yes')" @click="acceptCallback" />
+          <p-button :label="$t('tooltips.yes')" @click="acceptCallback" autofocus />
           <p-button :label="$t('tooltips.no')" @click="rejectCallback" />
         </div>
       </div>
