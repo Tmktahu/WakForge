@@ -37,6 +37,7 @@ export const fr = {
     english: 'Anglais',
     spanish: 'Espagnol',
     french: 'Français',
+    portuguese: 'Portugais',
     theme: 'Thème',
     colorTheme: 'Couleur Thème',
     amakna: 'Amakna',
