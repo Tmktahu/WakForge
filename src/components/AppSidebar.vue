@@ -102,6 +102,14 @@ const languageMenuItems = computed(() => [
           masterData.language = 'fr';
         },
       },
+      {
+        label: t('sidebar.portuguese'),
+        locale: 'pt',
+        command: () => {
+          locale.value = 'pt';
+          masterData.language = 'pt';
+        },
+      },
     ],
   },
 ]);
