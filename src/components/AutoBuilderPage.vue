@@ -36,9 +36,9 @@
 
           <div class="flex flex-grow-1 align-items-center">
             <span class="mr-2">Level</span>
-            <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="230" :step="15" :allow-empty="false" />
+            <p-inputNumber v-model="selectedLevel" class="number-input mr-3" :min="20" :max="245" :step="15" :allow-empty="false" />
             <div class="flex-grow-1 mr-2">
-              <p-slider v-model="selectedLevel" :min="20" :max="230" :step="15" />
+              <p-slider v-model="selectedLevel" :min="20" :max="245" :step="15" />
             </div>
           </div>
         </div>
@@ -176,9 +176,7 @@
             <template v-for="item in itemSet" :key="item.id">
               <tippy delay="[0, 0]" duration="0" interactive position="top" :offset="[0, -2]" :append-to="() => documentVar.body">
                 <div class="item-card">
-                  <div class="slot-label text-center pt-1 pb-1">
-                    {{ item.type.validSlots[0] === 'LEFT_HAND' ? 'Ring' : ITEM_SLOT_DATA[item.type.validSlots[0]].name }} Slot
-                  </div>
+                  <div class="slot-label text-center pt-1 pb-1"> {{ item.type.validSlots[0] === 'LEFT_HAND' ? 'Ring' : ITEM_SLOT_DATA[item.type.validSlots[0]].name }} Slot </div>
                   <div class="flex px-2 pt-1">
                     <p-image :src="`https://tmktahu.github.io/WakfuAssets/items/${item.imageId}.png`" image-style="width: 40px" />
                     <div class="flex flex-column ml-1">
@@ -243,8 +241,7 @@
 
         <div v-else class="flex flex-column">
           <span>
-            Enter your parameters above and hit the Generate Item Set button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results
-            will be shown here.
+            Enter your parameters above and hit the Generate Item Set button to tell Jimmy to get off his lazy butt and do something useful.<br />Your results will be shown here.
           </span>
           <div class="mt-2 py-1 px-2" style="background: var(--primary-40-40); border-radius: 8px; width: fit-content">
             Remember that your settings above should reflect what the items should give, not what the entire character should have.

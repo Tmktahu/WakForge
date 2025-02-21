@@ -31,9 +31,9 @@
 
       <div class="flex flex-grow-1 align-items-center" style="max-width: 200px; min-width: 200px">
         <span class="mr-2">{{ $t('characterSheet.level') }}</span>
-        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="230" :allow-empty="false" @input="saveData($event, 'levelText')" />
+        <p-inputNumber v-model="characterLevel" class="number-input mr-2" :min="1" :max="245" :allow-empty="false" @input="saveData($event, 'levelText')" />
         <div class="flex-grow-1">
-          <p-slider v-model="characterLevel" :min="1" :max="230" @change="saveData($event, 'levelSlider')" />
+          <p-slider v-model="characterLevel" :min="1" :max="245" @change="saveData($event, 'levelSlider')" />
         </div>
       </div>
 

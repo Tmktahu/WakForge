@@ -2,9 +2,9 @@
   <div class="flex align-items-center flex-wrap mt-3">
     <p-inputText v-model="searchTerm" :placeholder="$t('characterSheet.equipmentContent.itemFilters.searchItems')" class="search-input mr-2" @input="onSearchInput" />
     <div class="flex align-items-center mr-2" style="width: 100%; max-width: 400px">
-      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'min')" />
-      <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="230" @change="onLevelRangeChange" />
-      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="230" :allow-empty="false" @input="onLevelRangeTextInput($event, 'max')" />
+      <p-inputNumber v-model="levelRange[0]" class="number-input" :min="0" :max="245" :allow-empty="false" @input="onLevelRangeTextInput($event, 'min')" />
+      <p-slider v-model="levelRange" class="flex-grow-1 mx-3" range :min="0" :max="245" @change="onLevelRangeChange" />
+      <p-inputNumber v-model="levelRange[1]" class="number-input" :min="0" :max="245" :allow-empty="false" @input="onLevelRangeTextInput($event, 'max')" />
     </div>
     <p-button class="filter-button" :label="$t('characterSheet.equipmentContent.itemFilters.resetFilters')" @click="onResetFilters" />
   </div>
