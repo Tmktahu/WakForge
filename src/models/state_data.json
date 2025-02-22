@@ -563,7 +563,7 @@
     "id": "3416",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 2,
@@ -608,7 +608,7 @@
     "id": "4960",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -930,6 +930,17 @@
           "level_5": 4
         },
         "text": "5081_4"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 4,
+          "level_3": 4,
+          "level_4": 4,
+          "level_5": 4
+        },
+        "text": "5081_5"
       }
     ],
     "name": "5081_name"
@@ -1135,7 +1146,7 @@
     "id": "5250",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 10,
           "level_2": 10,
@@ -1192,19 +1203,11 @@
         "id": "damageInflicted",
         "rawId": 1,
         "values": {
-          "1": -10,
+          "1": 100,
           "2": 100,
           "3": 100,
           "4": 100,
           "5": 100
-        },
-        "negative": true
-      },
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 100
         },
         "negative": false
       }
@@ -1355,7 +1358,7 @@
     "id": "5444",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 50,
           "level_2": 50,
@@ -1660,7 +1663,7 @@
     "id": "5981",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -1671,7 +1674,7 @@
         "text": "5981_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 30,
           "level_2": 20,
@@ -2002,7 +2005,7 @@
     "id": "5993",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 20,
           "level_2": 20,
@@ -2049,13 +2052,6 @@
     "descriptionData": [
       {
         "indented": false,
-        "num_0": {
-          "level_1": 20,
-          "level_2": 20,
-          "level_3": 20,
-          "level_4": 20,
-          "level_5": 20
-        },
         "text": "5994_0"
       },
       {
@@ -2080,19 +2076,11 @@
         "id": "damageInflicted",
         "rawId": 1,
         "values": {
-          "1": -20,
+          "1": 10,
           "2": 10,
           "3": 10,
           "4": 10,
           "5": 10
-        },
-        "negative": true
-      },
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 10
         },
         "negative": false
       }
@@ -2123,7 +2111,7 @@
     "id": "6000",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 50,
           "level_2": 50,
@@ -2243,7 +2231,7 @@
     "id": "6005",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -2254,7 +2242,7 @@
         "text": "6005_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 20,
           "level_2": 20,
@@ -2265,21 +2253,7 @@
         "text": "6005_1"
       }
     ],
-    "name": "6005_name",
-    "equipEffects": [
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": -20,
-          "2": -20,
-          "3": -20,
-          "4": -20,
-          "5": -20
-        },
-        "negative": true
-      }
-    ]
+    "name": "6005_name"
   },
   {
     "id": "6006",
@@ -2327,7 +2301,7 @@
     "id": "6008",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -2338,7 +2312,7 @@
         "text": "6008_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 150,
           "level_2": 150,
@@ -2397,7 +2371,7 @@
     "id": "6010",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -2408,7 +2382,7 @@
         "text": "6010_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 300,
           "level_2": 300,
@@ -2419,7 +2393,7 @@
         "text": "6010_1"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 300,
           "level_2": 300,
@@ -2859,13 +2833,6 @@
     "descriptionData": [
       {
         "indented": false,
-        "num_0": {
-          "level_1": 15,
-          "level_2": 15,
-          "level_3": 15,
-          "level_4": 15,
-          "level_5": 15
-        },
         "text": "6027_0"
       },
       {
@@ -2890,19 +2857,11 @@
         "id": "damageInflicted",
         "rawId": 1,
         "values": {
-          "1": -15,
+          "1": 5,
           "2": 5,
           "3": 5,
           "4": 5,
           "5": 5
-        },
-        "negative": true
-      },
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 5
         },
         "negative": false
       }
@@ -3006,7 +2965,7 @@
     "id": "6033",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 20,
           "level_2": 20,
@@ -3078,29 +3037,7 @@
         "text": "6034_2"
       }
     ],
-    "name": "6034_name",
-    "equipEffects": [
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": -15,
-          "2": 25,
-          "3": 25,
-          "4": 25,
-          "5": 25
-        },
-        "negative": true
-      },
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 25
-        },
-        "negative": false
-      }
-    ]
+    "name": "6034_name"
   },
   {
     "id": "6036",
@@ -3130,7 +3067,7 @@
     "id": "6037",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 50,
           "level_2": 50,
@@ -3292,7 +3229,19 @@
   },
   {
     "id": "6090",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 10,
+          "level_2": 20,
+          "level_3": 30,
+          "level_4": 40,
+          "level_5": 40
+        },
+        "text": "6090_0"
+      }
+    ],
     "name": "6090_name"
   },
   {
@@ -3388,21 +3337,7 @@
         "text": "6330_2"
       }
     ],
-    "name": "6330_name",
-    "equipEffects": [
-      {
-        "id": "healsPerformed",
-        "rawId": 10002,
-        "values": {
-          "1": 5,
-          "2": 5,
-          "3": 5,
-          "4": 5,
-          "5": 5
-        },
-        "negative": false
-      }
-    ]
+    "name": "6330_name"
   },
   {
     "id": "6331",
@@ -3441,6 +3376,13 @@
     "descriptionData": [
       {
         "indented": false,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
         "text": "6637_0"
       }
     ],
@@ -3594,11 +3536,11 @@
           "level_5": 2
         },
         "num_2": {
-          "level_1": 3,
-          "level_2": 3,
-          "level_3": 3,
-          "level_4": 3,
-          "level_5": 3
+          "level_1": 4,
+          "level_2": 4,
+          "level_3": 4,
+          "level_4": 4,
+          "level_5": 4
         },
         "num_3": {
           "level_1": 4,
@@ -4512,7 +4454,7 @@
     "id": "6926",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 10,
           "level_2": 10,
@@ -4534,21 +4476,7 @@
         "text": "6926_1"
       }
     ],
-    "name": "6926_name",
-    "equipEffects": [
-      {
-        "id": "healsPerformed",
-        "rawId": 10002,
-        "values": {
-          "1": -10,
-          "2": -10,
-          "3": -10,
-          "4": -10,
-          "5": -10
-        },
-        "negative": true
-      }
-    ]
+    "name": "6926_name"
   },
   {
     "id": "6927",
@@ -4965,13 +4893,27 @@
         "text": "7073_2"
       }
     ],
-    "name": "7073_name"
+    "name": "7073_name",
+    "equipEffects": [
+      {
+        "id": "damageInflicted",
+        "rawId": 1,
+        "values": {
+          "1": 10,
+          "2": 10,
+          "3": 10,
+          "4": 10,
+          "5": 10
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "7075",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -5013,7 +4955,7 @@
     "id": "7076",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 2,
           "level_2": 2,
@@ -5024,7 +4966,7 @@
         "text": "7076_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 75,
           "level_2": 75,
@@ -5067,7 +5009,7 @@
     "id": "7077",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 1,
           "level_2": 1,
@@ -5078,7 +5020,7 @@
         "text": "7077_0"
       },
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 5,
           "level_2": 5,
@@ -5089,21 +5031,7 @@
         "text": "7077_1"
       }
     ],
-    "name": "7077_name",
-    "equipEffects": [
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 5,
-          "2": 5,
-          "3": 5,
-          "4": 5,
-          "5": 5
-        },
-        "negative": false
-      }
-    ]
+    "name": "7077_name"
   },
   {
     "id": "7078",
@@ -5205,13 +5133,20 @@
       {
         "indented": true,
         "num_0": {
-          "level_1": 2,
-          "level_2": 4,
-          "level_3": 6,
-          "level_4": 6,
-          "level_5": 6
+          "level_1": 1,
+          "level_2": 2,
+          "level_3": 3,
+          "level_4": 3,
+          "level_5": 3
         },
         "num_1": {
+          "level_1": 2,
+          "level_2": 2,
+          "level_3": 2,
+          "level_4": 2,
+          "level_5": 2
+        },
+        "num_2": {
           "level_1": 24,
           "level_2": 24,
           "level_3": 24,
@@ -5292,7 +5227,7 @@
     "id": "7252",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 10,
           "level_2": 10,
@@ -5349,19 +5284,11 @@
         "id": "damageInflicted",
         "rawId": 1,
         "values": {
-          "1": -10,
+          "1": 50,
           "2": 50,
           "3": 50,
           "4": 50,
           "5": 50
-        },
-        "negative": true
-      },
-      {
-        "id": "damageInflicted",
-        "rawId": 1,
-        "values": {
-          "1": 50
         },
         "negative": false
       }
@@ -5532,7 +5459,7 @@
     "id": "7258",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 50,
           "level_2": 50,
@@ -5585,7 +5512,7 @@
     "id": "751",
     "descriptionData": [
       {
-        "indented": false,
+        "indented": true,
         "num_0": {
           "level_1": 0,
           "level_2": 0,
@@ -6283,11 +6210,18 @@
       {
         "indented": false,
         "num_0": {
-          "level_1": 50,
-          "level_2": 50,
-          "level_3": 50,
-          "level_4": 50,
-          "level_5": 50
+          "level_1": 25,
+          "level_2": 25,
+          "level_3": 25,
+          "level_4": 25,
+          "level_5": 25
+        },
+        "num_1": {
+          "level_1": 25,
+          "level_2": 25,
+          "level_3": 25,
+          "level_4": 25,
+          "level_5": 25
         },
         "text": "7875_0"
       }
@@ -6490,10 +6424,10 @@
         "indented": true,
         "num_0": {
           "level_1": 5,
-          "level_2": 5,
-          "level_3": 5,
-          "level_4": 5,
-          "level_5": 5
+          "level_2": 10,
+          "level_3": 15,
+          "level_4": 15,
+          "level_5": 15
         },
         "text": "8131_1"
       }
@@ -6513,8 +6447,8 @@
           "level_1": 1,
           "level_2": 2,
           "level_3": 3,
-          "level_4": 3,
-          "level_5": 3
+          "level_4": 4,
+          "level_5": 5
         },
         "text": "8132_1"
       }
@@ -6558,53 +6492,483 @@
   },
   {
     "id": "8366",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8366_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 5,
+          "level_2": 5,
+          "level_3": 5,
+          "level_4": 5,
+          "level_5": 5
+        },
+        "num_1": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8366_1"
+      }
+    ],
     "name": "8366_name"
   },
   {
     "id": "8367",
-    "descriptionData": [],
-    "name": "8367_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 100,
+          "level_2": 100,
+          "level_3": 100,
+          "level_4": 100,
+          "level_5": 100
+        },
+        "text": "8367_0"
+      },
+      {
+        "indented": false,
+        "text": "8367_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 25,
+          "level_2": 25,
+          "level_3": 25,
+          "level_4": 25,
+          "level_5": 25
+        },
+        "text": "8367_2"
+      }
+    ],
+    "name": "8367_name",
+    "equipEffects": [
+      {
+        "id": "elementalResistance",
+        "rawId": 80,
+        "values": {
+          "1": -100,
+          "2": -100,
+          "3": -100,
+          "4": -100,
+          "5": -100
+        },
+        "negative": true
+      }
+    ]
   },
   {
     "id": "8368",
-    "descriptionData": [],
-    "name": "8368_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8368_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8368_1"
+      },
+      {
+        "indented": false,
+        "text": "8368_2"
+      }
+    ],
+    "name": "8368_name",
+    "equipEffects": [
+      {
+        "id": "elementalResistance",
+        "rawId": 80,
+        "values": {
+          "1": 50,
+          "2": 50,
+          "3": 50,
+          "4": 50,
+          "5": 50
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8370",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8370_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 25,
+          "level_2": 25,
+          "level_3": 25,
+          "level_4": 25,
+          "level_5": 25
+        },
+        "text": "8370_1"
+      }
+    ],
     "name": "8370_name"
   },
   {
     "id": "8372",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "text": "8372_0"
+      }
+    ],
     "name": "8372_name"
   },
   {
     "id": "8374",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 4,
+          "level_3": 4,
+          "level_4": 4,
+          "level_5": 4
+        },
+        "text": "8374_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 15,
+          "level_2": 15,
+          "level_3": 15,
+          "level_4": 15,
+          "level_5": 15
+        },
+        "text": "8374_1"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8374_2"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 15,
+          "level_2": 15,
+          "level_3": 15,
+          "level_4": 15,
+          "level_5": 15
+        },
+        "text": "8374_3"
+      }
+    ],
     "name": "8374_name"
   },
   {
     "id": "8375",
-    "descriptionData": [],
-    "name": "8375_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8375_0"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 100,
+          "level_2": 100,
+          "level_3": 100,
+          "level_4": 100,
+          "level_5": 100
+        },
+        "text": "8375_1"
+      }
+    ],
+    "name": "8375_name",
+    "equipEffects": [
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": 30,
+          "2": -100,
+          "3": -100,
+          "4": -100,
+          "5": -100
+        },
+        "negative": false
+      },
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": -100
+        },
+        "negative": true
+      }
+    ]
   },
   {
     "id": "8376",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8376_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 10,
+          "level_2": 10,
+          "level_3": 10,
+          "level_4": 10,
+          "level_5": 10
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "num_2": {
+          "level_1": 5,
+          "level_2": 5,
+          "level_3": 5,
+          "level_4": 5,
+          "level_5": 5
+        },
+        "text": "8376_1"
+      }
+    ],
     "name": "8376_name"
   },
   {
     "id": "8379",
-    "descriptionData": [],
-    "name": "8379_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8379_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_2"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_3"
+      },
+      {
+        "indented": false,
+        "text": "8379_4"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_5"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_6"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8379_7"
+      }
+    ],
+    "name": "8379_name",
+    "equipEffects": [
+      {
+        "id": "damageInflicted",
+        "rawId": 1,
+        "values": {
+          "1": -30,
+          "2": 30,
+          "3": 30,
+          "4": 30,
+          "5": 30
+        },
+        "negative": true
+      },
+      {
+        "id": "healsPerformed",
+        "rawId": 10002,
+        "values": {
+          "1": 30,
+          "2": -30,
+          "3": -30,
+          "4": -30,
+          "5": -30
+        },
+        "negative": false
+      },
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": 30,
+          "2": -30,
+          "3": -30,
+          "4": -30,
+          "5": -30
+        },
+        "negative": false
+      },
+      {
+        "id": "damageInflicted",
+        "rawId": 1,
+        "values": {
+          "1": 30
+        },
+        "negative": false
+      },
+      {
+        "id": "healsPerformed",
+        "rawId": 10002,
+        "values": {
+          "1": -30
+        },
+        "negative": true
+      },
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": -30
+        },
+        "negative": true
+      }
+    ]
   },
   {
     "id": "8380",
-    "descriptionData": [],
-    "name": "8380_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "num_1": {
+          "level_1": 100,
+          "level_2": 100,
+          "level_3": 100,
+          "level_4": 100,
+          "level_5": 100
+        },
+        "text": "8380_0"
+      }
+    ],
+    "name": "8380_name",
+    "equipEffects": [
+      {
+        "id": "elementalResistance",
+        "rawId": 80,
+        "values": {
+          "1": 50,
+          "2": 50,
+          "3": 50,
+          "4": 50,
+          "5": 50
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8381",
@@ -6640,7 +7004,34 @@
   },
   {
     "id": "8382",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8382_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8382_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 2,
+          "level_3": 2,
+          "level_4": 2,
+          "level_5": 2
+        },
+        "text": "8382_2"
+      }
+    ],
     "name": "8382_name"
   },
   {
@@ -6665,13 +7056,109 @@
   },
   {
     "id": "8384",
-    "descriptionData": [],
-    "name": "8384_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "text": "8384_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8384_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8384_2"
+      }
+    ],
+    "name": "8384_name",
+    "equipEffects": [
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": 30,
+          "2": 30,
+          "3": 30,
+          "4": 30,
+          "5": 30
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8385",
-    "descriptionData": [],
-    "name": "8385_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "text": "8385_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 20,
+          "level_3": 20,
+          "level_4": 20,
+          "level_5": 20
+        },
+        "text": "8385_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 10,
+          "level_2": 10,
+          "level_3": 10,
+          "level_4": 10,
+          "level_5": 10
+        },
+        "text": "8385_2"
+      }
+    ],
+    "name": "8385_name",
+    "equipEffects": [
+      {
+        "id": "forceOfWill",
+        "rawId": 177,
+        "values": {
+          "1": 10,
+          "2": 10,
+          "3": 10,
+          "4": 10,
+          "5": 10
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8386",
@@ -6725,62 +7212,339 @@
   },
   {
     "id": "8387",
-    "descriptionData": [],
-    "name": "8387_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 3,
+          "level_2": 6,
+          "level_3": 9,
+          "level_4": 12,
+          "level_5": 15
+        },
+        "text": "8387_0"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 16,
+          "level_5": 20
+        },
+        "text": "8387_1"
+      }
+    ],
+    "name": "8387_name",
+    "equipEffects": [
+      {
+        "id": "forceOfWill",
+        "rawId": 177,
+        "values": {
+          "1": 3,
+          "2": -8,
+          "3": -12,
+          "4": -16,
+          "5": -20
+        },
+        "negative": false
+      },
+      {
+        "id": "forceOfWill",
+        "rawId": 177,
+        "values": {
+          "1": -4
+        },
+        "negative": true
+      }
+    ]
   },
   {
     "id": "8388",
-    "descriptionData": [],
-    "name": "8388_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 8,
+          "level_5": 10
+        },
+        "num_1": {
+          "level_1": 5,
+          "level_2": 5,
+          "level_3": 5,
+          "level_4": 5,
+          "level_5": 5
+        },
+        "text": "8388_0"
+      }
+    ],
+    "name": "8388_name",
+    "equipEffects": [
+      {
+        "id": "damageInflicted",
+        "rawId": 1,
+        "values": {
+          "1": 2,
+          "2": 4,
+          "3": 6,
+          "4": 8,
+          "5": 10
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8389",
-    "descriptionData": [],
-    "name": "8389_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 3,
+          "level_2": 6,
+          "level_3": 9,
+          "level_4": 12,
+          "level_5": 15
+        },
+        "num_1": {
+          "level_1": 3,
+          "level_2": 3,
+          "level_3": 3,
+          "level_4": 3,
+          "level_5": 3
+        },
+        "text": "8389_0"
+      }
+    ],
+    "name": "8389_name",
+    "equipEffects": [
+      {
+        "id": "damageInflicted",
+        "rawId": 1,
+        "values": {
+          "1": 3,
+          "2": 6,
+          "3": 9,
+          "4": 12,
+          "5": 15
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8390",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 3,
+          "level_2": 6,
+          "level_3": 9,
+          "level_4": 12,
+          "level_5": 15
+        },
+        "text": "8390_0"
+      }
+    ],
     "name": "8390_name"
   },
   {
     "id": "8391",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 5,
+          "level_2": 10,
+          "level_3": 15,
+          "level_4": 20,
+          "level_5": 25
+        },
+        "text": "8391_0"
+      }
+    ],
     "name": "8391_name"
   },
   {
     "id": "8392",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8392_0"
+      },
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8392_1"
+      }
+    ],
     "name": "8392_name"
   },
   {
     "id": "8393",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 5,
+          "level_2": 10,
+          "level_3": 15,
+          "level_4": 20,
+          "level_5": 25
+        },
+        "text": "8393_0"
+      }
+    ],
     "name": "8393_name"
   },
   {
     "id": "8394",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8394_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 10,
+          "level_2": 20,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8394_1"
+      }
+    ],
     "name": "8394_name"
   },
   {
     "id": "8395",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8395_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8395_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8395_2"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 40,
+          "level_2": 40,
+          "level_3": 40,
+          "level_4": 40,
+          "level_5": 40
+        },
+        "text": "8395_3"
+      }
+    ],
     "name": "8395_name"
   },
   {
     "id": "8398",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8398_0"
+      },
+      {
+        "indented": true,
+        "linker": true,
+        "linkerData": {
+          "l": "en",
+          "id": "8397",
+          "level": "2"
+        },
+        "text": "8398_1"
+      }
+    ],
     "name": "8398_name"
   },
   {
     "id": "8399",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8399_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 6,
+          "level_2": 12,
+          "level_3": 18,
+          "level_4": 18,
+          "level_5": 18
+        },
+        "text": "8399_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8399_2"
+      }
+    ],
     "name": "8399_name"
   },
   {
     "id": "8400",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "linker": true,
+        "linkerData": {
+          "l": "en",
+          "id": "8401",
+          "level": "1"
+        },
+        "text": "8400_0"
+      }
+    ],
     "name": "8400_name"
   },
   {
@@ -6794,10 +7558,17 @@
         "indented": true,
         "num_0": {
           "level_1": 10,
-          "level_2": 10,
-          "level_3": 10,
-          "level_4": 10,
-          "level_5": 10
+          "level_2": 20,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "num_1": {
+          "level_1": 2,
+          "level_2": 2,
+          "level_3": 2,
+          "level_4": 2,
+          "level_5": 2
         },
         "text": "8402_1"
       }
@@ -6814,11 +7585,18 @@
       {
         "indented": true,
         "num_0": {
-          "level_1": 1,
+          "level_1": 0,
           "level_2": 1,
           "level_3": 1,
           "level_4": 1,
           "level_5": 1
+        },
+        "num_1": {
+          "level_1": 2,
+          "level_2": 2,
+          "level_3": 2,
+          "level_4": 2,
+          "level_5": 2
         },
         "text": "8403_1"
       }
@@ -6827,23 +7605,132 @@
   },
   {
     "id": "8489",
-    "descriptionData": [],
-    "name": "8489_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 40,
+          "level_2": 40,
+          "level_3": 40,
+          "level_4": 40,
+          "level_5": 40
+        },
+        "num_1": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "text": "8489_0"
+      }
+    ],
+    "name": "8489_name",
+    "equipEffects": [
+      {
+        "id": "armorGiven",
+        "rawId": 10000,
+        "values": {
+          "1": 40,
+          "2": 40,
+          "3": 40,
+          "4": 40,
+          "5": 40
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8490",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 3,
+          "level_2": 3,
+          "level_3": 3,
+          "level_4": 3,
+          "level_5": 3
+        },
+        "num_1": {
+          "level_1": 100,
+          "level_2": 100,
+          "level_3": 100,
+          "level_4": 100,
+          "level_5": 100
+        },
+        "text": "8490_0"
+      }
+    ],
     "name": "8490_name"
   },
   {
     "id": "8492",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 50,
+          "level_2": 50,
+          "level_3": 50,
+          "level_4": 50,
+          "level_5": 50
+        },
+        "text": "8492_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 20,
+          "level_3": 20,
+          "level_4": 20,
+          "level_5": 20
+        },
+        "text": "8492_1"
+      }
+    ],
     "name": "8492_name"
   },
   {
     "id": "8493",
-    "descriptionData": [],
-    "name": "8493_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8493_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 8,
+          "level_5": 10
+        },
+        "text": "8493_1"
+      },
+      {
+        "indented": false,
+        "text": "8493_2"
+      }
+    ],
+    "name": "8493_name",
+    "equipEffects": [
+      {
+        "id": "criticalHit",
+        "rawId": 150,
+        "values": {
+          "1": 2,
+          "2": 4,
+          "3": 6,
+          "4": 8,
+          "5": 10
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8494",
@@ -6879,57 +7766,340 @@
   },
   {
     "id": "8496",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 20,
+          "level_3": 20,
+          "level_4": 20,
+          "level_5": 20
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8496_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 5,
+          "level_2": 10,
+          "level_3": 15,
+          "level_4": 20,
+          "level_5": 25
+        },
+        "text": "8496_1"
+      }
+    ],
     "name": "8496_name"
   },
   {
     "id": "8497",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 20,
+          "level_3": 20,
+          "level_4": 20,
+          "level_5": 20
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8497_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 5,
+          "level_2": 10,
+          "level_3": 15,
+          "level_4": 20,
+          "level_5": 25
+        },
+        "text": "8497_1"
+      }
+    ],
     "name": "8497_name"
   },
   {
     "id": "8498",
-    "descriptionData": [],
-    "name": "8498_name"
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 20,
+          "level_3": 20,
+          "level_4": 20,
+          "level_5": 20
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8498_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 20,
+          "level_2": 40,
+          "level_3": 60,
+          "level_4": 80,
+          "level_5": 100
+        },
+        "num_1": {
+          "level_1": 1,
+          "level_2": 1,
+          "level_3": 1,
+          "level_4": 1,
+          "level_5": 1
+        },
+        "text": "8498_1"
+      }
+    ],
+    "name": "8498_name",
+    "equipEffects": [
+      {
+        "id": "elementalResistance",
+        "rawId": 80,
+        "values": {
+          "1": 20,
+          "2": 40,
+          "3": 60,
+          "4": 80,
+          "5": 100
+        },
+        "negative": false
+      }
+    ]
   },
   {
     "id": "8499",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8499_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8499_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8499_2"
+      },
+      {
+        "indented": false,
+        "text": "8499_3"
+      }
+    ],
     "name": "8499_name"
   },
   {
     "id": "8502",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8502_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8502_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8502_2"
+      },
+      {
+        "indented": false,
+        "text": "8502_3"
+      }
+    ],
     "name": "8502_name"
   },
   {
     "id": "8505",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8505_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8505_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8505_2"
+      },
+      {
+        "indented": false,
+        "text": "8505_3"
+      }
+    ],
     "name": "8505_name"
   },
   {
     "id": "8508",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "text": "8508_0"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 2,
+          "level_2": 4,
+          "level_3": 6,
+          "level_4": 6,
+          "level_5": 6
+        },
+        "text": "8508_1"
+      },
+      {
+        "indented": true,
+        "num_0": {
+          "level_1": 30,
+          "level_2": 30,
+          "level_3": 30,
+          "level_4": 30,
+          "level_5": 30
+        },
+        "text": "8508_2"
+      },
+      {
+        "indented": false,
+        "text": "8508_3"
+      }
+    ],
     "name": "8508_name"
   },
   {
     "id": "8518",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 12,
+          "level_5": 12
+        },
+        "text": "8518_0"
+      }
+    ],
     "name": "8518_name"
   },
   {
     "id": "8519",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 12,
+          "level_5": 12
+        },
+        "text": "8519_0"
+      }
+    ],
     "name": "8519_name"
   },
   {
     "id": "8520",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 12,
+          "level_5": 12
+        },
+        "text": "8520_0"
+      }
+    ],
     "name": "8520_name"
   },
   {
     "id": "8521",
-    "descriptionData": [],
+    "descriptionData": [
+      {
+        "indented": false,
+        "num_0": {
+          "level_1": 4,
+          "level_2": 8,
+          "level_3": 12,
+          "level_4": 12,
+          "level_5": 12
+        },
+        "text": "8521_0"
+      }
+    ],
     "name": "8521_name"
   }
 ]
