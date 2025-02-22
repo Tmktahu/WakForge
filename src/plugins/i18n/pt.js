@@ -1,5 +1,5 @@
 import ptItemTranslations from './itemTranslations/pt_items.json';
-import ptStateTranslations from './stateTranslations/pt_states.json';
+import ptStateTranslations from './statesTranslations/pt_states.json';
 
 // TODO: Translate State's JSON file to Portuguese
 export const pt = {
@@ -42,7 +42,8 @@ export const pt = {
     dragOrDrop: 'Ou arraste e solte um arquivo JSON aqui.',
     dataNotRecognized: 'Os dados atuais não são reconhecidos como dados do WakForge.',
     beforeImport: 'Antes de importar personagens, a versão dos dados importados será verificada aqui.',
-    needsMigration: 'Seus dados parecem ser de uma versão antiga do armazenamento e precisam ser atualizados antes de serem usados. Esta é uma operação segura e não fará alterações permanentes nos seus dados existentes.',
+    needsMigration:
+      'Seus dados parecem ser de uma versão antiga do armazenamento e precisam ser atualizados antes de serem usados. Esta é uma operação segura e não fará alterações permanentes nos seus dados existentes.',
     goodToGo: 'Seus dados estão prontos para uso.',
     dataSize: 'Tamanho dos Dados',
     numberOfCharacters: 'Número de Personagens',
@@ -53,7 +54,8 @@ export const pt = {
     currentStorageSize: 'O tamanho atual do armazenamento é',
     contactForHelp: 'Se você estiver se aproximando desse limite, entre em contato com Fryke (fryke) no Discord.',
     warning: 'AVISO',
-    warningMessage: 'Editar seus dados do LocalStorage diretamente dessa maneira é perigoso e pode resultar em danos irreparáveis aos seus dados. Faça isso apenas após fazer um backup e entender o que está fazendo.',
+    warningMessage:
+      'Editar seus dados do LocalStorage diretamente dessa maneira é perigoso e pode resultar em danos irreparáveis aos seus dados. Faça isso apenas após fazer um backup e entender o que está fazendo.',
     mustDownloadFirst: 'Você deve baixar um backup dos seus dados primeiro.',
     invalidJSON: 'Isso não é um JSON válido',
     saveToLocalstorage: 'Salvar no LocalStorage',
@@ -75,7 +77,7 @@ export const pt = {
     runesAndSubs: 'Runas & Sublimações',
     spellsAndPassives: 'Feitiços & Passivas',
     codeDisclaimer: 'Sim, isso é intencional. Não tenha medo.',
-    codeInfo: 
+    codeInfo:
       'Esses caracteres são intencionais. Para tornar o código pequeno o suficiente, exploramos as profundezas sombrias da codificação base2048. Contemple a majestade rúnica do Código da Build. Que ele lhe traga iluminação.',
     statsDisplay: {
       ar: 'AR',
@@ -293,7 +295,6 @@ export const pt = {
     dodgeFromLevel: 'Esquiva do Nível',
     lockFromLevel: 'Bloqueio do Nível',
     percentDodge: '% Esquiva',
-
 
     remove: 'Remover',
   },
