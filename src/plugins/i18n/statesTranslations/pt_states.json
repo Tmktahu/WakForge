@@ -524,7 +524,7 @@
   "7081_0": "{num_0}% dos danos infligidos aos alvos sem linha de visão a {num_1} células ou mais do portador do estado",
   "7088_name": "Peso-pena",
   "7088_0": "No início do combate, por PM maior que {num_0}:",
-  "7088_1": "| {num_0}% de danos infligidos*{num_1}|% de danos infligidos (máximo {num_2})",
+  "7088_1": "{'|'} {num_0}% de danos infligidos*{num_1}{'|'}% de danos infligidos (máximo {num_2})",
   "7106_name": "Dofushu",
   "7106_0": "Dofushu",
   "7106_1": "Os feitiços lançados devem custar pelo menos {num_0} PA",

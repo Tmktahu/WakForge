@@ -524,7 +524,7 @@
   "7081_0": "{num_0}% Damage inflicted on targets without line of sight and {num_1} or more cells away from the state bearer",
   "7088_name": "Featherweight",
   "7088_0": "At the start of combat, per MP above {num_0}:",
-  "7088_1": "| {num_0}% damage inflicted*{num_1}|% Damage inflicted (maximum {num_2})",
+  "7088_1": "{'|'} {num_0}% damage inflicted*{num_1}{'|'}% Damage inflicted (maximum {num_2})",
   "7106_name": "Dofushu",
   "7106_0": "Dofushu",
   "7106_1": "Spells cast must cost at least {num_0} AP",

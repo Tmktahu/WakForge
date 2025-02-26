@@ -524,7 +524,7 @@
   "7081_0": "{num_0}% de daños infligidos a los objetivos sin línea de visión y a {num_1} casillas o más del portador del estado",
   "7088_name": "Peso Pluma",
   "7088_0": "Al lanzamiento del combate, por PM superior a {num_0}:",
-  "7088_1": "| {num_0}% de daños infligidos*{num_1}|% de daños infligidos (máximo {num_2})",
+  "7088_1": "{'|'} {num_0}% de daños infligidos*{num_1}{'|'}% de daños infligidos (máximo {num_2})",
   "7106_name": "Dofub'huritu",
   "7106_0": "Dofub'huritu",
   "7106_1": "Los hechizos lanzados deben costar como mínimo {num_0} PA",

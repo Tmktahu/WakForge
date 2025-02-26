@@ -531,7 +531,7 @@
   "7081_0": "{num_0}% Dommages infligés aux cibles sans ligne de vue à {num_1} cases et plus du porteur de l'état",
   "7088_name": "Poids plume",
   "7088_0": "Au lancement du combat, par PM supérieur à {num_0} :",
-  "7088_1": "| {num_0}% Dommages infligés*{num_1}|% Dommages infligés (maximum {num_2})",
+  "7088_1": "{'|'} {num_0}% Dommages infligés*{num_1}{'|'}% Dommages infligés (maximum {num_2})",
   "7106_name": "Dofushu",
   "7106_0": "Dofushu",
   "7106_1": "Les sorts lancés doivent coûter au moins {num_0} PA",
