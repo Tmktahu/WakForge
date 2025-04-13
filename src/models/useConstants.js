@@ -174,9 +174,23 @@ export const ITEM_TYPE_FILTERS = [
   { id: 'ring', rawId: 103, name: 'constants.ring', category: 'armor', advanced: false, validSlots: [ITEM_SLOT_DATA.RIGHT_HAND, ITEM_SLOT_DATA.LEFT_HAND] },
 
   // eslint-disable-next-line prettier/prettier
-  { id: 'oneHandedWeapons', rawIds: [108, 110, 113, 115, 254], name: 'constants.oneHandedWeapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  {
+    id: 'oneHandedWeapons',
+    rawIds: [108, 110, 113, 115, 254],
+    name: 'constants.oneHandedWeapons',
+    category: 'weapons',
+    advanced: false,
+    validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON],
+  },
   // eslint-disable-next-line prettier/prettier
-  { id: 'twoHandedWeapons', rawIds: [223, 101, 253, 114, 117, 111], name: 'constants.twoHandedWeapons', category: 'weapons', advanced: false, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
+  {
+    id: 'twoHandedWeapons',
+    rawIds: [223, 101, 253, 114, 117, 111],
+    name: 'constants.twoHandedWeapons',
+    category: 'weapons',
+    advanced: false,
+    validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON],
+  },
 
   { id: 'wand', rawId: 108, name: 'constants.wandOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
   { id: 'sword', rawId: 110, name: 'constants.swordOneHand', category: 'weapons', advanced: true, validSlots: [ITEM_SLOT_DATA.FIRST_WEAPON] },
@@ -481,7 +495,7 @@ export const SHARED_PASSIVE_SPELLS = [
     iconId: 4957,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -493,7 +507,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -512,11 +526,11 @@ export const SHARED_PASSIVE_SPELLS = [
     class: 'all',
     name: 'Interception',
     // eslint-disable-next-line prettier/prettier
-    description: 'Hey, where do you think you\'re going? You\'re staying right there!',
+    description: "Hey, where do you think you're going? You're staying right there!",
     iconId: 4958,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -528,7 +542,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -550,7 +564,7 @@ export const SHARED_PASSIVE_SPELLS = [
     iconId: 4956,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -562,7 +576,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -581,11 +595,11 @@ export const SHARED_PASSIVE_SPELLS = [
     class: 'all',
     name: 'Motivation',
     // eslint-disable-next-line prettier/prettier
-    description: 'It\s easy to be one step ahead of your enemies if you are Motivated.',
+    description: 'Its easy to be one step ahead of your enemies if you are Motivated.',
     iconId: 5237,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -603,7 +617,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -637,7 +651,7 @@ export const SHARED_PASSIVE_SPELLS = [
     iconId: 5146,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -661,7 +675,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -695,7 +709,7 @@ export const SHARED_PASSIVE_SPELLS = [
     iconId: 5145,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -725,7 +739,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -765,7 +779,7 @@ export const SHARED_PASSIVE_SPELLS = [
     iconId: 5144,
     normalEffects: {
       // eslint-disable-next-line prettier/prettier
-      '1': {
+      1: {
         level: '1',
         equipEffects: [
           {
@@ -783,7 +797,7 @@ export const SHARED_PASSIVE_SPELLS = [
         ],
       },
       // eslint-disable-next-line prettier/prettier
-      '2': {
+      2: {
         level: '2',
         equipEffects: [
           {
@@ -1403,6 +1417,13 @@ export const CLASS_GUIDES_DATA = {
       languages: ['sidebar.english'],
       description: 'A written guide by Red Hood for the Sacrier class that goes over all the spells and mechanics.',
       url: 'https://docs.google.com/document/d/1-c1ZfZIrv63ScmEG5EvUfKVv8P1oDAq-oEaRRD0rLaE/edit',
+    },
+    {
+      // eslint-disable-next-line quotes
+      name: 'A Neophyte’s Handbook On Weaponizing Pain & Suffering',
+      languages: ['sidebar.english'],
+      description: 'A comprehensive written guide by Vulcan for the Sacrier class.',
+      url: 'https://docs.google.com/document/d/15bMNlCzOIL2oRyH7_GSVvbmaTo43Vt0Jg0dFFo-fNXs/edit?usp=sharing',
     },
   ],
   [CLASS_CONSTANTS.pandawa.id]: [
