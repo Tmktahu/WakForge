@@ -37,10 +37,9 @@ const setup = async () => {
   await pyodide.loadPackage('micropip');
   const micropip = pyodide.pyimport('micropip');
 
-  // After the next pyodide release, this can become micropip.install('msgspec');
-  // see https://github.com/pyodide/pyodide/issues/4264
-  console.log('Installing msgspec');
-  await micropip.install('https://cdn.jsdelivr.net/gh/mikeshardmind/wakfu-utils@d4d24e1f631b5cf99ee1d9a7ee18bb8bd954fe9c/msgspec-0.18.4-cp311-cp311-emscripten_3_1_45_wasm32.whl');
+  // https://pyodide.org/en/stable/usage/wasm-constraints.html#optional-modules
+  console.log('Installing pyodide\'s devendored lzma');
+  await micropip.install('lzma');
 
   // we use micropip to install the auto builder package
   console.log('Setting up the AutoBuild package loaded.');
